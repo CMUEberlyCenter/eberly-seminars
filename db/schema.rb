@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(:version => 20120404060408) do
 
   create_table "attendance_statuses", :force => true do |t|
-    t.string   "attendance_status"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "participants", :force => true do |t|
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20120404060408) do
   end
 
   create_table "registration_statuses", :force => true do |t|
-    t.string   "registration_status"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "registrations", :force => true do |t|
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20120404060408) do
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
 
   create_table "seminar_statuses", :force => true do |t|
-    t.string   "seminar_status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "seminars", :force => true do |t|

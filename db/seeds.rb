@@ -9,12 +9,12 @@
 AttendanceStatus.destroy_all
 RegistrationStatus.destroy_all
 
-['attended','tardy','no show'].each { |status| AttendanceStatus.create(:attendance_status => status) }
-['pending','registered','cancelled'].each { |status| RegistrationStatus.create(:registration_status => status) }
+['attended','tardy','no show'].each { |status| AttendanceStatus.create(:status => status) }
+['pending','registered','cancelled'].each { |status| RegistrationStatus.create(:status => status) }
 
 
 SeminarStatus.destroy_all
-['development','locked','published'].each { |status| SeminarStatus.create(:seminar_status => status) }
+['development','locked','published'].each { |status| SeminarStatus.create(:status => status) }
 
 Participant.destroy_all
 ['meribyte','mg2e','jmbrooks','sa0n','hilaryf','lovett'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 1) }
@@ -27,5 +27,5 @@ Seminar.create(:title => "Incorporating Writing in Your Discipline",
                :location => "CYH A72",
                :start_at => "2012-04-04 07:04:54",
                :end_at => "2012-04-06 08:04:54",
-               :seminar_status => SeminarStatus.find_by_seminar_status('published'),
+               :seminar_status => SeminarStatus.find_by_status('published'),
                :maximum_capacity => 25)
