@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 
+  title: MyString
+  description: MyText
+  start: 2012-04-04 01:46:07
+  end: 2012-04-04 01:46:07
+  seminar_status: 
+  maximum_capacity: 1
+  participants_confirmed_cache: 1
+  location: MyString
+
+two:
+  id: 
+  title: MyString
+  description: MyText
+  start: 2012-04-04 01:46:07
+  end: 2012-04-04 01:46:07
+  seminar_status: 
+  maximum_capacity: 1
+  participants_confirmed_cache: 1
+  location: MyString
