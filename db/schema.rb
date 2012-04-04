@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120404060408) do
   create_table "seminars", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.integer  "seminar_status_id"
     t.integer  "maximum_capacity"
     t.integer  "participants_confirmed_cache"

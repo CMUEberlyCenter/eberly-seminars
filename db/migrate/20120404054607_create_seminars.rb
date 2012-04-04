@@ -4,8 +4,8 @@ class CreateSeminars < ActiveRecord::Migration
       t.primary_key :id
       t.string :title
       t.text :description
-      t.datetime :start
-      t.datetime :end
+      t.datetime :start_at
+      t.datetime :end_at
       t.references :seminar_status
       t.integer :maximum_capacity
       t.integer :participants_confirmed_cache
