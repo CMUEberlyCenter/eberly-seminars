@@ -25,7 +25,7 @@ Seminar.destroy_all
 Seminar.create(:title => "Incorporating Writing in Your Discipline",
                :description => "Writing can facilitate students' learning in any discipline. Consider rationale for writing across the curriculum, discuss low-stakes writing assignments appropriate for a range of courses, and analyze assignments from various disciplines. \(If possible, attend \"Responding to Student Writing\" as well.\)",
                :location => "CYH A72",
-               :start_at => "2012-04-04 07:04:54",
-               :end_at => "2012-04-06 08:04:54",
+               :start_at => "2012-05-09 07:04:54",
+               :end_at => "2012-05-09 12:04:54",
                :seminar_status => SeminarStatus.find_by_status('published'),
                :maximum_capacity => 25)
