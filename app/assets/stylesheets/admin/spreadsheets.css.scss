@@ -1,3 +1,35 @@
-// Place all the styles related to the admin::spreadsheets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* ==|== admin spreadsheets styles ==========================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+
+/* ==|== participants spreadsheet styles ==================================== */
+table#participants-spreadsheet {
+
+  padding: 10px;
+  border: 1px solid #bbbbbb;
+ 
+  tr { 
+    border-bottom: 1px solid #eeeeee;
+    padding: 5px;
+    margin: 5px;
+
+    td {
+      min-height: 40px;
+      padding: 10px;
+    } 
+  }               
+
+  a {
+    width: 20px;
+    height: 20px; 
+    background: #eeeeee;
+    border: 1px solid #bbbbbb;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+  }
+}
