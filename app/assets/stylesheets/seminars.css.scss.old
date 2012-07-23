@@ -1,0 +1,8 @@
+// Place all the styles related to the seminars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.seminar_listing { width: 75%; }
+.seminar_listing h2 { margin: 0; padding: 0; }
+.seminar_listing h3 { margin: 0; padding: 0; }
+.seminar_listing p { margin: 0; padding: 0; }

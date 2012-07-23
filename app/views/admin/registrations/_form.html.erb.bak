@@ -1,0 +1,9 @@
+<h1>hi</h1>
+
+<%= form_for(@registration, :url => new_admin_seminar_registration_path(@seminar), :remote => true ) do |f| %>
+<%= f.text_field :participant_id %>
+<%= f.text_field :registration_status_id %>
+
+<%#= f.submit %>
+<% end %>
+

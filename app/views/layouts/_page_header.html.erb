@@ -1,0 +1,19 @@
+<header id="page-header">
+  <section id="banner">
+    <div id="wordmark">
+      <%= link_to(
+            image_tag( 'eberly-wordmark.png',
+              :alt => 'Eberly Wordmark'
+            ),
+            "http://www.cmu.edu/eberly"
+          )
+      %>
+    </div>
+
+    <h1><%= page_title %></h1>
+  </section>
+  
+  <div class="header-content">
+    <%= header_content %>
+  </div>
+</header>

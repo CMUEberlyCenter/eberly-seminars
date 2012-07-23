@@ -1,0 +1,140 @@
+/* ==|== navigation styles ==================================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+$site-nav-font-family: 'TitilliumText22LBold', sans-serif;
+$site-nav-font: 18px/20px $site-nav-font-family;
+
+
+/* ==|== utility nav styles ================================================= */
+#utility-nav {
+
+  h1 {
+    font: 14px/16px $header-font-family-bold;
+    margin: 0 0 0 25px;
+  }
+  
+  ul {
+
+    li {
+      font-size: 12px;
+      padding: 0 15px 0 25px;
+
+      &.login {
+	color: #ffffff;
+	font: 20px/36px helvetica, arial, sans-serif;
+
+	a {
+          background-color: $cmu-red;
+	  color: inherit;
+	  display: block;
+	  padding-left: 25px;
+	  position: relative;
+	  left: -25px;
+	  text-decoration: none;
+
+
+	  &:after {
+            content: '';
+            border: solid transparent;
+	    border-left-color: $cmu-red;
+	    border-width: 18px 0 18px 18px;
+	    position: absolute;
+	    right: -18px;
+	    height: 0px;
+	    width: 0px;
+          }
+
+	  &:hover {
+
+          }
+	  span.capitalize {
+	    letter-spacing: 2px;
+	    text-transform: uppercase;
+          }	  
+        } /* a */
+      } /* .login */
+
+      &.name {
+        float: left;
+        font: 16px/36px helvetica, arial, sans-serif;
+	padding-right: 5px;
+      } /* .name */
+
+      &.email { margin-bottom: 10px; }
+
+      &.logout {
+        display: block;
+        line-height: 36px;
+	margin-bottom: -2px;
+	padding-top: 2px;
+	vertical-align: text-bottom;
+	text-align: right;
+
+        a {
+	  color: inherit;
+	  letter-spacing: 2px;
+	  text-decoration: none;
+	  text-transform: uppercase;
+
+	  &:before { content: "["; }
+	  &:after { content: "]"; }
+        }
+      } /* .logout */
+    } /* li */
+  } /* ul */
+}
+
+
+/* ==|== admin nav styles =================================================== */
+#admin-nav {
+    margin: 25px 5px 5px 25px;
+}
+
+
+/* ==|== site nav styles ==================================================== */
+#site-nav {
+  margin: 25px 0 0 25px;
+
+  ul {
+  
+    li {
+      background: #ffffff;
+      border: 1px solid #939598;
+      color: #939598;
+      float: left;
+      font: $site-nav-font;
+      height: 75px;
+      margin: 0 5px 5px 0;
+      padding: 15px;
+      position: relative;
+      width: 75px;
+
+      &.active {
+        border-width: 3px;
+	padding: 13px;
+      }
+
+      &.primary { 
+        border-color: #94b840;
+        color: #94b840;
+      }
+
+      a {
+        color: inherit;
+	text-decoration: none;
+      }
+
+      img {
+        bottom: 5px;
+	width: 20px;
+        position: absolute;
+	right: 5px;
+      }
+
+    }
+  }
+}

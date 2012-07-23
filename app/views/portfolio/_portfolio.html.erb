@@ -1,0 +1,40 @@
+<section class="portfolio">
+  <h1>Future Faculty Portfolio</h1>
+
+  <%= image_tag "face.png" %>
+  <h2><%= current_user.name %></h2>
+
+  <section class="portfolio-dialog seminars">
+    <h1>Seminars</h1>
+    <p>
+      You have not attended any seminars.
+    </p>
+  </section>
+
+  <section class="portfolio-dialog observations">
+    <h1>Observations</h1>
+    <p>
+      No observations available.
+    </p>
+  </section>
+
+  <section class="portfolio-dialog syllabus-project">
+    <h1>Syllabus Project</h1>
+    <p>
+      No syllabus projects available.
+    </p>
+  </section>
+
+  <section class="portfolio-dialog individual-project">
+    <h1>Individual Project</h1>
+    <p>
+      No individual projects available.
+    </p>
+  </section>
+
+
+  <div class="export-portfolio">
+    <%= link_to "Export Portfolio [pdf]", "assets/teaching-development-transcript-bg.pdf" %>
+  </div>
+</section>
+

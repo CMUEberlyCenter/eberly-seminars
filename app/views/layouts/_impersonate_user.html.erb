@@ -1,0 +1,42 @@
+<div id="impersonate_participant">
+
+    
+    <p>Demo Helper</p>
+    <div class="impersonate-widget">
+      <ul>
+        <li>
+          <img alt="Face" src="/assets/face.png" /><%= link_to 'No One', impersonate_login_url('nobody') %>
+          <p>Before login.</p>
+        </li>
+
+        <li>
+          <img alt="Face" src="/assets/face.png" /><%= link_to 'Hilary Schuldt', impersonate_login_url('hilaryf') %>
+          <p>A graduate student.</p>
+        </li>
+
+        <li>
+          <img alt="Face" src="/assets/face.png" /><%= link_to 'Michelle Pierson', impersonate_login_url('mg2e') %>
+          <p>An administrator.</p>
+        </li>
+    </div>
+    <% if not session[:participant_id] %>
+    <p>You are viewing this page as: No one logged in | <%= link_to "change", '#', :onclick => "switchUser()" %></p>
+    <% else %>
+    <p>You are viewing this page as: <%= current_user.name %> | <%= link_to "change", '#', :onclick => "switchUser()" %></p>
+    <% end %>
+
+    <script>
+      function switchUser() {
+        $('#impersonate_participant p a').attr( 'onclick', "cancelSwitch()" );
+        $('#impersonate_participant p a').html('cancel');
+        $('.impersonate-widget').slideDown();
+      }
+      function cancelSwitch() { 
+        $('#impersonate_participant p a').attr( 'onclick', "switchUser()" );
+        $('#impersonate_participant p a').html('change');
+        $('.impersonate-widget').slideUp();
+      }
+
+    </script>    
+  </div>
+

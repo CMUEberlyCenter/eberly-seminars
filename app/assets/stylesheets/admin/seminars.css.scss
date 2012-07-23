@@ -1,0 +1,87 @@
+/* ==|== admin/seminars view styles =========================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== Seminars Listing Page ============================================== */
+
+
+/* ==|== Show Seminar Details Page ========================================== */
+
+li.moved { border: 3px solid #aaaadd !important; margin: 2px 4px; }
+li.phd { background: #ffdddd; border: 1px solid #aaaadd; }
+li.masters { background: #ddffff; border: 1px solid #aaaadd; }
+li.postdoc { background: #ddddff; border: 1px solid #aaaadd; }
+
+#participant_legend { 
+  position: absolute; 
+  top: 280px; 
+  left: 150px;
+
+  > ul { 
+    list-style-type: none; 
+   
+    li { margin: 5px 7px; padding: 1px 5px; }
+  }
+}
+
+#show-seminar {
+  float: left; 
+  width: 500px;
+
+  h1 { float: left; width: 136px; padding: 5px 7px;
+   &:first-child { margin-right: 5px; width: 331px; }
+   img { height: 34px; margin-right: 20px; }
+  }
+
+  h2 { line-height: 18px; padding: 20px 20px 0 20px; vertical-align: middle; 
+       color: #999999; font: 300 18px "helvetica","sans-serif"; padding-right: 0; width: 350px;
+       margin-top: 20px; }
+ 
+  td { line-height: 18px; padding: 20px 20px 0 20px; vertical-align: middle; width: 150px;
+   &:first-child { color: #333333; font: 300 18px "helvetica","sans-serif"; padding-right: 0; width: 350px; }
+  }
+  tr:nth-child(2) td { font-size: 14px; color: #666666; padding-top: 0; font-weight: bold; }
+}
+
+#waitlist {
+  float: left; 
+  width: 282px; 
+  margin-left: 20px; 
+
+  h1 { padding: 5px 7px; ;
+    img { height: 34px; margin-right: 5px; float: left; }
+  }
+}
+
+ul.dialog {
+  border: 1px solid #949494; 
+  float: left; 
+  list-style-type: none; 
+  min-height: 200px; 
+  margin: -1px; 
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+ul.participants-list {
+  &#registered_participants { margin-top: 5px; width: 460px; }
+  &#waitlisted_participants { margin-top: 69px; width: 242px; }
+
+  li {
+    border: 1px solid #cccccc; 
+    margin: 5px; 
+    float: left; 
+    width: 200px;
+
+    a { line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block; 
+    &:hover { background-color: #dddddd; }
+    }
+    img { width: 30px; margin-right: 5px; }
+    &#add-participant { border-style: dashed; text-transform: uppercase; letter-spacing: 1px; }
+    &.ui-draggable-dragging {  border: 3px solid #aaaadd !important; height: 44px; width: 186px; }
+  }
+
+}
+
+
+/* ==|== Create New Seminar Page ============================================ */

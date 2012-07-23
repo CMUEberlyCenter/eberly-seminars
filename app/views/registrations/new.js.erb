@@ -1,0 +1,11 @@
+$('.hidden-seminars').fadeToggle(300);
+$('.toggle-hidden-seminars a').fadeToggle();
+
+$('.seminar-listing form .cancel').unbind();
+$('.seminar-listing form .cancel').bind( 'click',
+  function(event){
+    event.preventDefault();
+    $('.hidden-seminars').fadeToggle(300);
+    $('.toggle-hidden-seminars a').fadeToggle();
+  }
+);

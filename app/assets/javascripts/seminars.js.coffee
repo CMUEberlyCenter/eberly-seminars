@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $('.delete-registration').bind( 'click',
+    -> $(this).fadeOut(300).html("Registration Canceled").fadeIn(300)
+  )
+
+  $('.delete-registration-cancel').bind( 'click',
+    (event) -> 
+      event.preventDefault()
+      $(this).parent().slideToggle()
+  )

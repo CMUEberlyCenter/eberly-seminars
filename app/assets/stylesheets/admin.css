@@ -1,0 +1,68 @@
+/* ==|== admin view styles ==================================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== page header style adjustments ====================================== */
+/* page_header
+     banner
+     search
+*/
+
+body { min-width: 1350px; }
+#page_header { float: left; }
+
+
+#flash { clear: left; font: 18px "helvetica","sans-serif"; padding: 10px; color: #ff0000; }
+
+nav#account { clear: right;  float: left; margin-left: 50px; margin-top: 80px; }
+
+#seminar-listing { width: 500px; float: left; }
+#seminar-listing h1 { float: left; width: 136px; padding: 5px 7px; }
+#seminar-listing h1:first-child { margin-right: 5px; width: 331px; }
+#seminar-listing h1 img { height: 34px; margin-right: 20px; }
+
+#seminar-listing table { width: 100%; margin-bottom: 20px; }
+#seminar-listing td { line-height: 18px; padding: 20px 20px 0 20px; vertical-align: middle; width: 150px; }
+#seminar-listing td:first-child { color: #666666; font: 300 15px "helvetica","sans-serif"; padding-right: 0; width: 350px; }
+#seminar-listing td:first-child a { color: inherit; text-decoration: inherit; }
+#seminar-listing td:first-child a:hover { color: #666666; }
+
+#seminar-listing a.button { background-color: #b4b4b4; color: #ffffff; padding: 5px; margin: 20px; float: left; font-size: 18px; text-decoration: none; }
+td a.button { background-color: #b4b4b4; color: #ffffff; padding: 1px 6px; float: right; position: relative; right: 0; font-size: 18px; text-decoration: none; }
+
+
+
+
+#seminar_listings .listing { padding: 10px; border: 1px solid #cccccc; float: left; width: 480px; }
+#seminar_listings h1 { float: left; }
+#seminar_listings h1.capacity { height: 37px; margin-left: 4px; width: 90px; clear: right; }
+#seminar_listings h2 { float: left; clear: right; font-size: 20px; padding: 0; margin-top: 10px; width: 380px;}
+#seminar_listings h3 { float: left; clear: left; margin: 0; padding: 0; margin-top: -10px; }
+
+
+
+
+
+
+
+
+
+.seminar_form { width: 500px; }
+.seminar_form h1 { float: left; min-height: 50px; width: 200px; }
+
+.seminar_form .main_content { clear: left; margin-bottom: 20px; padding: 11px; }
+.seminar_form label { float: left; font: 16px "helvetica","sans-serif"; margin-right: 10px; padding: 10px 0; }
+.seminar_form input { margin: 10px 0; }
+.seminar_form select { margin: 10px 0; }
+.seminar_form input#seminar_title { width: 425px; }
+.seminar_form .maximum_capacity { background: #d4d4d4; color: #ffffff; float: left; font: bold 28px "helvetica","sans-serif"; line-height: 50px; margin: 0px 0 0 5px; padding: 5px 7px; }
+.seminar_form .maximum_capacity input { width: 40px; height: 35px; margin: 0; padding: 0; }
+.seminar_form .maximum_capacity img { }
+.seminar_form label[for="seminar_end_at"] { clear: left; }
+.seminar_form label[for="seminar_location"] { clear: left; }
+.seminar_form input#seminar_location { width: 394px; }
+.seminar_form label[for="seminar_description"] { clear: left; }
+.seminar_form select#seminar_seminar_status_id { width: 300px; }
+.seminar_form input[type="submit"] { clear: left; width: 25%; }
+.seminar_form .field_with_errors { background: inherit; margin: 0; padding: 0; float: left; }
+.seminar_form .field_with_errors label { border-left: 5px solid #d9332c; margin-left: -10px; padding-left: 10px; }

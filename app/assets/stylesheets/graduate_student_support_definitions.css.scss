@@ -1,0 +1,43 @@
+/* ==|== graduate student support definitions ===============================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+$cmu-red: #990000;
+$cmu-red-text: #a91e23;
+
+$site-min-width: 960px;
+$body-gradient-start: #c3c9c7;
+$body-gradient-end: #fafafa;
+
+$header-font-family: 'TitilliumText22LRegular', sansserif;
+$header-font-family-bold: 'TitilliumText22LBold', sans-serif;
+$body-font-family: 'TitilliumText22LRegular', sans-serif;
+
+$page-header-font: 24px $header-font-family;
+$page-header-font-color: $cmu-red-text;
+$page-header-border-color: #bbbbbb;
+
+$left-column-width: 255px;
+
+$site-search-input-border-color: #bbbbbb;
+$site-search-font: 32px/30px helvetica, sans-serif;
+$site-search-bg-color: #fcf7e6;
+
+$flash-font-family: helvetica, sans-serif;
+$flash-font: 14px $flash-font-family;
+
+$padding-small: 10px;
+$padding-medium: 20px;
+
+$footer-background-color: #464646;
+
+/* ==|== scss global mixins ================================================= */
+@mixin body-gradient( $to-color, $from-color ) {
+  background-image: -ms-linear-gradient(bottom, $to-color 0%, $from-color 100%);
+  background-image: -moz-linear-gradient(bottom, $to-color 0%, $from-color 100%);
+  background-image: -o-linear-gradient(bottom, $to-color 0%, $from-color 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, $to-color), color-stop(1, $from-color));
+  background-image: -webkit-linear-gradient(bottom, $to-color 0%, $from-color 100%);
+  background-image: linear-gradient(to top, $to-color 0%, $from-color 100%);
+}

@@ -10,5 +10,9 @@
  *
  *= require_self
  *= require reset
- *= require_tree .
+ *= require fonts
+ *= require primary
+ *= require navigation
+ *= require seminars
+ *= require portfolio
 */

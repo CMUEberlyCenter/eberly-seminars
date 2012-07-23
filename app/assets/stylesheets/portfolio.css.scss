@@ -1,0 +1,73 @@
+/* ==|== portfolio styles ===================================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+$portfolio-border-color: #bbbbbb;
+$portfolio-header-bg-color: #bbbbbb;
+$portfolio-header-font-family: 'OpenSansBold', sans-serif;
+$portfolio-header-font: 26px/28px $portfolio-header-font-family;
+$portfolio-subheader-font: 14px/16px $portfolio-header-font-family;
+
+$portfolio-title-font-family: 'OpenSansRegular', sans-serif;
+$portfolio-title-font: 20px/20px $portfolio-title-font-family;
+
+
+/* ==|== box styles ========================================================= */
+section.portfolio {
+  border: 1px solid $portfolio-border-color;
+  clear: left;
+  float: left;
+  margin: 0 10px 0 0;
+  min-width: $site-min-width - $left-column-width;
+
+  h1 {
+    background: $portfolio-header-bg-color;
+    color: #ffffff;
+    font: $portfolio-header-font;
+    margin: 0;
+    padding: $padding-small;
+  }
+
+  h2 {
+   font: $portfolio-title-font;
+   margin-left: 10px;
+   padding: $padding-medium;
+  }
+
+  img {
+    border: 1px solid $portfolio-border-color;
+    float: left;
+    padding: $padding-small;
+    margin: $padding-small;
+  }
+
+  section.portfolio-dialog {
+    border: 1px solid $portfolio-border-color;
+    float: left;
+    margin: 10px;
+    width: 150px;
+
+    &.seminars {
+      width: 250px;
+    }
+
+    h1 {
+      font: $portfolio-subheader-font;
+    }
+    
+    p {
+      padding: $padding-small;
+    }
+
+  }
+
+  div.export-portfolio {
+    top: 24px;
+    clear: left;
+    float: right;
+    position: relative;
+  }
+}

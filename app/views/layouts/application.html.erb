@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Graduate Student Services - Eberly Center - Carnegie Mellon University</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
-  <%= javascript_include_tag "application" %>
+  <title><%= document_title %></title>
+
+  <%= stylesheet_link_tag 'application', :media => "all" %>
+  
+  <% if content_for :stylesheets %>
+    <%= yield :stylesheets %>
+  <% end %>
+
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div id="cmu_bar">
-    <a href="http://www.cmu.edu"><%= image_tag('carnegie-mellon-wordmark.gif', :alt => 'Carnegie Mellon Wordmark') %></a>
+  <%#= render :partial => "layouts/impersonate_user" %>
+
+  <div id="cmu-bar-container">
+    <div id="cmu-bar">
+      <%= link_to( image_tag( 'carnegie-mellon-wordmark.gif', 
+                   :alt => 'Carnegie Mellon Wordmark'),
+                   'http://www.cmu.edu' )
+      %>
+    </div>
   </div>
 
-  <header id="page_header">
+  <%= render partial: 'layouts/page_header' %>
 
-    <div id="banner">
-      <%= image_tag('eberly-wordmark.png', :alt => 'Eberly Wordmark', :class => 'wordmark') %>
-      <h1>Graduate Student Services</h1>
-    </div>
+  <div class="left sidebar">
+    <%= render "layouts/utility_nav" %>
     
-    <div id="search">
-      <form>
-      <input type="text" />
-      <input type="image" src="/assets/search-icon.png" value="Search" alt="Search" />
-      </form>
-    </div>
+    <%= sidebar_note %>
+  </div>
+  
+  <section id="content" role="main">
+    <% if flash[:error] %><div class="flash error"><%= flash[:error] %></div><% end %>
+    <% if flash[:notice] %><div class="flash notice"><%= flash[:notice] %></div><% end %>
+    <% if flash[:success] %><div class="flash success"><%= flash[:success] %></div><% end %>
 
-    <%= render "shared/account.html.erb" %>
-  </header>
+    <%= yield %>
+  </section>
 
-
-<%= yield %>
+  <%= render partial: 'layouts/page_footer' %>
 
 </body>
 </html>

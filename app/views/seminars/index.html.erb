@@ -1,6 +1,1 @@
-<%= @seminars.size %>
-<% @seminars.each do |seminar| %>
-
-<%= seminar.title %>
-<%= seminar.status %>
-<% end %>
+<%= render "seminars", :seminars => @seminars.active, :title => "Upcoming " + current_semester + " Teaching Seminars", :no_seminars_message => "No upcoming seminars", :css_class => "offering" %>

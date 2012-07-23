@@ -1,0 +1,44 @@
+
+
+
+<section class="dialog" id="seminar-listing">
+
+<h1>F12 Teaching Seminars</h1> <h1 class="capacity"><%= image_tag("face.png") %>25</h1>
+
+<table>
+<% @seminars.each do |seminar| %>
+
+<tr>
+  <td class="title"><%= link_to seminar.title, '#' %></td>
+  <td>
+    <%= link_to raw("<div class=\"capacity_meter\"><span style=\"width:" + seminar.capacity_percentage.to_s + "%\"></span></div>"), admin_seminar_path(  seminar ), :alt => "Manage Participants", :class => "manage" %>
+  </td>
+</tr>
+<tr>
+<td>
+  <p style="margin-top: -30px;">
+    <%= link_to "Edit", edit_admin_seminar_url(seminar), :class => "button", :style => "float: right; color: white;" %><br/>
+    <strong><%= seminar.start_at.strftime("%a %B %e, %Y at %l:%M %P") %> - <%= seminar.end_at.strftime("%l:%M %P") %></strong><br/>
+    <%= seminar.description %>
+
+
+  </p>
+</td>
+</tr>
+
+
+<% end %>
+</table>
+
+<%= link_to "+ Add", {:action => "new"}, :class => "button" %>
+</section>
+
+<section style="float: left;margin-top: 80px; color: #333333;margin-left: 10px;display: none;" id="manage-hint">
+Manage Participants
+</section>
+
+<script type="text/javascript">
+ $('.manage').hover( function(){$('#manage-hint').show();}, function(){$('#manage-hint').fadeOut();});
+
+});
+</script>

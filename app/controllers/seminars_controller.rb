@@ -1,8 +1,15 @@
 class SeminarsController < ApplicationController
 
   def index
-    @seminars = Seminar.active.published
-  end
+    if administrator?
+      redirect_to admin_seminars_url
 
+    elsif authenticated?
+      redirect_to registrations_url
+      
+     else
+      @seminars = Seminar.current_semester.published
+    end
+  end
 
 end

@@ -1,0 +1,11 @@
+<section class="seminar-listing <%= css_class %>">
+  <h1><%= raw title %></h1>
+  
+  <table>
+    <% if seminars && seminars.size > 0 %>
+      <%= render seminars %>
+    <% else %>
+      <tr><td><%= no_seminars_message %></td></tr>
+    <% end %>
+  </table>
+</section>

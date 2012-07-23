@@ -1,0 +1,43 @@
+<div id="navigation">
+<nav id="utility-nav">
+  <h1>Welcome!</h1>
+  <ul>
+    <% if authenticated? %>
+      <li class="name"><%= current_user.name %></li>
+      <li class="logout"><%= link_to "Logout", logout_url %></li>
+      <li class="email"><%= current_user.email %></li>
+      <li><%= [current_user.department].join(' / ') %></li>
+    
+    <% else %>
+      <% content_for( :sidebar_note, content_tag(:p, "* Counts as a core seminar toward the Documentation of Teaching Development Program.", :class => 'sidebar-note' )) %>
+      <li class="login"><%= link_to content_tag(:span, 'Login', :class => 'capitalize') + ' to sign up', login_url, :remote => true %></li>
+
+    <% end %>
+  </ul>
+</nav>
+
+<% if administrator? %>
+  <nav id="admin-nav">
+    <ul>
+      <li><%= link_to "View Seminars", admin_seminars_url %></li>
+      <li><%= link_to "Create New Seminar", new_admin_seminar_url %></li>
+      <li><%= link_to( "The Universe in a Spreadhsheet", spreadsheets_url_path) %></li>
+    </ul>
+  </nav>
+
+<% elsif authenticated? %>
+  <nav id="site-nav">
+    <ul>
+      <li class="primary"><%= link_to "Teaching Seminars Listing", registrations_url %></li>
+      <li class="primary">
+	<%= link_to "Download your schedule [.ics]", :format => :ics %>
+	<%= image_tag "calendar-icon.png", :alt => "Calendar" %>
+      </li>
+
+      <li><%= link_to "Future Faculty Program", portfolio_url %></li>
+      <li><%= link_to "View your teaching portfolio", portfolio_url %></li>
+    </ul>
+  </nav>
+
+<% end %>
+</div>

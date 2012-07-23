@@ -1,0 +1,22 @@
+<%= render "seminars", :seminars => @registrations.upcoming.confirmed, 
+    :title => "Seminars you are attending &ndash; <em>Confirmed</em>",
+    :css_class => "confirmed",
+    :no_seminars_message => "You are not attending any upcoming seminars." %>
+
+<div class="upcoming-pending">
+<%= render "seminars", :seminars => @registrations.upcoming.pending, 
+    :title => "Seminars you have requested &ndash; <em>Pending</em>",
+    :css_class => "pending",
+    :no_seminars_message => "You have no pending registrations." %>
+</div>
+
+<div class="new-seminars">
+  <%= render "seminar_form", :seminars => @new_registrations,
+      :title => "Other seminars we are currently offering",
+      :css_class => "offering",
+      :no_seminars_message => "There are no available seminars." %>
+</div>
+
+<%#= render "seminars", :seminars => @seminars.expired,
+    :title => "Past " + current_semester + " Teaching Seminars", 
+    :no_seminars_message => "No past seminars" %>

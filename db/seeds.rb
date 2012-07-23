@@ -9,8 +9,8 @@
 AttendanceStatus.destroy_all
 RegistrationStatus.destroy_all
 
-['attended','tardy','no show'].each { |status| AttendanceStatus.create(:status => status) }
-['pending','registered','cancelled'].each { |status| RegistrationStatus.create(:status => status) }
+['attended','tardy','unexcused absence','excused absence'].each { |status| AttendanceStatus.create(:status => status) }
+['pending','confirmed','cancelled','late cancelled'].each { |status| RegistrationStatus.create(:status => status) }
 
 
 SeminarStatus.destroy_all
@@ -18,6 +18,7 @@ SeminarStatus.destroy_all
 
 Participant.destroy_all
 ['meribyte','mg2e','jmbrooks','sa0n','hilaryf','lovett'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 1) }
+['rpoprosk','adrake','lsudol'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 0) }
 
 #User.create(:login => 'admin', :role => Role.find_by_name('admin'))
 
@@ -25,7 +26,28 @@ Seminar.destroy_all
 Seminar.create(:title => "Incorporating Writing in Your Discipline",
                :description => "Writing can facilitate students' learning in any discipline. Consider rationale for writing across the curriculum, discuss low-stakes writing assignments appropriate for a range of courses, and analyze assignments from various disciplines. \(If possible, attend \"Responding to Student Writing\" as well.\)",
                :location => "CYH A72",
-               :start_at => "2012-05-09 07:04:54",
-               :end_at => "2012-05-09 12:04:54",
+               :start_at => "2012-05-09 07:04:54 EDT",
+               :end_at => "2012-05-09 12:04:54 EDT",
                :seminar_status => SeminarStatus.find_by_status('published'),
                :maximum_capacity => 25)
+
+Seminar.create(:title => "Responding to Student Writing ",
+               :description => "Writing can facilitate students' learning in any discipline. Consider rationale for writing across the curriculum, discuss low-stakes writing assignments appropriate for a range of courses, and analyze assignments from various disciplines. \(If possible, attend \"Responding to Student Writing\" as well.\)",
+               :location => "CYH A72",
+               :start_at => "2012-05-08 07:04:54 EDT",
+               :end_at => "2012-05-08 12:04:54 EDT",
+               :seminar_status => SeminarStatus.find_by_status('published'),
+               :maximum_capacity => 25)
+
+Registration.create(:participant => Participant.find_by_andrewid('lsudol'),
+                    :seminar => Seminar.find_by_title('Incorporating Writing in Your Discipline'),
+                    :registration_status => RegistrationStatus.find_by_status('pending')
+                    )
+
+Registration.create(:participant=> Participant.find_by_andrewid('adrake'),
+                    :seminar => Seminar.find_by_title('Incorporating Writing in Your Discipline'),:registration_status => RegistrationStatus.find_by_status('pending'))
+Registration.create(:participant => Participant.find_by_andrewid('jmbrooks'),
+                    :seminar => Seminar.find_by_title('Incorporating Writing in Your Discipline'),:registration_status => RegistrationStatus.find_by_status('pending'))
+               
+                                                       
+

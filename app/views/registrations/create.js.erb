@@ -1,0 +1,7 @@
+$('.seminar-listing form').bind('ajax:complete', function() {  
+    <% @new_seminars.each do |s| %>
+      $("#register_seminar_<%= s %>").attr('disabled','true');
+      $("#register_seminar_<%= s %>").parent().parent().addClass('destroy');
+      $("#register_seminar_<%= s %>").parent().append('<a href="#">Cancel Request</a>');
+    <% end %>
+});

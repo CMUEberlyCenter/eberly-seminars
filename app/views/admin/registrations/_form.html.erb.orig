@@ -1,0 +1,169 @@
+<%= form_for(@registration, :url => admin_seminar_registrations_path, :html => {:class => 'add-participant-form', :id => 'registrant'} ) do |g| -%>
+<img alt="Face" src="/assets/face.png" /><%= g.text_field :search_string, :placeholder => "Participant Name" %> 
+<%= g.hidden_field :registration_status_id %>
+<%= g.submit %>
+<% end -%>
+
+<!--<div id="log" style="height: 200px; width: 300px; overflow: auto; border: 1px solid red; " class="ui-widget-content"></div>-->
+
+<script>
+jQuery.ajaxSetup({ 
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} 
+});
+
+/*
+  $(function() {
+  var availableTags = [
+  "ActionScript",
+  "AppleScript",
+  "Asp",
+  "BASIC",
+  "C",
+  "C++",
+  "Clojure",
+  "COBOL",
+  "ColdFusion",
+  "Erlang",
+  "Fortran",
+  "Groovy",
+  "Haskell",
+  "Java",
+  "JavaScript",
+  "Lisp",
+  "Perl",
+  "PHP",
+  "Python",
+  "Ruby",
+  "Scala",
+  "Scheme"
+  ];
+  $( "#registration_search_string" ).autocomplete({
+  source: availableTags
+  });
+  });
+*/
+
+
+
+$(function() {
+                function log( message ) {
+                        $( "<div/>" ).text( message ).prependTo( "#log" );
+                        $( "#log" ).scrollTop( 0 );
+                }
+
+
+                $( "#registration_search_string" ).autocomplete({
+                        source: "/participants.js",
+                        minLength: 4,
+                        select: function( event, ui ) {
+                                log( ui.item ?
+                                        "Selected: " + ui.item.value + " aka " + ui.item.id :
+                                        "Nothing selected, input was " + this.value );
+                        }
+                });
+
+});
+
+/*
+
+
+        $(function() {
+                function log( message ) {
+                        $( "<div/>" ).text( message ).prependTo( "#log" );
+                        $( "#log" ).scrollTop( 0 );
+                }
+
+                $( "#registration_search_string" ).autocomplete({
+                        source: function( request, response ) {
+                                $.ajax({
+                                        url: "/participants.js",
+                                        data: {
+                                                featureClass: "P",
+                                                style: "full",
+                                                maxRows: 12,
+                                                name_startsWith: request.term
+                                        },
+                                        success: function( data ) {
+                                                response( $.map( data.andrew_users, function( item ) {
+                                                        return {
+                                                                label: item.id,
+                                                                value: item.andrewid
+                                                        }
+                                                }));
+                                        }
+                                });
+                        },
+                        minLength: 2,
+                        select: function( event, ui ) {
+                                log( ui.item ?
+                                        "Selected: " + ui.item.label :
+                                        "Nothing selected, input was " + this.value);
+                        },
+                        open: function() {
+                                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                        },
+                        close: function() {
+                                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                        }
+                });
+        });
+*/
+
+        </script>
+
+
+
+
+<!--
+
+<input id="city" type="text" style="border: 1px solid red;">
+-->
+</div>
+
+<script>
+        $(function() {
+                function log( message ) {
+                        $( "<div/>" ).text( message ).prependTo( "#log" );
+                        $( "#log" ).scrollTop( 0 );
+                }
+
+                $( "#city" ).autocomplete({
+                        source: function( request, response ) {
+                                $.ajax({
+                                        url: "http://ws.geonames.org/searchJSON",
+                                        dataType: "jsonp",
+                                        data: {
+                                                featureClass: "P",
+                                                style: "full",
+                                                maxRows: 12,
+                                                name_startsWith: request.term
+                                        },
+                                        success: function( data ) {
+                                                response( $.map( data.geonames, function( item ) {
+                                                        return {
+                                                                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                                                                value: item.name
+                                                        }
+                                                }));
+                                        }
+                                });
+                        },
+                        minLength: 2,
+                        select: function( event, ui ) {
+                                log( ui.item ?
+                                        "Selected: " + ui.item.label :
+                                        "Nothing selected, input was " + this.value);
+                        },
+                        open: function() {
+                                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                        },
+                        close: function() {
+                                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                        }
+                });
+        });
+        </script>
+
+
+
+

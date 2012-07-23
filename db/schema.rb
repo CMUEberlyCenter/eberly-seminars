@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20120404060408) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "participant_id"
     t.integer  "seminar_id"
     t.integer  "registration_status_id"
     t.integer  "attendance_status_id"
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20120404060408) do
   end
 
   add_index "registrations", ["attendance_status_id"], :name => "index_registrations_on_attendance_status_id"
+  add_index "registrations", ["participant_id"], :name => "index_registrations_on_participant_id"
   add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
   add_index "registrations", ["seminar_id"], :name => "index_registrations_on_seminar_id"
-  add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
 
   create_table "seminar_statuses", :force => true do |t|
     t.string   "status"

@@ -1,7 +1,39 @@
 GraduateStudents::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  put 'admin/seminars/update_seminar' => 'admin/seminars#update_seminar', :as => 'update_whole_seminar'
+  get 'seminars' => 'seminars#index', :as => 'seminars'
   resources :seminars
+
+  resources :sessions, only: [:create, :destroy]
+  match 'login',  to: 'sessions#create'
+  match 'logout', to: 'sessions#destroy', via: [:get, :delete]
+
+  #match 'participants/portfolio', to: 'participants#portfolio', :as => 'participant_portfolio'
+  match 'portfolio', to: 'portfolio#index', :as => 'portfolio'
+
+  #get 'logout' => 'session#logout', :as => 'logout'
+  #get 'login' => 'session#login', :as => 'login'
+
+  get 'search' => 'search#show', :as => 'search'
+
+  match 'login/:id' => 'session#login', :as => 'impersonate_login'
+
+  get 'admin/spreadsheets/participants' => 'admin/spreadsheets#show', :as => 'spreadsheets_url'
+
+  get 'admin' => 'admin/seminars#index', :as => 'root_admin_url'
+   namespace :admin do
+    # Directs /admin/seminars/* to Admin::SeminarController
+    # (app/controllers/admin/seminars_controller.rb)
+    resources :seminars do
+      resources :registrations
+    end
+
+  end
+
+  resources :registrations
+  resources :participants
+  
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -49,7 +81,10 @@ GraduateStudents::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  #root :to => 'admin/seminars#index'
+  #root :to => 'registrations#new'
+  #root :to => 'welcome#index'
+  root :to => 'seminars#index'
 
   # See how all your routes lay out with "rake routes"
 
