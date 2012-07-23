@@ -5,8 +5,9 @@
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
-$site-nav-font-family: 'TitilliumText22LBold', sans-serif;
+$site-nav-font-family: 'TitilliumText22LRegular', sans-serif;
 $site-nav-font: 18px/20px $site-nav-font-family;
+$admin-nav-font: 16px/18px $site-nav-font-family;
 
 
 /* ==|== utility nav styles ================================================= */
@@ -91,9 +92,31 @@ $site-nav-font: 18px/20px $site-nav-font-family;
 
 
 /* ==|== admin nav styles =================================================== */
+
 #admin-nav {
-    margin: 25px 5px 5px 25px;
-}
+
+  	margin: 25px 5px 5px 25px;
+
+
+	ul {
+     background:#ffffff;
+     border:1px solid #ccc;
+     padding:15px;
+     margin-right:18px;
+
+
+		li a {
+    	 display:block;
+    	 margin-bottom:3px;
+    	 padding:6px 0px;
+    	 text-decoration:none;
+    	 color:#719439;
+    	 font: $admin-nav-font;
+		}
+	}
+}	
+	
+	
 
 
 /* ==|== site nav styles ==================================================== */
