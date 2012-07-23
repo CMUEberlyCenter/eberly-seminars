@@ -1,5 +1,5 @@
 class Admin::SeminarsController < ApplicationController
-  before_filter :require_authentication, :administrator?
+  before_filter :require_administrator
 
   layout 'admin'
 

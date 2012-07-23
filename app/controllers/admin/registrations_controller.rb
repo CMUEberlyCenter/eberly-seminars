@@ -1,4 +1,5 @@
 class Admin::RegistrationsController < ApplicationController
+  before_filter :require_administrator
 
   def new
     @registration = Registration.new(params[:registration])

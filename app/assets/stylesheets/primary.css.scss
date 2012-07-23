@@ -36,7 +36,6 @@ a.indicates-more:after { content: "..."; }
   clear: left;
   float: left;
   height: 100px;
-  margin-bottom: 30px;
   width: 100%;
 
   #banner {
@@ -166,29 +165,43 @@ a.indicates-more:after { content: "..."; }
 } /* page-footer */
 
 
+/* ==|== flash message styles =============================================== */
+div.flash {
+  border-bottom: 1px solid;
+  display: none;
+  float: left; 
+  font: $flash-font;
+  margin: 0;
+  min-height: 48px;
+  width: 100%;
+
+  &.notice {
+    background: #fff380;
+    border-color: #fdd017;
+  }
+
+  &.error {
+    background: #ffaaaa;
+    border-color: #ff0000;
+  }
+
+  &.success {
+    background: #aaffaa;
+    border-color: #00dd00;
+  }
+
+  p {
+    padding: $padding-small;
+    padding-left: $left-column-width + $padding-small;
+  }
+}
+
+
 /* ==|== main content styles ================================================ */
 #content {
   background: #ffffff;
   float: left;  
-  margin-top: 12px;
-
-  div.flash {
-    border: 1px solid;
-    display: none;
-    font: $flash-font;
-    margin: 0px -1px 20px -1px;
-    min-height: (48px - $padding-small*2);
-    padding: $padding-small;
-
-    &.notice {
-      background: #fff380;
-      border-color: #fdd017;
-    }
-
-    &.error {
-    }
-  }
-
+  margin-top: 42px;
 }
 
 

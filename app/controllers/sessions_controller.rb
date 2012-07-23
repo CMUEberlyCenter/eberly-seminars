@@ -17,7 +17,9 @@ class SessionsController < ApplicationController
   # Logout and then redirect user to the main page
   def destroy
     logout
-    redirect_to root_url, :success => "Successfully logged out."
+
+    flash[:success] = "Successfully logged out."
+    redirect_to root_url
   end
 
 

@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
   protected
   def require_authentication
     unless authenticated?
-      flash[:message] = "Log in to register for seminars"
+      flash[:error] = "Log in to register for seminars"
       redirect_to root_url
     end
   end
+
+  def require_administrator
+    unless administrator?
+      flash[:error] = "Administrator access required"
+      redirect_to root_url
+    end
+  end
+
 end
