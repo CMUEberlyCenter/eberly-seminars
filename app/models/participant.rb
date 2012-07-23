@@ -6,6 +6,10 @@ class Participant < ActiveRecord::Base
     self.is_admin == 1
   end
 
+  def registration_for( seminar )
+    self.registrations.find_by_seminar_id( seminar.id )
+  end
+
   def name
     person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
     Array.[](person["cn"]).flatten.last

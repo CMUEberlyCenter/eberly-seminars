@@ -43,8 +43,9 @@ def create
       unless v == "0"
         @new_seminars.append( v )
         Registration.create( :seminar_id => v, :participant_id => current_user.id, :registration_status => status )
+        ParticipantMailer.pending_registration_email( current_user ).deliver
       end
-    ParticipantMailer.pending_registration_email( current_user ).deliver
+    
     end
   end
 
@@ -55,8 +56,8 @@ def create
 end
 
 def destroy
-  registration = current_user.registrations.find( params[:id] )
-  if registration
+  @registration = current_user.registrations.find( params[:id] )
+  if @registration
     Registration.destroy( params[:id] )
   end
 
