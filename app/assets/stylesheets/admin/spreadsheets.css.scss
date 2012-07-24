@@ -7,29 +7,45 @@
 
 
 /* ==|== participants spreadsheet styles ==================================== */
-table#participants-spreadsheet {
 
-  padding: 10px;
-  border: 1px solid #bbbbbb;
+table#participants-spreadsheet {
+  border: 3px solid #939598;
+  font: 12px/18px "TitilliumText22LLight", sans-serif;
  
   tr { 
-    border-bottom: 1px solid #eeeeee;
-    padding: 5px;
-    margin: 5px;
+    border-bottom: 1px solid #efefef;
+    overflow: auto;
 
-    td {
-      min-height: 40px;
-      padding: 10px;
+    th {
+		padding: 21px 30px 10px 15px;
+		text-align:left;
+    	color:#ffffff;
+    	font: 14px/18px "TitilliumText22LBold", sans-serif;
+    	background-color:#939598;
+    	border-right:1px solid #ccc;
+	}
+	
+	td {
+      padding: 14px 30px 10px 15px;
     } 
   }               
 
   a {
-    width: 20px;
-    height: 20px; 
     background: #eeeeee;
     border: 1px solid #bbbbbb;
-    margin: 5px;
-    padding: 10px;
+    padding: 10px 15px 8px 15px;
     text-decoration: none;
+	
+	&.hover {
+		background:#939598;
+		color:#fff;
+		font: 16px/18px "TitilliumText22LBold", sans-serif;
+	}
+	
+	&.active {
+		background:#939598;
+		color:#fff;
+		font: 16px/18px "TitilliumText22LBold", sans-serif;
+	}	
   }
 }
