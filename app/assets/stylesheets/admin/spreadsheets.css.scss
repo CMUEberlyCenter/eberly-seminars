@@ -7,6 +7,15 @@
 
 /* ==|== participants spreadsheet styles ==================================== */
 
+#participants-spreadsheet_wrapper {
+  background-image: -ms-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
+  background-image: -moz-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
+  background-image: -o-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #c3c9c7), color-stop(1, #fafafa));
+  background-image: -webkit-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
+  background-image: linear-gradient(to top, #c3c9c7 0%, #fafafa 100%);
+  overflow:auto;
+}
 
 table#participants-spreadsheet {
   border: 3px solid #939598;
