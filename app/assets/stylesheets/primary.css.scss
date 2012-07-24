@@ -199,9 +199,13 @@ div.flash {
 
 /* ==|== main content styles ================================================ */
 #content {
+  background: #ffffff;
   float: left;  
   margin-top: 42px;
-  
+}
+
+#content .spreadsheets {
+	background: transparent;
 }
 
 
@@ -257,7 +261,7 @@ div#errorExplanation { background: #ffccba; border: 1px solid #d9332c; clear: bo
 div#errorExplanation h2 { line-height: 32px; vertical-align: middle; }
 div#errorExplanation h2:before { background: url('validation-error.png'); content: ''; display: block; float: left; height: 32px; margin-right: 5px; width: 32px; }
 /*
-#seminar-listing { width: 500px; float: left; background-color:#ffffff; }
+#seminar-listing { width: 500px; float: left; }
 #seminar-listing h1 { float: left; width: 136px; padding: 5px 7px; }
 #seminar-listing h1:first-child { margin-right: 5px; width: 331px; }
 #seminar-listing h1 img { height: 34px; margin-right: 20px; }
@@ -288,7 +292,7 @@ td a.button { background-color: #b4b4b4; color: #ffffff; padding: 1px 6px; float
 
 
 
-.seminar_form { width: 500px; background-color:#ffffff; }
+.seminar_form { width: 500px; }
 .seminar_form h1 { float: left; min-height: 50px; width: 200px; }
 
 .seminar_form .main_content { clear: left; margin-bottom: 20px; padding: 11px; }
@@ -311,7 +315,7 @@ td a.button { background-color: #b4b4b4; color: #ffffff; padding: 1px 6px; float
 
 .add-participant-form { 
   line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;
-  position: relative; background:#fff;
+  position: relative;
 
   input[type="text"] { width: 140px; border: 1px solid #cccccc; padding: 5px 3px; position: relative; }
 }
