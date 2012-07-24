@@ -35,6 +35,15 @@ table#participants-spreadsheet {
 
    		td {
       		padding: 14px 30px 10px 15px !important;
+			
+			&reg {
+				position: relative;
+				left:-500px;
+				width: 500px;
+				display:block;
+				border:1px solid #efefef;
+				padding:50px;			
+				}		
 	  		}
 	  
 		th {
