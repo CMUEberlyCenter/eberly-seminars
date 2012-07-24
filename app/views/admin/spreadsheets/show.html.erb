@@ -1,6 +1,13 @@
 <table id="participants-spreadsheet">
 <% @participants.each do |p| %>
 <tr>
+  <th>Name</th>
+  <th>Andrew ID</th>
+  <th>Department</th>
+  <th>Class Level</th>
+  <th>Registrations</th>
+</tr>
+<tr>
   <td><%= p.name %></td>
   <td><%= p.andrewid %></td>
   <td><%= p.department %></td>
