@@ -39,11 +39,13 @@ table#participants-spreadsheet {
 			
 		div.reg {
 				position: relative;
-				left:-500px;
+				left:-600px;
 				width: 500px;
 				display:block;
 				border:1px solid #efefef;
-				padding:20px;			
+				padding:20px;
+				margin:0;
+				background-color:#efefef;		
 				}			
 	  
 		th {
