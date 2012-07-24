@@ -9,9 +9,10 @@
 
 
 /* ==|== OVERRIDING main content styles ================================================ */
-#content > #participants-spreadsheet_wrapper {
-  background: transparent !important;
+$#content > background: transparent !important;  /* styles to apply to the content tag */ 
 }
+
+
 /* ================= */
 
 
