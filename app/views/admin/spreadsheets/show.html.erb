@@ -1,31 +1,32 @@
 <table id="participants-spreadsheet">
 
-<tr>
-  <th>Name</th>
-  <th>Andrew ID</th>
-  <th>Department</th>
-  <th>Class Level</th>
-  <th>Registrations</th>
-</tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Andrew ID</th>
+      <th>Department</th>
+      <th>Class Level</th>
+      <th>Registrations</th>
+    </tr>
+  </thead>
 
-<% @participants.each do |p| %>
-<tr>
-  <td><%= p.name %></td>
-  <td><%= p.andrewid %></td>
-  <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
-  <td><%= p.student_class %></td>
-  <td>
-    <%= link_to p.registrations.size, '#' %>
-    <div class="reg" style="display: none">
-      <% p.registrations.each do |r| %>
-      <%= r.seminar.title %> (<%= r.status %>)<br/>
-      <% end %>
-    </div>
-  </td>
-</tr>
-<% end %>
+  <tbody>
+    <% @participants.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.andrewid %></td>
+      <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
+      <td><%= p.student_class %></td>
+      <td>
+	<%= link_to p.registrations.size, '#' %>
+	<div class="reg" style="display: none">
+	  <% p.registrations.each do |r| %>
+	  <%= r.seminar.title %> (<%= r.status %>)<br/>
+	  <% end %>
+	</div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+
 </table>
-
-<script>
- $('td a').bind('click', function() {$(this).parent('td').children('div').slideToggle() });
-</script>
