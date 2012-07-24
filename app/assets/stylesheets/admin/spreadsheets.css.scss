@@ -15,7 +15,6 @@ table#participants-spreadsheet {
   tr { 
      border-bottom: 1px solid #efefef;
      overflow: auto;
-	 padding: 14px 30px 10px 15px;
 	
 		&.even {
 			background-color: #EFF4E3;
@@ -42,6 +41,7 @@ table#participants-spreadsheet {
     			border: 1px solid #bbbbbb;
     			padding: 10px 15px 8px 15px;
     			text-decoration: none;
+				cursor:pointer;
 		
 				&.hover {
 					background:#939598;
