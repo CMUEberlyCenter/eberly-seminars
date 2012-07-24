@@ -17,11 +17,11 @@ table#participants-spreadsheet {
      overflow: auto;
 	 padding: 14px 30px 10px 15px;
 	
-	&.evenrow {
+	&.even {
 		background-color: white;
 		}
 		
-	&.oddrow {
+	&.odd {
 		background-color: #EFF4E3;
 		}
 	}

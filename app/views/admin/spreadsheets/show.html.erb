@@ -12,7 +12,7 @@
 
   <tbody>
     <% @participants.each do |p| %>
-    <tr class="<%= cycle('oddrow', 'evenrow') %>">
+    <tr>
       <td><%= p.name %></td>
       <td><%= p.andrewid %></td>
       <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
