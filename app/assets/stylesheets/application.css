@@ -11,6 +11,7 @@
  *= require_self
  *= require reset
  *= require fonts
+ *= require dataTables/jquery.dataTables.bootstrap
  *= require primary
  *= require navigation
  *= require seminars
