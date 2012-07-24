@@ -1,15 +1,15 @@
 <table id="participants-spreadsheet">
 
 <tr>
-  <th>Name</th>
-  <th>Andrew ID</th>
-  <th>Department</th>
-  <th>Class Level</th>
-  <th>Registrations</th>
+  <th class="sortable">Name</th>
+  <th class="sortable">Andrew ID</th>
+  <th class="sortable">Department</th>
+  <th class="sortable">Class Level</th>
+  <th class="sortable">Registrations</th>
 </tr>
 
 <% @participants.each do |p| %>
-<tr>
+<tr class="<%= cycle('oddrow', 'evenrow') %>"> ...... </tr>
   <td><%= p.name %></td>
   <td><%= p.andrewid %></td>
   <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
@@ -29,3 +29,4 @@
 <script>
  $('td a').bind('click', function() {$(this).parent('td').children('div').slideToggle() });
 </script>
+ 
