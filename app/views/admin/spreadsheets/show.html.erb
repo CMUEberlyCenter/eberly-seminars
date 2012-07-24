@@ -1,5 +1,5 @@
 <table id="participants-spreadsheet">
-<% @participants.each do |p| %>
+
 <tr>
   <th>Name</th>
   <th>Andrew ID</th>
@@ -7,6 +7,8 @@
   <th>Class Level</th>
   <th>Registrations</th>
 </tr>
+
+<% @participants.each do |p| %>
 <tr>
   <td><%= p.name %></td>
   <td><%= p.andrewid %></td>
