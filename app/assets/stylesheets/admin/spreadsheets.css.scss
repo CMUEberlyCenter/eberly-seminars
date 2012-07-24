@@ -12,9 +12,9 @@ table#participants-spreadsheet {
   border: 3px solid #939598;
   font: 12px/18px "TitilliumText22LLight", sans-serif;
 	
-	tr { 
-    border-bottom: 1px solid #efefef;
-    overflow: auto;
+  tr { 
+     border-bottom: 1px solid #efefef;
+     overflow: auto;
 	
 	&.evenrow {
 		background-color: white;
@@ -40,7 +40,8 @@ table#participants-spreadsheet {
 	td {
       padding: 14px 30px 10px 15px;
     } 
-  }               
+
+  }
 
   a {
     background: #eeeeee;

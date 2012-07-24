@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-datatables-rails'
 gem 'ri_cal'
 gem 'activeldap', :require => 'active_ldap/railtie'
 gem 'ruby-ldap'

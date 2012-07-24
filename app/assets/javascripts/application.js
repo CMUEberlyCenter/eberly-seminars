@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery.ui.all
+//= require dataTables/jquery.dataTables
 //= require jquery_ujs
 //= require_tree .
