@@ -17,11 +17,13 @@ table#participants-spreadsheet {
     overflow: auto;
 	
 	&.evenrow {
-		background-color:white;
+		background-color: white;
 		}
+		
 	&.oddrow {
-		background-color:silver;
+		background-color: silver;
 		}
+	}
 
     th {
 		padding: 21px 30px 10px 15px;
