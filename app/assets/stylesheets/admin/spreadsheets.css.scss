@@ -5,8 +5,15 @@
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
-
 /* ==|== participants spreadsheet styles ==================================== */
+
+
+/* ==|== OVERRIDING main content styles ================================================ */
+#content {
+  background: transparent !important;
+}
+/* ================= */
+
 
 table#participants-spreadsheet {
   border: 3px solid #939598;
