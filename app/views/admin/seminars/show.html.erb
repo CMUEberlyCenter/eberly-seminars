@@ -26,7 +26,7 @@
 <%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
 
     <% @seminar.registrations.confirmed.each do |registration| %>
-    <%= f.fields_for :registrations, registration do |registration_form| %>
+    <%#= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
        if registration.participant.student_class == "Masters"
          css_classes = css_classes + " masters"
@@ -34,11 +34,22 @@
          css_classes = css_classes + " phd"
        end
     %>
-    <li id ="ids_<%=registration.id %>" class="<%= h css_classes %>">
+
+
+    <%# end %>
+    <li id ="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
       <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
+
+    <div class="attendance-form">
+      <% AttendanceStatus.all.each do |status| %>
+        <%= radio_button( "attendance_status", registration.id.to_s, status.id) %>
+	<%= label_tag "attendance_status_#{registration.id}_#{status.id}", status.status %>
+      <% end %>
+      <%= hidden_field_tag 'registration', registration.id %>
+    </div>
+
     </li>
-    <% end %>
-    <% end %>
+<% end %>
   </ul>
   <script>
     $('#registered_participants form li').sortElements(function(a, b){
@@ -75,3 +86,20 @@
 </section>
 <%# f.submit "Update", :class => 'button' %>
 <% end %>
+
+
+<!--
+/*$('#registration_form .participant').bind('contextmenu', function(e){
+  alert("yo");
+
+  e.preventDefault();
+  return false;
+});
+
+  $('#registration_form .participant').bind('contextmenu', function(e) {
+    alert("yo");
+    e.preventDefault;
+    return false;
+  });*/
+
+-->

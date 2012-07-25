@@ -46,7 +46,14 @@ class Admin::SeminarsController < ApplicationController
   end
 
   def update
-      logger.error "Starting grabbing the params"
+      logger.info params
+    
+      if CGI.parse(params[:attendance_status])
+        registration = Registration.find(params[:registration_id])
+        registration.attendance_status_id = params[:attendance_status]
+        registration.save
+      else
+
       @waitlists = CGI.parse(params[:waitlisted])['ids[]'].map{ |x| x.to_i }
       @registered = CGI.parse(params[:registered])['ids[]'].map { |x| x.to_i }
       logger.info "Waitlists: #{@waitlists}"
@@ -63,6 +70,8 @@ class Admin::SeminarsController < ApplicationController
         reg.registration_status= RegistrationStatus.find_by_status('confirmed')
         reg.save
        end 
+
+       end #if attendance
   end
 
   def update_seminar
