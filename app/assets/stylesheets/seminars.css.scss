@@ -12,7 +12,7 @@ $seminar-listing-header-font: 24px/28px $seminar-listing-header-font-family;
 $seminar-listing-header-font-family-em: 'OpenSansRegularItalic', sans-serif;
 
 $seminar-title-font-family: 'OpenSansLight', sans-serif;
-$seminar-title-font: 22px/24px $seminar-title-font-family;
+$seminar-title-font: 22px/32px $seminar-title-font-family;
 
 /* ==|== box styles ========================================================= */
 section.seminar-listing {
@@ -48,7 +48,6 @@ section.seminar-listing {
 
     tr {
       margin-bottom: 12px;
-      position: static;
 
       td {
         padding: $padding-medium $padding-medium $padding-medium 100px;
@@ -56,16 +55,19 @@ section.seminar-listing {
         h1 {
           background: none;
           color: #000000;
+	  float: left;
           font: $seminar-title-font;
           margin: 0;
           padding: 0;
+	  width: 75%;
         }
 
-	  div.capacity {
-	    clear: both;
-	    float: left;
-	    div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 100px;}
-            div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
+	div.capacity {
+	  float: left;
+	  margin-top: 8px;
+
+	  div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
+          div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
 	 }
 
         p {

@@ -11,23 +11,10 @@
   </div>
   <% end %>
 
-  <section class="dialog">
-  <h1 style="width: 65%; min-height:50px;">Teaching Seminars</h1>
-
-  <div class="maximum_capacity" style="width: 20%;">
-    <%= image_tag "face.png" %>
     <%= f.text_field :maximum_capacity, :value => "25" %>
-  </div>
 
-  <div class="main_content">
     <%= f.label :title, 'Title' %>
     <%= f.text_field :title %>
-
-    <%= f.label :start_at, 'Start  Date | Time' %>
-    <%= f.datetime_select :start_at %>
-
-    <%= f.label :end_at, 'End  Date | Time' %>
-    <%= f.datetime_select :end_at %>
 
     <%= f.label :location, 'Location' %>
     <%= f.text_field :location %>
@@ -39,7 +26,7 @@
     <%= f.collection_select(:seminar_status_id, SeminarStatus.all, :id, :status) %>
 
     <%= f.submit "Save" %> | <%= link_to "Cancel", admin_seminars_url %>
-  </div>
+
 </section>
 <% end %>
 
