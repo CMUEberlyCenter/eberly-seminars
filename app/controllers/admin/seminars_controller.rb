@@ -48,7 +48,7 @@ class Admin::SeminarsController < ApplicationController
   def update
       logger.info params
     
-      if CGI.parse(params[:attendance_status])
+      if params[:attendance_status]
         registration = Registration.find(params[:registration_id])
         registration.attendance_status_id = params[:attendance_status]
         registration.save
