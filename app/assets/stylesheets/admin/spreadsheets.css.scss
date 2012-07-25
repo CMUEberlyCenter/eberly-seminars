@@ -39,13 +39,11 @@ table#participants-spreadsheet {
 			
 		div.reg {
 				position: relative;
-				left:-657px;
 				width: 660px;
-				display:block;
 				border:1px solid #ccc;
 				padding:20px;
-				margin:10px 0 0;
-				float:left;
+  				margin: 10px 0 0 -657px;
+  				float:left;
 				background-color:#fff;
 				font-size: 14px;
 				line-height: 21px;
