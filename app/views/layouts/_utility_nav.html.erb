@@ -10,7 +10,7 @@
     
     <% else %>
       <% content_for( :sidebar_note, content_tag(:p, "* Counts as a core seminar toward the Documentation of Teaching Development Program.", :class => 'sidebar-note' )) %>
-      <li class="login"><%= link_to content_tag(:span, 'Login', :class => 'capitalize') + ' to sign up', login_url, :remote => true %></li>
+      <li class="login"><%= link_to content_tag(:span, 'Login', :class => 'capitalize') + ' to sign up', login_url %></li>
 
     <% end %>
   </ul>
