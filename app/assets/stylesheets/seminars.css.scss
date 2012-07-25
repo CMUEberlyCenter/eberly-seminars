@@ -27,6 +27,9 @@ section.seminar-listing {
   &.confirmed > h1 { background: #94b840; }
   &.pending  > h1 { background: #e3b31c; }
 
+  &.published > h1 { background: #94b840; }
+  &.development  > h1 { background: #e3b31c; }
+
   &:first-child { border-bottom: 1px solid $seminar-listing-border-color; }
   &:last-child { border-bottom: 1px solid $seminar-listing-border-color; }
   h1 {
@@ -58,6 +61,13 @@ section.seminar-listing {
           padding: 0;
         }
 
+	  div.capacity {
+	    clear: both;
+	    float: left;
+	    div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 100px;}
+            div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
+	 }
+
         p {
           margin: 0;
           padding: 0;
@@ -68,6 +78,23 @@ section.seminar-listing {
             padding: 4px 0;
           }
 	  
+	  &.manage {
+	    a {	
+	      background: $seminar-listing-border-color;
+              border: 1px solid $seminar-listing-border-color;
+              color: #ffffff;
+	      float: left;
+              font-weight: bold;
+              margin: 10px 0 0 10px;
+              padding: $padding-small/2 $padding-small;
+              text-align: center;
+              text-decoration: none;
+              width: 100px;
+
+	      &:first-child { margin-left: 0; }
+	    }
+          }
+
 	  &.destroy {
 	  
 	    a {	
@@ -155,8 +182,8 @@ section.seminar-listing {
     }
   }
 } /* section.seminar-listing */
-#content > section.seminar-listing:first-child table tr:first-child p.details { display: block; }
 
+#content > section.seminar-listing:first-child table tr:first-child p.details { display: block; }
 
 div.hidden-seminars {
   display: none;

@@ -1,0 +1,27 @@
+<tr><td>
+
+<h1 class="title"><%= seminar.title %></h1>
+<p class="date details"><%= raw seminar.formatted_timespan %></p>
+<p class="description details"><%= seminar.description %></p>
+
+<p class="manage">
+  <%= link_to "Edit", edit_admin_seminar_url(seminar) %>
+  <% if seminar.status == 'published' %>
+    <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(seminar) %>
+    <div class="capacity">
+      <%= link_to(
+            content_tag( :div,
+              content_tag( :span, '', :style => "width: " + seminar.capacity_percentage.to_s + "%" ), :class => "capacity-meter" ),
+            admin_seminar_path( seminar ),
+            :alt => "Manage Registrations" ) %>
+    </div>
+
+  <% else %>
+    <%= link_to 'Publish', edit_admin_seminar_url(seminar) %>
+  <% end %>
+</p>
+
+
+<div><%= link_to raw("<div class=\"capacity_meter\"><span style=\"width:" + seminar.capacity_percentage.to_s + "%\"></span></div>"), admin_seminar_path(  seminar ), :alt => "Manage Participants", :class => "manage" %></div>
+
+</td></tr>
