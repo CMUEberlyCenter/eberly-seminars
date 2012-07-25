@@ -9,17 +9,12 @@ GraduateStudents::Application.routes.draw do
   match 'login',  to: 'sessions#create'
   match 'logout', to: 'sessions#destroy', via: [:get, :delete]
 
-  #match 'participants/portfolio', to: 'participants#portfolio', :as => 'participant_portfolio'
   match 'portfolio', to: 'portfolio#index', :as => 'portfolio'
-
-  #get 'logout' => 'session#logout', :as => 'logout'
-  #get 'login' => 'session#login', :as => 'login'
 
   get 'search' => 'search#show', :as => 'search'
 
   match 'login/:id' => 'session#login', :as => 'impersonate_login'
 
-  get 'admin/spreadsheets/participants' => 'admin/spreadsheets#show', :as => 'spreadsheets_url'
 
   get 'admin' => 'admin/seminars#index', :as => 'root_admin_url'
    namespace :admin do
@@ -28,6 +23,8 @@ GraduateStudents::Application.routes.draw do
     resources :seminars do
       resources :registrations
     end
+
+    resources :spreadsheets, only: [:show]
 
   end
 

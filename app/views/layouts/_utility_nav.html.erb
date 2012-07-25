@@ -25,11 +25,11 @@
 	  
     <ul>  
       <li><%= link_to "Seminars > all", admin_seminars_url %></li>
-      <li><%= link_to "Seminars > published", admin_seminars_url %></li>
-      <li><%= link_to "Seminars > drafts", admin_seminars_url %></li>
+      <li><%= link_to "Seminars > published", admin_seminars_url( :status => 'published' ) %></li>
+      <li><%= link_to "Seminars > drafts", admin_seminars_url( :status => 'drafts' ) %></li>
 
-      <li><%= link_to "List details > seminars", spreadsheets_url_path %></li>
-      <li><%= link_to "List details > people", spreadsheets_url_path %></li>
+      <li><%= link_to "List details > seminars", admin_spreadsheet_url( :id => 'seminars' ) %></li>
+      <li><%= link_to "List details > people", admin_spreadsheet_url( :id => 'participants') %></li>
     </ul>
   </nav>
 

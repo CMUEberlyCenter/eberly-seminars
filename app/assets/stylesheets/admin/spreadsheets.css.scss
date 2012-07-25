@@ -7,7 +7,8 @@
 
 /* ==|== participants spreadsheet styles ==================================== */
 
-#participants-spreadsheet_wrapper {
+/*#participants-spreadsheet_wrapper {*/
+.dataTables_wrapper {
   background-image: -ms-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: -moz-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: -o-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
@@ -15,69 +16,6 @@
   background-image: -webkit-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: linear-gradient(to top, #c3c9c7 0%, #fafafa 100%);
   overflow:auto;
-}
-
-table#participants-spreadsheet {
-  border: 3px solid #939598;
-  font: 12px/18px "TitilliumText22LLight", sans-serif;
-	
-  tr { 
-     border-bottom: 1px solid #efefef;
-     overflow: auto;
-	
-		&.even {
-			background-color: #EFF4E3;
-			}
-		
-		&.odd {
-			background-color: #FFFFFF;
-			}
-
-   		td {
-      		padding: 14px 30px 10px 15px !important;
-	  		}
-			
-		div.reg {
-				position: relative;
-				width: 660px;
-				border:1px solid #ccc;
-				padding:20px;
-  				margin: 10px 0 0 -657px;
-  				float:left;
-				background-color:#fff;
-				font-size: 14px;
-				line-height: 21px;
-				}			
-	  
-		th {
-			padding: 21px 30px 10px 15px;
-			text-align:left;
-    		color:#ffffff;
-    		font: 14px/18px "TitilliumText22LBold", sans-serif;
-    		background-color:#939598;
-    		border-right:1px solid #ccc;
-			
-  			a {
-    			background: #eeeeee;
-    			border: 1px solid #bbbbbb;
-    			padding: 10px 15px 8px 15px;
-    			text-decoration: none;
-				cursor:pointer;
-		
-				&.hover {
-					background:#939598;
-					color:#fff;
-					font: 16px/18px "TitilliumText22LBold", sans-serif;
-					}
-			
-				&.active {
-					background:#939598;
-					color:#fff;
-					font: 16px/18px "TitilliumText22LBold", sans-serif;
-					}
-			}
-		}	
-  	}
 }
 
 
@@ -303,5 +241,72 @@ clear: both;
 
 .dataTables_scrollBody {
 *margin-top: -1px;
+}
+
+/*table#participants-spreadsheet {*/
+/*table.spreadsheet {*/
+table#seminars-spreadsheet,
+table#participants-spreadsheet {
+  border: 3px solid #939598;
+  font: 12px/18px "TitilliumText22LLight", sans-serif;
+
+	
+  tr { 
+     border-bottom: 1px solid #efefef;
+     overflow: auto;
+	
+		&.even {
+			background-color: #EFF4E3;
+			}
+		
+		&.odd {
+			background-color: #FFFFFF;
+			}
+
+   		td {
+      		padding: 14px 30px 10px 15px !important;
+	  		}
+			
+		div.reg {
+				position: relative;
+				width: 660px;
+				border:1px solid #ccc;
+				padding:20px;
+  				margin: 10px 0 0 -657px;
+  				float:left;
+				background-color:#fff;
+				font-size: 14px;
+				line-height: 21px;
+				}			
+	  
+		th {
+			padding: 21px 30px 10px 15px;
+			text-align:left;
+    		color:#ffffff;
+    		font: 14px/18px "TitilliumText22LBold", sans-serif;
+    		background-color:#939598;
+    		border-right:1px solid #ccc;
+			
+  			a {
+    			background: #eeeeee;
+    			border: 1px solid #bbbbbb;
+    			padding: 10px 15px 8px 15px;
+    			text-decoration: none;
+				cursor:pointer;
+		
+				&.hover {
+					background:#939598;
+					color:#fff;
+					font: 16px/18px "TitilliumText22LBold", sans-serif;
+					}
+			
+				&.active {
+					background:#939598;
+					color:#fff;
+					font: 16px/18px "TitilliumText22LBold", sans-serif;
+					}
+			}
+		}	
+  	}
 }
 

@@ -1,0 +1,19 @@
+<table id="seminars-spreadsheet" class="spreadsheet">
+
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seminars.each do |s| %>
+    <tr>
+      <td><%= s.title %></td>
+      <td><%= s.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
