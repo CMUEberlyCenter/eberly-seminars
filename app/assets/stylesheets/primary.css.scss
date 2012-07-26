@@ -225,28 +225,3 @@ ul  { list-style-type: none; margin: 0; padding: 0; }
 #registrations li h1 { font: 300 18px "helvetica","sans-serif"; margin-top: 10px; min-height: 30px; width: 80%; margin-bottom: 5px; }
 #registrations p { clear: left; display: none; }
 #registrations input[type="checkbox"] { margin-top: 18px; margin-left: 18px; clear: left; float: left; line-height: 30px; vertical-align: middle; }
-
-
-div#errorExplanation { background: #ffccba; border: 1px solid #d9332c; clear: both; float: left; margin-top: 15px; padding: 0 15px; width: 470px; }
-div#errorExplanation h2 { line-height: 32px; vertical-align: middle; }
-div#errorExplanation h2:before { background: url('validation-error.png'); content: ''; display: block; float: left; height: 32px; margin-right: 5px; width: 32px; }
-
-.seminar_form { width: 500px; }
-.seminar_form h1 { float: left; min-height: 50px; width: 200px; }
-
-.seminar_form .main_content { clear: left; margin-bottom: 20px; padding: 11px; }
-.seminar_form label { float: left; font: 16px "helvetica","sans-serif"; margin-right: 10px; padding: 10px 0; }
-.seminar_form input { margin: 10px 0; }
-.seminar_form select { margin: 10px 0; }
-.seminar_form input#seminar_title { width: 425px; }
-.seminar_form .maximum_capacity { background: #d4d4d4; color: #ffffff; float: left; font: bold 28px "helvetica","sans-serif"; line-height: 50px; margin: 0px 0 0 5px; padding: 5px 7px; }
-.seminar_form .maximum_capacity input { width: 40px; height: 35px; margin: 0; padding: 0; }
-.seminar_form .maximum_capacity img { }
-.seminar_form label[for="seminar_end_at"] { clear: left; }
-.seminar_form label[for="seminar_location"] { clear: left; }
-.seminar_form input#seminar_location { width: 394px; }
-.seminar_form label[for="seminar_description"] { clear: left; }
-.seminar_form select#seminar_seminar_status_id { width: 300px; }
-.seminar_form input[type="submit"] { clear: left; width: 25%; }
-.seminar_form .field_with_errors { background: inherit; margin: 0; padding: 0; float: left; }
-.seminar_form .field_with_errors label { border-left: 5px solid #d9332c; margin-left: -10px; padding-left: 10px; }
