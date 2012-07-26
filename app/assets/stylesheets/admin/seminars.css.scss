@@ -118,3 +118,74 @@ ul.participants-list {
     float: left;
   }
 }
+
+
+/* ==|== seminar new & edit forms styles ==================================== */
+div#errorExplanation {
+  background: #ffccba; 
+  border: 1px solid #d9332c; 
+  clear: both; 
+  float: left; 
+  margin-top: 15px; 
+  padding: 0 15px; 
+  width: 470px;
+
+  h2 {
+    line-height: 32px;
+    vertical-align: middle;
+
+    &:before { 
+      background: url('validation-error.png');
+      content: '';
+      display: block;
+      float: left;
+      height: 32px;
+      margin-right: 5px;
+      width: 32px;
+    }
+  }
+}
+
+.seminar_form {
+  width: 500px;
+
+  h1 { float: left; min-height: 50px; width: 200px; }
+
+  label { float: left; font: 16px "helvetica","sans-serif"; margin-right: 10px; padding: 10px 0; }
+  input { margin: 10px 0; }
+  select { margin: 10px 0; }
+  input#seminar_title { width: 425px; }
+
+  .maximum_capacity {
+    background: #d4d4d4; 
+    color: #ffffff; 
+    float: left; 
+    font: bold 28px "helvetica","sans-serif"; 
+    line-height: 50px; 
+    margin: 0px 0 0 5px; 
+    padding: 5px 7px; 
+
+    input { width: 40px; height: 35px; margin: 0; padding: 0; }
+  }
+
+  label[for="seminar_end_at"] { clear: left; }
+  label[for="seminar_location"] { clear: left; }
+  input#seminar_location { width: 394px; }
+  label[for="seminar_description"] { clear: left; }
+  select#seminar_seminar_status_id { width: 300px; }
+  input[type="submit"] { clear: left; width: 25%; }
+
+  .main_content { clear: left; margin-bottom: 20px; padding: 11px; }
+  .field_with_errors {
+    background: inherit; 
+    margin: 0; 
+    padding: 0; 
+    float: left;
+
+    label {
+      border-left: 5px solid #d9332c; 
+      margin-left: -10px; 
+      padding-left: 10px; 
+    }
+  }
+}
