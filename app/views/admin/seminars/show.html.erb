@@ -42,7 +42,8 @@
 
     <div class="attendance-form">
       <% AttendanceStatus.all.each do |status| %>
-        <%= radio_button( "attendance_status", registration.id.to_s, status.id) %>
+        <%#= radio_button( "attendance_status", registration.id.to_s, status.id) %>
+        <%= radio_button_tag( "attendance_status_#{registration.id.to_s}", status.id, registration.attendance_status_id == status.id ) %>
 	<%= label_tag "attendance_status_#{registration.id}_#{status.id}", status.status %>
       <% end %>
       <%= hidden_field_tag 'registration', registration.id %>
