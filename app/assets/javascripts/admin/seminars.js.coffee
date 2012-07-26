@@ -5,7 +5,7 @@
   $ ->
     drpOptions = drop: (event, ui) ->
       @append ui.draggable.html()
-    $("#registered_participants, #waitlisted_participants").sortable(
+    $("#registered-participants, #waitlisted_participants").sortable(
       connectWith: ".connected-sortable"
       items: "li:not(.cant-drag)"
       placeholder: "ui-draggable-dragging"
@@ -16,7 +16,7 @@
           url: $(this).attr("action")
           dataType: "script"
           data: 
-            registered: $("#registered_participants").sortable("serialize")
+            registered: $("#registered-participants").sortable("serialize")
             waitlisted: $("#waitlisted_participants").sortable("serialize")
         false
     )

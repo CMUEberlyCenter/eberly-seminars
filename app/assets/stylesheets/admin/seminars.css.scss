@@ -2,6 +2,98 @@
    Author: Meg Richards (mouse@cmu.edu)
    ========================================================================== */
 
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+$participant-status-title-font: 22px/32px $header-font-family;
+
+$participant-border-color: #aaaadd;
+$participant-moved-border-color: #aaaadd;
+$masters-color: #ddffff;
+$phd-color: #ffdddd;
+$postdoc-color: #ddddff;
+
+/* ==|== participant legend & participant list styles ======================= */
+#participant-legend,
+.participants-list {
+
+  li.moved { border: 3px solid #aaaadd !important; margin: 2px 4px; }
+  li.phd { background: #ffdddd; border: 1px solid #aaaadd; }
+  li.masters { background: #ddffff; border: 1px solid #aaaadd; }
+  li.postdoc { background: #ddddff; border: 1px solid #aaaadd; }
+}
+
+#participant-legend {
+  position: absolute;
+  right: -110px;
+  top: 50px;
+  width: 100px;
+
+  > ul {
+    list-style-type: none;
+
+    li { 
+      margin: 5px 7px; 
+      padding: 1px 5px; 
+    }
+  }
+}
+
+.seminar-listing.admin {
+  h2 { 
+    background: none;
+    color: #000000;
+    float: left;
+    font: $participant-status-title-font;
+    margin: 0 1%;
+    padding: 1%;
+
+    &.confirmed { width: 50%;}
+    &.pending { width: 20%; }
+  }
+  
+
+  p.date {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+}
+
+ul.participants-list {
+  border: 1px solid #949494;
+  float: left;
+  list-style-type: none;
+  margin: 0 1%;
+  min-height: 400px;
+  padding: 1%;
+  
+  &#registered-participants { width: 62%; }
+  &#waitlisted_participants { width: 29%; }
+
+  li {
+    border: 1px solid #cccccc;
+    margin: 5px;
+    float: left;
+    width: 193px;
+
+    a { line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;
+    &:hover { background-color: #dddddd; }
+    }
+    img { width: 30px; margin-right: 5px; }
+    &#add-participant { border-style: dashed; text-transform: uppercase; letter-spacing: 1px; }
+    &.ui-draggable-dragging {  border: 3px solid #aaaadd !important; height: 44px; width: 186px; }
+  }
+
+}
+
+.add-participant-form {
+  line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;
+  position: relative;
+
+  input[type="text"] { width: 140px; border: 1px solid #cccccc; padding: 5px 3px; position: relative; }
+}
+
+
 .attendance-form {
   background: #ffffff;
   border: 1px solid #bbbbbb;

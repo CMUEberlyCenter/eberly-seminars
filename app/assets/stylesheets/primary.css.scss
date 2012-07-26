@@ -208,15 +208,7 @@ div.flash {
 	background: transparent;
 }
 
-/*
-div.capacity_meter { border: 1px solid #bbbbbb; height: 14px; position: relative; }
-div.capacity_meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
-*/
-
-
-
-
-
+ul.ui-autocomplete { position: absolute; background-color: #ffffff; padding: 5px; margin: 5px 0; }
 
 #impersonate_participant { border: 1px solid #ffd700; background-color: #fffacd; width: 330px; position: absolute; top: 0; padding: 2px 30px; left: 320px; width: 500px; z-index: 99; }
 #impersonate_participant p:first-child { text-align: left; }
@@ -226,28 +218,6 @@ div.capacity_meter > span { background-color: #bbbbbb; display: block; height: 1
 
 .impersonate-widget ul li { float: left; width: 33%; margin-bottom: 20px; }
 .impersonate-widget ul li a { margin-left: 10px; }
-
-#admin_nav { position: absolute; top: 50px; right: 20px; }
-#admin_nav a { color: #d17702; }
-#admin_nav a:hover { background-color: #ffffff; }
-
-
-
-ul.ui-autocomplete { position: absolute; background-color: #ffffff; padding: 5px; margin: 5px 0; }
-
-
-
-
-
-
-/*
-section.dialog { border: 1px solid #d4d4d4; float: left; padding: 0; margin: 0 2px 2px 0; }
-section.dialog > h1 { background: #d4d4d4; color: #ffffff; font: bold 28px "helvetica","sans-serif"; padding: 5px 7px; margin: 0; }
-//.dialog a { padding: 4px 6px; }
-//.dialog a:hover { background-color: #ffffff; border: 1px solid #808283; padding: 3px 5px; }
-.dialog a:hover { color: #bbbbbb; background-color: inherit; } 
-*/
-
 
 #registrations a { text-decoration: none; }
 #registrations ul { list-style-type: none; margin: 0; padding: 0; }
@@ -260,23 +230,6 @@ ul  { list-style-type: none; margin: 0; padding: 0; }
 div#errorExplanation { background: #ffccba; border: 1px solid #d9332c; clear: both; float: left; margin-top: 15px; padding: 0 15px; width: 470px; }
 div#errorExplanation h2 { line-height: 32px; vertical-align: middle; }
 div#errorExplanation h2:before { background: url('validation-error.png'); content: ''; display: block; float: left; height: 32px; margin-right: 5px; width: 32px; }
-
-
-
-
-#seminar_listings .listing { padding: 10px; border: 1px solid #cccccc; float: left; width: 480px; }
-#seminar_listings h1 { float: left; }
-#seminar_listings h1.capacity { height: 37px; margin-left: 4px; width: 90px; clear: right; }
-#seminar_listings h2 { float: left; clear: right; font-size: 20px; padding: 0; margin-top: 10px; width: 380px;}
-#seminar_listings h3 { float: left; clear: left; margin: 0; padding: 0; margin-top: -10px; }
-
-
-
-
-
-
-
-
 
 .seminar_form { width: 500px; }
 .seminar_form h1 { float: left; min-height: 50px; width: 200px; }
@@ -297,102 +250,3 @@ div#errorExplanation h2:before { background: url('validation-error.png'); conten
 .seminar_form input[type="submit"] { clear: left; width: 25%; }
 .seminar_form .field_with_errors { background: inherit; margin: 0; padding: 0; float: left; }
 .seminar_form .field_with_errors label { border-left: 5px solid #d9332c; margin-left: -10px; padding-left: 10px; }
-
-
-.add-participant-form { 
-  line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;
-  position: relative;
-
-  input[type="text"] { width: 140px; border: 1px solid #cccccc; padding: 5px 3px; position: relative; }
-}
-
-
-/* ==|== admin/seminars view styles =========================================
-   Author: Meg Richards (mouse@cmu.edu)
-   ========================================================================== */
-
-/* ==|== Seminars Listing Page ============================================== */
-
-
-/* ==|== Show Seminar Details Page ========================================== */
-
-li.moved { border: 3px solid #aaaadd !important; margin: 2px 4px; }
-li.phd { background: #ffdddd; border: 1px solid #aaaadd; }
-li.masters { background: #ddffff; border: 1px solid #aaaadd; }
-li.postdoc { background: #ddddff; border: 1px solid #aaaadd; }
-
-#participant_legend { 
-  position: absolute; 
-  top: 280px; 
-  left: 150px;
-
-  > ul { 
-    list-style-type: none; 
-   
-    li { margin: 5px 7px; padding: 1px 5px; }
-  }
-}
-
-#show-seminar {
-  float: left; 
-  width: 500px;
-
-  h1 { float: left; width: 136px; padding: 5px 7px;
-   &:first-child { margin-right: 5px; width: 331px; }
-   img { height: 34px; margin-right: 20px; }
-  }
-
-  h2 { line-height: 18px; padding: 20px 20px 0 20px; vertical-align: middle; 
-       color: #999999; font: 300 18px "helvetica","sans-serif"; padding-right: 0; width: 350px;
-       margin-top: 20px; }
- 
-  td { line-height: 18px; padding: 20px 20px 0 20px; vertical-align: middle; width: 150px;
-   &:first-child { color: #333333; font: 300 18px "helvetica","sans-serif"; padding-right: 0; width: 350px; }
-  }
-  tr:nth-child(2) td { font-size: 14px; color: #666666; padding-top: 0; font-weight: bold; }
-}
-
-#waitlist {
-  float: left; 
-  width: 282px; 
-  margin-left: 20px; 
-
-  h1 { padding: 5px 7px; ;
-    img { height: 34px; margin-right: 5px; float: left; }
-  }
-}
-
-
-ul.dialog {
-  border: 1px solid #949494; 
-  float: left; 
-  list-style-type: none; 
-  min-height: 200px; 
-  margin: -1px; 
-  padding-top: 20px;
-  padding-left: 40px;
-}
-
-ul.participants-list {
-  &#registered_participants { margin-top: 5px; width: 460px; }
-  &#waitlisted_participants { margin-top: 69px; width: 242px; }
-
-  li {
-    border: 1px solid #cccccc; 
-    margin: 5px; 
-    float: left; 
-    width: 200px;
-
-    a { line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block; 
-    &:hover { background-color: #dddddd; }
-    }
-    img { width: 30px; margin-right: 5px; }
-    &#add-participant { border-style: dashed; text-transform: uppercase; letter-spacing: 1px; }
-    &.ui-draggable-dragging {  border: 3px solid #aaaadd !important; height: 44px; width: 186px; }
-  }
-
-}
-
-
-/* ==|== Create New Seminar Page ============================================ */
-

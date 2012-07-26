@@ -1,30 +1,24 @@
-<%= render "participant_legend" %>
+<section class="seminar-listing <%= @seminar.status %> admin">
+  <h1><%= @seminar.title %></h1>
 
-  <section class="dialog" id="show-seminar">
+  <%= render "participant_legend" %>
 
-  <h1>Teaching Seminars</h1>
+  <p class="date"><%= raw @seminar.formatted_timespan %></p>
 
-  <h1 class="capacity">
-    <%= image_tag "face.png" %> <%= @seminar.maximum_capacity %>
-  </h1>
-
-  <table>
-    <tr>
-      <td><%= @seminar.title %> <%= link_to "Edit", edit_admin_seminar_url(@seminar), :class => "button" %></td> 
-      <td>
-	<div class="capacity_meter"><span style="width: <%= h @seminar.capacity_percentage %>%"></span></div>
-      </td>
-    </tr>
+  <p class="manage">
+    <%= link_to "Edit", edit_admin_seminar_url(@seminar) %>
+    <% if @seminar.status == 'published' %>
+      <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(@seminar) %>
     
-    <tr>
-      <td><%= @seminar.start_at.strftime("%a %B %e, %Y at %l:%M %P") %> - <%=@seminar.end_at.strftime("%l:%M %P") %></td>
-    </tr>
-  </table>
-
-  <ul class="dialog connected-sortable submittable participants-list" id="registered_participants">
+    <% else %>
+      <%= link_to 'Publish', edit_admin_seminar_url(@seminar) %>
+    <% end %>
+  </p>
+  
+  <ul class="dialog connected-sortable submittable participants-list" id="registered-participants">
     <li class="cant-drag" id="add-participant"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></li>
-<%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
-
+    <%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
+    
     <% @seminar.registrations.confirmed.each do |registration| %>
     <%#= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
@@ -34,41 +28,26 @@
          css_classes = css_classes + " phd"
        end
     %>
-
-
     <%# end %>
+
     <li id ="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
       <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
 
-    <div class="attendance-form">
-      <% AttendanceStatus.all.each do |status| %>
-        <%#= radio_button( "attendance_status", registration.id.to_s, status.id) %>
-        <%= radio_button_tag( "attendance_status_#{registration.id.to_s}", status.id, registration.attendance_status_id == status.id ) %>
-	<%= label_tag "attendance_status_#{registration.id}_#{status.id}", status.status %>
-      <% end %>
-      <%= hidden_field_tag 'registration', registration.id %>
-    </div>
-
+      <div class="attendance-form">
+	<% AttendanceStatus.all.each do |status| %>
+          <%= radio_button_tag( "attendance_status_#{registration.id.to_s}", status.id, registration.attendance_status_id == status.id ) %>
+	  <%= label_tag "attendance_status_#{registration.id}_#{status.id}", status.status %>
+        <% end %>
+        <%= hidden_field_tag 'registration', registration.id %>
+      </div>
     </li>
-<% end %>
+    <% end %>
   </ul>
-  <script>
-    $('#registered_participants form li').sortElements(function(a, b){
-    var stuff = new String($(a).text());
-    /*alert( stuff );*/
-    return $(a).text().split(' ')[1] > $(b).text().split(' ')[1] ? 1 : -1;
-});
-</script>
-</section>
 
-<section class="dialog" id="waitlist">
-  <h1><%= image_tag "face.png" %> Waitlisted <%= @seminar.registrations.pending.size %></h1>
+  <ul class="connected-sortable participants-list" id="waitlisted_participants">
 
-
-    <ul class="dialog connected-sortable participants-list" id="waitlisted_participants">
-
-      <% @seminar.registrations.pending.each do |registration| %>
-      <%= f.fields_for :registrations, registration do |registration_form| %>
+    <% @seminar.registrations.pending.each do |registration| %>
+    <%= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
        if registration.participant.student_class == "Masters"
          css_classes = css_classes + " masters"
@@ -76,31 +55,21 @@
          css_classes = css_classes + " phd"
        end
     %>
-      <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">     
-	<%= link_to( image_tag("face.png") + registration.participant.name, '') %>
-      </li>
-      <% end %>
-      <% end %>
-    </ul>
+    <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">     
+      <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
+    </li>
+    <% end %>
+    <% end %>
+  </ul>
 
-  
+  <%# f.submit "Update", :class => 'button' %>
+  <% end %>
 </section>
-<%# f.submit "Update", :class => 'button' %>
-<% end %>
 
 
-<!--
-/*$('#registration_form .participant').bind('contextmenu', function(e){
-  alert("yo");
-
-  e.preventDefault();
-  return false;
-});
-
-  $('#registration_form .participant').bind('contextmenu', function(e) {
-    alert("yo");
-    e.preventDefault;
-    return false;
-  });*/
-
--->
+  <script>
+    $('#registered-participants form li').sortElements(function(a, b){
+    var stuff = new String($(a).text());
+    return $(a).text().split(' ')[1] > $(b).text().split(' ')[1] ? 1 : -1;
+    });
+  </script>

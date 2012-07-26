@@ -21,6 +21,7 @@ section.seminar-listing {
   clear: left;
   float: left;
   margin: 0;
+  position: relative;
   width: $site-min-width - $left-column-width - 2px;
 
   &.offering > h1 { background: #a91e23; }
