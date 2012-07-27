@@ -5,22 +5,23 @@
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
-/* ==|== participants spreadsheet styles ==================================== */
+/* ==|== spreadsheet styles ================================================= */
+.spreadsheet {
 
-/*#participants-spreadsheet_wrapper {*/
-/*.dataTables_wrapper {
-  background-image: -ms-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
-  background-image: -moz-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
-  background-image: -o-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #c3c9c7), color-stop(1, #fafafa));
-  background-image: -webkit-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
-  background-image: linear-gradient(to top, #c3c9c7 0%, #fafafa 100%);
-  overflow:auto;
-}*/
+  .truncated {
+    display: none;
+  }
 
-
-
-
+  a.hide-text {
+    background: #bbbbbb;
+    color: #ffffff;
+    display: block;
+    font-weight: bold;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+  }
+}
 
 table.dataTable thead th {
 padding: 3px 18px 3px 10px;

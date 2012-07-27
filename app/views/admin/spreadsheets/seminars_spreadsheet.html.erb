@@ -4,6 +4,7 @@
     <tr>
       <th>Title</th>
       <th>Status</th>
+      <th>Description</th>
     </tr>
   </thead>
 
@@ -12,6 +13,16 @@
     <tr>
       <td><%= s.title %></td>
       <td><%= s.status %></td>
+      
+      <td class="truncate">
+	<div class="preview">
+	  <%= truncate s.description, :length => 39 %>
+	</div>
+	<div class="truncated">
+	  <%= s.description %>
+	  <%= link_to 'hide', '#', :class => 'hide-text' %>
+	</div>
+      </td>
     </tr>
     <% end %>
   </tbody>
