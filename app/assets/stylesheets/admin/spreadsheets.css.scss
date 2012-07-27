@@ -8,7 +8,7 @@
 /* ==|== participants spreadsheet styles ==================================== */
 
 /*#participants-spreadsheet_wrapper {*/
-.dataTables_wrapper {
+/*.dataTables_wrapper {
   background-image: -ms-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: -moz-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: -o-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
@@ -16,15 +16,11 @@
   background-image: -webkit-linear-gradient(bottom, #c3c9c7 0%, #fafafa 100%);
   background-image: linear-gradient(to top, #c3c9c7 0%, #fafafa 100%);
   overflow:auto;
-}
+}*/
 
 
 
-table.dataTable {
-margin: 0 auto;
-clear: both;
-width: 100%;
-}
+
 
 table.dataTable thead th {
 padding: 3px 18px 3px 10px;
@@ -65,9 +61,8 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 */
 .dataTables_wrapper {
 position: relative;
-clear: both;
 *zoom: 1;
-padding: 20px;
+
 }
 
 
@@ -78,7 +73,8 @@ padding: 20px;
 float: left;
 margin:0;
 display:block;
-padding:0px 20px 15px 20px;
+position: absolute;
+top: -30px;
 }
 
 
@@ -87,7 +83,9 @@ padding:0px 20px 15px 20px;
 */
 .dataTables_filter {
 float: right;
-padding:0px 20px 12px 20px;
+position: absolute;
+right: 0;
+top: -30px;
 }
 
 
@@ -106,7 +104,7 @@ float: left;
 .dataTables_paginate {
 float: right;
 text-align: right;
-background-color:#fff;
+
   padding:10px 6px 6px;
   border:1px solid #999;
 }
@@ -249,7 +247,7 @@ table#seminars-spreadsheet,
 table#participants-spreadsheet {
   border: 3px solid #939598;
   font: 12px/18px "TitilliumText22LLight", sans-serif;
-
+  width: $site-min-width - $left-column-width;
 	
   tr { 
      border-bottom: 1px solid #efefef;
