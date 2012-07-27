@@ -5,6 +5,7 @@
       <th>Title</th>
       <th>Status</th>
       <th>Description</th>
+      <th>Registrations</th>
     </tr>
   </thead>
 
@@ -16,12 +17,16 @@
       
       <td class="truncate">
 	<div class="preview">
-	  <%= truncate s.description, :length => 39 %>
+	  <%= truncate s.description, :length => 40 %>
 	</div>
 	<div class="truncated">
 	  <%= s.description %>
 	  <%= link_to 'hide', '#', :class => 'hide-text' %>
 	</div>
+      </td>
+
+      <td>
+	<%= link_to s.registrations.size, admin_seminar_path( s ) %>
       </td>
     </tr>
     <% end %>

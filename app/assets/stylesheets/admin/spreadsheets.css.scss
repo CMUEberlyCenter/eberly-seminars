@@ -8,19 +8,24 @@
 /* ==|== spreadsheet styles ================================================= */
 .spreadsheet {
 
-  .truncated {
-    display: none;
-  }
+  .truncate { /* a div that toggles between a preview and some text */
+    width: 200px;
+    
+    .truncated { /* the full text */
+      display: none;
 
-  a.hide-text {
-    background: #bbbbbb;
-    color: #ffffff;
-    display: block;
-    font-weight: bold;
-    padding: 2px 5px;
-    text-align: center;
-    text-decoration: none;
-  }
+      a.hide-text { /* the link to hide the full text and display the
+                       preview */
+        background: #bbbbbb;
+        color: #ffffff;
+        display: block;
+        font-weight: bold;
+        padding: 2px 5px;
+        text-align: center;
+        text-decoration: none;
+      }
+    } /* .truncated */
+  } /* .truncate */
 }
 
 table.dataTable thead th {
