@@ -12,10 +12,12 @@
  *= require reset
  *= require fonts
  *= require dataTables/jquery.dataTables.bootstrap
+ *= require admin/timepicker
  *= require primary
  *= require navigation
  *= require seminars
  *= require portfolio
  *= require admin/spreadsheets
  *= require admin/seminars
+
 */

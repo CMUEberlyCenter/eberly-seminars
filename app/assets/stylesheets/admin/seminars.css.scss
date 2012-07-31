@@ -17,7 +17,7 @@ $postdoc-color: #ddddff;
 #participant-legend,
 .participants-list {
 
-  li.moved { border: 3px solid #aaaadd !important; margin: 2px 4px; }
+  li.moved { border: 1px solid #aaaadd !important; }
   li.phd { background: #ffdddd; border: 1px solid #aaaadd; }
   li.masters { background: #ddffff; border: 1px solid #aaaadd; }
   li.postdoc { background: #ddddff; border: 1px solid #aaaadd; }
@@ -65,15 +65,18 @@ ul.participants-list {
   list-style-type: none;
   margin: 0 1%;
   min-height: 400px;
+  position: relative !important;
   padding: 1%;
-  
+
   &#registered-participants { width: 62%; }
   &#waitlisted_participants { width: 29%; }
 
   li {
     border: 1px solid #cccccc;
+    clear: left;
     margin: 5px;
     float: left;
+    height: 50px;
     width: 193px;
 
     a { line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;
@@ -81,7 +84,8 @@ ul.participants-list {
     }
     img { width: 30px; margin-right: 5px; }
     &#add-participant { border-style: dashed; text-transform: uppercase; letter-spacing: 1px; }
-    &.ui-draggable-dragging {  border: 3px solid #aaaadd !important; height: 44px; width: 186px; }
+    /*&.ui-draggable-dragging {  border: 3px solid #aaaadd !important; height: 44px; width: 186px; }*/
+/*    &.ui-draggable-dragging { border: 1px solid red; height: 50px; position: absolute}*/
   }
 
 }
@@ -145,9 +149,16 @@ div#errorExplanation {
     }
   }
 }
+#ui-datepicker-div { background: #ffffff; }
+.ui-datepicker-calendar { background: #ffffff; border: 1px solid black; }
 
 .seminar_form {
-  width: 500px;
+  padding: 15px;
+
+  .timepicker { width: 100px; }
+  .ui-datepicker-trigger { padding-left: 5px; width: 25px; }
+
+
 
   h1 { float: left; min-height: 50px; width: 200px; }
 

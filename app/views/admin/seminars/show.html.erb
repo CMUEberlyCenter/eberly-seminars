@@ -15,7 +15,7 @@
     <% end %>
   </p>
   
-  <ul class="dialog connected-sortable submittable participants-list" id="registered-participants">
+  <ul class="connected-sortable participants-list" id="registered-participants">
     <li class="cant-drag" id="add-participant"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></li>
     <%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
     
@@ -66,10 +66,11 @@
   <% end %>
 </section>
 
-
+<!--
   <script>
     $('#registered-participants form li').sortElements(function(a, b){
     var stuff = new String($(a).text());
     return $(a).text().split(' ')[1] > $(b).text().split(' ')[1] ? 1 : -1;
     });
   </script>
+-->

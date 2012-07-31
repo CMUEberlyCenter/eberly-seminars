@@ -15,11 +15,17 @@
   </div>
   <% end %>
 
-
-
   <%= f.hidden_field :id %>
   <%= f.label :title, 'Title' %>
   <%= f.text_field :title %>
+
+  <%= f.label :start_at, 'Start At' %>
+  <input type="text" class="timepicker" name="timepicker" id="seminar_start_at" name="seminar[start_at]" value="<%= @seminar.start_at.strftime('%l:%M:%S %p') %>"/> 
+  <input type="text" id="start-datepicker" value="<%= @seminar.start_at.strftime('%m/%d/%Y') %>">
+
+  <%= f.label :end_at, 'End At' %>
+  <input type="text" class="timepicker" name="timepicker" id="seminar_end_at" name="seminar[end_at]" value="<%= @seminar.end_at.strftime('%l:%M:%S %p') %>"/>  
+  <input type="text" id="end-datepicker" value="<%= @seminar.end_at.strftime('%m/%d/%Y') %>">
 
   <%= f.label :maximum_capacity, 'Maximum Capacity' %>
   <%= f.text_field :maximum_capacity, :value => "25" %>
@@ -37,3 +43,42 @@
 
 <% end %>
 </section>
+
+<script>
+  $(document).ready(function(){
+    $('input.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        // year, month, day and seconds are not important
+        minTime: new Date(0, 0, 0, 8, 0, 0),
+        maxTime: new Date(0, 0, 0, 22, 0, 0),
+        // time entries start being generated at 6AM but the plugin 
+        // shows only those within the [minTime, maxTime] interval
+        //startHour: 17,
+        //startMinute: 30,
+        // the value of the first item in the dropdown, when the input
+        // field is empty. This overrides the startHour and startMinute 
+        // options
+        startTime: new Date(0, 0, 0, 17, 30, 0),
+        // items in the dropdown are separated by at interval minutes
+        interval: 30
+    });
+});
+</script>
+
+<script>
+  $(function() {
+  $( "#end-datepicker" ).datepicker({
+  showOn: "button",
+  buttonImage: "/assets/calendar-icon.png",
+  buttonImageOnly: true
+  });
+  });
+
+  $(function() {
+  $( "#start-datepicker" ).datepicker({
+  showOn: "button",
+  buttonImage: "/assets/calendar-icon.png",
+  buttonImageOnly: true
+  });
+  });
+</script>
