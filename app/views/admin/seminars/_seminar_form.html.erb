@@ -45,26 +45,35 @@
 
 <script>
   $(document).ready(function(){
-    $('input.timepicker').timepicker({
+    $('#seminar_start_at').timepicker({
         timeFormat: 'h:mm p',
         // year, month, day and seconds are not important
         minTime: new Date(0, 0, 0, 8, 0, 0),
         maxTime: new Date(0, 0, 0, 22, 0, 0),
-        // time entries start being generated at 6AM but the plugin 
-        // shows only those within the [minTime, maxTime] interval
-        //startHour: 17,
-        //startMinute: 30,
-        // the value of the first item in the dropdown, when the input
-        // field is empty. This overrides the startHour and startMinute 
-        // options
-        startTime: new Date(0, 0, 0, 17, 30, 0),
-        // items in the dropdown are separated by at interval minutes
+        startTime: new Date(0, 0, 0, 12, 00, 0),
+        interval: 30,
+        change: function(time) {
+          var new_time = time;
+          new_time.setHours(time.getHours()+2)
+          var element = $(this);
+          var timepicker = element.timepicker();
+          $('#seminar_end_at').attr( 'value', timepicker.format(new_time));
+          // timepicker.format(time));
+        }
+    });
+
+    $('#seminar_end_at').timepicker({
+        timeFormat: 'h:mm p',
+        // year, month, day and seconds are not important
+        minTime: new Date(0, 0, 0, 8, 0, 0),
+        maxTime: new Date(0, 0, 0, 22, 0, 0),
+        startTime: new Date(0, 0, 0, 12, 00, 0),
         interval: 30
     });
-});
-</script>
+  });
 
-<script>
+
+
   $(function() {
   $( "#end-datepicker" ).datepicker({
   showOn: "button",
@@ -77,7 +86,8 @@
   $( "#start-datepicker" ).datepicker({
   showOn: "button",
   buttonImage: "/assets/calendar-icon.png",
-  buttonImageOnly: true
+  buttonImageOnly: true,
+  altField: "#end-datepicker"
   });
   });
 </script>

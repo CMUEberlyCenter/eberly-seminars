@@ -10,8 +10,8 @@ class Admin::SeminarsController < ApplicationController
 
   def new
     @seminar = Seminar.new
-    @seminar.start_at = Time.now
-    @seminar.end_at = Time.now
+    @seminar.start_at = '12:00:00'
+    @seminar.end_at = '14:00:00'
     @seminar.status = SeminarStatus.find_by_status('development')
     respond_to do |format|
       format.html
