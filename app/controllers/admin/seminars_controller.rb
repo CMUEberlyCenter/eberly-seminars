@@ -10,6 +10,9 @@ class Admin::SeminarsController < ApplicationController
 
   def new
     @seminar = Seminar.new
+    @seminar.start_at = Time.now
+    @seminar.end_at = Time.now
+    @seminar.status = SeminarStatus.find_by_status('development')
     respond_to do |format|
       format.html
       format.js
@@ -23,7 +26,8 @@ class Admin::SeminarsController < ApplicationController
 
   def create
     @seminar = Seminar.new(params[:seminar])
-
+    @seminar.start_at = Time.now
+    @seminar.end_at = Time.now
     respond_to do |format|
       if @seminar.save
         format.html  { redirect_to(admin_seminar_path(@seminar),
@@ -31,13 +35,14 @@ class Admin::SeminarsController < ApplicationController
         format.json  { render :json => @seminar,
           :status => :created, :location => @seminar }
       else
+
         format.html  { render :action => "new" }
         format.json  { render :json => @seminar.errors,
           :status => :unprocessable_entity }
       end
     end
 
-    @seminar.save;
+    @seminar.save
   end
 
 

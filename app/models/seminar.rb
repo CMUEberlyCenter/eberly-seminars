@@ -18,6 +18,10 @@ class Seminar < ActiveRecord::Base
   #named_scope :confirmed, lambda {|participant| {:conditions => {:author_id => author.id}}}
 
 
+  def status=(status)
+    self.seminar_status=(status)
+  end
+
 
   def registration_for( participant )
     self.registrations.select{ |r| r.participant == participant }.first
