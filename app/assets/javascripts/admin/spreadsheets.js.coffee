@@ -1,5 +1,5 @@
 $ ->
-  $('table.spreadsheet').dataTable()
+  $('table.spreadsheet').dataTable({"iDisplayLength": 25})
   $('td a').bind('click', -> $(this).parent('td').children('div').slideToggle() );
 
   $('.truncate').bind( 'click',
