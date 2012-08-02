@@ -17,11 +17,14 @@
 
 <p class="manage">
   <%= link_to "Edit", edit_admin_seminar_url(seminar), :class => 'boxy' %>
+
   <% if seminar.status == 'published' %>
     <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(seminar), :class => 'boxy' %>
 
   <% else %>
     <%= link_to 'Publish', edit_admin_seminar_url(seminar), :class => 'boxy' %>
+
+    <%= link_to "Delete", admin_seminar_path(:id => seminar.id), :method => :delete, :class => 'boxy', :confirm => "Really delete this seminar?" %>
   <% end %>
 </p>
 

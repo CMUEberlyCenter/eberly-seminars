@@ -97,4 +97,11 @@ class Admin::SeminarsController < ApplicationController
     redirect_to admin_seminars_url
   end
 
+  def destroy
+    seminar = Seminar.find(params[:id])
+    seminar.destroy
+    flash[:success] = "Seminar destroyed"
+    redirect_to admin_seminars_url
+  end
+
 end
