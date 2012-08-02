@@ -1,6 +1,6 @@
 class Registration < ActiveRecord::Base
   belongs_to :participant
-  belongs_to :seminar
+  belongs_to :seminar #, :through => :seminar_offering
   belongs_to :registration_status
   belongs_to :attendance_status
 
@@ -10,16 +10,10 @@ class Registration < ActiveRecord::Base
     scope s.status, :conditions => { :registration_status_id => s }
   end
 
-  #named_scope :seminars, lambda {|seminar| {:conditions => {:seminar_id => author.id}}}
-  #scope :upcoming, lambda {|registration| registration.seminar.end_at > Time.now }
   scope :upcoming, joins(:seminar).where('end_at >= ?', Time.now)
-  #scope :upcoming, seminar.end_at > Time.now
 
   validates :participant, :presence => true
   validates_uniqueness_of :participant_id, :scope => [:seminar_id]
-
-  def perform_registration
-  end
 
   def confirmed?
     self.status == RegistrationStatus.find_by_status('confirmed').status

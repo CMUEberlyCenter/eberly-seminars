@@ -1,1 +1,1 @@
-<%= render "seminars", :seminars => @seminars.active, :title => "Upcoming " + current_semester + " Teaching Seminars", :no_seminars_message => "No upcoming seminars", :css_class => "offering" %>
+<%= seminar_groups( @seminars ) %>

@@ -2,8 +2,12 @@ GraduateStudents::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   put 'admin/seminars/update_seminar' => 'admin/seminars#update_seminar', :as => 'update_whole_seminar'
-  get 'seminars' => 'seminars#index', :as => 'seminars'
-  resources :seminars
+
+  resources :seminars do
+    resources :registrations, only: [:create, :destroy]
+  end
+  get 'registrations', to: 'registrations#index', :as => 'registrations'
+
 
   resources :sessions, only: [:create, :destroy]
   match 'login',  to: 'sessions#create'
@@ -12,9 +16,6 @@ GraduateStudents::Application.routes.draw do
   match 'portfolio', to: 'portfolio#index', :as => 'portfolio'
 
   get 'search' => 'search#show', :as => 'search'
-
-  match 'login/:id' => 'session#login', :as => 'impersonate_login'
-
 
   get 'admin' => 'admin/seminars#index', :as => 'root_admin_url'
    namespace :admin do
@@ -25,10 +26,9 @@ GraduateStudents::Application.routes.draw do
     end
 
     resources :spreadsheets, only: [:show]
-
   end
 
-  resources :registrations
+  #resources :registrations
   resources :participants
   
 

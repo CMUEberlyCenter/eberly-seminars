@@ -1,7 +1,7 @@
-<tr><td>
+<li>
+  <h1 class="title"><%= seminar.title %></h1>
+  <p class="date"><%= raw seminar.formatted_timespan %></p>
+  <p class="description"><%= seminar.description %></p>
 
-<h1 class="title"><%= seminar.title %></h1>
-<p class="date details"><%= raw seminar.formatted_timespan %></p>
-<p class="description details"><%= seminar.description %></p>
-
-</td></tr>
+  <div><%= seminar_registration_options seminar %></div>
+</li>

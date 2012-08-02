@@ -1,0 +1,10 @@
+<section class="seminar-group <%= seminar_group.css_class %>">
+  <h1><%= raw seminar_group.title %></h1>
+  
+  <ul>
+    <% if seminar_group.seminars && seminar_group.seminars.size > 0 %>
+      <%= render seminar_group.seminars %>
+    <% end %>
+  </ul>
+
+</section>

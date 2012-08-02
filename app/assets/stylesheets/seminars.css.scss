@@ -5,19 +5,19 @@
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
-$seminar-listing-border-color: #bbbbbb;
-$seminar-listing-header-bg-color: #bbbbbb;
-$seminar-listing-header-font-family: 'OpenSansLight', sans-serif;
-$seminar-listing-header-font: 24px/28px $seminar-listing-header-font-family;
-$seminar-listing-header-font-family-em: 'OpenSansRegularItalic', sans-serif;
+$seminar-group-border-color: #bbbbbb;
+$seminar-group-header-bg-color: #bbbbbb;
+$seminar-group-header-font-family: 'OpenSansLight', sans-serif;
+$seminar-group-header-font: 24px/28px $seminar-group-header-font-family;
+$seminar-group-header-font-family-em: 'OpenSansRegularItalic', sans-serif;
 
 $seminar-title-font-family: 'OpenSansLight', sans-serif;
 $seminar-title-font: 22px/32px $seminar-title-font-family;
 
 /* ==|== box styles ========================================================= */
-section.seminar-listing {
-  border-left: 1px solid $seminar-listing-border-color;
-  border-right: 1px solid $seminar-listing-border-color;
+section.seminar-group {
+  border-left: 1px solid $seminar-group-border-color;
+  border-right: 1px solid $seminar-group-border-color;
   clear: left;
   float: left;
   margin: 0;
@@ -31,183 +31,119 @@ section.seminar-listing {
   &.published > h1 { background: #94b840; }
   &.development  > h1 { background: #e3b31c; }
 
-  &:first-child { border-bottom: 1px solid $seminar-listing-border-color; }
-  &:last-child { border-bottom: 1px solid $seminar-listing-border-color; }
+  &:first-child { border-bottom: 1px solid $seminar-group-border-color; }
+  &:last-child { border-bottom: 1px solid $seminar-group-border-color; }
   h1 {
-    background: $seminar-listing-header-bg-color;
+    background: $seminar-group-header-bg-color;
     color: #ffffff;
-    font: $seminar-listing-header-font;
+    font: $seminar-group-header-font;
     margin: 0;
     padding: 5px $padding-small;
     vertical-align: middle;
     
-    em { font-family: $seminar-listing-header-font-family-em; }
+    em { font-family: $seminar-group-header-font-family-em; }
   }
 
-  table {
+  ul {
     width: 100%;
+    margin-bottom: 12px;
 
-    tr {
-      margin-bottom: 12px;
+    li {
+      padding: $padding-medium $padding-medium $padding-medium 100px;
 
-      td {
-        padding: $padding-medium $padding-medium $padding-medium 100px;
+      h1 {
+        background: none;
+	clear: left;
+        color: #000000;
+        float: left;
+        font: $seminar-title-font;
+        margin: 0;
+        padding: 0;
+        width: 75%;
+      }
 
-        h1 {
-          background: none;
-          color: #000000;
-	  float: left;
-          font: $seminar-title-font;
-          margin: 0;
-          padding: 0;
-	  width: 75%;
-        }
+      div.capacity {
+        float: left;
+	margin-top: 8px;
 
-	div.capacity {
-	  float: left;
-	  margin-top: 8px;
+	div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
+        div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
+      }
 
-	  div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
-          div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
-	 }
-
-        p {
-          margin: 0;
-          padding: 0;
-	  width: 445px;
+      p {
+        margin: 0;
+        padding: 0;
+        width: 445px;
       
-          &.date {
+        &.date {
+          font-weight: bold;
+          padding: 4px 0;
+        }
+	  
+        &.manage {
+	  a {	
+	    background: $seminar-group-border-color;
+            border: 1px solid $seminar-group-border-color;
+            color: #ffffff;
+            float: left;
             font-weight: bold;
-            padding: 4px 0;
-          }
-	  
-	  &.manage {
-	    a {	
-	      background: $seminar-listing-border-color;
-              border: 1px solid $seminar-listing-border-color;
-              color: #ffffff;
-	      float: left;
-              font-weight: bold;
-              margin: 10px 0 0 10px;
-              padding: $padding-small/2 $padding-small;
-              text-align: center;
-              text-decoration: none;
-              width: 100px;
+            margin: 10px 0 0 10px;
+            padding: $padding-small/2 $padding-small;
+            text-align: center;
+            text-decoration: none;
+            width: 100px;
 
-	      &:first-child { margin-left: 0; }
-	    }
-          }
-
-	  &.destroy {
-	  
-	    a {	
-	      background: $seminar-listing-border-color;
-              border: 1px solid $seminar-listing-border-color;
-	      clear: left;
-              color: #ffffff;
-	      float: left;
-              font-weight: bold;
-              margin: 0;
-	      margin-top: 10px;
-              padding: $padding-small/2 $padding-small;
-              text-align: center;
-              text-decoration: none;
-              width: 150px;
-	    }
+            &:first-child { margin-left: 0; }
 	  }
-
-          &.details { }
-
-        } /* p */
-
-	.confirmation {
-          clear: left;
-          display: none;
-          float: left;
-
-	  a {
-	      background: $seminar-listing-border-color;
-              border: 1px solid $seminar-listing-border-color;
-              color: #ffffff;
-              float: left;
-              font-weight: bold;
-              margin: 10px 0 0 10px;
-              padding: $padding-small/2 $padding-small;
-              text-align: center;
-              text-decoration: none;
-              width: 150px;
-
-	    &:first-child { margin-left: 0; }
-          }
         }
 
-      } /* td */
-    } /* tr */
-  } /* table */
+	&.destroy {
+	  
+	  a {	
+	    background: $seminar-group-border-color;
+            border: 1px solid $seminar-group-border-color;
+            clear: left;
+            color: #ffffff;
+            float: left;
+            font-weight: bold;
+            margin: 0;
+            margin-top: 10px;
+            padding: $padding-small/2 $padding-small;
+            text-align: center;
+            text-decoration: none;
+            width: 150px;
+	  }
+        }
 
-  form {
-    font-size: 14px;
-    position: relative;
+      } /* p */
 
-    input[type="checkbox"] {
-      float: left;
-      left: 45px;
-      margin-top: 5px;
-      position: absolute;
-    }
-    
-    input[type="submit"] {
-      background: $seminar-listing-border-color;
-      border: 1px solid $seminar-listing-border-color;
-      bottom: -35px;
-      color: #ffffff;
-      font-weight: bold;
-      margin: 0;
-      padding: $padding-small/2 $padding-small;
-      position: absolute;
-      text-align: center;
-      width: 100px;
-    }
+      a.boxy {
+        clear: left;
+        margin: 10px 0 15px 0;
+      }
 
-    .cancel {
-      background: $seminar-listing-border-color;
-      border: 1px solid $seminar-listing-border-color;
-      bottom: -35px;
-      color: #ffffff;
-      font-weight: bold;
-      margin: 0;
-      padding: $padding-small/2 $padding-small;
-      position: absolute;
-      left: 110px;
-      text-align: center;
-      text-decoration: none;
-      width: 80px;
-    }
-  }
-} /* section.seminar-listing */
+      .confirmation {
+        clear: left;
+        display: none;
+        float: left;
 
-#content > section.seminar-listing:first-child table tr:first-child p.details { display: block; }
+	a {
+            background: $seminar-group-border-color;
+            border: 1px solid $seminar-group-border-color;
+            color: #ffffff;
+            float: left;
+            font-weight: bold;
+            margin: 10px 0 0 10px;
+            padding: $padding-small/2 $padding-small;
+            text-align: center;
+            text-decoration: none;
+            width: 150px;
 
-div.hidden-seminars {
-  display: none;
-}
+          &:first-child { margin-left: 0; }
+        }
+      }
 
-div.toggle-hidden-seminars {
-  clear: left;
-  float: left;
-  height: 60px;
-  text-align: center;
-  width: $site-min-width - $left-column-width;
+    } /* li */
+  } /* ul */
 
-  a.reveal-seminars {
-    $reveal-seminars-width: 450px;
-    background: $seminar-listing-border-color;
-    color: #ffffff;
-    font-weight: bold;
-    float: left;
-    margin: 0 0 0 ($site-min-width - $left-column-width)/2 - ($reveal-seminars-width/2);
-    padding: $padding-small $padding-medium;
-    text-decoration: none; 
-    width: $reveal-seminars-width;
-  }
-}
+} /* section.seminar-group */

@@ -4,7 +4,7 @@ module SessionsHelper
   # The username of the pubcookie-authenticated principal or nil if not authenticated
   def http_remote_user
     #!request.env['REMOTE_USER'].nil? ? request.env['REMOTE_USER'].split('@')[0] : nil
-    "jmbrooks"
+    "meribyte"
   end
 
   ###

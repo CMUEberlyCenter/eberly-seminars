@@ -29,4 +29,15 @@ class Participant < ActiveRecord::Base
     person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
     person["cmuStudentClass"]
   end
+
+  def request_registration( seminar )
+    status = RegistrationStatus.find_by_status( 'pending' )
+    self.registrations.build( :seminar_id => seminar, :registration_status => status ).save
+    ParticipantMailer.pending_registration_email( self ).deliver
+  end
+
+  def cancel_registration( registration )
+    self.registrations.find( registration ).destroy
+  end
+
 end

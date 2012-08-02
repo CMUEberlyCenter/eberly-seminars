@@ -202,7 +202,32 @@ div.flash {
   background: #ffffff;
   float: left;  
   margin-top: 42px;
+
+  a.boxy {
+    background: #bbbbbb;
+    border: 1px solid #bbbbbb;
+    color: #ffffff;
+    float: left;
+    font-weight: bold;
+    padding: $padding-small/2 $padding-small;
+    text-align: center;
+    text-decoration: none;
+    
+    &.inactive {
+      background: #ffffff;
+      color: #bbbbbb;
+    }
+  }
+
 }
+
+
+
+
+
+
+
+
 
 ul.ui-autocomplete { position: absolute; background-color: #ffffff; padding: 5px; margin: 5px 0; }
 

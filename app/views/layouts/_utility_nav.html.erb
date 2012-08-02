@@ -5,8 +5,6 @@
     <% if authenticated? %>
       <li class="name"><%= current_user.name %></li>
       <li class="logout"><%= link_to "Logout", logout_url %></li>
-      <!--<li class="email"><%= current_user.email %></li>
-      <li><%= [current_user.department].join(' / ') %></li>-->
     
     <% else %>
       <% content_for( :sidebar_note, content_tag(:p, "* Counts as a core seminar toward the Documentation of Teaching Development Program.", :class => 'sidebar-note' )) %>
@@ -38,7 +36,7 @@
     <ul>
       <li class="primary"><%= link_to "Teaching Seminars Listing", registrations_url %></li>
       <li class="primary">
-	<%= link_to "Download your schedule [.ics]", :format => :ics %>
+	<%= link_to "Download your schedule [.ics]", registrations_path( :format => :ics ) %>
 	<%= image_tag "calendar-icon.png", :alt => "Calendar" %>
       </li>
 

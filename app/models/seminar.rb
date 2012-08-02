@@ -9,6 +9,32 @@ class Seminar < ActiveRecord::Base
   end
   scope :active, :conditions => ["end_at >= ?", Time.now]
   scope :expired, :conditions => ["end_at <= ?", Time.now]
+  scope :upcoming, :conditions => ["end_at >= ?", Time.now]
+
+
+
+  def self.confirmed_for( participant )
+    self.status_for( "confirmed", participant )
+  end
+
+  def self.pending_for( participant )
+    self.status_for( "pending", participant )
+  end
+
+  def self.status_for( status, participant )
+    joins(:registrations).where(
+      "registrations.participant_id = ? and " + 
+      "registrations.registration_status_id = ?", 
+      participant.id, 
+      RegistrationStatus.find_by_status( status ).id
+    )
+  end
+
+  def self.unrequested_by( participant )
+    select{ |s| s.registrations.find_by_participant_id( participant) == nil }
+  end
+
+
 
   # TODO: filter for current semester regardless of publish status
   scope :current_semester, :conditions => []
@@ -24,8 +50,7 @@ class Seminar < ActiveRecord::Base
 
 
   def registration_for( participant )
-    self.registrations.select{ |r| r.participant == participant }.first
-    
+    self.registrations.where( :participant_id => participant ).first
   end
 
 
