@@ -3,6 +3,8 @@ class ParticipantMailer < ActionMailer::Base
 
   def pending_registration_email(participant)
     @participant = participant
-    mail(:to => participant.email, :subject => "[Eberly Center] Seminar Registration Received")
+    mail(:to => participant.email, 
+         :cc => "jmbrooks@andrew.cmu.edu", 
+         :subject => "[Eberly Center] Seminar Registration Received")
   end
 end
