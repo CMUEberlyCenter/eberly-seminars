@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     logout
 
     flash[:success] = "Successfully logged out."
-    redirect_to root_url
+    redirect_to "https://webiso.andrew.cmu.edu/logout.cgi"
   end
 
 
