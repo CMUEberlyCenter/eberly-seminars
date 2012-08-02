@@ -28,7 +28,7 @@ module ApplicationHelper
   # 
   def header_content
     if authenticated?
-      render "layouts/site_search"
+      #render "layouts/site_search"
     end
   end
 
