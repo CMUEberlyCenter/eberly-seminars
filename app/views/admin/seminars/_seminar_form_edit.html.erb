@@ -18,10 +18,11 @@
   <%= f.hidden_field :id %>
   <%= f.label :title, 'Title' %>
   <%= f.text_field :title %>
-
+<div style="float: left; clear: left;" >
   <%= f.label :start_at, 'Start At' %>
   <input type="text" class="timepicker" name="timepicker" id="seminar_start_at" name="seminar[start_at]" value="<%= @seminar.start_at.strftime('%l:%M:%S %p') %>"/> 
   <input type="text" id="start-datepicker" value="<%= @seminar.start_at.strftime('%m/%d/%Y') %>">
+</div>
 <div style="float: left; clear: left;" >
   <%= f.label :end_at, 'End At' %>
   <input type="text" class="timepicker" name="timepicker" id="seminar_end_at" name="seminar[end_at]" value="<%= @seminar.end_at.strftime('%l:%M:%S %p') %>"/>  
