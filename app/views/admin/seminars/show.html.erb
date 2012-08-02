@@ -1,4 +1,4 @@
-<section class="seminar-listing <%= @seminar.status %> admin">
+<section class="seminar-group <%= @seminar.status %> admin">
   <h1><%= @seminar.title %></h1>
 
   <%= render "participant_legend" %>
@@ -6,12 +6,12 @@
   <p class="date"><%= raw @seminar.formatted_timespan %></p>
 
   <p class="manage">
-    <%= link_to "Edit", edit_admin_seminar_url(@seminar) %>
+    <%= link_to "Edit", edit_admin_seminar_url(@seminar), :class => 'boxy' %>
     <% if @seminar.status == 'published' %>
-      <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(@seminar) %>
+      <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(@seminar), :class => 'boxy' %>
     
     <% else %>
-      <%= link_to 'Publish', edit_admin_seminar_url(@seminar) %>
+      <%= link_to 'Publish', edit_admin_seminar_url(@seminar), :class => 'boxy' %>
     <% end %>
   </p>
   

@@ -39,7 +39,9 @@ $postdoc-color: #ddddff;
   }
 }
 
-.seminar-listing.admin {
+.seminar-group.admin {
+  a.boxy { margin-bottom: 10px; margin-left: 10px; }
+
   h2 { 
     background: none;
     color: #000000;
@@ -68,7 +70,7 @@ ul.participants-list {
   position: relative !important;
   padding: 1%;
 
-  &#registered-participants { width: 62%; }
+  &#registered-participants { clear: left; width: 62%; }
   &#waitlisted_participants { width: 29%; }
 
   li {
@@ -77,6 +79,7 @@ ul.participants-list {
     margin: 5px;
     float: left;
     height: 50px;
+    padding: 0 !important;
     width: 193px;
 
     a { line-height: 40px; padding: 5px; text-decoration: none; color: inherit; padding: 5px; display: block;

@@ -1,4 +1,4 @@
-<tr><td>
+<li>
 
 <h1 class="title"><%= seminar.title %></h1>
 
@@ -16,13 +16,13 @@
 <p class="description details"><%= seminar.description %></p>
 
 <p class="manage">
-  <%= link_to "Edit", edit_admin_seminar_url(seminar) %>
+  <%= link_to "Edit", edit_admin_seminar_url(seminar), :class => 'boxy' %>
   <% if seminar.status == 'published' %>
-    <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(seminar) %>
+    <%= link_to raw('<em>Unpublish</em>'), edit_admin_seminar_url(seminar), :class => 'boxy' %>
 
   <% else %>
-    <%= link_to 'Publish', edit_admin_seminar_url(seminar) %>
+    <%= link_to 'Publish', edit_admin_seminar_url(seminar), :class => 'boxy' %>
   <% end %>
 </p>
 
-</td></tr>
+</li>

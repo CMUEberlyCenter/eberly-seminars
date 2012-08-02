@@ -33,6 +33,7 @@ section.seminar-group {
 
   &:first-child { border-bottom: 1px solid $seminar-group-border-color; }
   &:last-child { border-bottom: 1px solid $seminar-group-border-color; }
+
   h1 {
     background: $seminar-group-header-bg-color;
     color: #ffffff;
@@ -81,16 +82,9 @@ section.seminar-group {
         }
 	  
         &.manage {
-	  a {	
-	    background: $seminar-group-border-color;
-            border: 1px solid $seminar-group-border-color;
-            color: #ffffff;
-            float: left;
-            font-weight: bold;
-            margin: 10px 0 0 10px;
-            padding: $padding-small/2 $padding-small;
-            text-align: center;
-            text-decoration: none;
+	  a {
+	    clear: none;	
+	    margin-left: 10px;
             width: 100px;
 
             &:first-child { margin-left: 0; }
@@ -120,27 +114,6 @@ section.seminar-group {
       a.boxy {
         clear: left;
         margin: 10px 0 15px 0;
-      }
-
-      .confirmation {
-        clear: left;
-        display: none;
-        float: left;
-
-	a {
-            background: $seminar-group-border-color;
-            border: 1px solid $seminar-group-border-color;
-            color: #ffffff;
-            float: left;
-            font-weight: bold;
-            margin: 10px 0 0 10px;
-            padding: $padding-small/2 $padding-small;
-            text-align: center;
-            text-decoration: none;
-            width: 150px;
-
-          &:first-child { margin-left: 0; }
-        }
       }
 
     } /* li */

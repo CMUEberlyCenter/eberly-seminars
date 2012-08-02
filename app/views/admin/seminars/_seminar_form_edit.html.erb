@@ -1,4 +1,4 @@
-<section class="seminar-listing <%= @seminar.status %> admin">
+<section class="seminar-group <%= @seminar.status %> admin">
   <h1><%= @seminar.title %></h1>
 
   <%= form_for @seminar, :url => update_whole_seminar_url, :html => { :class => "seminar_form"} do |f| %>
@@ -22,14 +22,15 @@
   <%= f.label :start_at, 'Start At' %>
   <input type="text" class="timepicker" name="timepicker" id="seminar_start_at" name="seminar[start_at]" value="<%= @seminar.start_at.strftime('%l:%M:%S %p') %>"/> 
   <input type="text" id="start-datepicker" value="<%= @seminar.start_at.strftime('%m/%d/%Y') %>">
-
+<div style="float: left; clear: left;" >
   <%= f.label :end_at, 'End At' %>
   <input type="text" class="timepicker" name="timepicker" id="seminar_end_at" name="seminar[end_at]" value="<%= @seminar.end_at.strftime('%l:%M:%S %p') %>"/>  
   <input type="text" id="end-datepicker" value="<%= @seminar.end_at.strftime('%m/%d/%Y') %>">
-
+</div>
+<div style="float: left; clear: left;" >
   <%= f.label :maximum_capacity, 'Maximum Capacity' %>
   <%= f.text_field :maximum_capacity, :value => "25" %>
-
+</div>
     <%= f.label :location, 'Location' %>
     <%= f.text_field :location %>
 
