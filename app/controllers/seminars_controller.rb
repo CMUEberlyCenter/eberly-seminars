@@ -5,7 +5,7 @@ class SeminarsController < ApplicationController
       flash.keep
       redirect_to admin_seminars_url
      else
-      @seminars = Seminar.active.published
+      @seminars = Seminar.active.published( :order => "start_at asc" )
     end
   end
 
