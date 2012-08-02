@@ -8,9 +8,9 @@ class Seminar < ActiveRecord::Base
   SeminarStatus.all.each do |s|
     scope s.status, :conditions => { :seminar_status_id => s }
   end
-  scope :active, :conditions => ["end_at >= ?", Time.now]
-  scope :expired, :conditions => ["end_at <= ?", Time.now]
-  scope :upcoming, :conditions => ["end_at >= ?", Time.now]
+  scope :active, :conditions => ["end_at >= ?", Time.now], :order => 'start_at asc'
+  scope :expired, :conditions => ["end_at <= ?", Time.now], :order => 'start_at asc'
+  scope :upcoming, :conditions => ["end_at >= ?", Time.now], :order => 'start_at asc'
 
 
 

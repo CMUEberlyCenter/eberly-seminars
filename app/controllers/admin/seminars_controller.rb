@@ -4,8 +4,8 @@ class Admin::SeminarsController < ApplicationController
   layout 'admin'
 
   def index
-    @offered_seminars = Seminar.active.published( :order => "start_at asc" )
-    @development_seminars = Seminar.active.development( :order => "start_at asc" )
+    @offered_seminars = Seminar.active.published
+    @development_seminars = Seminar.active.development
   end
 
   def new
