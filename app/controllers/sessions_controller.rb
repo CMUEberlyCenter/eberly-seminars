@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if administrator?
       redirect_to admin_seminars_url
     else
-      redirect_to seminar_url
+      redirect_to seminars_url
     end
   end
 
