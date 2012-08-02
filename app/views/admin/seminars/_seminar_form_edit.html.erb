@@ -20,13 +20,13 @@
   <%= f.text_field :title %>
 <div style="float: left; clear: left;" >
   <%= f.label :start_at, 'Start At' %>
-  <input type="text" class="timepicker" name="seminar[start_time]" id="seminar_start_at" value="<%= @seminar.start_at.utc.strftime('%l:%M %p') %>"/> 
-  <input type="text" id="start-datepicker" name="seminar[start_date]" value="<%= @seminar.start_at.utc.strftime('%m/%d/%Y') %>">
+  <input type="text" autocomplete="off" class="timepicker" name="seminar[start_time]" id="seminar_start_at" value="<%= @seminar.start_at.utc.strftime('%l:%M %p') %>"/> 
+  <input type="text" autocomplete="off" id="start-datepicker" name="seminar[start_date]" value="<%= @seminar.start_at.utc.strftime('%m/%d/%Y') %>">
 </div>
 <div style="float: left; clear: left;" >
   <%= f.label :end_at, 'End At' %>
-  <input type="text" class="timepicker" id="seminar_end_at" name="seminar[end_time]" value="<%= @seminar.end_at.utc.strftime('%l:%M %p') %>"/>  
-  <input type="text" id="end-datepicker" name="seminar[end_date]" value="<%= @seminar.end_at.utc.strftime('%m/%d/%Y') %>">
+  <input type="text" class="timepicker" autocomplete="off" id="seminar_end_at" name="seminar[end_time]" value="<%= @seminar.end_at.utc.strftime('%l:%M %p') %>"/>  
+  <input type="text" id="end-datepicker" autocomplete="off" name="seminar[end_date]" value="<%= @seminar.end_at.utc.strftime('%m/%d/%Y') %>">
 </div>
 <div style="float: left; clear: left;" >
   <%= f.label :maximum_capacity, 'Maximum Capacity' %>
@@ -34,15 +34,16 @@
 </div>
     <%= f.label :location, 'Location' %>
     <%= f.text_field :location %>
-
+<div style="float: left; clear: left;" >
     <%= f.label :description, 'Description' %>
     <%= f.text_area :description, :size => "55x12" %>
-
+</div>
+<div style="float: left; clear: left;" >
     <%= f.label :seminar_status_id, 'Seminar Status' %>
     <%= f.collection_select(:seminar_status_id, SeminarStatus.all, :id, :status) %>
 
     <%= f.submit "Save" %> | <%= link_to "Cancel", admin_seminars_url %>
-
+</div>
 <% end %>
 </section>
 
