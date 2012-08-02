@@ -3,5 +3,7 @@
   <p class="date"><%= raw seminar.formatted_timespan %></p>
   <p class="description"><%= seminar.description %></p>
 
-  <div><%= seminar_registration_options seminar %></div>
+  <div class="registration-options">
+    <%= seminar_registration_options seminar %>
+  </div>
 </li>
