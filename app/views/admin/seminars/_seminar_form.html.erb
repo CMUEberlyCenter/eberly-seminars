@@ -1,5 +1,9 @@
 <section class="seminar-group <%= @seminar.status %> admin">
-  <h1><%= @seminar.title %></h1>
+
+  <h1>
+    Create New Seminar
+  </h1>
+
   <%= form_for @seminar, :url => { :action => "create" }, :html => { :class => "seminar_form"} do |f| %>
 
   <% if @seminar.errors.any? %>
