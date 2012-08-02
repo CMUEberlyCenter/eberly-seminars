@@ -12,8 +12,9 @@ class Admin::RegistrationsController < ApplicationController
     @registration.seminar_id = params[:seminar_id]
     @registration.attendance_status = AttendanceStatus.find_by_status('attended')
     
-    respond_to do |format|  
-      if @registration.save  
+    respond_to do |format|
+      if @registration.save
+        ParticipantMailer.confirmed_registration_email( @registration.participant, @registration ).deliver
         format.html { redirect_to(admin_seminar_path(@registration.seminar), :notice => 'Registration created.') }
         format.js  
       else

@@ -78,7 +78,9 @@ class Admin::SeminarsController < ApplicationController
         reg = Registration.find(r)
         reg.build_registration_status
         reg.registration_status= RegistrationStatus.find_by_status('confirmed')
-        reg.save
+        if reg.save
+           ParticipantMailer.confirmed_registration_email( reg.participant, reg ).deliver
+        end
        end 
 
        end #if attendance
