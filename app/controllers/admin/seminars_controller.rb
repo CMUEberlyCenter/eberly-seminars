@@ -26,8 +26,13 @@ class Admin::SeminarsController < ApplicationController
 
   def create
     @seminar = Seminar.new(params[:seminar])
-    @seminar.start_at = Time.now
-    @seminar.end_at = Time.now
+    @seminar.start_at = DateTime.strptime(
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]}", '%m/%d/%Y %l:%M %P'
+    )
+    @seminar.end_at = DateTime.strptime(
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]}", '%m/%d/%Y %l:%M %P'
+    )
+
     respond_to do |format|
       if @seminar.save
         format.html  { redirect_to(admin_seminar_path(@seminar),
@@ -82,6 +87,12 @@ class Admin::SeminarsController < ApplicationController
   def update_seminar
     @seminar = Seminar.find(params[:seminar][:id])
     @seminar.attributes = params[:seminar]
+    @seminar.start_at = DateTime.strptime(
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]}", '%m/%d/%Y %l:%M %P'
+    )
+    @seminar.end_at = DateTime.strptime(
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]}", '%m/%d/%Y %l:%M %P'
+    )
     @seminar.save!
     redirect_to admin_seminars_url
   end

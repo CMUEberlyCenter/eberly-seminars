@@ -3,6 +3,7 @@ class Seminar < ActiveRecord::Base
   has_many :registrations
   delegate :status, :to => :seminar_status, :prefix => false
   accepts_nested_attributes_for :registrations, :allow_destroy => true
+  attr_accessor :start_time, :start_date, :end_time, :end_date
 
   SeminarStatus.all.each do |s|
     scope s.status, :conditions => { :seminar_status_id => s }
@@ -77,7 +78,7 @@ class Seminar < ActiveRecord::Base
       end_format = " " + start_format
     end
 
-    self.start_at.strftime(start_format) + "&ndash;" + self.end_at.strftime(end_format)
+    self.start_at.utc.strftime(start_format) + "&ndash;" + self.end_at.utc.strftime(end_format)
   end
 
   def semester
