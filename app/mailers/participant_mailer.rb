@@ -27,7 +27,7 @@ class ParticipantMailer < ActionMailer::Base
     mail(:to => registration.participant.email,
          :cc => "jmbrooks@andrew.cmu.edu",
          :subject => "[Eberly Center] Teaching Seminar Reminder",
-         :template => template )
+         :template_name => template )
   end
 
 end
