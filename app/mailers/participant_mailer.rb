@@ -17,7 +17,8 @@ class ParticipantMailer < ActionMailer::Base
          :subject => "[Eberly Center] Seminar Registration Confirmed")
   end
 
-  def seminar_one_week_reminder_email( @registration )
+  def seminar_one_week_reminder_email( registration )
+    @registration = registration
     if @registration.confirmed?
       template = 'one_week_reminder_email_confirmed'
     else
