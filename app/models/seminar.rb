@@ -12,7 +12,12 @@ class Seminar < ActiveRecord::Base
   scope :expired, :conditions => ["end_at <= ?", Time.now], :order => 'start_at asc'
   scope :upcoming, :conditions => ["end_at >= ?", Time.now], :order => 'start_at asc'
 
-
+  def self.days_away( num_days )
+    where( "start_at >= ? and start_at < ?", 
+           Date.today + num_days.days, 
+           Date.today + 1.days + num_days.days
+    )
+  end
 
   def self.confirmed_for( participant )
     self.status_for( "confirmed", participant )

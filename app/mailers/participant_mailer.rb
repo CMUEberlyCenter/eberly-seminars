@@ -16,4 +16,18 @@ class ParticipantMailer < ActionMailer::Base
          :cc => "jmbrooks@andrew.cmu.edu", 
          :subject => "[Eberly Center] Seminar Registration Confirmed")
   end
+
+  def seminar_one_week_reminder_email(registration)
+    if registration.confirmed?
+      template = 'one_week_reminder_email_confirmed'
+    else
+      template = 'one_week_reminder_email_pending'
+    end
+
+    mail(:to => registration.participant.email,
+         :cc => "jmbrooks@andrew.cmu.edu",
+         :subject => "[Eberly Center] Teaching Seminar Reminder",
+         :template => template )
+  end
+
 end
