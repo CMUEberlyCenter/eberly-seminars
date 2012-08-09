@@ -1,6 +1,6 @@
 class Seminar < ActiveRecord::Base
   belongs_to :seminar_status
-  has_many :registrations
+  has_many :registrations, :dependent => :delete_all
   delegate :status, :to => :seminar_status, :prefix => false
   accepts_nested_attributes_for :registrations, :allow_destroy => true
   attr_accessor :start_time, :start_date, :end_time, :end_date
