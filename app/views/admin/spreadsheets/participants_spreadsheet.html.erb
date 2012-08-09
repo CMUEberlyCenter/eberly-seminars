@@ -13,10 +13,10 @@
   <tbody>
     <% @participants.each do |p| %>
     <tr>
-      <td><%= p.name %></td>
-      <td><%= p.andrewid %></td>
+      <td><% unless p.name.nil? %><%= p.name %><% end %></td>
+      <td><% unless p.andrewid.nil? %><%= p.andrewid %><% end %></td>
       <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
-      <td><%= p.student_class %></td>
+      <td><% unless p.student_class.nil? %><%= p.student_class %><% end %></td>
       <td>
 	<%= link_to p.registrations.size, '#' %>
 	<div class="reg" style="display: none">
