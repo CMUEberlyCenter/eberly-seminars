@@ -17,12 +17,12 @@ class ParticipantMailer < ActionMailer::Base
          :subject => "[Eberly Center] Seminar Registration Confirmed")
   end
 
-  def seminar_one_week_reminder_email( registration )
+  def generic_reminder_email( registration )
     @registration = registration
     if @registration.confirmed?
-      template = 'one_week_reminder_email_confirmed'
+      template = 'generic_reminder_email_confirmed'
     else
-      template = 'one_week_reminder_email_pending'
+      template = 'generic_reminder_email_pending'
     end
 
     mail(:to => @registration.participant.email,
