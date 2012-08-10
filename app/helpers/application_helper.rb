@@ -32,6 +32,12 @@ module ApplicationHelper
     end
   end
 
+  ##
+  # 
+  def add_sidebar_note( note )
+    content_for( :sidebar_note, content_tag( :p, note, :class => 'sidebar-note' ) )
+  end
+  
 
   ##
   #
