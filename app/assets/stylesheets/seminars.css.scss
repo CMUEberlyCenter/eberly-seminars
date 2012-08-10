@@ -76,7 +76,8 @@ section.seminar-group {
         padding: 0;
         width: 445px;
       
-        &.date {
+        &.date,
+        &.location {
 	  clear: left;
           font-weight: bold;
           padding: 4px 0;
