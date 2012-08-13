@@ -9,7 +9,7 @@ Dear <%= @registration.participant.name %>,
 </p>
 
 <p>
-This email confirms that you have canceled your request to attend <%= @registration.seminar.title %> on <%= @registration.seminar.formatted_timespan %>.
+This email confirms that you have canceled your request to attend <%= @registration.seminar.title %> on <%= raw @registration.seminar.formatted_timespan %>.
 </p>
 
 <p>

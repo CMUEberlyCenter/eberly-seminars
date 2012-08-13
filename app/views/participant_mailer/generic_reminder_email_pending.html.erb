@@ -9,7 +9,7 @@ Dear <%= @registration.participant.name %>,
 </p>
 
 <p>
-You requested to attend <%= @registration.seminar.title %> on <%= @registration.seminar.formatted_timespan %>. Unfortunately, a space in this seminar is not currently available.
+You requested to attend <%= @registration.seminar.title %> on <%= raw @registration.seminar.formatted_timespan %>. Unfortunately, a space in this seminar is not currently available.
 </p>
 
 <p>

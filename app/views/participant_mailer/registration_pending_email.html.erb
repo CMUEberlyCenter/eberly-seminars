@@ -10,7 +10,7 @@ Dear <%= @participant.name %>,
 
 <p>
 Thank you for your interest in our teaching seminars! We have received your request to attend <%= @registration.seminar.title %>
-on <%= @registration.seminar.formatted_timespan %>.
+on <%= raw @registration.seminar.formatted_timespan %>.
 If we can accommodate you in this seminar, you will receive a confirmation email.
 </p>
 

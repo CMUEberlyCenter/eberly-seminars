@@ -11,7 +11,7 @@ Dear <%= @registration.participant.name %>,
 <p>
 As a reminder, you have been confirmed to attend the following seminar:<br/><br/>
 <%= @registration.seminar.title %>
-<%= @registration.seminar.formatted_timespan %>
+<%= raw @registration.seminar.formatted_timespan %>
 <%= @registration.seminar.location %>
 </p>
 

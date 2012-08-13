@@ -9,7 +9,7 @@ Dear <%= @participant.name %>,
 </p>
 
 <p>
-We have confirmed your space in <%= @registration.seminar.title %> on <%= @registration.seminar.formatted_timespan %>!
+We have confirmed your space in <%= @registration.seminar.title %> on <%= raw @registration.seminar.formatted_timespan %>!
 </p>
 
 <p>
