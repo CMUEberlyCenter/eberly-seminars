@@ -37,8 +37,11 @@ class Participant < ActiveRecord::Base
     ParticipantMailer.registration_pending_email( self, registration ).deliver
   end
 
-  def cancel_registration( registration )
-    self.registrations.find( registration ).destroy
+  def cancel_registration( registration_id )
+    registration = self.registrations.find( registration_id )
+    registration_copy = registration.clone
+    registration.destroy
+    ParticipantMailer.canceled_registration_email( registration_copy ).deliver
   end
 
 end

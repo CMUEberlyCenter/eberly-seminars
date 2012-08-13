@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+<p>
+Dear <%= @registration.participant.name %>,
+</p>
+
+<p>
+This email confirms that you have canceled your request to attend <%= @registration.seminar.title %> on <%= @registration.seminar.formatted_timespan %>.
+</p>
+
+<p>
+You can view and sign up for our other teaching seminars by logging in to:
+</p>
+<p>
+<a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+</p>
+<p>
+We hope to work with you in the future!
+</p>
+<p>
+Hilary Schuldt<br/>
+Coordinator of Graduate Programs<br/>
+Eberly Center for Teaching Excellence
+</p>
+
+  </body>
+</html>

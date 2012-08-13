@@ -17,6 +17,20 @@ class ParticipantMailer < ActionMailer::Base
          :subject => "[Eberly Center] Seminar Registration Confirmed")
   end
 
+  def canceled_registration_email( registration )
+    @registration = registration
+    if @registration.confirmed?
+      template = 'canceled_confirmed_registration_email'
+    else
+      template = 'canceled_pending_registration_email'
+    end
+
+    mail(:to => @registration.participant.email,
+         :cc => "jmbrooks@andrew.cmu.edu",
+         :subject => "[Eberly Center] Teaching Seminar Canceled",
+         :template_name => template )
+  end
+
   def generic_reminder_email( registration )
     @registration = registration
     if @registration.confirmed?
