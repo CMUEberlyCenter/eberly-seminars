@@ -192,14 +192,20 @@ $admin-nav-font: 16px/18px $site-nav-font-family;
       position: relative;
       width: 65px;
 
+      &.primary { 
+        border-color: #7D9E4A;
+        color: #94b840;
+	&.active:before { border-color: #7D9E4A; }
+      }
+
       &.active {
         border-width: 3px;
 	padding: 18px;
 
         &:before {
           border: 7px solid;
-          border-right-color: transparent;
-          border-bottom-color: transparent;
+          border-right-color: transparent !important;
+          border-bottom-color: transparent !important;
           content: '';
           height: 0px;
           left: 0;
@@ -207,11 +213,6 @@ $admin-nav-font: 16px/18px $site-nav-font-family;
           top: 0;
           width: 0px;
         }
-      }
-
-      &.primary { 
-        border-color: #7D9E4A;
-        color: #94b840;
       }
 
       a {
