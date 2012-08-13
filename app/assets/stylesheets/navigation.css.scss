@@ -6,7 +6,7 @@
 @import "graduate_student_support_definitions";
 
 $site-nav-font-family: 'TitilliumText22LRegular', sans-serif;
-$site-nav-font: 18px/20px $site-nav-font-family;
+$site-nav-font: 16px/20px $site-nav-font-family;
 $admin-nav-font: 16px/18px $site-nav-font-family;
 
 
@@ -186,15 +186,27 @@ $admin-nav-font: 16px/18px $site-nav-font-family;
       color: #939598;
       float: left;
       font: $site-nav-font;
-      height: 95px;
+      height: 65px;
       margin: 0 5px 5px 0;
-      padding: 15px;
+      padding: 20px;
       position: relative;
-      width: 75px;
+      width: 65px;
 
       &.active {
         border-width: 3px;
-	padding: 13px;
+	padding: 18px;
+
+        &:before {
+          border: 7px solid;
+          border-right-color: transparent;
+          border-bottom-color: transparent;
+          content: '';
+          height: 0px;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 0px;
+        }
       }
 
       &.primary { 
