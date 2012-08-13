@@ -34,7 +34,7 @@ class Participant < ActiveRecord::Base
     status = RegistrationStatus.find_by_status( 'pending' )
     registration = self.registrations.build( :seminar_id => seminar, :registration_status => status )
     registration.save
-    ParticipantMailer.pending_registration_email( self, registration ).deliver
+    ParticipantMailer.registration_pending_email( self, registration ).deliver
   end
 
   def cancel_registration( registration )
