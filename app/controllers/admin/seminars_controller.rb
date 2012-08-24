@@ -76,10 +76,13 @@ class Admin::SeminarsController < ApplicationController
       end 
       @registered.each do |r| 
         reg = Registration.find(r)
+        confirmed = RegistrationStatus.find_by_status('confirmed')
+        if reg and reg.registration_status != confirmed
         reg.build_registration_status
-        reg.registration_status= RegistrationStatus.find_by_status('confirmed')
-        if reg.save
-           ParticipantMailer.registration_confirmed_email( reg.participant, reg ).deliver
+          reg.registration_status = confirmed
+          if reg.save
+            ParticipantMailer.registration_confirmed_email( reg.participant, reg ).deliver
+          end
         end
        end 
 
