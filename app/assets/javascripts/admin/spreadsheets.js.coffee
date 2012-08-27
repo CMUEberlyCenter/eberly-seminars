@@ -1,13 +1,13 @@
 $ ->
   $('table.spreadsheet').dataTable({"iDisplayLength": 25})
-  $('td a').bind('click', -> $(this).parent('td').children('div').slideToggle() );
+  $('td a').live('click', -> $(this).parent('td').children('div').slideToggle() );
 
-  $('.truncate').bind( 'click',
+  $('.truncate').live( 'click',
     -> 
       $(this).children('.preview').hide()
       $(this).children('.truncated').slideDown()
   )
-  $('.truncate > .truncated > a.hide-text').bind( 'click',
+  $('.truncate > .truncated > a.hide-text').live( 'click',
     (event) ->
       $(this).parent().slideUp()
       $(this).parent().prev('.preview').show()
