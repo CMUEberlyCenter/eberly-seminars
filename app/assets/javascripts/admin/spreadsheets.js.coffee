@@ -1,6 +1,11 @@
 $ ->
   $('table.spreadsheet').dataTable({"iDisplayLength": 25})
-  $('td a').live('click', -> $(this).parent('td').children('div').slideToggle() );
+  $('td a').live('click',
+    (event) ->
+      $(this).parent('td').children('div').slideToggle()
+      event.stopPropagation()
+      event.preventDefault()
+  )
 
   $('.truncate').live( 'click',
     -> 
