@@ -9,8 +9,11 @@ Dear <%= @participant.name %>,
 </p>
 
 <p>
-We have received your request to attend <%= @registration.seminar.title %>.
-If we can accommodate you in this seminar, you will receive a confirmation email.
+We have received your request to attend
+<%= @registration.seminar.title %>.  If we can accommodate you in this
+seminar, you will receive a confirmation email and your status will
+appear as “confirmed.”  Otherwise, your status will appear as
+“pending.”
 </p>
 
 <p>
