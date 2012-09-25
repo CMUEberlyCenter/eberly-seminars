@@ -10,6 +10,7 @@ $portfolio-header-bg-color: #bbbbbb;
 $portfolio-header-font-family: 'OpenSansBold', sans-serif;
 $portfolio-header-font: 26px/28px $portfolio-header-font-family;
 $portfolio-subheader-font: 14px/16px $portfolio-header-font-family;
+$portfolio-h2-font: 14px/16px $portfolio-header-font-family;
 
 $portfolio-title-font-family: 'OpenSansRegular', sans-serif;
 $portfolio-title-font: 20px/20px $portfolio-title-font-family;
@@ -57,9 +58,33 @@ section.portfolio {
     h1 {
       font: $portfolio-subheader-font;
     }
+
+    h2 {
+      font: $portfolio-h2-font;
+      margin: 5px;
+      padding: 0;
+    }
     
     p {
       padding: $padding-small;
+    }
+
+    ul {
+
+      li {
+        padding: 10px 0;
+
+        p {
+	  margin: 5px;
+	  padding: 0;
+
+          &.date {
+            font-size: 12px;
+	    margin-left: 10px;
+          }
+        }
+      }
+
     }
 
   }

@@ -10,6 +10,12 @@ class Registration < ActiveRecord::Base
     scope s.status, :conditions => { :registration_status_id => s }
   end
 
+
+  AttendanceStatus.all.each do |s| 
+    scope s.status, :conditions => { :attendance_status_id => s }
+  end
+
+
   scope :upcoming, joins(:seminar).where('end_at >= ?', Time.now)
 
   validates :participant, :presence => true

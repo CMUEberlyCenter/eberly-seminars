@@ -86,6 +86,12 @@ class Seminar < ActiveRecord::Base
     self.start_at.utc.strftime(start_format) + "&ndash;" + self.end_at.utc.strftime(end_format)
   end
 
+  def formatted_timespan_short
+    start_format = "%b %e %Y"
+    self.start_at.utc.strftime(start_format)
+  end
+
+
   def semester
     "F12"
   end

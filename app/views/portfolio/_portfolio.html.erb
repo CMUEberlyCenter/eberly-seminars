@@ -6,9 +6,19 @@
 
   <section class="portfolio-dialog seminars">
     <h1>Seminars</h1>
-    <p>
-      You have not attended any seminars.
-    </p>
+    <% if @attended_seminars.size > 0 %>
+      <% @attended_seminars.each do |r| %>
+        <ul>
+          <li>
+	    <h2><%= r.seminar.title %></h2>
+	    <p class="date"><%= raw r.seminar.formatted_timespan_short %></p>
+	  </li>
+        </ul>
+      <% end %>
+
+    <% else %>
+      <p>You have not attended any seminars.</p>
+    <% end %>
   </section>
 
   <section class="portfolio-dialog observations">
