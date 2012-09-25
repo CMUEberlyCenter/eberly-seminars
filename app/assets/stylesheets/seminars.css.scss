@@ -28,6 +28,7 @@ section.seminar-group {
   &.confirmed > h1 { background: #94b840; }
   &.pending  > h1 { background: #e3b31c; }
 
+  &.expired > h1 { background: #a91e23; }
   &.published > h1 { background: #94b840; }
   &.development  > h1 { background: #e3b31c; }
 

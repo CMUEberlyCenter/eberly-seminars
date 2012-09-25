@@ -4,6 +4,7 @@ class Admin::SeminarsController < ApplicationController
   layout 'admin'
 
   def index
+    @expired_seminars = Seminar.expired.published
     @offered_seminars = Seminar.active.published
     @development_seminars = Seminar.active.development
   end

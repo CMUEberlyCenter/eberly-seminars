@@ -40,6 +40,9 @@ class Seminar < ActiveRecord::Base
     select{ |s| s.registrations.find_by_participant_id( participant) == nil }
   end
 
+  def expired?
+    self.end_at < Time.now
+  end
 
 
   # TODO: filter for current semester regardless of publish status

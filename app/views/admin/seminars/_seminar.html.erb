@@ -16,6 +16,7 @@
 <p class="location details"><%= seminar.location %></p>
 <p class="description details"><%= seminar.description %></p>
 
+<% unless seminar.expired? %>
 <p class="manage">
   <%= link_to "Edit", edit_admin_seminar_url(seminar), :class => 'boxy' %>
 
@@ -28,5 +29,6 @@
     <%= link_to "Delete", admin_seminar_path(:id => seminar.id), :method => :delete, :class => 'boxy', :confirm => "Really delete this seminar?" %>
   <% end %>
 </p>
+<% end %>
 
 </li>
