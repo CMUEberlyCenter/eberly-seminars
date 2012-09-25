@@ -10,24 +10,24 @@ class Participant < ActiveRecord::Base
     self.registrations.find_by_seminar_id( seminar.id )
   end
 
+  def ldap_reference
+    @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
+  end
+
   def name
-    person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    Array.[](person["cn"]).flatten.last
+    Array.[](ldap_reference["cn"]).flatten.last
   end
   
   def email
-    person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    person["mail"]
+    ldap_reference["mail"]
   end
 
   def department
-    person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    person["cmuDepartment"]
+    ldap_reference["cmuDepartment"]
   end
 
   def student_class
-    person = CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    person["cmuStudentClass"]
+    ldap_reference["cmuStudentClass"]
   end
 
   def request_registration( seminar )
