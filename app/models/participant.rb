@@ -12,6 +12,8 @@ class Participant < ActiveRecord::Base
 
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
+    # Add new attributes to CarnegieMellonPerson attributes before adding 
+    # references to them in participant.rb
   end
 
   def name

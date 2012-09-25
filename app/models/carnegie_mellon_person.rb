@@ -4,7 +4,12 @@ class CarnegieMellonPerson < ActiveLdap::Base
                :classes => ["cmuPerson"]
 
   def self.find_by_andrewid( andrewid )
-    find("cmuandrewid=#{andrewid}")
+    find("cmuandrewid=#{andrewid}", :attributes => ['cmuandrewid',
+                                                    'cn', 
+                                                    'mail', 
+                                                    'cmuDepartment',
+                                                    'cmuStudentClass'
+                                                   ]) 
   end
 
   def self.generic_search( term )
