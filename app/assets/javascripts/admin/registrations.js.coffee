@@ -1,7 +1,7 @@
 $ ->
   
 
-  $('#registration_form .participant').bind('contextmenu', (e) ->
+  $('#registration_form .participant.attendance').bind('contextmenu', (e) ->
 
     e.stopImmediatePropagation()
 

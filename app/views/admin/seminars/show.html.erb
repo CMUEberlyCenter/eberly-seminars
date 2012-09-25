@@ -24,10 +24,15 @@
     <% @seminar.registrations.confirmed.each do |registration| %>
     <%#= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
+
        if registration.participant.student_class == "Masters"
          css_classes = css_classes + " masters"
        elsif registration.participant.student_class == "Doctoral"
          css_classes = css_classes + " phd"
+       end
+       
+       if registration.seminar.expired?
+         css_classes = css_classes + " attendance"
        end
     %>
     <%# end %>
