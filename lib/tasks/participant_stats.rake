@@ -13,7 +13,7 @@ namespace :participant_stats do
         print "\"#{p.andrewid}\",\"#{p.name}\",\"#{p.department}\"," +
 	      "\"#{p.student_class}\", \"#{p.registrations.size}\"," +
 	      "\"#{p.registrations.confirmed.size}\"," +
-	      "\"#{(p.registrations.confirmed.size*100)/(p.registrations.size)}%\""+
+	      "\"#{p.registrations.confirmed.size.to_f/p.registrations.size}\""+
 	      "\n"
       end
     end
