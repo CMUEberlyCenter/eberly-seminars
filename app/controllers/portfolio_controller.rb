@@ -1,4 +1,5 @@
 class PortfolioController < ApplicationController
+  before_filter :require_authentication
 
   def index
     if current_user.registrations
