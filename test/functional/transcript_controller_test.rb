@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PortfolioControllerTest < ActionController::TestCase
+class TranscriptControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

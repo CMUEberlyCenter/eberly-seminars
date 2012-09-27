@@ -1,10 +1,10 @@
-<section class="portfolio">
-  <h1>Future Faculty Portfolio</h1>
+<section class="transcript">
+  <h1>Teaching Development Transcript</h1>
 
   <%= image_tag "face.png" %>
   <h2><%= current_user.name %></h2>
 
-  <section class="portfolio-dialog seminars">
+  <section class="transcript-dialog seminars">
     <h1>Seminars</h1>
     <% if @attended_seminars.size > 0 %>
       <% @attended_seminars.each do |r| %>
@@ -21,21 +21,21 @@
     <% end %>
   </section>
 
-  <section class="portfolio-dialog observations">
+  <section class="transcript-dialog observations">
     <h1>Observations</h1>
     <p>
       No observations available.
     </p>
   </section>
 
-  <section class="portfolio-dialog syllabus-project">
+  <section class="transcript-dialog syllabus-project">
     <h1>Syllabus Project</h1>
     <p>
       No syllabus projects available.
     </p>
   </section>
 
-  <section class="portfolio-dialog individual-project">
+  <section class="transcript-dialog individual-project">
     <h1>Individual Project</h1>
     <p>
       No individual projects available.
@@ -43,8 +43,8 @@
   </section>
 
 
-  <div class="export-portfolio">
-    <%= link_to "Export Portfolio [pdf]", "assets/teaching-development-transcript-bg.pdf" %>
+  <div class="export-transcript">
+    <%= link_to "Export Transcript [pdf]", "assets/teaching-development-transcript-bg.pdf" %>
   </div>
 </section>
 

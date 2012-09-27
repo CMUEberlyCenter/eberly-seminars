@@ -13,7 +13,7 @@ GraduateStudents::Application.routes.draw do
   match 'login',  to: 'sessions#create'
   match 'logout', to: 'sessions#destroy', via: [:get, :delete]
 
-  match 'portfolio', to: 'portfolio#index', :as => 'portfolio'
+  match 'transcript', to: 'transcript#index', :as => 'transcript'
 
   get 'search' => 'search#show', :as => 'search'
 

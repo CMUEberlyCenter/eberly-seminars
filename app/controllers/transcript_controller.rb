@@ -1,4 +1,4 @@
-class PortfolioController < ApplicationController
+class TranscriptController < ApplicationController
   before_filter :require_authentication
 
   def index

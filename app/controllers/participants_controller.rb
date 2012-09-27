@@ -30,8 +30,4 @@ class ParticipantsController < ApplicationController
 
   end
 
-  def portfolio
-    raise "PDF Generation error"
-  end
-
 end

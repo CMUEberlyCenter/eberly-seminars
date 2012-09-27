@@ -1,52 +1,52 @@
-/* ==|== portfolio styles ===================================================
+/* ==|== transcript styles ==================================================
    Author: Meg Richards (mouse@cmu.edu)
    ========================================================================== */
 
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
-$portfolio-border-color: #bbbbbb;
-$portfolio-header-bg-color: #bbbbbb;
-$portfolio-header-font-family: 'OpenSansBold', sans-serif;
-$portfolio-header-font: 26px/28px $portfolio-header-font-family;
-$portfolio-subheader-font: 14px/16px $portfolio-header-font-family;
-$portfolio-h2-font: 14px/16px $portfolio-header-font-family;
+$transcript-border-color: #bbbbbb;
+$transcript-header-bg-color: #bbbbbb;
+$transcript-header-font-family: 'OpenSansBold', sans-serif;
+$transcript-header-font: 26px/28px $transcript-header-font-family;
+$transcript-subheader-font: 14px/16px $transcript-header-font-family;
+$transcript-h2-font: 14px/16px $transcript-header-font-family;
 
-$portfolio-title-font-family: 'OpenSansRegular', sans-serif;
-$portfolio-title-font: 20px/20px $portfolio-title-font-family;
+$transcript-title-font-family: 'OpenSansRegular', sans-serif;
+$transcript-title-font: 20px/20px $transcript-title-font-family;
 
 
 /* ==|== box styles ========================================================= */
-section.portfolio {
-  border: 1px solid $portfolio-border-color;
+section.transcript {
+  border: 1px solid $transcript-border-color;
   clear: left;
   float: left;
   margin: 0 10px 0 0;
   min-width: $site-min-width - $left-column-width;
 
   h1 {
-    background: $portfolio-header-bg-color;
+    background: $transcript-header-bg-color;
     color: #ffffff;
-    font: $portfolio-header-font;
+    font: $transcript-header-font;
     margin: 0;
     padding: $padding-small;
   }
 
   h2 {
-   font: $portfolio-title-font;
+   font: $transcript-title-font;
    margin-left: 10px;
    padding: $padding-medium;
   }
 
   img {
-    border: 1px solid $portfolio-border-color;
+    border: 1px solid $transcript-border-color;
     float: left;
     padding: $padding-small;
     margin: $padding-small;
   }
 
-  section.portfolio-dialog {
-    border: 1px solid $portfolio-border-color;
+  section.transcript-dialog {
+    border: 1px solid $transcript-border-color;
     float: left;
     margin: 10px;
     width: 150px;
@@ -56,11 +56,11 @@ section.portfolio {
     }
 
     h1 {
-      font: $portfolio-subheader-font;
+      font: $transcript-subheader-font;
     }
 
     h2 {
-      font: $portfolio-h2-font;
+      font: $transcript-h2-font;
       margin: 5px;
       padding: 0;
     }
@@ -89,7 +89,7 @@ section.portfolio {
 
   }
 
-  div.export-portfolio {
+  div.export-transcript {
     top: 24px;
     clear: left;
     float: right;
