@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def require_authentication
     unless authenticated?
-      flash[:error] = "Log in to register for seminars"
-      redirect_to root_url
+      redirect_to login_url(:return_url => request.env["REQUEST_URI"])
     end
   end
 
