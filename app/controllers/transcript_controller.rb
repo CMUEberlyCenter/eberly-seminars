@@ -5,6 +5,11 @@ class TranscriptController < ApplicationController
     if current_user.registrations
       @attended_seminars = current_user.registrations.credited
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf
+    end
   end
 
 end
