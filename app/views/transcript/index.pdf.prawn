@@ -78,7 +78,7 @@ prawn_document(
   pdf.float do
     pdf.bounding_box [consultations_left,consultations_top], :width => consultations_width, :height => consultations_height do
       pdf.font_size(body_font_size) do
-        pdf.formatted_text [{ :text => " ",
+        pdf.formatted_text [{ :text => "N/A",
                           :callback => consultations_bg
                         }]
       end
@@ -98,11 +98,14 @@ prawn_document(
                                       :label => "Seminars on Teaching",
                                       :document => pdf
                                       )
+  seminar_text = "N/A"
+  if @attended_seminars.size > 0
+      seminar_text = @attended_seminars.map { |r| r.seminar.title }.join("\n")
+  end
   pdf.float do
     pdf.bounding_box [seminars_left,seminars_top], :width => seminars_width, :height => seminars_height do
       pdf.font_size(body_font_size) do
-        pdf.formatted_text [{ :text => 
-                     	  @attended_seminars.map { |r| r.seminar.title }.join("\n"),
+        pdf.formatted_text [{ :text => seminar_text,
                           :callback => seminars_bg
                         }]
       end
@@ -124,7 +127,7 @@ prawn_document(
   pdf.float do
     pdf.bounding_box [special_left,special_top], :width => special_width, :height => special_height do
       pdf.font_size(body_font_size) do
-        pdf.formatted_text [{ :text => " ",
+        pdf.formatted_text [{ :text => "N/A",
                           :callback => special_bg
                         }]
       end
