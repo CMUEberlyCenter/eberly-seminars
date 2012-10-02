@@ -21,6 +21,10 @@ class Participant < ActiveRecord::Base
   def name
     Array.[](ldap_reference["cn"]).flatten.last
   end
+
+  def surname
+    ldap_reference["sn"]
+  end
   
   def email
     ldap_reference["mail"]

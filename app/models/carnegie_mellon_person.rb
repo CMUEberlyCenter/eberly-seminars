@@ -6,7 +6,8 @@ class CarnegieMellonPerson < ActiveLdap::Base
   def self.find_by_andrewid( andrewid )
     find("cmuandrewid=#{andrewid}", :attributes => ['cmuandrewid',
                                                     'cn', 
-                                                    'mail', 
+                                                    'mail',
+                                                    'sn',
                                                     'cmuDepartment',
                                                     'cmuStudentClass'
                                                    ]) 
