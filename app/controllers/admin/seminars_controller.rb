@@ -54,6 +54,10 @@ class Admin::SeminarsController < ApplicationController
 
   def show
     @seminar = Seminar.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf { render params[:profile] }
+    end
   end
 
   def update

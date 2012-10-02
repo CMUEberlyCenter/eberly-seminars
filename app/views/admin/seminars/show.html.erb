@@ -14,6 +14,9 @@
     <% else %>
       <%= link_to 'Publish', edit_admin_seminar_url(@seminar), :class => 'boxy' %>
     <% end %>
+    
+    <%= link_to "Sign-In Sheet [pdf]", 
+	admin_seminar_url(@seminar, :format => 'pdf', :profile => 'sign-in'), :class => 'boxy' %>
   </p>
   <% end %>
   
