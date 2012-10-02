@@ -27,6 +27,7 @@ gem 'ri_cal'
 gem 'activeldap', :require => 'active_ldap/railtie'
 gem 'ruby-ldap'
 gem 'prawn_rails'
+gem 'htmlentities'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

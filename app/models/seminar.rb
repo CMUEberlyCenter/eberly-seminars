@@ -94,6 +94,9 @@ class Seminar < ActiveRecord::Base
     self.start_at.utc.strftime(start_format)
   end
 
+  def formatted_timespan_safe
+    HTMLEntities.new.decode self.formatted_timespan
+  end
 
   def semester
     "F12"

@@ -51,6 +51,7 @@ GEM
       fast_gettext (>= 0.4.8)
     hashery (2.0.1)
     hike (1.2.1)
+    htmlentities (4.3.1)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-datatables-rails (1.11.1)
@@ -135,6 +136,7 @@ PLATFORMS
 DEPENDENCIES
   activeldap
   coffee-rails (~> 3.2.1)
+  htmlentities
   jquery-datatables-rails
   jquery-rails
   jquery-ui-rails
