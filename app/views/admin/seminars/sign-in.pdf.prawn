@@ -62,13 +62,6 @@ prawn_document(
   end
 
 
-  pdf.repeat :all do
-    pdf.stroke_color = 'cccccc'
-    pdf.stroke do
-    #  pdf.vertical_line 80, pdf.bounds.top-110, :at => 200
-    end
-  end
-
   pdf.fill_color = '000000'
   pdf.stroke_color = 'cccccc'
 
@@ -78,11 +71,12 @@ prawn_document(
     participants = @seminar.registrations.confirmed.all.collect {|r| r.participant }
     participants.sort_by(&:surname).each do |p|
 
-      pdf.stroke do
-        pdf.horizontal_line 0, 450, :at => pdf.cursor-15
-	pdf.vertical_line pdf.cursor-33, pdf.cursor, :at => 200
-      end
       pdf.text p.name
+      pdf.stroke do
+        pdf.horizontal_line 0, 450, :at => pdf.cursor+15
+	pdf.vertical_line pdf.cursor+48, pdf.cursor+15, :at => 200
+      end
+
     end
   end
 
