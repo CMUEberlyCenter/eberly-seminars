@@ -86,12 +86,12 @@ class Seminar < ActiveRecord::Base
       end_format = " " + start_format
     end
 
-    self.start_at.utc.strftime(start_format) + "&ndash;" + self.end_at.utc.strftime(end_format)
+    self.start_at.strftime(start_format) + "&ndash;" + self.end_at.strftime(end_format)
   end
 
   def formatted_timespan_short
     start_format = "%b %e %Y"
-    self.start_at.utc.strftime(start_format)
+    self.start_at.strftime(start_format)
   end
 
   def formatted_timespan_safe

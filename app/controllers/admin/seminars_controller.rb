@@ -28,10 +28,10 @@ class Admin::SeminarsController < ApplicationController
   def create
     @seminar = Seminar.new(params[:seminar])
     @seminar.start_at = DateTime.strptime(
-      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]}", '%m/%d/%Y %l:%M %P'
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
     )
     @seminar.end_at = DateTime.strptime(
-      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]}", '%m/%d/%Y %l:%M %P'
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
     )
 
     respond_to do |format|
@@ -97,12 +97,13 @@ class Admin::SeminarsController < ApplicationController
   def update_seminar
     @seminar = Seminar.find(params[:seminar][:id])
     @seminar.attributes = params[:seminar]
+
     @seminar.start_at = DateTime.strptime(
-      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]}", '%m/%d/%Y %l:%M %P'
-    )
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+    ).to_time
     @seminar.end_at = DateTime.strptime(
-      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]}", '%m/%d/%Y %l:%M %P'
-    )
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+    ).to_time
     @seminar.save!
     redirect_to admin_seminars_url
   end
