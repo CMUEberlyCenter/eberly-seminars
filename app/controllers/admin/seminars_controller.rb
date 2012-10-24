@@ -27,11 +27,14 @@ class Admin::SeminarsController < ApplicationController
 
   def create
     @seminar = Seminar.new(params[:seminar])
+    d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
+    tz = Time.local(d.year, d.month, d.day).zone
+
     @seminar.start_at = DateTime.strptime(
-      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     )
     @seminar.end_at = DateTime.strptime(
-      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     )
 
     respond_to do |format|
@@ -47,8 +50,6 @@ class Admin::SeminarsController < ApplicationController
           :status => :unprocessable_entity }
       end
     end
-
-    @seminar.save
   end
 
 
@@ -98,11 +99,13 @@ class Admin::SeminarsController < ApplicationController
     @seminar = Seminar.find(params[:seminar][:id])
     @seminar.attributes = params[:seminar]
 
+    d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
+    tz = Time.local(d.year, d.month, d.day).zone
     @seminar.start_at = DateTime.strptime(
-      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+      "#{params[:seminar][:start_date]}" + ' ' + "#{params[:seminar][:start_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     ).to_time
     @seminar.end_at = DateTime.strptime(
-      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + Time.now.formatted_offset, '%m/%d/%Y %l:%M %P %z'
+      "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     ).to_time
     @seminar.save!
     redirect_to admin_seminars_url
