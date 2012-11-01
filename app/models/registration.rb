@@ -15,7 +15,7 @@ class Registration < ActiveRecord::Base
     scope s.status, :conditions => { :attendance_status_id => s }
   end
 
-  scope :credited, self.attended.joins(:seminar).where('end_at < ?', Time.now)
+  scope :credited, self.confirmed.attended.joins(:seminar).where('end_at < ?', Time.now)
 
   scope :upcoming, joins(:seminar).where('end_at >= ?', Time.now)
 
