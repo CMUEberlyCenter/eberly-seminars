@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -28,7 +28,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
 gem 'ri_cal'
 gem 'activeldap', :require => 'active_ldap/railtie'
-gem 'ruby-ldap'
+#gem 'ruby-ldap'
 gem 'prawn_rails'
 gem 'htmlentities'
 
