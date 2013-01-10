@@ -4,35 +4,42 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-<p>
-Dear <%= @participant.name %>,
-</p>
 
-<p>
-We have received your request to attend
-<%= @registration.seminar.title %>.  If we can accommodate you in this
-seminar, you will receive a confirmation email and your status will
-appear as “confirmed.”  Otherwise, your status will appear as
-“pending.”
-</p>
+    <p>
+      Dear <%= @participant.name %>,
+    </p>
+    
+    <p>
+      We have received your request to attend the following seminar:<br/><br/>
+      
+      <%= render :partial => "registration_details", :object => @registration %>
+    </p>
+    
+    <p>
+      If we can accommodate you in this seminar, you will receive a
+      confirmation email within 24 hours of your registration and your
+      status will appear as “confirmed” in our online system. Otherwise,
+      your status will appear as “pending.”
+    </p>
+    
+    <p>
+      You can view and manage your seminar requests at any time by logging
+      in to: <br/>
 
-<p>
-You can view and manage your seminar requests at any time by logging in to:
-</p>
-<p>
-<a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
-</p>
-<p>
-If you are no longer interested in or able to attend this seminar, please log in to cancel your request as soon as possible so we can accommodate other interested graduate students.
-</p>
-<p>
-Thank you for your interest in our teaching seminars, and we look forward to working with you.
-</p>
-<p>
-Hilary Schuldt<br/>
-Coordinator of Graduate Programs<br/>
-Eberly Center for Teaching Excellence
-</p>
+      <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+    </p>
+    
+    <p>  
+      If you are no longer interested in or able to attend this seminar,
+      please log in to cancel your request as soon as possible so we can
+      accommodate other interested graduate students.
+    </p>
+    
+    <p>
+      Thank you for your interest in our teaching seminars.
+    </p>
+    
+    <%= render :partial => 'signature' %>
 
   </body>
 </html>

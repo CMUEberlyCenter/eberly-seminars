@@ -99,7 +99,7 @@ class Seminar < ActiveRecord::Base
   end
 
   def semester
-    "F12"
+    "S13"
   end
 
   #validate :expiration_date_cannot_be_in_the_past,

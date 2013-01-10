@@ -4,31 +4,41 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-<p>
-Dear <%= @participant.name %>,
-</p>
 
-<p>
-We have confirmed your space in <%= @registration.seminar.title %> on <%= raw @registration.seminar.formatted_timespan %>!
-</p>
+    <p>
+      Dear <%= @participant.name %>,
+    </p>
+    
+    <p>
+      We have confirmed your space in the following seminar:<br/><br/>
 
-<p>
-If you are still interested in attending this seminar, you do not need to take further action. If you are no longer interested in or able to attend this seminar, please log in to cancel your space as soon as possible so we can accommodate other interested graduate students.
-</p>
+      <%= render :partial => "registration_details", :object => @registration %>
+    </p>
 
-<p>
-<a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
-</p>
+    <p>
+      If you are still interested in attending this seminar, you do
+      not need to take further action.
+    </p>
 
-<p>
-Thank you for your interest, and we look forward to working with you!
-</p>
+    <p>
+      If you are no longer interested in or able to attend this
+      seminar, please log in to cancel your space as soon as possible
+      so we can accommodate other interested graduate students. If you
+      are a no-show for a seminar (i.e., are confirmed for a seminar
+      but don’t cancel or attend) more than once, you will be moved to
+      the waitlist for the semester’s remaining seminars.
+    </p>
+    
+    <p>
+      <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+    </p>
 
-<p>
-Hilary Schuldt<br/>
-Coordinator of Graduate Programs<br/>
-Eberly Center for Teaching Excellence
-</p>
+    <p>
+      Thank you for your interest, and we look forward to working with
+      you!
+    </p>
+
+    <%= render :partial => 'signature' %>
 
   </body>
 </html>

@@ -4,28 +4,35 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-<p>
-Dear <%= @registration.participant.name %>,
-</p>
 
-<p>
-This email confirms that you have canceled your request to attend <%= @registration.seminar.title %> on <%= raw @registration.seminar.formatted_timespan %>.
-</p>
+    <p>
+      Dear <%= @registration.participant.name %>,
+    </p>
+    
+    <p>
+      This email confirms that you have canceled your request to
+      attend the following seminar:<br/><br/>
+      
+      <%= render :partial => "registration_details", :object => @registration %>
+    </p>
 
-<p>
-You can view and sign up for our other teaching seminars by logging in to:
-</p>
-<p>
-<a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
-</p>
-<p>
-We hope to work with you in the future!
-</p>
-<p>
-Hilary Schuldt<br/>
-Coordinator of Graduate Programs<br/>
-Eberly Center for Teaching Excellence
-</p>
+    <p>
+      Thank you for taking the time to cancel your request. This helps
+      us to accommodate other interested graduate students.
+    </p>
+
+    <p>
+      You can view and sign up for our other teaching seminars by
+      logging in to:<br/><br/>
+      
+      <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+    </p>
+    
+    <p>
+      We hope to work with you in the future!
+    </p>
+
+    <%= render :partial => 'signature' %>
 
   </body>
 </html>

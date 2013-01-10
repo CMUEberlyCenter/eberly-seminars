@@ -6,7 +6,7 @@ class ParticipantMailer < ActionMailer::Base
     @registration = registration
     mail(:to => participant.email, 
          :cc => "jmbrooks@andrew.cmu.edu", 
-         :subject => "[Eberly Center] Registration Request Received")
+         :subject => "[Eberly Center] Request for #{registration.seminar.title}")
   end
 
   def registration_confirmed_email(participant, registration)
@@ -14,34 +14,42 @@ class ParticipantMailer < ActionMailer::Base
     @registration = registration
     mail(:to => participant.email, 
          :cc => "jmbrooks@andrew.cmu.edu", 
-         :subject => "[Eberly Center] Seminar Registration Confirmed")
+         :subject => "[Eberly Center] Confirmation for #{registration.seminar.title}")
   end
 
   def canceled_registration_email( registration )
     @registration = registration
+    subject = ""
+
     if @registration.confirmed?
       template = 'canceled_confirmed_registration_email'
+      subject = "Canceled registration for #{registration.seminar.title}"
     else
       template = 'canceled_pending_registration_email'
+      subject = "Canceled request for #{registration.seminar.title}"
     end
 
     mail(:to => @registration.participant.email,
          :cc => "jmbrooks@andrew.cmu.edu",
-         :subject => "[Eberly Center] Teaching Seminar Canceled",
+         :subject => "[Eberly Center] #{subject}",
          :template_name => template )
   end
 
   def generic_reminder_email( registration )
     @registration = registration
+    subject = ""
+
     if @registration.confirmed?
       template = 'generic_reminder_email_confirmed'
+      subject = "Seminar Reminder: #{registration.seminar.title}"
     else
       template = 'generic_reminder_email_pending'
+      subject = "Waitlisted for #{registration.seminar.title}"
     end
 
     mail(:to => @registration.participant.email,
          :cc => "jmbrooks@andrew.cmu.edu",
-         :subject => "[Eberly Center] Teaching Seminar Reminder",
+         :subject => "[Eberly Center] #{subject}",
          :template_name => template )
   end
 

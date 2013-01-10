@@ -4,37 +4,42 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-<p>
-Dear <%= @registration.participant.name %>,
-</p>
 
-<p>
-As a reminder, you have been confirmed to attend the following seminar:<br/><br/>
-<%= @registration.seminar.title %>
-<%= raw @registration.seminar.formatted_timespan %>
-<%= @registration.seminar.location %>
-</p>
+    <p>
+      Dear <%= @registration.participant.name %>,
+    </p>
+    
+    <p>
+      As a reminder, you have been confirmed to attend the following
+      seminar:<br/><br/>
+      
+      <%= render :partial => "registration_details", :object => @registration %>
+    </p>
+    
+    <p>
+      If you are still interested in attending this seminar, you do
+      not need to take any further action.
+    </p>
 
-<p>
-If you are still interested in attending this seminar, you do not need to take any action.
-</p>
+    <p>
+      If you are no longer interested in or able to attend this
+      seminar, please log in to cancel your space as soon as possible
+      so we can accommodate other interested graduate students. If you
+      are a no-show for a seminar (i.e., are confirmed for a seminar
+      but don’t cancel or attend) more than once, you will be moved to
+      the waitlist for the semester’s remaining seminars.
+    </p>
 
-<p>
-If you are no longer interested in or able to attend this seminar, please log in to cancel your space as soon as possible so we can accommodate other interested graduate students.
-</p>
+    <p>
+      <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+    </p>
 
-<p>
-<a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
-</p>
+    <p>
+      Thank you again for your interest, and we look forward to
+      working with you!
+    </p>
+    
+    <%= render :partial => 'signature' %>
 
-<p>
-Thank you again for your interest, and we look forward to working with you!
-</p>
-
-<p>
-Hilary Schuldt<br/>
-Coordinator of Graduate Programs<br/>
-Eberly Center for Teaching Excellence
-</p>
   </body>
 </html>
