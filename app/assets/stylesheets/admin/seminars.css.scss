@@ -32,7 +32,7 @@ $postdoc-color: #ddddff;
   > ul {
     list-style-type: none;
 
-    li { 
+    li {
       margin: 5px 7px; 
       padding: 1px 5px; 
     }
@@ -70,15 +70,15 @@ ul.participants-list {
   position: relative !important;
   padding: 1%;
 
-  &#registered-participants { clear: left; width: 62%; }
+  &#registered-participants { width: 62%; }
   &#waitlisted_participants { width: 29%; }
 
   li {
     border: 1px solid #cccccc;
-    clear: left;
     margin: 5px;
     float: left;
     height: 50px;
+    overflow: hidden;
     padding: 0 !important;
     width: 193px;
 
