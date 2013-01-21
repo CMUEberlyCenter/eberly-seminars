@@ -14,7 +14,9 @@ class Admin::RegistrationsController < ApplicationController
     
     respond_to do |format|
       if @registration.save
-        ParticipantMailer.registration_confirmed_email( @registration.participant, @registration ).deliver
+        if @registration.seminar.start_at > Time.now
+          ParticipantMailer.registration_confirmed_email( @registration.participant, @registration ).deliver
+        end
         format.html { redirect_to(admin_seminar_path(@registration.seminar), :notice => 'Registration created.') }
         format.js  
       else

@@ -86,7 +86,7 @@ class Admin::SeminarsController < ApplicationController
         if reg and reg.registration_status != confirmed
         reg.build_registration_status
           reg.registration_status = confirmed
-          if reg.save
+          if reg.save and reg.seminar.start_at > Time.now
             ParticipantMailer.registration_confirmed_email( reg.participant, reg ).deliver
           end
         end
