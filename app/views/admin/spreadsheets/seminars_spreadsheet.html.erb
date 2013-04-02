@@ -3,9 +3,13 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Start Date</th>
       <th>Status</th>
       <th>Description</th>
       <th>Registrations</th>
+      <th># Confirmed</th>
+      <th># Pending</th>
+      <th>Percent Filled</th>
     </tr>
   </thead>
 
@@ -13,6 +17,7 @@
     <% @seminars.each do |s| %>
     <tr>
       <td><%= s.title %></td>
+      <td><%= s.start_at.to_date %></td>
       <td><%= s.status %></td>
       
       <td class="truncate">
@@ -27,6 +32,18 @@
 
       <td>
 	<%= link_to s.registrations.size, admin_seminar_path( s ) %>
+      </td>
+
+      <td>
+	<%= s.registrations.pending.size %>
+      </td>
+
+      <td>
+	<%= s.registrations.confirmed.size %>
+      </td>
+
+      <td>
+	<%= s.capacity_percentage.to_s %>%
       </td>
     </tr>
     <% end %>
