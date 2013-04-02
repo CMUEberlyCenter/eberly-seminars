@@ -4,6 +4,7 @@
   <%= render "participant_legend" %>
 
   <p class="date"><%= raw @seminar.formatted_timespan %></p>
+  <p class="description"><%= raw @seminar.description %></p>
 
   <% unless @seminar.expired? %>
   <p class="manage">
