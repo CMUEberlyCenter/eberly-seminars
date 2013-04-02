@@ -1,11 +1,11 @@
+<%= render "seminars", :seminars => @offered_seminars,
+    :title => "Seminars we are currently offering &ndash; <em>Published</em>",
+    :css_class => "published",
+    :no_seminars_message => "We do not have any upcoming seminars." %>
+
 <% if @expired_seminars and @expired_seminars.size > 0 %>
 <%= render "seminars", :seminars => @expired_seminars,
     :title => "Seminars offered this semester &ndash; <em>Ended</em>",
     :css_class => "expired",
     :no_seminars_message => "We do not have any upcoming seminars." %>
 <% end %>
-
-<%= render "seminars", :seminars => @offered_seminars,
-    :title => "Seminars we are currently offering &ndash; <em>Published</em>",
-    :css_class => "published",
-    :no_seminars_message => "We do not have any upcoming seminars." %>
