@@ -6,7 +6,7 @@ class Admin::SeminarsController < ApplicationController
   def index
     @expired_seminars = Seminar.expired.published
     @offered_seminars = Seminar.active.published
-    @development_seminars = Seminar.active.development
+    @development_seminars = Seminar.development
   end
 
   def new
