@@ -12,8 +12,8 @@ GraduateStudents::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   match 'login',  to: 'sessions#create'
   match 'logout', to: 'sessions#destroy', via: [:get, :delete]
-
-  match 'transcript', to: 'transcript#index', :as => 'transcript'
+ 
+  match 'transcript', to: 'transcript#old_index', :as => 'transcript'
 
   get 'search' => 'search#show', :as => 'search'
 
@@ -29,7 +29,13 @@ GraduateStudents::Application.routes.draw do
   end
 
   #resources :registrations
-  resources :participants
+  resources :participants do
+    resource :transcript, only: :index do
+      member do
+        get 'index'
+      end
+    end
+  end
   
 
   # Sample of regular route:
