@@ -49,7 +49,7 @@ module ApplicationHelper
 
 
   def current_semester
-    "F12"
+    "S13"
   end
 
   ##############################################################################
