@@ -37,7 +37,7 @@ prawn_document(
 
     pdf.move_down 10
     pdf.fill_color cmu_red
-    pdf.text "<b>" + current_user.name + "</b> | " + current_user.department, :inline_format => true, :size => name_font_size
+    pdf.text "<b>" + current_user.name + "</b> | " + Array.[](current_user.department).flatten.join(', '), :inline_format => true, :size => name_font_size
   end
 
   # Footer
