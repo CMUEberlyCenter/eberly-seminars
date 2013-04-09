@@ -1,5 +1,6 @@
 <% if params[:status] == 'published' %>
  <%= render 'published_seminars' %>
+ <%= render 'expired_seminars' %>
 
 <% elsif params[:status] == 'drafts' %>
  <%= render 'development_seminars' %>
@@ -7,5 +8,6 @@
 <% else %>
   <%= render 'published_seminars' %>
   <%= render 'development_seminars' %>
+  <%= render 'expired_seminars' %>
 
 <% end %>
