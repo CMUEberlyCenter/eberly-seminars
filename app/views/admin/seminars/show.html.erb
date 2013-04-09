@@ -32,7 +32,7 @@
   <% end %>
 
 
-  <% unless @seminar.expired? %>
+  <% if !@seminar.expired? or @seminar.status == 'development'%>
   <p class="manage">
     <%= link_to "Edit", edit_admin_seminar_url(@seminar), :class => 'boxy' %>
     <% if @seminar.status == 'published' %>
