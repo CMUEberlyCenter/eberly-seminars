@@ -14,6 +14,14 @@ $seminar-group-header-font-family-em: 'OpenSansRegularItalic', sans-serif;
 $seminar-title-font-family: 'OpenSansLight', sans-serif;
 $seminar-title-font: 22px/32px $seminar-title-font-family;
 
+      div.capacity {
+        float: left;
+	margin-top: 8px;
+
+	div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
+        div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
+      }
+
 /* ==|== box styles ========================================================= */
 section.seminar-group {
   border-left: 1px solid $seminar-group-border-color;

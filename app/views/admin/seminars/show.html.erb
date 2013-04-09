@@ -4,7 +4,33 @@
   <%= render "participant_legend" %>
 
   <p class="date"><%= raw @seminar.formatted_timespan %></p>
+
   <p class="description"><%= raw @seminar.description %></p>
+  <% if @seminar.status == 'published' %>
+  <p style="margin-left: 10px;">
+      <strong>Registrations:</strong>
+      <%= @seminar.registrations.size %><br/>
+      <strong>Pending:</strong>
+      <%= @seminar.registrations.pending.size %><br/>
+      <strong>Confirmed:</strong>
+      <%= @seminar.registrations.confirmed.size %><br/>
+      <strong>Capacity:</strong>
+      <div style="width: 120px; float: left; margin-top: -8px; clear: both; margin-right: 5px; margin-left: 10px; ">
+	<div class="capacity">
+	  <%= 
+	     content_tag( :div,
+             content_tag( :span, '', :style => "width: " + @seminar.capacity_percentage.to_s + "%" ), :class => "capacity-meter" )
+	  
+	  %>
+	</div>
+      </div>
+
+      <%= @seminar.capacity_percentage.to_s %>%
+  </p>
+
+
+  <% end %>
+
 
   <% unless @seminar.expired? %>
   <p class="manage">
