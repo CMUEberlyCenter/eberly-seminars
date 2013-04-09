@@ -13,12 +13,12 @@
   <tbody>
     <% @participants.each do |p| %>
     <tr>
-      <td><% unless p.name.nil? %><%= p.name %><% end %></td>
+      <td><% unless p.name.nil? %><%= link_to p.name, participant_transcript_url(p) %><% end %></td>
       <td><% unless p.andrewid.nil? %><%= p.andrewid %><% end %></td>
       <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
       <td><% unless p.student_class.nil? %><%= p.student_class %><% end %></td>
       <td>
-	<%= link_to p.registrations.size, '#' %>
+	<%= link_to p.registrations.size, '#', :class => 'registrations_popup' %>
 	<div class="reg" style="display: none">
 	  <% p.registrations.each do |r| %>
 	  <%= r.seminar.title %> (<%= r.status %>)<br/>

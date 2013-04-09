@@ -1,6 +1,6 @@
 $ ->
   $('table.spreadsheet').dataTable({"iDisplayLength": 25})
-  $('#participants-spreadsheet td a').live('click',
+  $('#participants-spreadsheet td a.registrations_popup').live('click',
     (event) ->
       $(this).parent('td').children('div').slideToggle()
       event.stopPropagation()

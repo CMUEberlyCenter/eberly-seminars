@@ -1,0 +1,50 @@
+<section class="transcript">
+  <h1>Teaching Development Transcript</h1>
+
+  <%= image_tag "face.png" %>
+  <h2><%= @participant.name %></h2>
+
+  <section class="transcript-dialog seminars">
+    <h1>Seminars</h1>
+    <% if @attended_seminars.size > 0 %>
+      <% @attended_seminars.each do |r| %>
+        <ul>
+          <li>
+	    <h2><%= r.seminar.title %></h2>
+	    <p class="date"><%= raw r.seminar.formatted_timespan_short %></p>
+	  </li>
+        </ul>
+      <% end %>
+
+    <% else %>
+      <p>You have not attended any seminars.</p>
+    <% end %>
+  </section>
+
+  <section class="transcript-dialog observations">
+    <h1>Observations</h1>
+    <p>
+      No observations available.
+    </p>
+  </section>
+
+  <section class="transcript-dialog syllabus-project">
+    <h1>Syllabus Project</h1>
+    <p>
+      No syllabus projects available.
+    </p>
+  </section>
+
+  <section class="transcript-dialog individual-project">
+    <h1>Individual Project</h1>
+    <p>
+      No individual projects available.
+    </p>
+  </section>
+
+
+  <div class="export-transcript">
+    <%= link_to "Export Transcript [pdf]", participant_transcript_url(:format => "pdf") %>
+  </div>
+</section>
+
