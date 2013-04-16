@@ -46,8 +46,8 @@
 	admin_seminar_url(@seminar, :format => 'pdf', :profile => 'sign-in'), :class => 'boxy' %>
   </p>
   <% end %>
-  
-  <ul class="connected-sortable participants-list" id="registered-participants">
+  <h2 style="float: left; margin-bottom: -40px; clear: both; "> Registered Participants</h2>  
+  <ul class="connected-sortable participants-list" id="registered-participants" style="clear: left;">
     <li class="cant-drag" id="add-participant"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></li>
     <%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
     
@@ -67,6 +67,7 @@
     %>
     <%# end %>
 
+
     <li id ="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
       <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
 
@@ -80,8 +81,8 @@
     </li>
     <% end %>
   </ul>
-
-  <ul class="connected-sortable participants-list" id="waitlisted_participants">
+  <h2 style="float: right; margin-bottom: -40px; "> Waitlisted Participants</h2>
+  <ul class="connected-sortable participants-list" id="waitlisted_participants" style="float: right;">
 
     <% @seminar.registrations.pending.each do |registration| %>
     <%= f.fields_for :registrations, registration do |registration_form| %>
@@ -99,8 +100,25 @@
     <% end %>
   </ul>
 
+  <h2 style="float: left; margin-bottom: -40px;"> Cancelled Participants</h2>
+  <ul class="participants-list" id="cancelled_participants" style="width: 62%; float: left; ">
+    <li>     
+      <%= link_to( image_tag("face.png") + raw('Andrew Drake <br/><div style="font-size: 80%; margin-top: -25px; margin-left: 70px;">9/23/2013 - 8:15pm</div>'), '') %>
+    </li>
+
+    <li>     
+      <%= link_to( image_tag("face.png") + raw('Meg Richards <br/><div style="font-size: 80%; margin-top: -25px; margin-left: 70px;">9/23/2013 - 9:17pm</div>'), '') %>
+    </li>
+
+    <li>     
+      <%= link_to( image_tag("face.png") + raw('Meggie Hayes <br/><div style="color: red; font-size: 80%; margin-top: -25px; margin-left: 70px;">9/25/2013 - 11:15am</div>'), '') %>
+    </li>
+
+  </ul>
   <%# f.submit "Update", :class => 'button' %>
   <% end %>
+
+
 </section>
 
 <!--
