@@ -63,6 +63,7 @@ class Admin::SeminarsController < ApplicationController
 
   def update
       logger.info params
+      @seminar = Seminar.find(params[:id])
     
       if params[:attendance_status]
         registration = Registration.find(params[:registration_id])
