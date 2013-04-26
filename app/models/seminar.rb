@@ -1,8 +1,10 @@
 class Seminar < ActiveRecord::Base
   belongs_to :seminar_status
   has_many :registrations, :dependent => :delete_all
+  has_many :seminar_tags
   delegate :status, :to => :seminar_status, :prefix => false
   accepts_nested_attributes_for :registrations, :allow_destroy => true
+  accepts_nested_attributes_for :seminar_tags
   attr_accessor :start_time, :start_date, :end_time, :end_date
 
   SeminarStatus.all.each do |s|
@@ -34,6 +36,18 @@ class Seminar < ActiveRecord::Base
       participant.id, 
       RegistrationStatus.find_by_status( status ).id
     )
+  end
+
+  def tags
+    self.seminar_tags.map( &:value )
+  end
+  
+  def tags=(tags)
+    self.seminar_tags.delete_all
+    tags.split(', ').each do |tag|
+      SeminarTag.create( :value => tag )
+    end
+                               
   end
 
   def self.unrequested_by( participant )

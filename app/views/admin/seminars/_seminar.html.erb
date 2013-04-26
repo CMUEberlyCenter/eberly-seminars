@@ -1,6 +1,6 @@
 <li>
 
-<h1 class="title"><%= seminar.title %></h1>
+<h1 class="title"><%= seminar.title %><% if seminar.tags.include? "core" %>*<% end %></h1>
 
 <% if seminar.status == 'published' %>
   <div class="capacity">

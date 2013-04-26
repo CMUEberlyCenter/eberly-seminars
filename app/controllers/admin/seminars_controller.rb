@@ -37,6 +37,13 @@ class Admin::SeminarsController < ApplicationController
       "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     )
 
+    @seminar.seminar_tags.delete_all
+    tags = SeminarTag.where('seminar_id is null')
+    tags.each do |t|
+      t.seminar= @seminar
+      t.save!
+    end
+
     respond_to do |format|
       if @seminar.save
         format.html  { redirect_to(admin_seminar_path(@seminar),
@@ -109,6 +116,14 @@ class Admin::SeminarsController < ApplicationController
       "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     ).to_time
     @seminar.save!
+
+    @seminar.seminar_tags.delete_all    
+    tags = SeminarTag.where('seminar_id is null')
+    tags.each do |t|
+      t.seminar= @seminar
+      t.save!
+    end
+
     redirect_to admin_seminars_url
   end
 

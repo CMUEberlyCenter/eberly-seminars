@@ -18,6 +18,14 @@
   <%= f.hidden_field :id %>
   <%= f.label :title, 'Title' %>
   <%= f.text_field :title %>
+
+  <div>
+  <%= f.label :tags, 'Seminar Tags' %>
+  <%= f.text_field :tags, :value => @seminar.tags.join(','), :id => 'myTags' %>
+
+  </div>
+
+
 <div style="float: left; clear: left;" >
   <%= f.label :start_at, 'Start At' %>
   <input type="text" autocomplete="off" class="timepicker" name="seminar[start_time]" id="seminar_start_at" value="<%= @seminar.start_at.strftime('%l:%M %p') %>"/> 
