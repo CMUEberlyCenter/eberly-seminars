@@ -88,9 +88,11 @@ class Seminar < ActiveRecord::Base
 
   def formatted_timespan
     start_format = "%A, %B %e, %l:%M"
+    start_format = "%A, %B %e, Noon" if self.start_at.hour == 12 and self.start_at.min == 0
     end_format = ""
     if self.start_at.to_date == self.end_at.to_date
       end_format = "%-l:%M%P"
+      end_format = "Noon" if self.end_at.hour == 12 and self.end_at.min == 0
       unless (self.start_at.hour < 12 and self.end_at.hour < 12) or
           (self.start_at.hour >= 12 and self.end_at.hour >= 12)
         start_format = start_format + "%P"
@@ -98,6 +100,8 @@ class Seminar < ActiveRecord::Base
     else
       start_format = start_format + "%P "
       end_format = " " + start_format
+      # TODO: multi-day support for noons
+      end_format = "Noon" if self.end_at.hour == 12 and self.end_at.min == 0
     end
 
     self.start_at.strftime(start_format) + "&ndash;" + self.end_at.strftime(end_format)
