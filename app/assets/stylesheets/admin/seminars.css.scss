@@ -101,6 +101,14 @@ ul.participants-list {
   position: relative;
 
   input[type="text"] { width: 140px; border: 1px solid #cccccc; padding: 5px 3px; position: relative; }
+  input[type="submit"] { margin-left: 35px; margin-top: -10px; }
+
+  display: block;
+  z-index: 999;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  margin: -1px;
+  box-shadow: 6px 6px 5px #bbbbbb;
 }
 
 
