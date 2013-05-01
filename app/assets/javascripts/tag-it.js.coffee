@@ -1,2 +1,2 @@
-#$ ->
-#  $("#myTags").tagit()
+$ ->
+  $("#seminar-tags").tagit()
