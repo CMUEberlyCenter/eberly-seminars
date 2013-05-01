@@ -50,7 +50,12 @@
 
 
     <li id="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
-      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '', :alt => registration.participant.name) %>
+      <% title = '' %>
+      <% if registration.participant.name.length > 20
+           title = registration.participant.name
+         end
+      %>
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '', :title => title) %>
 
       <div class="attendance-form">
 	<% AttendanceStatus.all.each do |status| %>
@@ -74,8 +79,13 @@
          css_classes = css_classes + " phd"
        end
     %>
+      <% title = '' %>
+      <% if registration.participant.name.length > 20
+           title = registration.participant.name
+         end
+      %>
     <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">     
-      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '') %>
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '', :title => title ) %>
     </li>
     <% end %>
     <% end %>
@@ -101,6 +111,12 @@
 
 
 </section>
+
+ <script>
+$(function() {
+$( '.participants-list' ).tooltip();
+});
+</script>
 
 <!--
   <script>
