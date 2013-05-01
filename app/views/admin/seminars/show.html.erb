@@ -49,8 +49,8 @@
     <%# end %>
 
 
-    <li id ="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
-      <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
+    <li id="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '', :alt => registration.participant.name) %>
 
       <div class="attendance-form">
 	<% AttendanceStatus.all.each do |status| %>
@@ -75,7 +75,7 @@
        end
     %>
     <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">     
-      <%= link_to( image_tag("face.png") + registration.participant.name, '') %>
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20), '') %>
     </li>
     <% end %>
     <% end %>
