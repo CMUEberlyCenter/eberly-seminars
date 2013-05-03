@@ -10,6 +10,7 @@
       <th># Confirmed</th>
       <th># Pending</th>
       <th>Percent Filled</th>
+      <th>Tags</th>
     </tr>
   </thead>
 
@@ -44,6 +45,10 @@
 
       <td>
 	<%= s.capacity_percentage.to_s %>%
+      </td>
+
+      <td>
+	<%= s.tags.join(', ') %>
       </td>
     </tr>
     <% end %>
