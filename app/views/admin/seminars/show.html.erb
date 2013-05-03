@@ -93,8 +93,41 @@
 
   <h2 style="float: left; margin-bottom: -40px;clear:left;"> Cancelled Participants</h2>
   <ul class="participants-list" id="cancelled_participants" style="width: 62%; float: left; clear: left;">
+    <% @seminar.registrations.cancelled_late.each do |registration| %>
+        <% css_classes = "participant"
+       if registration.participant.student_class == "Masters"
+         css_classes = css_classes + " masters"
+       elsif registration.participant.student_class == "Doctoral"
+         css_classes = css_classes + " phd"
+       end
+    %>
+    <% title = '' %>
+      <% if registration.participant.name.length > 20
+           title = registration.participant.name
+         end
+      %>
+    <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20) + raw("<br/><div style=\"color: red; font-size: 80%; margin-top: -25px; margin-left: 70px;\">#{registration.updated_at.strftime('%m/%d/%y - %l:%M%P')}</div>"), '', :title => title ) %>
+    </li>
+    <% end %>
 
-
+    <% @seminar.registrations.cancelled.each do |registration| %>
+        <% css_classes = "participant"
+       if registration.participant.student_class == "Masters"
+         css_classes = css_classes + " masters"
+       elsif registration.participant.student_class == "Doctoral"
+         css_classes = css_classes + " phd"
+       end
+    %>
+    <% title = '' %>
+      <% if registration.participant.name.length > 20
+           title = registration.participant.name
+         end
+      %>
+    <li id= "ids_<%= registration.id %>" class="<%= h css_classes %>">
+      <%= link_to( image_tag("face.png") + truncate(registration.participant.name, :length => 20) + raw("<br/><div style=\"font-size: 80%; margin-top: -25px; margin-left: 70px;\">#{registration.updated_at.strftime('%m/%d/%y - %l:%M%P')}</div>"), '', :title => title ) %>
+    </li>
+    <% end %>
   </ul>
   <%# f.submit "Update", :class => 'button' %>
   <% end %>
