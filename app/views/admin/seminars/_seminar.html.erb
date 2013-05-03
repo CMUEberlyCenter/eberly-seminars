@@ -10,14 +10,12 @@
           admin_seminar_path( seminar ),
           :alt => "Manage Registrations" ) %>
   </div>
-<% else %>
-  <%= link_to 'Edit Seminar', admin_seminar_path( seminar ) %>
 <% end %>
 
 <p class="date details"><%= raw seminar.formatted_timespan %></p>
 <p class="location details"><%= seminar.location %></p>
 
-<% unless seminar.status == 'published' and seminar.expired? %>
+
 <p class="manage">
   <%= link_to "Edit", edit_admin_seminar_url(seminar), :class => 'boxy' %>
 
@@ -30,6 +28,6 @@
     <%= link_to "Delete", admin_seminar_path(:id => seminar.id), :method => :delete, :class => 'boxy', :confirm => "Really delete this seminar?" %>
   <% end %>
 </p>
-<% end %>
+
 
 </li>
