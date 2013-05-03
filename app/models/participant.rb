@@ -46,9 +46,18 @@ class Participant < ActiveRecord::Base
   end
 
   def cancel_registration( registration_id )
+    
     registration = self.registrations.find( registration_id )
     registration_copy = registration.clone
-    registration.destroy
+    #registration.destroy
+    registration_status = nil
+    if registration.seminar.start_at < 1.day.from_now 
+      registration_status = RegistrationStatus.find_by_status "cancelled_late"
+    else
+      registration_status = RegistrationStatus.find_by_status "cancelled"
+    end
+    registration.registration_status = registration_status
+    registration.save
     ParticipantMailer.canceled_registration_email( registration_copy ).deliver
   end
 
