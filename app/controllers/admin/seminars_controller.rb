@@ -4,8 +4,9 @@ class Admin::SeminarsController < ApplicationController
   layout 'admin'
 
   def index
-    @expired_seminars = Seminar.expired.published
-    @offered_seminars = Seminar.active.published
+    display_tag = Setting.find_by_key('admin-list-tag').value
+    @expired_seminars = Seminar.expired.published.delete_if{ |x| !x.tags.include? display_tag }
+    @offered_seminars = Seminar.active.published.delete_if{ |x| !x.tags.include? display_tag }
     @development_seminars = Seminar.development
   end
 
