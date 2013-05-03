@@ -1,5 +1,5 @@
 <li>
-  <h1 class="title"><%= seminar.title %></h1>
+  <h1 class="title"><%= seminar.title %><% if seminar.tags.include? "core" %>*<% end %></h1>
   <p class="date"><%= raw seminar.formatted_timespan %></p>
   <p class="location"><%= seminar.location %></p>
   <p class="description"><%= seminar.description %></p>
