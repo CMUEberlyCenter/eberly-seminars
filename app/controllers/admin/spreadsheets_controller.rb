@@ -7,6 +7,7 @@ class Admin::SpreadsheetsController < ApplicationController
       render 'participants_spreadsheet'
 
     elsif params[:id] == 'seminars'
+      @display_tag = Setting.find_by_key('admin-list-tag').value
       @seminars = Seminar.all
       render 'seminars_spreadsheet'
 

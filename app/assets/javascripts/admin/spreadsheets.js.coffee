@@ -1,5 +1,6 @@
 $ ->
-  $('table.spreadsheet').dataTable({"iDisplayLength": 25})
+  # TODO: such a hack; see seminar_spreadsheet.html.erb
+  $('table.spreadsheet').dataTable({"iDisplayLength": 25, "oSearch": {"sSearch": default_filter }})
   $('#participants-spreadsheet td a.registrations_popup').live('click',
     (event) ->
       $(this).parent('td').children('div').slideToggle()
