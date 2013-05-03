@@ -20,6 +20,9 @@ Participant.destroy_all
 ['meribyte','mg2e','jmbrooks','sa0n','hilaryf','lovett'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 1) }
 ['rpoprosk','adrake','lsudol'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 0) }
 
+Setting.create( :label => "Default tag for new seminars", :key => "default-tag", :value => "S13" )
+Setting.create( :label => "List seminars in admin view with tag", :key => "admin-list-tag", :value => "S13" )
+
 #User.create(:login => 'admin', :role => Role.find_by_name('admin'))
 
 Seminar.destroy_all

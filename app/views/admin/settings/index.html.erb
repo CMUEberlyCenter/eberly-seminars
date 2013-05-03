@@ -1,0 +1,13 @@
+<section id="settings">
+
+  <h1>Application/Administrator Settings</h1>
+  <% @settings.each do |setting| %>
+
+    <%= form_for [:admin, setting] do |f| %>
+      <%= f.label :value, setting.label %>: <%= f.text_field :value %>
+      <%= f.submit "Update setting" %>
+    <% end %>
+
+  <% end %>
+
+</section>

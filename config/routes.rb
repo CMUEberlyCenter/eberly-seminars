@@ -26,6 +26,7 @@ GraduateStudents::Application.routes.draw do
     end
 
     resources :spreadsheets, only: [:show]
+    resources :settings, only: [:index, :update]
   end
 
   #resources :registrations
