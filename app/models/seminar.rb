@@ -117,10 +117,6 @@ class Seminar < ActiveRecord::Base
     HTMLEntities.new.decode self.formatted_timespan
   end
 
-  def semester
-    "S13"
-  end
-
   #validate :expiration_date_cannot_be_in_the_past,
   #  :discount_cannot_be_greater_than_total_value
  

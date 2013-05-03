@@ -48,10 +48,6 @@ module ApplicationHelper
   end
 
 
-  def current_semester
-    "S13"
-  end
-
   ##############################################################################
   private
 

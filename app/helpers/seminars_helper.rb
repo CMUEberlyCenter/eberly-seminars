@@ -82,7 +82,7 @@ module SeminarsHelper
 
   def upcoming( seminars )
     SeminarGroup.new(
-      :title => 'Upcoming ' + current_semester + ' Teaching Seminars', 
+      :title => 'Upcoming Teaching Seminars', 
       :css_class => 'offering',
       :seminars => seminars.upcoming
     )
