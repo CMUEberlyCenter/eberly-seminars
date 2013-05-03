@@ -11,6 +11,7 @@
  *= require_self
  *= require reset
  *= require jquery.tagit
+ *= require tagit-jquery-ui
  *= require fonts
  *= require dataTables/jquery.dataTables.bootstrap
  *= require admin/timepicker
@@ -20,5 +21,6 @@
  *= require transcript
  *= require admin/spreadsheets
  *= require admin/seminars
+
 
 */
