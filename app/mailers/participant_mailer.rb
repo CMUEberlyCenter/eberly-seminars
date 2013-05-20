@@ -42,9 +42,11 @@ class ParticipantMailer < ActionMailer::Base
     if @registration.confirmed?
       template = 'generic_reminder_email_confirmed'
       subject = "Seminar Reminder: #{registration.seminar.title}"
-    else
+    elsif @registration.pending?
       template = 'generic_reminder_email_pending'
       subject = "Waitlisted for #{registration.seminar.title}"
+    else
+      return
     end
 
     mail(:to => @registration.participant.email,
