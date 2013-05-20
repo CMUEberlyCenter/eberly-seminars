@@ -5,7 +5,7 @@ class ParticipantMailer < ActionMailer::Base
     @participant = participant
     @registration = registration
     mail(:to => participant.email, 
-         :cc => "jmbrooks@andrew.cmu.edu", 
+         :cc => "seminars-cc@eberly.cmu.edu", 
          :subject => "[Eberly Center] Request for #{registration.seminar.title}")
   end
 
@@ -13,7 +13,7 @@ class ParticipantMailer < ActionMailer::Base
     @participant = participant
     @registration = registration
     mail(:to => participant.email, 
-         :cc => "jmbrooks@andrew.cmu.edu", 
+         :cc => "seminars-cc@eberly.cmu.edu", 
          :subject => "[Eberly Center] Confirmation for #{registration.seminar.title}")
   end
 
@@ -30,7 +30,7 @@ class ParticipantMailer < ActionMailer::Base
     end
 
     mail(:to => @registration.participant.email,
-         :cc => "jmbrooks@andrew.cmu.edu",
+         :cc => "seminars-cc@eberly.cmu.edu",
          :subject => "[Eberly Center] #{subject}",
          :template_name => template )
   end
@@ -48,7 +48,7 @@ class ParticipantMailer < ActionMailer::Base
     end
 
     mail(:to => @registration.participant.email,
-         :cc => "jmbrooks@andrew.cmu.edu",
+         :cc => "seminars-cc@eberly.cmu.edu",
          :subject => "[Eberly Center] #{subject}",
          :template_name => template )
   end
