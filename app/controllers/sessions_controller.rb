@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
   def destroy
     logout
 
-    flash[:success] = "Successfully logged out."
-    redirect_to "https://webiso.andrew.cmu.edu/logout.cgi"
+    flash[:success] = "Local logout completed successfully. You MUST close your browser to complete the logout process."
+    redirect_to "/Shibboleth.sso/Logout?return=" + root_url
   end
 
 
