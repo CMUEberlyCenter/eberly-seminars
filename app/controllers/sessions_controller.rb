@@ -28,11 +28,11 @@ class SessionsController < ApplicationController
   protected
 
   ###
-  # Redirect unless the user is from ANDREW.CMU.EDU
+  # Redirect unless the user is from andrew.cmu.edu
   def require_andrew_realm
-    unless http_remote_user_realm == 'ANDREW.CMU.EDU'
+    unless http_remote_user_realm == 'andrew.cmu.edu'
       flash[:error] = "You are authenticated to the #{http_remote_user_realm}
-                       realm. Please use WebISO to login as an @ANDREW.CMU.EDU
+                       realm. Please use WebISO to login as an @andrew.cmu.edu
                        user"
       redirect_to root_url
     end
