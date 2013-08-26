@@ -1,5 +1,5 @@
 class ParticipantMailer < ActionMailer::Base
-  default from: "Eberly Center Seminars <seminars@eberly.cmu.edu>"
+  default from: "Eberly Center Sessions <seminars@eberly.cmu.edu>"
 
   def registration_pending_email(participant, registration)
     @participant = participant
@@ -41,7 +41,7 @@ class ParticipantMailer < ActionMailer::Base
 
     if @registration.confirmed?
       template = 'generic_reminder_email_confirmed'
-      subject = "Seminar Reminder: #{registration.seminar.title}"
+      subject = "Reminder: #{registration.seminar.title}"
     elsif @registration.pending?
       template = 'generic_reminder_email_pending'
       subject = "Waitlisted for #{registration.seminar.title}"
