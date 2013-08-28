@@ -1,5 +1,5 @@
 class ParticipantMailer < ActionMailer::Base
-  default from: "Eberly Center Sessions <seminars@eberly.cmu.edu>"
+  default from: "Eberly Center <seminars@eberly.cmu.edu>"
 
   def registration_pending_email(participant, registration)
     @participant = participant
