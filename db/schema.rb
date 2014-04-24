@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503051718) do
+ActiveRecord::Schema.define(:version => 20140428165016) do
 
   create_table "attendance_statuses", :force => true do |t|
     t.string   "status"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130503051718) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "is_admin",   :default => false
+    t.string   "name_cache"
   end
 
   create_table "registration_statuses", :force => true do |t|
