@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20140428165016) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "is_admin",   :default => false
     t.string   "name_cache"
+    t.text     "note"
   end
 
   create_table "registration_statuses", :force => true do |t|

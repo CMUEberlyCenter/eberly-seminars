@@ -2,6 +2,8 @@ class Participant < ActiveRecord::Base
   has_many :registrations
   has_many :seminars, :through => :registrations
 
+  attr_accessible :note
+
   default_scope :order => "andrewid"
 
   def is_administrator?
