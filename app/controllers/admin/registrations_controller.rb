@@ -4,13 +4,13 @@ class Admin::RegistrationsController < ApplicationController
   def new
     @registration = Registration.new(params[:registration])
     @registration.registration_status = RegistrationStatus.find_by_key('confirmed')
-    @registration.attendance_status = AttendanceStatus.find_by_status('attended')
+    @registration.attendance_status = AttendanceStatus.find_by_key('attended')
   end
 
   def create  
     @registration = Registration.new(params[:registration] )
     @registration.seminar_id = params[:seminar_id]
-    @registration.attendance_status = AttendanceStatus.find_by_status('attended')
+    @registration.attendance_status = AttendanceStatus.find_by_key('attended')
     
     respond_to do |format|
       if @registration.save

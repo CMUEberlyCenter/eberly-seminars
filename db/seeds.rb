@@ -17,11 +17,11 @@
 ['pending','confirmed','cancelled','cancelled_late'].
   each { |status| RegistrationStatus.find_or_create_by_key( :key => status ) }
 
+# Populate each attendance status if it doesn't already exist
+['attended','attended-incomplete','absent-unexcused','absent-excused'].
+  each { |status| AttendanceStatus.find_or_create_by_key( :key => status ) }
 
-AttendanceStatus.destroy_all
 
-
-['attended','tardy','unexcused absence','excused absence'].each { |status| AttendanceStatus.create(:status => status) }
 
 Participant.destroy_all
 ['meribyte','mg2e','jmbrooks','sa0n','hilaryf','lovett'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 1) }
