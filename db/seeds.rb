@@ -10,12 +10,18 @@
 # Populate each seminar status if it doesn't already exist
 ['development','locked','published'].each { |status| SeminarStatus.find_or_create_by_key( :key => status) }
 
+# Populate each registration status if it doesn't already exist
+#
+# TODO: Yeah... I spelled canceled wrong. When you go in to fix this, 
+#       make canceled-late a hyphen instead of an underscore.
+['pending','confirmed','cancelled','cancelled_late'].
+  each { |status| RegistrationStatus.find_or_create_by_key( :key => status ) }
+
 
 AttendanceStatus.destroy_all
-RegistrationStatus.destroy_all
+
 
 ['attended','tardy','unexcused absence','excused absence'].each { |status| AttendanceStatus.create(:status => status) }
-['pending','confirmed','cancelled','late cancelled'].each { |status| RegistrationStatus.create(:status => status) }
 
 Participant.destroy_all
 ['meribyte','mg2e','jmbrooks','sa0n','hilaryf','lovett'].each { |andrewid| Participant.create(:andrewid => andrewid, :is_admin => 1) }

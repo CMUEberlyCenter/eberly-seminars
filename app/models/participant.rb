@@ -41,7 +41,7 @@ class Participant < ActiveRecord::Base
   end
 
   def request_registration( seminar )
-    status = RegistrationStatus.find_by_status( 'pending' )
+    status = RegistrationStatus.find_by_key( 'pending' )
     registration = self.registrations.build( :seminar_id => seminar, :registration_status => status )
     registration.save
     ParticipantMailer.registration_pending_email( self, registration ).deliver
@@ -54,9 +54,9 @@ class Participant < ActiveRecord::Base
     #registration.destroy
     registration_status = nil
     if registration.seminar.start_at < 1.day.from_now 
-      registration_status = RegistrationStatus.find_by_status "cancelled_late"
+      registration_status = RegistrationStatus.find_by_key "cancelled_late"
     else
-      registration_status = RegistrationStatus.find_by_status "cancelled"
+      registration_status = RegistrationStatus.find_by_key "cancelled"
     end
     registration.registration_status = registration_status
     registration.save

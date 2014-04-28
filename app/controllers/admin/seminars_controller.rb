@@ -89,12 +89,12 @@ class Admin::SeminarsController < ApplicationController
       @waitlists.each do |w| 
         wtl = Registration.find(w)
         wtl.build_registration_status
-        wtl.registration_status= RegistrationStatus.find_by_status('pending')
+        wtl.registration_status= RegistrationStatus.find_by_key('pending')
         wtl.save
       end 
       @registered.each do |r| 
         reg = Registration.find(r)
-        confirmed = RegistrationStatus.find_by_status('confirmed')
+        confirmed = RegistrationStatus.find_by_key('confirmed')
         if reg and reg.registration_status != confirmed
         reg.build_registration_status
           reg.registration_status = confirmed

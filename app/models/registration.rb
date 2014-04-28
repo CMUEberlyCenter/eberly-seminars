@@ -23,11 +23,11 @@ class Registration < ActiveRecord::Base
   validates_uniqueness_of :participant_id, :scope => [:seminar_id]
 
   def confirmed?
-    self.status == RegistrationStatus.find_by_status('confirmed').status
+    self.status == RegistrationStatus.find_by_key('confirmed').key
   end
 
   def pending?
-    self.status == RegistrationStatus.find_by_status('pending').status
+    self.status == RegistrationStatus.find_by_key('pending').key
   end
 
   def search_string

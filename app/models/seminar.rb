@@ -35,7 +35,7 @@ class Seminar < ActiveRecord::Base
       "registrations.participant_id = ? and " + 
       "registrations.registration_status_id = ?", 
       participant.id, 
-      RegistrationStatus.find_by_status( status ).id
+      RegistrationStatus.find_by_key( status ).id
     )
   end
 

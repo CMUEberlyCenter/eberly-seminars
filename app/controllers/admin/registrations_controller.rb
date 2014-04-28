@@ -3,7 +3,7 @@ class Admin::RegistrationsController < ApplicationController
 
   def new
     @registration = Registration.new(params[:registration])
-    @registration.registration_status = RegistrationStatus.find_by_status('confirmed')
+    @registration.registration_status = RegistrationStatus.find_by_key('confirmed')
     @registration.attendance_status = AttendanceStatus.find_by_status('attended')
   end
 
