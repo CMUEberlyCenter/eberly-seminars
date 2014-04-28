@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140428165016) do
+ActiveRecord::Schema.define(:version => 20140428183739) do
 
   create_table "attendance_statuses", :force => true do |t|
     t.string   "status"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20140428165016) do
   add_index "registrations", ["seminar_id"], :name => "index_registrations_on_seminar_id"
 
   create_table "seminar_statuses", :force => true do |t|
-    t.string   "status"
+    t.string   "key"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

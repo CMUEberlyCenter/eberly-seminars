@@ -14,7 +14,7 @@ class Admin::SeminarsController < ApplicationController
     @seminar = Seminar.new
     @seminar.start_at = '12:00:00'
     @seminar.end_at = '14:00:00'
-    @seminar.status = SeminarStatus.find_by_status('development')
+    @seminar.status = SeminarStatus.find_by_key('development')
     # TODO:
     #@seminar.tags = Setting.find_by_key( "default-tag" ).value
     @default_tag = Setting.find_by_key( "default-tag" ).value

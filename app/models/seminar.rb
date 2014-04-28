@@ -7,6 +7,7 @@ class Seminar < ActiveRecord::Base
   accepts_nested_attributes_for :seminar_tags
   attr_accessor :start_time, :start_date, :end_time, :end_date
 
+  # Seminar.published, Seminar.development, etc.
   SeminarStatus.all.each do |s|
     scope s.status, :conditions => { :seminar_status_id => s }
   end

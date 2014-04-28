@@ -51,7 +51,7 @@
 </div>
 <div style="float: left; clear: left;" >
     <%= f.label :seminar_status_id, 'Seminar Status' %>
-    <%= f.collection_select(:seminar_status_id, SeminarStatus.all, :id, :status) %>
+    <%= f.collection_select(:seminar_status_id, SeminarStatus.all, :id, :key) %>
 
     <%= f.submit "Save" %> | <%= link_to "Cancel", admin_seminars_url %>
 </div>
