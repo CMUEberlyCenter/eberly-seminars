@@ -7,10 +7,6 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 
-group :deploy do
-  gem 'passenger'
-end
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -42,7 +38,9 @@ gem 'htmlentities'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+group :development do
+  gem "capistrano-rails"
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

@@ -2,114 +2,80 @@
 # Author: Meg Richards (mouse@cmu.edu)
 # ==========================================================================
 
-# Application name
-set :application, "seminars"
+# config valid only for Capistrano 3.1
+lock '3.2.1'
 
-# Multistage configuration
-set :stages, %w(development production)
-set :default_stage, "development"
-require 'capistrano/ext/multistage'
-
-# Remote machine options
-set :user, "root"
-set :group, "root"
-set :use_sudo, false
-set :default_shell, "/bin/bash"
-set :default_environment, { 'PATH' => "/var/lib/gems/1.9.1/bin:$PATH" }
-set :deploy_to, "/srv/rails/#{application}"
-depend :remote, :directory, deploy_to
-
-# Repository information
+set :application, 'seminars'
+set :repo_url, "file:///afs/andrew.cmu.edu/eberly/repo/#{fetch(:application)}/site.git"
 set :scm, :git
-set :repository,  "file:///afs/andrew.cmu.edu/eberly/repo/#{application}/site.git"
-set :branch, :master
-set :deploy_via, :remote_cache
 
-# App configuration files not in source control
-set :local_config_path, "/usr/local/etc/#{application}"
-set :destination_config_path, deploy_to
-set :local_config_files, ["#{File.join('config','initializers','secret_token.rb')}",
-                          "#{File.join('config','database.yml')}"                          
-                         ]
-depend :remote, :directory, local_config_path
+set :deploy_to, "/srv/rails/#{fetch(:application)}"
 
-# Bundler required to install other gems
-depend :local, :command, "bundle"
-set :bundle_flags, "--deployment --quiet --local"
-set :bundle_without, [:development, :test]
-require "bundler/capistrano"
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+set :bundle_flags, '--deployment --local --quiet'
+SSHKit.config.command_map[:rake]  = "bundle exec rake"
+SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 
-# Nice simple sanity check task
+# ==|== utilities ==========================================================
+desc 'Execute uname on application server'
 task :uname do
-  run "uname -a"
+  on roles(:app) do |host|
+    execute :uname, '-a'
+  end
+end
+
+
+# ==|== rails ==============================================================
+# adjusted from https://gist.github.com/toobulkeh/8214198
+namespace :rails do
+
+  desc "Open the rails console on each of the remote servers"
+  task :console do
+    on primary :app do
+      run_remote_pty "rails console #{fetch :stage}"
+    end
+  end
+  
+  desc "Open the rails dbconsole on each of the remote servers"
+  task :dbconsole do
+    on primary :db do
+      run_remote_pty "rails dbconsole #{fetch :stage}"
+    end
+  end
+  
+  def run_remote_pty command
+      exec "ssh #{host} -t 'cd #{deploy_to}/current && #{command}'"
+  end
 end
 
 
 # ==|== deploy =============================================================
 namespace :deploy do
-  task :start do ; end
 
-  task :stop do ; end
-
-  desc "Reload mod_passenger"
-  task :restart, :except => { :no_release => true }, :roles => :app do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-
-  desc "Copy machine-specific configuration files into their proper place"
-  task :copy_local_configs, :except => { :no_release => true }, :roles => :app do
-    local_config_files.each do |c|
-      run "ln -fs #{local_config_path}/#{c} #{release_path}/#{c}" 
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
-  desc "Change log permissions to 0666"
-  task :fix_log_permissions, :except => { :no_release => true }, :roles => :app do
-    run "chmod 0666 #{shared_path}/log/*"
-  end  
+  after :publishing, :restart
 
-end
-
-on :after, "deploy:copy_local_configs", "db:create", :only => "deploy:cold"
-
-on :before, "deploy:restart", "deploy:fix_log_permissions", :only => "deploy:cold"
-
-after "deploy:update_code", "deploy:copy_local_configs", "deploy:migrate"
-
-# Cleanup old releases on deploy
-after "deploy:restart", "deploy:cleanup"
-
-
-# ==|== db =================================================================
-namespace :db do
-
-  desc "Create database associated with deployment environment"
-  task :create, :except => { :no_release => true }, :roles => :db do
-    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:create"
+  before :restart, :fix_apache_permissions do
+    on roles(:web) do
+      # Where the assets get compiled to
+      within shared_path do
+        execute :chown, '-R www-data:www-data .'
+      end
+      # All new files
+      within release_path do
+        execute :chown, '-R www-data:www-data .'
+      end
+    end
   end
 
-end
-
-# ==|== rails ==============================================================
-# Excerpt from rails-recipes gem ( https://github.com/codesnik/rails-recipes )
-namespace :rails do
-  
-  desc "Run rails console on remote app server"
-  task :console do
-    run_with_tty %W( rails console #{rails_env} )
-  end
-  
-  desc "Run rails dbconsole on remote app server"
-  task :dbconsole do 
-    run_with_tty %W( rails dbconsole #{rails_env} )
-  end
-  
-  def run_with_tty cmd
-    server = find_servers(:roles => [:app]).first
-    command  = %W( ssh -t -l #{user} #{server.host} )
-    command += %W( cd #{current_path} && )
-    command += Array(cmd)
-    system *command
-  end
 end
