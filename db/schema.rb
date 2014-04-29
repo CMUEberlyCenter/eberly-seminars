@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140429051310) do
+ActiveRecord::Schema.define(:version => 20140429052706) do
 
   create_table "attendance_statuses", :force => true do |t|
     t.string   "key"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(:version => 20140429051310) do
 
   add_index "observations", ["observation_type_id"], :name => "index_observations_on_observation_type_id"
   add_index "observations", ["participant_id"], :name => "index_observations_on_participant_id"
+
+  create_table "participant_activities", :force => true do |t|
+    t.integer  "participant_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "participant_activities", ["participant_id"], :name => "index_participant_activities_on_participant_id"
 
   create_table "participants", :force => true do |t|
     t.string   "andrewid"

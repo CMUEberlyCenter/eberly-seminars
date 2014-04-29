@@ -3,6 +3,7 @@ class Participant < ActiveRecord::Base
   has_many :seminars, :through => :registrations
   has_many :observations, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :activities, class_name: "ParticipantActivity", dependent: :destroy
 
   attr_accessible :note
 
