@@ -12,6 +12,10 @@ class Participant < ActiveRecord::Base
     self.is_admin == 1
   end
 
+  def in_future_faculty_program?
+    self.in_future_faculty == true
+  end
+
   def registration_for( seminar )
     self.registrations.find_by_seminar_id( seminar.id )
   end

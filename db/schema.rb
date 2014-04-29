@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140429021035) do
+ActiveRecord::Schema.define(:version => 20140429051310) do
 
   create_table "attendance_statuses", :force => true do |t|
     t.string   "key"
@@ -41,11 +41,12 @@ ActiveRecord::Schema.define(:version => 20140429021035) do
 
   create_table "participants", :force => true do |t|
     t.string   "andrewid"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "is_admin",   :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "is_admin",          :default => false
     t.string   "name_cache"
     t.text     "note"
+    t.boolean  "in_future_faculty"
   end
 
   create_table "project_statuses", :force => true do |t|
