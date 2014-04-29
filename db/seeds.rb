@@ -37,6 +37,9 @@ Setting.find_or_create_by_key(
                               :label => "List seminars in admin view with tag", 
                               :value => "S13" )
 
+##
+# Future Faculty Program additions
+
 # Create each observation type if it doesn't already exist
 ObservationType.find_or_create_by_key(
                                       :key => 'microteaching',
@@ -44,3 +47,25 @@ ObservationType.find_or_create_by_key(
 ObservationType.find_or_create_by_key(
                                       :key => 'non_microteaching',
                                       :label => 'Non-Microteaching Observation' )
+
+# Create each project type if it doesn't already exist
+ProjectType.find_or_create_by_key(
+                                  :key => 'course',
+                                  :label => 'Course & Syllabus Design Project' )
+
+ProjectType.find_or_create_by_key(
+                                  :key => 'individual',
+                                  :label => 'Individual Project' )
+
+# Create each project status if it doesn't already exist
+ProjectStatus.find_or_create_by_key(
+                                    :key => 'not_started',
+                                    :label => 'Not Started' )
+
+ProjectStatus.find_or_create_by_key(
+                                    :key => 'approved',
+                                    :label => 'Approved' )
+
+ProjectStatus.find_or_create_by_key(
+                                    :key => 'completed',
+                                    :label => 'Completed' )

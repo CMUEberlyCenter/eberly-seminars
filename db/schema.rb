@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140428213705) do
+ActiveRecord::Schema.define(:version => 20140429021035) do
 
   create_table "attendance_statuses", :force => true do |t|
     t.string   "key"
@@ -47,6 +47,33 @@ ActiveRecord::Schema.define(:version => 20140428213705) do
     t.string   "name_cache"
     t.text     "note"
   end
+
+  create_table "project_statuses", :force => true do |t|
+    t.string   "key"
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "project_types", :force => true do |t|
+    t.string   "key"
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.integer  "participant_id"
+    t.integer  "project_type_id"
+    t.integer  "project_status_id"
+    t.text     "description"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "projects", ["participant_id"], :name => "index_projects_on_participant_id"
+  add_index "projects", ["project_status_id"], :name => "index_projects_on_project_status_id"
+  add_index "projects", ["project_type_id"], :name => "index_projects_on_project_type_id"
 
   create_table "registration_statuses", :force => true do |t|
     t.string   "key"
