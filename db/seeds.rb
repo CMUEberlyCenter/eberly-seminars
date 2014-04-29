@@ -36,3 +36,11 @@ Setting.find_or_create_by_key(
                               :key => "admin-list-tag", 
                               :label => "List seminars in admin view with tag", 
                               :value => "S13" )
+
+# Create each observation type if it doesn't already exist
+ObservationType.find_or_create_by_key(
+                                      :key => 'microteaching',
+                                      :label => 'Microteaching Observation' )
+ObservationType.find_or_create_by_key(
+                                      :key => 'non_microteaching',
+                                      :label => 'Non-Microteaching Observation' )

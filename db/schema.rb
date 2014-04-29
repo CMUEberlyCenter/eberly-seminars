@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(:version => 20140428213705) do
     t.string   "label"
   end
 
+  create_table "observation_types", :force => true do |t|
+    t.string   "key"
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "observations", :force => true do |t|
+    t.integer  "participant_id"
+    t.integer  "observation_type_id"
+    t.string   "course"
+    t.date     "observed_on"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "observations", ["observation_type_id"], :name => "index_observations_on_observation_type_id"
+  add_index "observations", ["participant_id"], :name => "index_observations_on_participant_id"
+
   create_table "participants", :force => true do |t|
     t.string   "andrewid"
     t.datetime "created_at",                    :null => false
