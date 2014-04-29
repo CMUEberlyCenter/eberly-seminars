@@ -12,12 +12,14 @@
 
 # Populate each registration status if it doesn't already exist
 #
-# TODO: Yeah... I spelled canceled wrong. When you go in to fix this, 
-#       make canceled-late a hyphen instead of an underscore.
+# TODO: Yeah... I spelled canceled wrong.
 ['pending','confirmed','cancelled','cancelled_late'].
   each { |status| RegistrationStatus.find_or_create_by_key( :key => status ) }
 
 # Populate each attendance status if it doesn't already exist
+#
+# TODO: Ruby 1.9.1 really doesn't like '-' in symbol names. Deal with renaming these
+# before they get used in a scope or something similar.
 ['attended','attended-incomplete','absent-unexcused','absent-excused'].
   each { |status| AttendanceStatus.find_or_create_by_key( :key => status ) }
 
@@ -27,6 +29,9 @@
                                                             :without_protection => true) }
 
 # Create default application-wide settings if they don't already exist
+#
+# TODO: Ruby 1.9.1 really doesn't like '-' in symbol names. Deal with renaming these
+# before they get used in a scope or something similar.
 Setting.find_or_create_by_key(
                               :key => "default-tag", 
                               :label => "Default tag for new seminars", 
