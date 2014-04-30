@@ -2,12 +2,16 @@ GraduateStudents::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  # ==|== participants and associated resources ==============================
   resources :participants do
     resource :transcript, only: :show
   end
 
+
+  # ==|== shortcuts to one's own resources ===================================
   # One's own transcript (participant_id will be nil)
   get 'transcript', to: 'transcripts#show'
+
 
 
   put 'admin/seminars/update_seminar' => 'admin/seminars#update_seminar', :as => 'update_whole_seminar'
