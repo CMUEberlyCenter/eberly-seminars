@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
-  protected
+  before_filter :require_authentication
+
+  private
   def require_authentication
     unless authenticated?
       redirect_to login_url(:return_url => request.env["REQUEST_URI"])
