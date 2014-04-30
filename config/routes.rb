@@ -1,6 +1,15 @@
 GraduateStudents::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+
+  resources :participants do
+    resource :transcript, only: :show
+  end
+
+  # One's own transcript (participant_id will be nil)
+  get 'transcript', to: 'transcripts#show'
+
+
   put 'admin/seminars/update_seminar' => 'admin/seminars#update_seminar', :as => 'update_whole_seminar'
 
   resources :seminars do
@@ -13,7 +22,6 @@ GraduateStudents::Application.routes.draw do
   match 'login',  to: 'sessions#create'
   match 'logout', to: 'sessions#destroy', via: [:get, :delete]
  
-  match 'transcript', to: 'transcript#index', :as => 'transcript'
 
   get 'search' => 'search#show', :as => 'search'
 
@@ -30,13 +38,6 @@ GraduateStudents::Application.routes.draw do
   end
 
   #resources :registrations
-  resources :participants do
-    resource :transcript, only: :index do
-      member do
-        get 'index'
-      end
-    end
-  end
   
 
   # Sample of regular route:

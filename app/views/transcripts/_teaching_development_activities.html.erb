@@ -1,8 +1,15 @@
+<%
+   if @participant.registrations
+   @attended_seminars = @participant.registrations.credited
+   end
+%>
+
 <section class="transcript">
-  <h1>Teaching Development Transcript</h1>
+  <h1>Teaching Development Transcript<div style="float: right;">
+      <a href="<%= "/future-faculty/#{@participant.andrewid}" %>" style="border: 1px solid white; color: white; font-size: 14px; font-weight: normal; padding: 3px 10px;text-decoration: none;">Enroll in Future Faculty</a></div></h1>
 
   <%= image_tag "face.png" %>
-  <h2><%= current_user.name %></h2>
+  <h2><%= @participant.name %></h2>
 
   <section class="transcript-dialog seminars">
     <h1>Seminars</h1>
@@ -44,7 +51,7 @@
 
 
   <div class="export-transcript">
-    <%= link_to "Export Transcript [pdf]", transcript_url(:format => "pdf") %>
+    <%= link_to "Export Transcript [pdf]", participant_transcript_url(:participant_id => @participant.andrewid, :format => "pdf") %>
   </div>
 </section>
 

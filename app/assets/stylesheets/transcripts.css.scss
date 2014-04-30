@@ -1,3 +1,98 @@
-// Place all the styles related to the transcripts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* ==|== transcript styles ==================================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+$transcript-border-color: #bbbbbb;
+$transcript-header-bg-color: #bbbbbb;
+$transcript-header-font-family: 'OpenSansBold', sans-serif;
+$transcript-header-font: 26px/28px $transcript-header-font-family;
+$transcript-subheader-font: 14px/16px $transcript-header-font-family;
+$transcript-h2-font: 14px/16px $transcript-header-font-family;
+
+$transcript-title-font-family: 'OpenSansRegular', sans-serif;
+$transcript-title-font: 20px/20px $transcript-title-font-family;
+
+
+/* ==|== box styles ========================================================= */
+section.transcript {
+  border: 1px solid $transcript-border-color;
+  clear: left;
+  float: left;
+  margin: 0;
+  min-width: $site-min-width - $left-column-width;
+
+  h1 {
+    background: $transcript-header-bg-color;
+    color: #ffffff;
+    font: $transcript-header-font;
+    margin: 0;
+    padding: $padding-small;
+  }
+
+  h2 {
+   font: $transcript-title-font;
+   margin-left: 10px;
+   padding: $padding-medium;
+  }
+
+  img {
+    border: 1px solid $transcript-border-color;
+    float: left;
+    padding: $padding-small;
+    margin: $padding-small;
+  }
+
+  section.transcript-dialog {
+    border: 1px solid $transcript-border-color;
+    float: left;
+    margin: 10px;
+    width: 150px;
+
+    &.seminars {
+      width: 250px;
+    }
+
+    h1 {
+      font: $transcript-subheader-font;
+    }
+
+    h2 {
+      font: $transcript-h2-font;
+      margin: 5px;
+      padding: 0;
+    }
+    
+    p {
+      padding: $padding-small;
+    }
+
+    ul {
+
+      li {
+        padding: 10px 0;
+
+        p {
+	  margin: 5px;
+	  padding: 0;
+
+          &.date {
+            font-size: 12px;
+	    margin-left: 10px;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  div.export-transcript {
+    top: 24px;
+    clear: left;
+    float: right;
+    position: relative;
+  }
+}

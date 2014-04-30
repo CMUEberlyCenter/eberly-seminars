@@ -13,7 +13,7 @@
   <tbody>
     <% @participants.each do |p| %>
     <tr>
-      <td><% unless p.name.nil? %><%= link_to p.name, participant_transcript_url(p) %><% end %></td>
+      <td><% unless p.name.nil? %><%= link_to p.name, participant_transcript_url(participant_id: p.andrewid) %><% end %></td>
       <td><% unless p.andrewid.nil? %><%= p.andrewid %><% end %></td>
       <td><%= sanitize [p.department].join(',<br/>'), :tags => %w(br) %></td>
       <td><% unless p.student_class.nil? %><%= p.student_class %><% end %></td>

@@ -1,0 +1,7 @@
+<% if @participant.in_future_faculty_program? %>
+  <%= render 'future_faculty_transcript' %>
+
+<% else %>
+  <%= render 'teaching_development_activities' %>
+
+<% end %>

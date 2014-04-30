@@ -1,20 +1,28 @@
 class TranscriptsController < ApplicationController
-  before_filter :require_authentication
-  before_filter :require_administrator, :only => :index
+  before_filter -> { require_administrator_or_self transcript_url }
 
+  def show
 
-  def index
-    @participant = Participant.find_by_id(params[:participant_id])
-    if @participant.registrations
-      @attended_seminars = @participant.registrations.credited
+    # Determine for which participant to show transcript
+    if params[:participant_id].nil?
+      @participant = current_user
+    else
+      @participant = Participant.find_by_andrewid params[:participant_id]
     end
 
-    respond_to do |format|
-      format.html
-      format.pdf
+    # Check that participant exists and render transcript according to
+    # requested format
+    if @participant.nil?
+      redirect_to( participants_url,
+                   :flash => { :error => "Participant does not exist." } )
+    else
+      respond_to do |format|
+        format.html
+        format.pdf
+      end
     end
 
-  end
+  end # show
 
 
 end

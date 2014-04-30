@@ -1,4 +1,6 @@
+@attended_seminars=[]
 prawn_document(
+  :filename=>"#{@participant.andrewid}-transcript-#{Time.now.strftime('%Y_%m_%d')}.pdf",
   :info => {
                              :Title => "Teaching Development Transcript",
                              :Author => "Eberly Center for Teaching Excellence - Carnegie Mellon University",
