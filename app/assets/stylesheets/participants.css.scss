@@ -36,6 +36,10 @@ section.participant {
     &.seminars {
       background: #94b840;
     }
+
+    &.activities {
+      background: #f05a3c;
+    }
   }
 
   h2 {
@@ -59,7 +63,9 @@ section.participant {
   }
 
   div {
-    padding: 0 $padding-large $padding-large+$padding-small $padding-large;
+    float: left;
+    clear: left;
+    padding: 0 $padding-large $padding-small*2 $padding-large;
     width: 100%;
     margin: 20px 0;
 
@@ -70,23 +76,24 @@ section.participant {
   div.button_container {
     clear: left;
     float: left;
-    margin-left: 42px;
+    margin-left: 90px;
     margin-bottom: 0;
+    padding: 0;
 
     a {
       clear: none;
       margin-left: 10px;
       width: 100px;
-
-      &:first-child { margin-left: 0; }
-
       &.boxy { margin-left: 10px; }
+      &:first-child { margin-left: 0; }
+    }
+    &.add {
+      margin-left: 10px;
     }
   }
 
   p {
     margin: $padding-small;
-    padding: $padding-small;
 
     &.note {
      color: #999999;
@@ -128,13 +135,13 @@ section.participant {
     clear: left;
     padding: 0;
     margin: 0 $padding-small;
-    margin-bottom: $padding-large;
 
+    li.activity,
     li.seminar {
       float: left;
       clear: left;
       padding: 0;
-      margin: 5px;
+      margin: 5px 0;
       vertical-align: middle;
       font: 14px/20px 'OpenSansLight', sans-serif;
       h2 {
@@ -143,6 +150,8 @@ section.participant {
 	font: 16px/20px 'OpenSansRegular', sans-serif;
       }
     }
+    li.activity  { margin-bottom: 10px; }
+
   }
 
   input[type="submit"] {

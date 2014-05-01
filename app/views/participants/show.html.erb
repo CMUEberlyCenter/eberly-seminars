@@ -37,6 +37,27 @@
     <p class="note">None.</p>
   </div>
 
+  <h1 class="activities" id="other_activities">Other Activities and Consultations</h1>
+  <div>
+    <% if @participant.activities.size > 0 %>
+      <ul>
+	<% @participant.activities.each do |a| %>
+	<li class="activity">
+	  <h2><%= a.title %></h2><br/>
+	  <%= a.description %>
+	</li>
+	<% end %>
+      </ul>
+    <% else %>
+      <p class="note">None.</p>
+    <% end %>
+
+    <div class="button_container add">
+      <%= link_to "+ Activity", '', :class => 'boxy' %>
+    </div>
+
+  </div>
+
   <h1>Notes &mdash; Internal Use Only</h1>
   <div>
     <div id="note-response"><p></p></div>
