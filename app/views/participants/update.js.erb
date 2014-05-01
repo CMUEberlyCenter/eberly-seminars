@@ -1,0 +1,9 @@
+<% if @participant.note_changed? %>
+  $("#note-response p").html("Your changes have been saved.").fadeIn("slow").fadeOut(4000);
+<% end %>
+
+<% if @participant.after_add_for_activities? %>
+  $("#other_activities + div ul").append("<li class=\"activity\"><h2><%= @participant.activities.last.title %></h2><a href=\"<%= participant_activity_url(@participant.activities.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.activities.last.description %></li>");
+  $("#add-activity-form").slideUp();
+  $("#add-activity-link").slideDown();
+<% end %>
