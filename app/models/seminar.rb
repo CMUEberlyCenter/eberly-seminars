@@ -39,6 +39,10 @@ class Seminar < ActiveRecord::Base
     )
   end
 
+  def core?
+    self.tags.include? "core"
+  end
+
   def tags
     self.seminar_tags.map( &:value )
   end

@@ -32,6 +32,10 @@ section.participant {
     margin: 0;
     padding: $padding-small;
     vertical-align: middle;
+
+    &.seminars {
+      background: #94b840;
+    }
   }
 
   h2 {
@@ -55,10 +59,10 @@ section.participant {
   }
 
   div {
-    padding: 0 $padding-large $padding-large $padding-large;
+    padding: 0 $padding-large $padding-large+$padding-small $padding-large;
     width: 100%;
     margin: 20px 0;
-    
+
     img,h2 { float: left; }
 
   }
@@ -70,13 +74,23 @@ section.participant {
     margin-bottom: 0;
 
     a {
-      clear: none;        
+      clear: none;
       margin-left: 10px;
       width: 100px;
 
       &:first-child { margin-left: 0; }
 
-      &.boxy { margin-bottom: 10px; margin-left: 10px; }
+      &.boxy { margin-left: 10px; }
+    }
+  }
+
+  p {
+    margin: $padding-small;
+    padding: $padding-small;
+
+    &.note {
+     color: #999999;
+     font: 16px/20px 'OpenSansRegular', sans-serif;
     }
   }
 
@@ -109,6 +123,28 @@ section.participant {
    }
   }
 
+  ul {
+    float: left;
+    clear: left;
+    padding: 0;
+    margin: 0 $padding-small;
+    margin-bottom: $padding-large;
+
+    li.seminar {
+      float: left;
+      clear: left;
+      padding: 0;
+      margin: 5px;
+      vertical-align: middle;
+      font: 14px/20px 'OpenSansLight', sans-serif;
+      h2 {
+        margin: 0;
+	padding: 0;
+	font: 16px/20px 'OpenSansRegular', sans-serif;
+      }
+    }
+  }
+
   input[type="submit"] {
     background: #bbbbbb;
     border: 1px solid #bbbbbb;
@@ -119,6 +155,6 @@ section.participant {
     margin-bottom: 10px;
     padding: $padding-small/2 $padding-small;
     text-align: center;
-    text-decoration: none; 
+    text-decoration: none;
   }
 }

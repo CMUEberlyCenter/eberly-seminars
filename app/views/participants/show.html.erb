@@ -13,6 +13,30 @@
 
   </div>
 
+  <h1 class="seminars">Seminars</h1>
+  <div>
+    <% if @participant.completed_seminars.size > 0 %>
+    <ul>
+
+      <% @participant.completed_seminars.each do |s| %>
+        <li class="seminar">
+	  <h2><%= s.title %><% if s.core? %>*<% end %></h2>
+	  &nbsp;&nbsp;[ <%= s.start_at.strftime("%b %d, %Y") %> ]
+	</li>
+      <% end %>
+
+    </ul>
+    <% else %>
+      <%# TODO: list workshops %>
+      <p class="note">None.</p>
+    <% end %>
+  </div>
+
+  <h1 class="seminars">Workshops</h1>
+  <div>
+    <p class="note">None.</p>
+  </div>
+
   <h1>Notes &mdash; Internal Use Only</h1>
   <div>
     <div id="note-response"><p></p></div>

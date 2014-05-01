@@ -8,8 +8,15 @@ class Participant < ActiveRecord::Base
   attr_accessible :note
 
   default_scope :order => "andrewid"
+  # TODO: default to fetching active students
+  #  default_scope :active
 
-  def is_administrator?
+  def completed_seminars
+    self.registrations.credited.collect(&:seminar)
+  end
+
+
+ def is_administrator?
     self.is_admin == 1
   end
 
@@ -23,7 +30,7 @@ class Participant < ActiveRecord::Base
 
   def ldap_reference
     @ldap_reference ||= CarnegieMellonPerson.find_by_andrewid( self.andrewid )
-    # Add new attributes to CarnegieMellonPerson attributes before adding 
+    # Add new attributes to CarnegieMellonPerson attributes before adding
     # references to them in participant.rb
   end
 
@@ -34,7 +41,7 @@ class Participant < ActiveRecord::Base
   def surname
     ldap_reference["sn"]
   end
-  
+
   def email
     ldap_reference["mail"]
   end
@@ -55,12 +62,12 @@ class Participant < ActiveRecord::Base
   end
 
   def cancel_registration( registration_id )
-    
+
     registration = self.registrations.find( registration_id )
     registration_copy = registration.clone
     #registration.destroy
     registration_status = nil
-    if registration.seminar.start_at < 1.day.from_now 
+    if registration.seminar.start_at < 1.day.from_now
       registration_status = RegistrationStatus.find_by_key "cancelled_late"
     else
       registration_status = RegistrationStatus.find_by_key "cancelled"
