@@ -1,0 +1,16 @@
+    $(function() {
+var availableTags = [
+    <% Participant.all.each do |p| %>
+    { label: "<%= p.name + ' (' + p.andrewid + ')' %>",
+      value: "<%= p.andrewid %>" },
+    <% end %>
+    
+];
+        $( "#tags" ).autocomplete({
+            source: availableTags,
+            minLength: 3,
+            select: function(event, ui) { 
+              $("#tags").val(ui.item.value);
+              $("#searchForm").submit(); }
+        });
+    });
