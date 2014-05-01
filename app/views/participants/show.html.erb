@@ -1,0 +1,28 @@
+<section class="participant">
+  <h1>Participant Information</h1>
+  <div>
+    <%= image_tag "face.png" %>
+    <h2><span class="name"><%= @participant.name %></span><br/><%= @participant.department %></h2>
+    
+    <div class="button_container">
+      <%= link_to( "Transcript »", 
+	           participant_transcript_url(:participant_id => @participant.andrewid),
+                   :class => 'boxy' ) %>
+      <%= link_to "Enroll in FFP", '', :class => 'boxy' %>
+    </div>
+
+  </div>
+
+  <h1>Notes &mdash; Internal Use Only</h1>
+  <div>
+    <div id="note-response"><p></p></div>
+    <%= form_for @participant, remote: true do |f| %>
+      <% default_text = "Add a note..." %>
+      <% seed = (@participant.note.nil? || @participant.note.empty?) ? default_text : @participant.note %>
+      <%= hidden_field_tag(:note_seed_text, seed) %>
+      <%= hidden_field_tag(:note_default_text, default_text) %>
+      <%= f.text_area(:note, id: "note", value: seed) %>
+      <%= f.submit "Update" %>
+    <% end %>
+  </div>
+</section>

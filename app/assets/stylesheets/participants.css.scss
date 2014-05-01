@@ -1,0 +1,124 @@
+/* ==|== participant styles =================================================
+   Author: Meg Richards (mouse@cmu.edu)
+   ========================================================================== */
+
+/* ==|== scss definitions =================================================== */
+@import "graduate_student_support_definitions";
+
+$participant-border-color: #bbbbbb;
+$participant-header-bg-color: #bbbbbb;
+$participant-header-font-family: 'OpenSansLight', sans-serif;
+$participant-header-font: 26px/28px $participant-header-font-family;
+$participant-subheader-font: 14px/16px $participant-header-font-family;
+$participant-h2-font: 22px/32px $participant-header-font-family;
+
+$participant-title-font-family: 'OpenSansLight', sans-serif;
+$participant-title-font: 22px/32px $participant-title-font-family;
+
+
+/* ==|== box styles ========================================================= */
+section.participant {
+  border: 1px solid $participant-border-color;
+  clear: left;
+  float: left;
+  margin: 0;
+  min-width: $site-min-width - $left-column-width - 2px;
+
+  h1 {
+    background: $participant-header-bg-color;
+    clear: left;
+    color: #ffffff;
+    font: $participant-header-font;
+    margin: 0;
+    padding: $padding-small;
+    vertical-align: middle;
+  }
+
+  h2 {
+     color: #000000;
+     float: left;
+     font: $participant-h2-font;
+     margin: 0;
+     padding: $padding-small;
+     vertical-align: middle;
+
+     span.name {
+       font-family: 'OpenSansRegular', sans-serif;
+     }
+  }
+
+  img {
+    border: 1px solid $participant-border-color;
+    float: left;
+    padding: $padding-small;
+    margin: $padding-small;
+  }
+
+  div {
+    padding: 0 $padding-large $padding-large $padding-large;
+    width: 100%;
+    margin: 20px 0;
+    
+    img,h2 { float: left; }
+
+  }
+
+  div.button_container {
+    clear: left;
+    float: left;
+    margin-left: 42px;
+    margin-bottom: 0;
+
+    a {
+      clear: none;        
+      margin-left: 10px;
+      width: 100px;
+
+      &:first-child { margin-left: 0; }
+
+      &.boxy { margin-bottom: 10px; margin-left: 10px; }
+    }
+  }
+
+  #note {
+    border: 1px solid $participant-border-color;
+    color: #999999;
+    float: left;
+    padding: 5px;
+    resize: none;
+    width: 87%;
+    height: 100px;
+    margin: 0 0 $padding-large 0;
+  }
+
+  #note-response {
+   clear: left;
+   color: #009900;
+   float: left;
+   margin: 0;
+   padding: 0;
+   height: 20px;
+   width: 87%;
+
+   p {
+     display: hidden;
+     float: left;
+     clear: left;
+     margin: 0;
+     padding: 0;
+   }
+  }
+
+  input[type="submit"] {
+    background: #bbbbbb;
+    border: 1px solid #bbbbbb;
+    clear: left;
+    color: #ffffff;
+    float: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: $padding-small/2 $padding-small;
+    text-align: center;
+    text-decoration: none; 
+  }
+}
