@@ -39,7 +39,6 @@
 
   <h1 class="activities" id="other_activities">Other Activities and Consultations</h1>
   <div>
-    <% if @participant.activities.size > 0 %>
       <ul>
 	<% @participant.activities.each do |a| %>
 	<li class="activity">
@@ -48,7 +47,8 @@
 	</li>
 	<% end %>
       </ul>
-    <% else %>
+
+    <% if @participant.activities.size == 0 %>
       <p class="note">None.</p>
     <% end %>
 
