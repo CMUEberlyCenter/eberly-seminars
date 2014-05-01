@@ -142,6 +142,7 @@ section.participant {
   }
 
   #add-observation-form,
+  #add-project-form,
   #add-activity-form{
     display: none;
     
@@ -175,6 +176,7 @@ section.participant {
 
     li.activity,
     li.observation,
+    li.project,
     li.seminar {
       float: left;
       clear: left;
@@ -189,6 +191,7 @@ section.participant {
       }
     }
     li.observation,
+    li.project,
     li.activity  {
       margin-bottom: 10px;
 

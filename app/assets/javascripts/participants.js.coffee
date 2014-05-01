@@ -16,6 +16,13 @@ $ ->
        $(this).toggle()
        event.preventDefault()
 
+  $("#add-project-link").click (event) ->
+       $("#add-project-form input[type=\"text\"]").val("")
+       #$("#add-project-form textarea").val("")
+       $("#add-project-form").slideDown()
+       $(this).toggle()
+       event.preventDefault()
+
   $("#note").on "click",
     ->
        $(this).css( "color", "#000000" )

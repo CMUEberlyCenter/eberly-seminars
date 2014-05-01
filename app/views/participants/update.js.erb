@@ -9,10 +9,18 @@
   $("#add-activity-link").slideDown();
 <% end %>
 
-<%# if @participant.after_add_for_observations? %>
+
 <% unless params[:participant][:observations_attributes].nil? %>
   $("h1.observations + div ul").append("<li class=\"observation\"><h2><strong><%= @participant.observations.last.type.label %></strong></h2><a href=\"<%= observation_url(@participant.observations.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.observations.last.course %>&nbsp;&nbsp;[ <%= @participant.observations.last.observed_on.strftime("%b %d, %Y") %> ]</li>");
   $("h1.observations + div p.note").toggle()
   $("#add-observation-form").slideUp();
   $("#add-observation-link").slideDown();
+<% end %>
+
+
+<% unless params[:participant][:projects_attributes].nil? %>
+  $("h1.syllabus_project + div ul").append("<li class=\"project\"><h2><strong><%= @participant.projects.last.type.label %></strong></h2><a href=\"<%= project_url(@participant.projects.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.projects.last.description %>&nbsp;&nbsp;[ <%= @participant.projects.last.status.label %> ]</li>");
+  $("h1.syllabus_project + div p.note").toggle()
+  $("#add-project-form").slideUp();
+  $("#add-project-link").slideDown();
 <% end %>

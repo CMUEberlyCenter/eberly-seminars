@@ -1,4 +1,6 @@
 GraduateStudents::Application.routes.draw do
+  get "projects/destroy"
+
   get "observations/destroy"
 
   get "participant_activities/destroy"
@@ -12,6 +14,7 @@ GraduateStudents::Application.routes.draw do
     resource :transcript, only: :show
     resources 'participant-activities', only: :destroy, as: :participant_activities, shallow: true
     resources :observations, only: :destroy, shallow: true
+    resources :projects, only: :destroy, shallow: true
   end
 
 
