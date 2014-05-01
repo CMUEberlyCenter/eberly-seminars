@@ -40,6 +40,17 @@ section.participant {
     &.activities {
       background: #f05a3c;
     }
+
+    &.observations {
+      background: #1836ad;
+    }
+
+    &.syllabus_project {
+      background: #760eab;
+    }
+    &.individual_project {
+      background: #ba1480;
+    }
   }
 
   h2 {
@@ -130,6 +141,7 @@ section.participant {
    }
   }
 
+  #add-observation-form,
   #add-activity-form{
     display: none;
     
@@ -162,6 +174,7 @@ section.participant {
     margin: 0 $padding-small;
 
     li.activity,
+    li.observation,
     li.seminar {
       float: left;
       clear: left;
@@ -175,6 +188,7 @@ section.participant {
 	font: 16px/20px 'OpenSansRegular', sans-serif;
       }
     }
+    li.observation,
     li.activity  {
       margin-bottom: 10px;
 

@@ -1,4 +1,6 @@
 GraduateStudents::Application.routes.draw do
+  get "observations/destroy"
+
   get "participant_activities/destroy"
 
   # The priority is based upon order of creation:
@@ -6,8 +8,10 @@ GraduateStudents::Application.routes.draw do
 
   # ==|== participants and associated resources ==============================
   resources :participants, except: :new do
+    get 'enroll', on: :member
     resource :transcript, only: :show
     resources 'participant-activities', only: :destroy, as: :participant_activities, shallow: true
+    resources :observations, only: :destroy, shallow: true
   end
 
 

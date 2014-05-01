@@ -5,8 +5,9 @@ class Participant < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :activities, class_name: "ParticipantActivity", dependent: :destroy
   accepts_nested_attributes_for :activities
+  accepts_nested_attributes_for :observations
 
-  attr_accessible :note, :activities_attributes
+  attr_accessible :note, :activities_attributes, :observations_attributes
 
   default_scope :order => "andrewid"
   # TODO: default to fetching active students

@@ -33,5 +33,12 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  
+  def enroll
+    @participant = Participant.find_by_andrewid(params[:id])
+    @participant.in_future_faculty = true
+    @participant.save
+  end
+
 
 end

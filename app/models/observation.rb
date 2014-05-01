@@ -3,7 +3,7 @@ class Observation < ActiveRecord::Base
               foreign_key: "observation_type_id", readonly: true )
   belongs_to :participant
 
-  attr_accessible :course, :observed_on, :type
+  attr_accessible :course, :observed_on, :type, :observation_type_id
 
   # Every observation must have at least a participant and
   # a type to get created

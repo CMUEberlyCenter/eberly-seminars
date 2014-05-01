@@ -9,6 +9,13 @@ $ ->
        $(this).toggle()
        event.preventDefault()
 
+  $("#add-observation-link").click (event) ->
+       $("#add-observation-form input[type=\"text\"]").val("")
+       #$("#add-observation-form textarea").val("")
+       $("#add-observation-form").slideDown()
+       $(this).toggle()
+       event.preventDefault()
+
   $("#note").on "click",
     ->
        $(this).css( "color", "#000000" )

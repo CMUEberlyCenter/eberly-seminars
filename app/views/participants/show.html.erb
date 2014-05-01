@@ -8,7 +8,9 @@
       <%= link_to( "Transcript »", 
 	           participant_transcript_url(:participant_id => @participant.andrewid),
                    :class => 'boxy' ) %>
-      <%= link_to "Enroll in FFP", '', :class => 'boxy' %>
+      <% unless @participant.in_future_faculty_program? %>
+        <%= link_to "Enroll in FFP", enroll_participant_url( :id => @participant.andrewid ), remote: true, confirm: "Really?", :class => 'boxy', id: "ffp_enroll_link" %>
+      <% end %>
     </div>
 
   </div>
@@ -36,6 +38,12 @@
   <div>
     <p class="note">None.</p>
   </div>
+
+  <section id="ffp_things" <% unless @participant.in_future_faculty_program? %>style="display: none;"<% end %>>
+    <%= render partial: 'ffp_observations' %>
+    <%= render partial: 'ffp_projects' %>
+  </section>
+
 
   <h1 class="activities" id="other_activities">Other Activities and Consultations</h1>
   <div>
@@ -68,6 +76,7 @@
     </div>
 
   </div>
+
 
   <h1>Notes &mdash; Internal Use Only</h1>
   <div>

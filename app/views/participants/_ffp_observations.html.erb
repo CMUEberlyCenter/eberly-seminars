@@ -1,0 +1,33 @@
+<h1 class="observations">Observations</h1>
+<div>
+      <ul>
+        <% @participant.observations.each do |a| %>
+        <li class="observation">
+          <h2><strong><%= a.type.label %></strong></h2> <%= link_to "[x]", observation_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
+          <%= a.course %>&nbsp;&nbsp;[ <%= a.observed_on.strftime("%b %d, %Y") %> ]
+        </li>
+        <% end %>
+      </ul>
+
+    <% if @participant.observations.size == 0 %>
+      <p class="note">None.</p>
+    <% end %>
+
+    <div id="add-observation-form">
+    <%= form_for @participant, remote: true do |f| %>
+      <%= f.fields_for :observations, @participant.observations.build do |o| %>
+      <h2>Course</h2><br/> <%= o.text_field( :course ) %><br/>
+      <h2>Observed On</h2><br/> <div style="float: left;"><%= o.date_select( :observed_on ) %></div><br/>
+      <h2>Observation Type</h2><br/><div style="float: left;"><%= o.select( :observation_type_id, ObservationType.all.collect {|a| [a.label, a.id]}) %></div><br/>
+      <% end %>
+      <%= f.submit "Create" %>
+    <% end %>
+    </div>
+
+    <div class="button_container add">
+      <%= link_to "+ Observe", '#', :id => "add-observation-link", :class => 'boxy' %>
+    </div>
+
+</div>
+
+
