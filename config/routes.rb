@@ -1,10 +1,13 @@
 GraduateStudents::Application.routes.draw do
+  get "participant_activities/destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # ==|== participants and associated resources ==============================
-  resources :participants do
+  resources :participants, except: :new do
     resource :transcript, only: :show
+    resources 'participant-activities', only: :destroy, as: :participant_activities, shallow: true
   end
 
 

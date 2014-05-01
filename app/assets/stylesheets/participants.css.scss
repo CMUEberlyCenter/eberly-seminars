@@ -130,6 +130,31 @@ section.participant {
    }
   }
 
+  #add-activity-form{
+    display: none;
+    
+      h2 {
+        clear: left;
+        float: left;
+        margin: 0;
+	padding: 0;
+	font: 16px/20px 'OpenSansRegular', sans-serif;
+      }
+
+    textarea,
+    input[type="text"] {
+      clear: left;
+      float: left;
+      border: 1px solid #bbbbbb;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      height: 30px; 
+      resize: none;
+      }
+  }
+
   ul {
     float: left;
     clear: left;
@@ -150,7 +175,15 @@ section.participant {
 	font: 16px/20px 'OpenSansRegular', sans-serif;
       }
     }
-    li.activity  { margin-bottom: 10px; }
+    li.activity  {
+      margin-bottom: 10px;
+
+      a {
+      margin-left: 10px;
+      color: #999999;
+      text-decoration: none;
+      }
+    }
 
   }
 

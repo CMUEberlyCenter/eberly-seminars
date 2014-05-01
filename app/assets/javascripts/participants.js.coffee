@@ -1,5 +1,13 @@
 $ ->
-  $("section.participant input[type='submit']").hide()
+  #$("section.participant input[type='submit']").hide()
+  $("section.participant #note-submit").hide()
+
+  $("#add-activity-link").click (event) ->
+       $("#add-activity-form input[type=\"text\"]").val("")
+       $("#add-activity-form textarea").val("")
+       $("#add-activity-form").slideDown()
+       $(this).toggle()
+       event.preventDefault()
 
   $("#note").on "click",
     ->

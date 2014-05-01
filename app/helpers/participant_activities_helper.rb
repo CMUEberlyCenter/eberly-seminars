@@ -1,0 +1,2 @@
+module ParticipantActivitiesHelper
+end
