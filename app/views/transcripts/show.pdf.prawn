@@ -50,8 +50,8 @@ prawn_document(
 
 
   # Content
-  pdf.stroke_color "009900"
-  pdf.fill_color "ddffdd"
+  pdf.stroke_color "00aa00"
+  pdf.fill_color "edffed"
   pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
   pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
 
@@ -64,13 +64,27 @@ prawn_document(
   pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8, :align => :center
 
   pdf.move_down 20
-  pdf.text "N/A"
+
+  if @participant.completed_seminars.size > 0
+    @participant.completed_seminars.each do |s|
+      title = "#{s.title}"
+      if s.core? 
+        title = "#{title}\*"
+      end
+
+      pdf.text "#{title}  [ #{s.start_at.strftime("%b %d, %Y")} ]"
+      pdf.move_down 10
+    end
+  else
+    pdf.text "N/A"
+  end
+
   pdf.move_down 20
 
 
 
   pdf.stroke_color "009900"
-  pdf.fill_color "ddffdd"
+  pdf.fill_color "edffed"
   pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
   pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
 
@@ -88,7 +102,7 @@ prawn_document(
 
 
   pdf.stroke_color "000099"
-  pdf.fill_color "ddddff"
+  pdf.fill_color "ededff"
   pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
   pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
 
