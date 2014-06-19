@@ -50,18 +50,19 @@ prawn_document(
 
 
   # Content
-  pdf.stroke_color "00aa00"
-  pdf.fill_color "edffed"
-  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
-  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
+#  pdf.stroke_color "cccccc"
+#  pdf.fill_color "dddddd"
+#  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
+#  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
 
   pdf.fill_color cmu_red
   pdf.move_down 15
 
-  pdf.text "Seminars", :align => :center, :size => name_font_size
+#  pdf.text "Seminars", :align => :center, :size => name_font_size
+  pdf.text "Seminars", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
-  pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8, :align => :center
+  pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
 
   pdf.move_down 20
 
@@ -81,60 +82,44 @@ prawn_document(
 
   pdf.move_down 20
 
-
-
-  pdf.stroke_color "009900"
-  pdf.fill_color "edffed"
-  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
-  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
-
   pdf.fill_color cmu_red
   pdf.move_down 15
 
-  pdf.text "Workshops", :align => :center, :size => name_font_size
+  pdf.text "Workshops", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
-  pdf.text "Each workshop is 2.5 hours long and provides immediate feedback to participants", :style => :bold, :size => 8, :align => :center
+  pdf.text "Each workshop is 2.5 hours long and provides immediate feedback to participants", :style => :bold, :size => 8
 
   pdf.move_down 20
   pdf.text "N/A"
   pdf.move_down 20
 
-
-  pdf.stroke_color "000099"
-  pdf.fill_color "ededff"
-  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
-  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
-
   pdf.fill_color cmu_red
   pdf.move_down 15
 
-  pdf.text "Teaching Observations", :align => :center, :size => name_font_size
+  pdf.text "Teaching Observations", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
-  pdf.text "Each teaching observation involves substantial, constructive feedback.", :style => :bold, :size => 8, :align => :center
+  pdf.text "Each teaching observation involves substantial, constructive feedback.", :style => :bold, :size => 8
 
   pdf.move_down 20
   pdf.text "N/A"
   pdf.move_down 20
-
-
-
-  pdf.stroke_color "993300"
-  pdf.fill_color "ffeedd"
-  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
-  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
 
   pdf.fill_color cmu_red
   pdf.move_down 18
 
-  pdf.text "Other Activities and Consultations", :align => :center, :size => name_font_size
+  pdf.text "Other Activities and Consultations", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
-  #pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8, :align => :center
+  #pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
 
   pdf.move_down 20
-  pdf.text "N/A"
+  if @participant.note and @participant.note != ''
+    pdf.text "#{@participant.note}"
+  else
+    pdf.text "N/A"
+  end
   pdf.move_down 20
 
 
@@ -168,10 +153,6 @@ prawn_document(
     end
   end
 
-
-
-
   pdf.default_leading 0
-
 
 end
