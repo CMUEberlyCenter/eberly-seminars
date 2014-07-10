@@ -49,16 +49,9 @@ prawn_document(
   end
 
 
-  # Content
-#  pdf.stroke_color "cccccc"
-#  pdf.fill_color "dddddd"
-#  pdf.fill_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left-1, 50
-#  pdf.stroke_rectangle [0, pdf.cursor], pdf.bounds.right - pdf.bounds.left, 50
-
   pdf.fill_color cmu_red
   pdf.move_down 15
 
-#  pdf.text "Seminars", :align => :center, :size => name_font_size
   pdf.text "Seminars", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
@@ -103,7 +96,14 @@ prawn_document(
   pdf.text "Each teaching observation involves substantial, constructive feedback.", :style => :bold, :size => 8
 
   pdf.move_down 20
-  pdf.text "N/A"
+  if @participant.observations and @participant.observations.size > 0
+    @participant.observations.each do |o|
+      pdf.text "#{o.course} [ #{o.observed_on.strftime("%b %d, %Y")} ]"
+      pdf.move_down 10
+    end
+  else
+    pdf.text "N/A"
+  end
   pdf.move_down 20
 
   pdf.fill_color cmu_red
@@ -115,8 +115,13 @@ prawn_document(
   #pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
 
   pdf.move_down 20
-  if @participant.note and @participant.note != ''
-    pdf.text "#{@participant.note}"
+  if @participant.activities and @participant.activities.size > 0
+    @participant.activities.each do |a|
+      title = "#{a.title}"
+      pdf.text "#{title}  [ #{a.description} ]"
+      pdf.move_down 10
+    end
+
   else
     pdf.text "N/A"
   end
