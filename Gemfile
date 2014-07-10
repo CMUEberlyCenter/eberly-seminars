@@ -24,7 +24,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
 gem 'ri_cal'
 gem 'activeldap', :require => 'active_ldap/railtie'
-#gem 'ruby-ldap'
+gem 'ruby-ldap'
 gem 'prawn_rails'
 gem 'htmlentities'
 
