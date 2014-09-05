@@ -58,3 +58,7 @@ $ ->
 #      $("#response").html("Saved!").show().fadeOut("slow")
 #    )
 #    .bind('ajax:error', (xhr, status, error) -> )
+
+  $('.best_in_place').best_in_place()
+
+  $.datepicker.setDefaults({ dateFormat: 'M dd, yy' });

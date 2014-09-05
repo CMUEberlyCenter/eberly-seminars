@@ -4,8 +4,8 @@
       <ul>
         <% @participant.projects.each do |a| %>
         <li class="project">
-          <h2><strong><%= a.type.label %></strong></h2> <%= link_to "[x]", project_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
-          <%= a.description %>&nbsp;&nbsp;[ <%= @participant.projects.last.status.label %> ]
+          <h2><strong><%= best_in_place a, :project_type_id, :display_as => :display_type, type: :select, :collection => ProjectType.all.collect {|a| [a.id, a.label]} %></strong></h2> <%= link_to "[x]", project_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
+          <%= best_in_place a, :description %>&nbsp;&nbsp;[ <%= best_in_place a, :project_status_id, display_as: :display_status, type: :select, :collection => ProjectStatus.all.collect {|a| [a.id, a.label]} %> ]
         </li>
         <% end %>
       </ul>

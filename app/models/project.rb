@@ -16,6 +16,15 @@ class Project < ActiveRecord::Base
     scope status.key, -> { where( project_status_id: status ) }
   end
 
+  def display_type
+    self.type.label
+  end
+
+  def display_status
+    self.status.label
+  end
+
+
   # Every project must have at least a participant, type, and
   # status to get created
   validates :type, :status, :participant, presence: true

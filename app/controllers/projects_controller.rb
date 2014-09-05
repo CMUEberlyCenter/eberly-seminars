@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  respond_to :html, :json
 
   def destroy
     @a = Project.find( params[:id] )
@@ -9,6 +10,13 @@ class ProjectsController < ApplicationController
       format.js
     end
 
+  end
+
+  
+  def update
+    @a = Project.find( params[:id] )
+    @a.update_attributes(params[:project])
+    respond_with @a
   end
 
 end

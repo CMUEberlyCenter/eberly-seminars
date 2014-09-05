@@ -8,7 +8,7 @@
 $participant-border-color: #bbbbbb;
 $participant-header-bg-color: #bbbbbb;
 $participant-header-font-family: 'OpenSansLight', sans-serif;
-$participant-header-font: 26px/28px $participant-header-font-family;
+$participant-header-font: 24px/28px $participant-header-font-family;
 $participant-subheader-font: 14px/16px $participant-header-font-family;
 $participant-h2-font: 22px/32px $participant-header-font-family;
 
@@ -30,7 +30,7 @@ section.participant {
     color: #ffffff;
     font: $participant-header-font;
     margin: 0;
-    padding: $padding-small;
+    padding: 5px $padding-small;
     vertical-align: middle;
 
     &.seminars {

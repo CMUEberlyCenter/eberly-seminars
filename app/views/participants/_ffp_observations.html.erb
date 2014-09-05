@@ -3,8 +3,8 @@
       <ul>
         <% @participant.observations.each do |a| %>
         <li class="observation">
-          <h2><strong><%= a.type.label %></strong></h2> <%= link_to "[x]", observation_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
-          <%= a.course %>&nbsp;&nbsp;[ <%= a.observed_on.strftime("%b %d, %Y") %> ]
+          <h2><strong><%= best_in_place a, :observation_type_id, :display_as => :display_type, type: :select, :collection => ObservationType.all.collect {|a| [a.id, a.label]} %></strong></h2> <%= link_to "[x]", observation_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
+          <%= best_in_place a, :course %>&nbsp;&nbsp;[ <%= best_in_place  a, :observed_on, type: :date, display_as: :display_observed_on %> ]
         </li>
         <% end %>
       </ul>

@@ -8,7 +8,7 @@
 $transcript-border-color: #bbbbbb;
 $transcript-header-bg-color: #bbbbbb;
 $transcript-header-font-family: 'OpenSansBold', sans-serif;
-$transcript-header-font: 26px/28px $transcript-header-font-family;
+$transcript-header-font: 24px/28px $transcript-header-font-family;
 $transcript-subheader-font: 14px/16px $transcript-header-font-family;
 $transcript-h2-font: 14px/16px $transcript-header-font-family;
 
@@ -29,7 +29,7 @@ section.transcript {
     color: #ffffff;
     font: $transcript-header-font;
     margin: 0;
-    padding: $padding-small;
+    padding: 5px $padding-small;
   }
 
   h2 {

@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+
+  date:
+    formats:
+      prose: '%b %d, %Y'

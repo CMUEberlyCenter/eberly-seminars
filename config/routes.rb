@@ -12,9 +12,9 @@ GraduateStudents::Application.routes.draw do
   resources :participants, except: :new do
     get 'enroll', on: :member
     resource :transcript, only: :show
-    resources 'participant-activities', only: :destroy, as: :participant_activities, shallow: true
-    resources :observations, only: :destroy, shallow: true
-    resources :projects, only: :destroy, shallow: true
+    resources 'participant-activities', only: [:update, :destroy], as: :participant_activities, shallow: true
+    resources :observations, only: [:update, :destroy], shallow: true
+    resources :projects, only: [:update, :destroy], shallow: true
   end
 
 
