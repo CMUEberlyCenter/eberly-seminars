@@ -6,7 +6,8 @@ class SeminarsController < ApplicationController
       flash.keep
       redirect_to admin_seminars_url
      else
-      @seminars = Seminar.active.published
+       #flash[:notice] = "Announcement text"
+       @seminars = Seminar.active.published
     end
   end
 
