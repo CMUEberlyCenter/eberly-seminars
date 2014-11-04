@@ -52,12 +52,16 @@ prawn_document(
   pdf.fill_color cmu_red
   pdf.move_down 15
 
-  pdf.text "Seminars", :size => name_font_size
-  pdf.fill_color default_text_color
-  pdf.move_down 2
-  pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
+  y_position=pdf.cursor
+  pdf.bounding_box([0, y_position], :width => 450, :height => 500) do
 
-  pdf.move_down 20
+  
+    pdf.text "Seminars", :size => name_font_size
+    pdf.fill_color default_text_color
+    pdf.move_down 2
+    pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
+
+    pdf.move_down 20
 
   if @participant.completed_seminars.size > 0
     @participant.completed_seminars.each do |s|
@@ -83,9 +87,9 @@ prawn_document(
   pdf.move_down 2
   pdf.text "Each workshop is 2.5 hours long and provides immediate feedback to participants", :style => :bold, :size => 8
 
-  pdf.move_down 20
+  pdf.move_down 15
   pdf.text "N/A"
-  pdf.move_down 20
+  pdf.move_down 15
 
   pdf.fill_color cmu_red
   pdf.move_down 15
@@ -95,26 +99,53 @@ prawn_document(
   pdf.move_down 2
   pdf.text "Each teaching observation involves substantial, constructive feedback.", :style => :bold, :size => 8
 
-  pdf.move_down 20
+  pdf.move_down 15
   if @participant.observations and @participant.observations.size > 0
     @participant.observations.each do |o|
-      pdf.text "#{o.course} [ #{o.observed_on.strftime("%b %d, %Y")} ]"
+      pdf.text "#{o.display_type} - #{o.course}"
+      pdf.move_down 5
+      pdf.text "Completed [ #{o.observed_on.strftime("%b %d, %Y")} ]", :size => 10
       pdf.move_down 10
     end
   else
     pdf.text "N/A"
   end
-  pdf.move_down 20
+  pdf.move_down 15
 
   pdf.fill_color cmu_red
   pdf.move_down 18
+
+
+
+  pdf.text "Projects", :size => name_font_size
+  pdf.fill_color default_text_color
+  pdf.move_down 2
+#  pdf.text "Each teaching project...", :style => :bold, :size => 8
+
+  pdf.move_down 15
+  if @participant.projects and @participant.projects.size > 0
+    @participant.projects.each do |p|
+      pdf.text "#{p.display_type} - #{p.description}"
+      pdf.move_down 5
+      pdf.text "#{p.display_status} [ #{p.updated_at.strftime("%b %d, %Y")} ]", :size => 10
+      pdf.move_down 10
+    end
+  else
+    pdf.text "N/A"
+  end
+  pdf.move_down 15
+
+  pdf.fill_color cmu_red
+  pdf.move_down 18
+
+
 
   pdf.text "Other Activities and Consultations", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
   #pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
 
-  pdf.move_down 20
+  pdf.move_down 15
   if @participant.activities and @participant.activities.size > 0
     @participant.activities.each do |a|
       title = "#{a.title}"
@@ -125,7 +156,10 @@ prawn_document(
   else
     pdf.text "N/A"
   end
-  pdf.move_down 20
+
+  end
+
+  pdf.move_down 15
 
 
   # Footer
@@ -148,7 +182,7 @@ prawn_document(
 
     footer_y = 36
     footer_text_width = 268
-    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.jpg", :at => [0,footer_y], :height => 18
+    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.jpg", :at => [0,footer_y-2], :height => 18
     pdf.fill_color cmu_red
     pdf.bounding_box [pdf.bounds.right - footer_text_width, footer_y - 7],
                  :width => footer_text_width, :height => footer_y do
