@@ -24,7 +24,7 @@
   each { |status| AttendanceStatus.find_or_create_by_key( :key => status ) }
 
 # Create certain admins by default if they don't already exist
-['meribyte','jmbrooks','hilaryf','rpoprosk'].
+['meribyte','jmbrooks','rpoprosk','hershock','hdwyer'].
   each { |andrewid| Participant.find_or_create_by_andrewid( { :andrewid => andrewid, :is_admin => true },
                                                             :without_protection => true) }
 
@@ -50,8 +50,11 @@ ObservationType.find_or_create_by_key(
                                       :key => 'microteaching',
                                       :label => 'Microteaching Observation' )
 ObservationType.find_or_create_by_key(
-                                      :key => 'non_microteaching',
-                                      :label => 'Non-Microteaching Observation' )
+                                      :key => 'classroom_observation',
+                                      :label => 'Classroom Observation' )
+ObservationType.find_or_create_by_key(
+                                      :key => 'early_course_feedback',
+                                      :label => 'Early Course Feedback/Focus Group' )
 
 # Create each project type if it doesn't already exist
 ProjectType.find_or_create_by_key(
