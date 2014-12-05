@@ -8,18 +8,15 @@ class ParticipantsController < ApplicationController
 
 
   def show
-    @participant = Participant.find_by_andrewid params[:id]
+    @participant = Participant.find_or_create params[:id]
 
-    # Check that participant exists and redirect if it doesn't
-    if @participant.nil?
-      redirect_to( participants_url,
-                   :flash => { :error => "Participant does not exist." } )
-    else
-      respond_to do |format|
-        format.html
-      end
+    respond_to do |format|
+      format.html
     end
-
+  rescue
+    # TODO: participants_url/did you mean? results
+    redirect_to( root_url,
+                 :flash => { :error => "Participant does not exist." } )
   end # show
 
 

@@ -8,12 +8,18 @@ class Participant < ActiveRecord::Base
   accepts_nested_attributes_for :observations
   accepts_nested_attributes_for :projects
 
-  attr_accessible :note, :activities_attributes, :observations_attributes, :projects_attributes
+  attr_accessible :andrewid, :note, :activities_attributes, :observations_attributes, :projects_attributes
 
   default_scope :order => "andrewid"
   # TODO: default to fetching active students
   #  default_scope :active
 
+  def self.find_or_create( andrewid )
+    CarnegieMellonPerson.find_by_andrewid andrewid
+    find_by_andrewid( andrewid ) || create( :andrewid => andrewid )
+  end
+    
+  
   def completed_seminars
     self.registrations.credited.collect(&:seminar)
   end
