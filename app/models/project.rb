@@ -27,9 +27,9 @@ class Project < ActiveRecord::Base
 
   # Every project must have at least a participant, type, and
   # status to get created
-  validates :type, :status, :participant, presence: true
+  validates :type, :participant, presence: true
   validates_associated :type
-  validates_associated :status
+  # validates_associated :status
   validates_associated :participant
 
 end

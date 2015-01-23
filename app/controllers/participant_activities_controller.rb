@@ -13,7 +13,7 @@ class ParticipantActivitiesController < ApplicationController
 
   def update
     @a = ParticipantActivity.find( params[:id] )
-    @a.update_attributes(params[:participant_activity])
+    @a.assign_attributes(params[:participant_activity], :without_protection => true)
     respond_with @a
   end
 

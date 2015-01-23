@@ -127,7 +127,7 @@ prawn_document(
     @participant.projects.each do |p|
       pdf.text "#{p.display_type} - #{p.description}"
       pdf.move_down 5
-      pdf.text "#{p.display_status} [ #{p.updated_at.strftime("%b %d, %Y")} ]", :size => 10
+      pdf.text "[ #{p.updated_at.strftime("%b %d, %Y")} ]", :size => 10
       pdf.move_down 10
     end
   else

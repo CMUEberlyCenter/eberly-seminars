@@ -22,8 +22,8 @@ class ParticipantsController < ApplicationController
 
   def update
     @participant = Participant.find(params[:id])
-    @participant.update_attributes(params[:participant])
-    @participant.save
+    @participant.assign_attributes(params[:participant], :without_protection => true)
+    @participant.save!
 
     respond_to do |format|
       format.js

@@ -6,6 +6,7 @@ gem 'rails', '4.2.0'
 
 # Legagy attribute access
 gem 'protected_attributes'
+gem 'responders', '~> 2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

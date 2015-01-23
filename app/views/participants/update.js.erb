@@ -19,7 +19,7 @@
 
 
 <% unless params[:participant][:projects_attributes].nil? %>
-  $("h1.syllabus_project + div ul").append("<li class=\"project\"><h2><strong><%= @participant.projects.last.type.label %></strong></h2><a href=\"<%= project_url(@participant.projects.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.projects.last.description %>&nbsp;&nbsp;[ <%= @participant.projects.last.status.label %> ]</li>");
+  $("h1.syllabus_project + div ul").append("<li class=\"project\"><h2><strong><%= @participant.projects.last.type.label %></strong></h2><a href=\"<%= project_url(@participant.projects.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.projects.last.description %></li>");
   $("h1.syllabus_project + div p.note").toggle()
   $("#add-project-form").slideUp();
   $("#add-project-link").slideDown();

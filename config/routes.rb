@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   resources :participants, except: :new do
     get 'enroll', on: :member
     resource :transcript, only: :show
-    resources :activities, only: [:update, :destroy], as: :participant_activities, shallow:
-                                                                                                  true
+    resources :participant_activities, only: [:update, :destroy], as: :participant_activities, shallow: true
     resources :observations, only: [:update, :destroy], shallow: true
     resources :projects, only: [:update, :destroy], shallow: true
   end
