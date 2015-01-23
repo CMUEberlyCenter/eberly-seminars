@@ -9,11 +9,14 @@ class Seminar < ActiveRecord::Base
 
   # Seminar.published, Seminar.development, etc.
   SeminarStatus.all.each do |s|
-    scope s.status, :conditions => { :seminar_status_id => s }
+    #scope s.status, :conditions => { :seminar_status_id => s }
+    scope s.status, -> { where( seminar_status: s) }
   end
-  scope :active, :conditions => ["end_at >= ?", Time.now], :order => 'start_at asc'
-  scope :expired, :conditions => ["end_at <= ?", Time.now], :order => 'start_at asc'
-  scope :upcoming, :conditions => ["end_at >= ?", Time.now], :order => 'start_at asc'
+  scope :active, -> { where("end_at >= ?", Time.now).order('start_at asc') }
+  scope :expired, -> { where("end_at <= ?", Time.now).order('start_at asc') }
+  scope :upcoming, -> { where("end_at >= ?", Time.now).order('start_at asc') }
+
+  scope :has_tag, -> (tag) { joins(:seminar_tags).where("seminar_tags.value = ?", tag) }
 
   def self.days_away( num_days )
     where( "start_at >= ? and start_at < ?", 
@@ -66,7 +69,7 @@ class Seminar < ActiveRecord::Base
 
 
   # TODO: filter for current semester regardless of publish status
-  scope :current_semester, :conditions => []
+  scope :current_semester, -> { where() }
 
   validates :title, :presence => true
 
@@ -130,5 +133,9 @@ class Seminar < ActiveRecord::Base
   #    errors.add(:expiration_date, "can't be in the past")
   #  end
 
+
+  def seminar_params
+    params.require(:seminar).permit!
+  end
 end
 

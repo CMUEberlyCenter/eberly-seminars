@@ -7,17 +7,18 @@ class Registration < ActiveRecord::Base
   delegate :status, :to => :registration_status, :prefix => false
 
   RegistrationStatus.all.each do |s| 
-    scope s.status, :conditions => { :registration_status_id => s }
+    scope s.status, -> { where( registration_status: s ) }
   end
 
 
   AttendanceStatus.all.each do |s| 
-    scope s.status, :conditions => { :attendance_status_id => s }
+    #scope s.status, :conditions => { :attendance_status_id => s }
+    scope s.status, -> { where( attendance_status: s ) }
   end
 
-  scope :credited, self.confirmed.attended.joins(:seminar).where('end_at < ?', Time.now)
+  scope :credited, -> { self.confirmed.attended.joins(:seminar).where('end_at < ?', Time.now) }
 
-  scope :upcoming, joins(:seminar).where('end_at >= ?', Time.now)
+  scope :upcoming, -> { joins(:seminar).where('end_at >= ?', Time.now) }
 
   validates :participant, :presence => true
   validates_uniqueness_of :participant_id, :scope => [:seminar_id]

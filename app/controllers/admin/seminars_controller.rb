@@ -5,8 +5,8 @@ class Admin::SeminarsController < ApplicationController
 
   def index
     display_tag = Setting.find_by_key('admin-list-tag').value
-    @expired_seminars = Seminar.expired.published.delete_if{ |x| !x.tags.include? display_tag }
-    @offered_seminars = Seminar.active.published.delete_if{ |x| !x.tags.include? display_tag }
+    @expired_seminars = Seminar.expired.published.has_tag( display_tag )
+    @offered_seminars = Seminar.active.published.has_tag( display_tag )
     @development_seminars = Seminar.development
   end
 
@@ -109,7 +109,7 @@ class Admin::SeminarsController < ApplicationController
 
   def update_seminar
     @seminar = Seminar.find(params[:seminar][:id])
-    @seminar.attributes = params[:seminar]
+    @seminar.assign_attributes( params[:seminar], :without_protection => true)
 
     d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
     tz = Time.local(d.year, d.month, d.day).zone

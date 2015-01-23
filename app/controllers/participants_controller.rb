@@ -8,7 +8,7 @@ class ParticipantsController < ApplicationController
 
 
   def show
-    @participant = Participant.find_or_create params[:id]
+    @participant = Participant.find_or_create_by( andrewid:  params[:id] )
 
     respond_to do |format|
       format.html

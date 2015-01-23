@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery-ui
 //= require dataTables/jquery.dataTables
 //= require jquery_ujs
 //= require best_in_place

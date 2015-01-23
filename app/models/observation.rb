@@ -1,6 +1,6 @@
 class Observation < ActiveRecord::Base
   belongs_to( :type, class_name: "ObservationType", 
-              foreign_key: "observation_type_id", readonly: true )
+              foreign_key: "observation_type_id")
   belongs_to :participant
 
   attr_accessible :course, :observed_on, :type, :observation_type_id

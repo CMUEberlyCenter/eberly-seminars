@@ -10,7 +10,7 @@ class Participant < ActiveRecord::Base
 
   attr_accessible :andrewid, :note, :activities_attributes, :observations_attributes, :projects_attributes
 
-  default_scope :order => "andrewid"
+  default_scope { order("andrewid") }
   # TODO: default to fetching active students
   #  default_scope :active
 

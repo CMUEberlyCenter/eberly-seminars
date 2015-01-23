@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
   belongs_to :participant
   belongs_to( :type, class_name: "ProjectType",
-              foreign_key: "project_type_id", readonly: true )
+              foreign_key: "project_type_id")
   belongs_to( :status, class_name: "ProjectStatus",
-              foreign_key: "project_status_id", readonly: true )
+              foreign_key: "project_status_id") #, readonly: true )
   attr_accessible :description, :type, :status, :project_type_id, :project_status_id
 
   # Type scope, e.g.: participant.projects.individual, Project.individual
