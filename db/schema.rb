@@ -11,13 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121183634) do
+ActiveRecord::Schema.define(version: 20150126161251) do
 
   create_table "attendance_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "label",      limit: 255
+  end
+
+  create_table "future_faculty_requirement_categories", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "future_faculty_requirements", force: :cascade do |t|
+    t.string   "key",                                    limit: 255
+    t.string   "label",                                  limit: 255
+    t.integer  "future_faculty_requirements_version_id", limit: 4
+    t.integer  "future_faculty_requirement_category_id", limit: 4
+    t.string   "activity_class",                         limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "future_faculty_requirements", ["future_faculty_requirement_category_id"], name: "index_ff_requirements_on_ff_requirement_category_id", using: :btree
+  add_index "future_faculty_requirements", ["future_faculty_requirements_version_id"], name: "index_ff_requirements_on_ff_requirements_version_id", using: :btree
+
+  create_table "future_faculty_requirements_versions", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "observation_types", force: :cascade do |t|
@@ -40,24 +67,31 @@ ActiveRecord::Schema.define(version: 20150121183634) do
   add_index "observations", ["participant_id"], name: "index_observations_on_participant_id", using: :btree
 
   create_table "participant_activities", force: :cascade do |t|
-    t.integer  "participant_id", limit: 4
-    t.string   "title",          limit: 255
-    t.text     "description",    limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "participant_id",                limit: 4
+    t.string   "type",                          limit: 255
+    t.integer  "future_faculty_requirement_id", limit: 4
+    t.string   "course",                        limit: 255
+    t.string   "title",                         limit: 255
+    t.string   "description",                   limit: 255
+    t.date     "completed_on"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
+  add_index "participant_activities", ["future_faculty_requirement_id"], name: "index_participant_activities_on_ff_requirement_id", using: :btree
   add_index "participant_activities", ["participant_id"], name: "index_participant_activities_on_participant_id", using: :btree
 
   create_table "participants", force: :cascade do |t|
-    t.string   "andrewid",          limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.boolean  "is_admin",          limit: 1,     default: false
-    t.string   "name_cache",        limit: 255
-    t.text     "note",              limit: 65535
-    t.boolean  "in_future_faculty", limit: 1
+    t.string   "andrewid",                     limit: 255
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+    t.boolean  "is_admin",                     limit: 1,     default: false
+    t.string   "name_cache",                   limit: 255
+    t.text     "note",                         limit: 65535
+    t.integer  "future_faculty_enrollment_id", limit: 4
   end
+
+  add_index "participants", ["future_faculty_enrollment_id"], name: "index_participants_on_future_faculty_enrollment_id", using: :btree
 
   create_table "project_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -106,19 +140,6 @@ ActiveRecord::Schema.define(version: 20150121183634) do
   add_index "registrations", ["registration_status_id"], name: "index_registrations_on_registration_status_id", using: :btree
   add_index "registrations", ["seminar_id"], name: "index_registrations_on_seminar_id", using: :btree
 
-  create_table "requirement_categories", force: :cascade do |t|
-    t.string   "label",      limit: 255
-    t.string   "key",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "requirements_versions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "seminar_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
     t.datetime "created_at",             null: false
@@ -157,4 +178,9 @@ ActiveRecord::Schema.define(version: 20150121183634) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "future_faculty_requirements", "future_faculty_requirement_categories"
+  add_foreign_key "future_faculty_requirements", "future_faculty_requirements_versions"
+  add_foreign_key "participant_activities", "future_faculty_requirements"
+  add_foreign_key "participant_activities", "participants"
+  add_foreign_key "participants", "future_faculty_requirements_versions", column: "future_faculty_enrollment_id"
 end

@@ -8,72 +8,178 @@
 
 
 # Populate each seminar status if it doesn't already exist
-['development','locked','published'].each { |status| SeminarStatus.find_or_create_by_key( :key => status) }
+['development','locked','published'].each { |status| SeminarStatus.find_or_create_by( :key => status) }
 
 # Populate each registration status if it doesn't already exist
 #
 # TODO: Yeah... I spelled canceled wrong.
 ['pending','confirmed','cancelled','cancelled_late'].
-  each { |status| RegistrationStatus.find_or_create_by_key( :key => status ) }
+  each { |status| RegistrationStatus.find_or_create_by( :key => status ) }
 
 # Populate each attendance status if it doesn't already exist
 #
 # TODO: Ruby 1.9.1 really doesn't like '-' in symbol names. Deal with renaming these
 # before they get used in a scope or something similar.
 ['attended','attended-incomplete','absent-unexcused','absent-excused'].
-  each { |status| AttendanceStatus.find_or_create_by_key( :key => status ) }
+  each { |status| AttendanceStatus.find_or_create_by( :key => status ) }
 
 # Create certain admins by default if they don't already exist
-['meribyte','jmbrooks','rpoprosk','hershock','hdwyer'].
-  each { |andrewid| Participant.find_or_create_by_andrewid( { :andrewid => andrewid, :is_admin => true },
-                                                            :without_protection => true) }
+['meribyte','jmbrooks','rpoprosk','hershock','hdwyer'].each do |andrewid|
+  Participant.find_or_create_by( { :andrewid => andrewid } ) do |u|
+    u.is_admin = true
+  end
+end
 
 # Create default application-wide settings if they don't already exist
 #
 # TODO: Ruby 1.9.1 really doesn't like '-' in symbol names. Deal with renaming these
 # before they get used in a scope or something similar.
-Setting.find_or_create_by_key(
-                              :key => "default-tag", 
-                              :label => "Default tag for new seminars", 
-                              :value => "S13" )
+Setting.find_or_create_by( :key => "default-tag" ) do |s|
+  s.label = "Default tag for new seminars"
+  s.value = "S13"
+end
 
-Setting.find_or_create_by_key( 
-                              :key => "admin-list-tag", 
-                              :label => "List seminars in admin view with tag", 
-                              :value => "S13" )
+Setting.find_or_create_by( :key => "admin-list-tag" ) do |s|
+  s.label = "List seminars in admin view with tag"
+  s.value = "S13"
+end
+
 
 ##
 # Future Faculty Program additions
 
-# Create each observation type if it doesn't already exist
-ObservationType.find_or_create_by_key(
-                                      :key => 'microteaching',
-                                      :label => 'Microteaching Observation' )
-ObservationType.find_or_create_by_key(
-                                      :key => 'classroom_observation',
-                                      :label => 'Classroom Observation' )
-ObservationType.find_or_create_by_key(
-                                      :key => 'early_course_feedback',
-                                      :label => 'Early Course Feedback/Focus Group' )
+# TODO: Make this less clunky after phasing out protected_attr gem.
 
-# Create each project type if it doesn't already exist
-ProjectType.find_or_create_by_key(
-                                  :key => 'course',
-                                  :label => 'Course & Syllabus Design Project' )
+# Requirements Versions
+v1 = FutureFaculty::RequirementsVersion.find_or_create_by(
+  key: '2012') do |v|
+  v.key = '2012'
+  v.label = 'Requirements in place on app launch (2012)'
+end
 
-ProjectType.find_or_create_by_key(
-                                  :key => 'individual',
-                                  :label => 'Individual Project' )
+v2 = FutureFaculty::RequirementsVersion.find_or_create_by(
+  key: '2015') do |v|
+  v.key = '2015'
+  v.label = 'Requirements in effect 1/1/2015.'
+end
 
-# Create each project status if it doesn't already exist
-ProjectStatus.find_or_create_by_key(
-                                    :key => 'not_started',
-                                    :label => 'Not Started' )
+# Requirement Categories and Requirements
+c = FutureFaculty::RequirementCategory.find_or_create_by(
+  key: 'projects') do |p|
+  p.key = 'projects'
+  p.label = 'Projects'
+end
 
-ProjectStatus.find_or_create_by_key(
-                                    :key => 'approved',
-                                    :label => 'Approved' )
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'course-project',
+  requirements_version: v1,
+  requirement_category: c ) do |p|
+  p.key = 'course-project'
+  p.label = 'Course & Syllabus Design Project'
+  p.requirements_version = v1
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::CourseAndSyllabusDesignProject'
+end
 
-ProjectStatus.find_or_create_by_key(
-                                    :key => 'completed',
-                                    :label => 'Completed' )
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'individual-project',
+  requirements_version: v1,
+  requirement_category: c ) do |p|
+  p.label = 'Individual Project'
+  p.key = 'individual-project'
+  p.requirements_version = v1
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::IndividualProject'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'course-project',
+  requirements_version: v2,
+  requirement_category: c ) do |p|
+  p.label = 'Course & Syllabus Design Project'
+  p.key = 'course-project'
+  p.requirements_version = v2
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::CourseAndSyllabusDesignProject'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'statement-project',
+  requirements_version: v2,
+  requirement_category: c ) do |p|
+  p.label = 'Teaching Statement Project'
+  p.key = 'statement-project'
+  p.requirements_version = v2
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::TeachingStatementProject'
+end
+
+c = FutureFaculty::RequirementCategory.find_or_create_by(
+  key: 'observations') do |p|
+  p.label = 'Observations'
+  p.key = 'observations'
+end
+
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'microteaching-observation',
+  requirements_version: v1,
+  requirement_category: c ) do |p|
+  p.label = 'Microteaching Observation'
+  p.key = 'microteaching-observation'
+  p.requirements_version = v1
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::MicroteachingObservation'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'classroom-observation',
+  requirements_version: v1,
+  requirement_category: c ) do |p|
+  p.label = 'Classroom Observation'
+  p.key = 'classroom-observation'
+  p.requirements_version = v1
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::ClassroomObservation'
+end
+
+
+c = FutureFaculty::RequirementCategory.find_or_create_by(
+  key: 'teaching-consultations') do |p|
+  p.label = 'Teaching Consultations'
+  p.key = 'teaching-consultations'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'microteaching-observation',
+  requirements_version: v2,
+  requirement_category: c ) do |p|
+  p.label = 'Microteaching Observation'
+  p.key = 'microteaching-observation'
+  p.requirements_version = v2
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::MicroteachingObservation'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'classroom-observation',
+  requirements_version: v2,
+  requirement_category: c ) do |p|
+  p.label = 'Classroom Observation'
+  p.key = 'classroom-observation'
+  p.requirements_version = v2
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::ClassroomObservation'
+end
+
+FutureFaculty::Requirement.find_or_create_by(
+  key: 'ecf-fg-observation',
+  requirements_version: v2,
+  requirement_category: c ) do |p|
+  p.label = 'Early Course Feedback/Focus Group'
+  p.key = 'ecf-fg-observation'
+  p.requirements_version = v2
+  p.requirement_category = c
+  p.activity_class = 'ParticipantActivity::EarlyCourseFeedback'
+end
+

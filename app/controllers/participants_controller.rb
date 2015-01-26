@@ -13,10 +13,10 @@ class ParticipantsController < ApplicationController
     respond_to do |format|
       format.html
     end
-  rescue
+#  rescue
     # TODO: participants_url/did you mean? results
-    redirect_to( root_url,
-                 :flash => { :error => "Participant does not exist." } )
+#    redirect_to( root_url,
+#                 :flash => { :error => "Participant does not exist." } )
   end # show
 
 

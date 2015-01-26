@@ -1,7 +1,5 @@
-class ParticipantActivity < ActiveRecord::Base
-  belongs_to :participant
-  attr_accessible :description, :title
-
-  validates :participant, :title, presence: true
-  validates_associated :participant
+module ParticipantActivity
+  def self.table_name_prefix
+    'participant_activity_'
+  end
 end

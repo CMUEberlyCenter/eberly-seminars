@@ -37,15 +37,8 @@ section.participant {
       background: #94b840;
     }
 
-    &.observations {
+    &.requirement-category-label {
       background: #e3b31c;
-    }
-
-    &.syllabus_project {
-      background: #e3b31c;
-    }
-    &.individual_project {
-      background: #ba1480;
     }
   }
 
@@ -137,6 +130,7 @@ section.participant {
    }
   }
 
+  .add-activity-form,
   #add-observation-form,
   #add-project-form,
   #add-activity-form{

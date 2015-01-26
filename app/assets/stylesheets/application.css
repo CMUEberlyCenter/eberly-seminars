@@ -21,6 +21,5 @@
  *= require participants
  *= require admin/spreadsheets
  *= require admin/seminars
-
-
+ *= require participant/activities
 */

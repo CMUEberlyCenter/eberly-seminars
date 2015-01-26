@@ -2,8 +2,8 @@
   $("#note-response p").html("Your changes have been saved.").fadeIn("slow").fadeOut(4000);
 <% end %>
 
-<% unless params[:participant][:activities_attributes].nil? %>
-  $("#other_activities + div ul").append("<li class=\"activity\"><h2><%= @participant.activities.last.title %></h2><a href=\"<%= participant_activity_url(@participant.activities.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.activities.last.description %></li>");
+<% unless params[:participant][:additional_activities_attributes].nil? %>
+  $("#other_activities + div ul").append("<li class=\"activity\"><h2><%= @participant.additional_activities.last.title %></h2><a href=\"<%= participant_activity_path(@participant.additional_activities.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.additional_activities.last.description %></li>");
   $("#other_activities + div p.note").toggle()
   $("#add-activity-form").slideUp();
   $("#add-activity-link").slideDown();

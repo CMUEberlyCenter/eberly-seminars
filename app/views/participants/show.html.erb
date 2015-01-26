@@ -39,36 +39,38 @@
     <p class="note">None.</p>
   </div>
 
+  <%  if @participant.in_future_faculty_program? %>
   <section id="ffp_things" <% unless @participant.in_future_faculty_program? %>style="display: none;"<% end %>>
-    <%= render partial: 'ffp_observations' %>
-    <%= render partial: 'ffp_projects' %>
+    <%= render partial: 'ffp_requirements' %>
   </section>
+  <% end %>
 
 
   <h1 class="activities" id="other_activities">Other Activities and Consultations</h1>
   <div>
       <ul>
-	<% @participant.activities.each do |a| %>
+	<% @participant.additional_activities.each do |a| %>
 	<li class="activity">
-	  <h2><%= best_in_place a, :title %></h2> <%= link_to "[x]", participant_activity_url(a), :method => :delete, remote: true, confirm: "Really delete this?" %><br/>
-	  <%= best_in_place a, :description %>
+	  <h2><%= best_in_place a, :title, url: participant_activity_path(a) %></h2> <%= link_to "[x]", participant_activity_path(a), :method => :delete, remote: true, data: { confirm: "Really delete this?" } %><br/>
+	  <%= best_in_place a, :description, url: participant_activity_path(a) %>
 	</li>
 	<% end %>
       </ul>
 
-    <% if @participant.activities.size == 0 %>
+    <% if @participant.additional_activities.size == 0 %>
       <p class="note">None.</p>
     <% end %>
 
     <div id="add-activity-form">
-    <%= form_for @participant, remote: true do |f| %>
-      <%= f.fields_for :activities, @participant.activities.build do |a| %>
+      <%# TODO: Make new activities editable without refresh %>
+      <%= form_for @participant, remote: true do |f| %>
+      <%= f.fields_for :additional_activities, @participant.additional_activities.build do |a| %>
       <h2>Title</h2><br/> <%= a.text_field( :title ) %><br/>
       <h2>Description</h2><br/>
       <%= a.text_area( :description ) %>
       <% end %>
       <%= f.submit "Create" %>
-    <% end %>
+      <% end %>
     </div>
     
     <div class="button_container add">

@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   get "observations/destroy"
 
-  get "participant_activities/destroy"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -17,7 +15,7 @@ Rails.application.routes.draw do
   resources :participants, except: :new do
     get 'enroll', on: :member
     resource :transcript, only: :show
-    resources :participant_activities, only: [:update, :destroy], as: :participant_activities, shallow: true
+    resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participant/activities"
     resources :observations, only: [:update, :destroy], shallow: true
     resources :projects, only: [:update, :destroy], shallow: true
   end

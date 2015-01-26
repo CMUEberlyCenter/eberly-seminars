@@ -1,12 +1,19 @@
 class Participant < ActiveRecord::Base
   has_many :registrations
   has_many :seminars, :through => :registrations
+  belongs_to :future_faculty_enrollment, class_name: FutureFaculty::RequirementsVersion
+
+  has_many :activities, class_name: ParticipantActivity::Base, dependent: :destroy
+  
+  has_many :additional_activities, class_name: ParticipantActivity::Additional, dependent: :destroy
+  
   has_many :observations, dependent: :destroy
   has_many :projects, dependent: :destroy
-  has_many :activities, class_name: "ParticipantActivity", dependent: :destroy
-  accepts_nested_attributes_for :activities
+
+  accepts_nested_attributes_for :additional_activities
   accepts_nested_attributes_for :observations
   accepts_nested_attributes_for :projects
+  accepts_nested_attributes_for :activities
 
   attr_accessible :andrewid, :note, :activities_attributes, :observations_attributes, :projects_attributes
 
@@ -30,7 +37,7 @@ class Participant < ActiveRecord::Base
   end
 
   def in_future_faculty_program?
-    self.in_future_faculty == true
+    self.future_faculty_enrollment != nil
   end
 
   def registration_for( seminar )

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: MyString
+  label: MyString
+  future_faculty_requirements_version_id: 
+  future_faculty_requirement_category_id: 
+  activity_class: MyString
+
+two:
+  key: MyString
+  label: MyString
+  future_faculty_requirements_version_id: 
+  future_faculty_requirement_category_id: 
+  activity_class: MyString
