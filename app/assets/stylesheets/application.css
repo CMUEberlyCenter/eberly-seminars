@@ -17,7 +17,7 @@
  *= require primary
  *= require navigation
  *= require seminars
- *= require transcripts
+ *= require participant/transcripts
  *= require participants
  *= require admin/spreadsheets
  *= require admin/seminars

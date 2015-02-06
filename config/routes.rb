@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # ==|== participants and associated resources ==============================
   resources :participants, except: :new do
     get 'enroll', on: :member
-    resource :transcript, only: :show
+    resource :transcript, only: :show, controller: "participant/transcripts"
     resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participant/activities"
     resources :observations, only: [:update, :destroy], shallow: true
     resources :projects, only: [:update, :destroy], shallow: true

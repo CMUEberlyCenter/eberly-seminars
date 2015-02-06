@@ -1,4 +1,4 @@
-class TranscriptsController < ApplicationController
+class Participant::TranscriptsController < ApplicationController
   before_filter -> { require_administrator_or_self transcript_url }
 
   def show
