@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # first created -> highest priority.
 
   # ==|== participants and associated resources ==============================
-  resources :participants, except: :new do
+  resources :participants, except: :new, controller: "participant/base" do
     get 'enroll', on: :member
     resource :transcript, only: :show, controller: "participant/transcripts"
     resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participant/activities"

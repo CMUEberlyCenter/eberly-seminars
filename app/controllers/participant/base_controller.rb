@@ -1,4 +1,4 @@
-class ParticipantsController < ApplicationController
+class Participant::BaseController < ApplicationController
   before_filter :require_administrator
 
 
