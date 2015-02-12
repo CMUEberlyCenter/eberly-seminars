@@ -4,20 +4,14 @@ Rails.application.routes.draw do
 
   root :to => 'seminars#index'
 
-  get "projects/destroy"
-
-  get "observations/destroy"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # ==|== participants and associated resources ==============================
-  resources :participants, except: :new, controller: "participant/base" do
+  resources :participants, except: :new, controller: "participants/base" do
     get 'enroll', on: :member
-    resource :transcript, only: :show, controller: "participant/transcripts"
-    resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participant/activities"
-    resources :observations, only: [:update, :destroy], shallow: true
-    resources :projects, only: [:update, :destroy], shallow: true
+    resource :transcript, only: :show, controller: "participants/transcripts"
+    resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participants/activities"
   end
 
 

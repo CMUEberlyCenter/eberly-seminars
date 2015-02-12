@@ -78,7 +78,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.label = 'Course & Syllabus Design Project'
   p.requirements_version = v1
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::CourseAndSyllabusDesignProject'
+  p.activity_class = 'Participants::Activities::CourseAndSyllabusDesignProject'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -89,7 +89,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'individual-project'
   p.requirements_version = v1
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::IndividualProject'
+  p.activity_class = 'Participants::Activities::IndividualProject'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -100,7 +100,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'course-project'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::CourseAndSyllabusDesignProject'
+  p.activity_class = 'Participants::Activities::CourseAndSyllabusDesignProject'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -111,7 +111,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'statement-project'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::TeachingStatementProject'
+  p.activity_class = 'Participants::Activities::TeachingStatementProject'
 end
 
 c = FutureFaculty::RequirementCategory.find_or_create_by(
@@ -129,7 +129,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'microteaching-observation'
   p.requirements_version = v1
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::MicroteachingObservation'
+  p.activity_class = 'Participants::Activities::MicroteachingObservation'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -140,7 +140,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'classroom-observation'
   p.requirements_version = v1
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::ClassroomObservation'
+  p.activity_class = 'Participants::Activities::ClassroomObservation'
 end
 
 
@@ -158,7 +158,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'microteaching-observation'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::MicroteachingObservation'
+  p.activity_class = 'Participants::Activities::MicroteachingObservation'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -169,7 +169,7 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'classroom-observation'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::ClassroomObservation'
+  p.activity_class = 'Participants::Activities::ClassroomObservation'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
@@ -180,6 +180,6 @@ FutureFaculty::Requirement.find_or_create_by(
   p.key = 'ecf-fg-observation'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'ParticipantActivity::EarlyCourseFeedback'
+  p.activity_class = 'Participants::Activities::EarlyCourseFeedback'
 end
 

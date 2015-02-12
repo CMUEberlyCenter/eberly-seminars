@@ -1,0 +1,34 @@
+<% if @participant.note_changed? %>
+  $("#note-response p").html("Your changes have been saved.").fadeIn("slow").fadeOut(4000);
+<% end %>
+
+<% unless params[:participant][:additional_activities_attributes].nil? %>
+  $("#other_activities + div ul").append("<li class=\"activity\"><h2><%= @participant.additional_activities.last.title %></h2><a href=\"<%= participant_activity_path(@participant.additional_activities.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.additional_activities.last.description %></li>");
+  $("#other_activities + div p.note").toggle()
+  $("#add-activity-form").slideUp();
+  $("#add-activity-link").slideDown();
+<% end %>
+
+
+<% unless params[:participant][:observations_attributes].nil? %>
+  $("h1.observations + div ul").append("<li class=\"observation\"><h2><strong><%= @participant.observations.last.type.label %></strong></h2><a href=\"<%= observation_url(@participant.observations.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.observations.last.course %>&nbsp;&nbsp;[ <%= @participant.observations.last.observed_on.strftime("%b %d, %Y") %> ]</li>");
+  $("h1.observations + div p.note").toggle()
+  $("#add-observation-form").slideUp();
+  $("#add-observation-link").slideDown();
+<% end %>
+
+
+<% unless params[:participant][:projects_attributes].nil? %>
+  $("h1.syllabus_project + div ul").append("<li class=\"project\"><h2><strong><%= @participant.projects.last.type.label %></strong></h2><a href=\"<%= project_url(@participant.projects.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.projects.last.description %></li>");
+  $("h1.syllabus_project + div p.note").toggle()
+  $("#add-project-form").slideUp();
+  $("#add-project-link").slideDown();
+<% end %>
+
+
+<% unless params[:participant][:activities_attributes].nil? %>
+
+  $("div.requirement-category > ul").append("<li class=\"project\"><h2><strong><%= @participant.activities.last.title %></strong></h2><a href=\"<%= participant_activity_url(@participant.activities.last)%>\" data-confirm=\"Really delete this?\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">[x]</a><br/><%= @participant.activities.last.description %></li>");
+  $("#other_activities + div p.note").toggle()
+  $(".add-activity-form").slideUp();
+<% end %>

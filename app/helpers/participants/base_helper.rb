@@ -1,0 +1,2 @@
+module Participants::BaseHelper
+end

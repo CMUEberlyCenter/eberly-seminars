@@ -1,0 +1,2 @@
+module Participants::ActivitiesHelper
+end

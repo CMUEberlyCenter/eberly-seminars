@@ -1,0 +1,2 @@
+module Participants::TranscriptsHelper
+end
