@@ -146,30 +146,30 @@ end
 
 c = FutureFaculty::RequirementCategory.find_or_create_by(
   key: 'teaching-consultations') do |p|
-  p.label = 'Teaching Consultations'
+  p.label = 'Teaching Feedback Consultations'
   p.key = 'teaching-consultations'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
-  key: 'microteaching-observation',
+  key: 'microteaching-workshop',
   requirements_version: v2,
   requirement_category: c ) do |p|
-  p.label = 'Microteaching Observation'
-  p.key = 'microteaching-observation'
+  p.label = 'Microteaching Workshop and Follow-Up Conversation'
+  p.key = 'microteaching-workshop'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'Participants::Activities::MicroteachingObservation'
+  p.activity_class = 'Participants::Activities::MicroteachingWorkshop'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
-  key: 'classroom-observation',
+  key: 'teaching-observation',
   requirements_version: v2,
   requirement_category: c ) do |p|
-  p.label = 'Classroom Observation'
-  p.key = 'classroom-observation'
+  p.label = 'Teaching Observation'
+  p.key = 'teaching-observation'
   p.requirements_version = v2
   p.requirement_category = c
-  p.activity_class = 'Participants::Activities::ClassroomObservation'
+  p.activity_class = 'Participants::Activities::TeachingObservation'
 end
 
 FutureFaculty::Requirement.find_or_create_by(
