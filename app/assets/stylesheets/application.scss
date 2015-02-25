@@ -8,18 +8,20 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require reset
- *= require jquery.tagit
- *= require tagit-jquery-ui
- *= require fonts
- *= require admin/timepicker
- *= require primary
- *= require navigation
- *= require seminars
- *= require participants/transcripts
- *= require participants/base
- *= require admin/spreadsheets
- *= require admin/seminars
- *= require participants/activities
 */
+
+@import "reset";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "primary";
+@import "jquery.tagit";
+@import "tagit-jquery-ui";
+@import "fonts";
+@import "admin/timepicker";
+@import "navigation";
+@import "seminars";
+@import "participants/transcripts";
+@import "participants/base";
+@import "admin/spreadsheets";
+@import "admin/seminars";
+@import "participants/activities";

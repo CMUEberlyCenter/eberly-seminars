@@ -31,8 +31,12 @@ gem 'prawn_rails'
 gem 'htmlentities'
 gem 'best_in_place'
 
-# MTI for FFP requirements
-gem 'active_record-acts_as'
+gem 'bootstrap-sass', '~> 3.3.3'
+
+# automatically add the proper vendor prefixes to CSS code
+gem 'autoprefixer-rails'
+
+gem 'simple_form'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
