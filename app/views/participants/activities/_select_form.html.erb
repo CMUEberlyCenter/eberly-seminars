@@ -18,10 +18,11 @@
             <%= a.hidden_field :type, value: t.activity_class %>
             <%= a.text_area( :description ) %>
             
-            <%= a.submit "Create", class: ["btn","btn-primary"] %>
+
+          </div>
+                      <%= a.submit "Create", class: ["btn","btn-primary"] %>
             
             <%# TODO: Cancel %>
-          </div>
           <% end %>
         </div>
         <% end %>

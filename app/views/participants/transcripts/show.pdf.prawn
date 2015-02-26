@@ -124,7 +124,7 @@ unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
 
   if category_requirements[c].size > 0
     category_requirements[c].each do |r|
-      pdf.text "#{r.label}"
+      pdf.text "#{r.label} [ #{r.created_at.strftime('%b %d, %Y')} ]"
       pdf.move_down 5
   end
   

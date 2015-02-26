@@ -47,8 +47,23 @@ gem 'simple_form'
 
 # Deploy with Capistrano
 group :development do
+  gem "capistrano", "3.2.1"  
   gem "capistrano-rails"
+  #  gem "capistrano-rvm"
+  gem 'rvm1-capistrano3', require: false
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
+
+gem 'passenger', :group => [:production, :test]
+#gem "rvm-capistrano"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

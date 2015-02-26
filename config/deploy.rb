@@ -14,11 +14,17 @@ set :deploy_to, "/srv/rails/#{fetch(:application)}"
 set :linked_files, %w{config/database.yml config/initializers/secret_token.rb}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :default_env, { path: "/srv/rails/seminars/shared/bin:$PATH" }
+set :default_env, { path: "/usr/local/rvm/bin/rvm:/srv/rails/seminars/shared/bin:$PATH" }
 
 set :bundle_flags, '--deployment --local --quiet'
 SSHKit.config.command_map[:rake]  = "bundle exec rake"
 SSHKit.config.command_map[:rails] = "bundle exec rails"
+
+set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
+set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
+
+#before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
+#before 'deploy:setup', 'rvm:install_ruby' # install Ruby and create gemset, OR:
 
 
 # ==|== utilities ==========================================================
@@ -81,3 +87,17 @@ namespace :deploy do
   end
 
 end
+
+
+namespace :app do
+  task :update_rvm_key do
+    on roles(:app) do
+      execute :gpg, "--keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
+    end
+  end
+end
+#before "rvm1:install:rvm", "app:update_rvm_key"
+#before 'deploy', 'rvm1:install:rvm'  # install/update RVM
+#before 'deploy', 'rvm1:install:ruby'
+#before 'deploy', 'rvm1:alias:create'
+#before 'deploy', 'rvm1:install:gems'
