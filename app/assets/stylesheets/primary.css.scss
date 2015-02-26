@@ -5,6 +5,85 @@
 /* ==|== scss definitions =================================================== */
 @import "graduate_student_support_definitions";
 
+/* ==|== bootstrap override ================================================= */
+.panel {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+
+    h2 {
+        font: 20px/32px 'OpenSansLight', sans-serif;
+        padding: 0;
+        margin: 10px 0 0 0;
+        vertical-align: middle;
+    }
+
+    .list-group {
+        
+        .list-group-item {
+            border: none;
+            line-height: 20px;
+            font-family: 'OpenSansLight', sans-serif;
+            padding: 5px 15px; 
+
+            
+            h2 {
+                font: 16px 'OpenSansRegular', sans-serif;
+                
+                small {
+                    font-size: 87.5%;
+                }
+                a {
+                    color: #999;
+                    font-weight: normal;
+                    text-decoration: none;
+                }
+            }
+            .list-group-item-text {
+                padding-left: 0;
+            }
+        }
+    }
+
+  .panel-heading {
+      border-radius: inherit;
+      background: #bbb;
+      color: #fff;
+      padding: 5px $padding-small;
+      vertical-align: middle;
+
+      &.seminars {
+        background: #94b840;
+      }
+
+      &.requirement-category-label {
+        background: #e3b31c;
+      }
+
+      .panel-title {
+      margin: 0;
+      font: 24px/28px 'OpenSansLight', sans-serif;
+      padding: 0;
+
+      }
+  }
+}
+.btn {
+    border-radius: 2px;
+    font-size: 16px;
+    &.btn-primary {
+        color: #fff;
+        background-color: #bbb;
+        border-color: #bbb;
+        &:hover { border-color: #999; }
+    }
+
+    .glyphicon {
+        font-size: 50%;
+        vertical-align: 50%;
+    }
+}
+
 /* ==|== global styles ====================================================== */
 body {
   margin: 0;
@@ -22,7 +101,6 @@ a.indicates-more:after { content: "..."; }
   background: $cmu-red;
   height: 35px;
   vertical-align: middle;
-  width: 100%;
 
   #cmu-bar {
   }
@@ -212,6 +290,11 @@ div.flash {
     padding: $padding-small/2 $padding-small;
     text-align: center;
     text-decoration: none;
+
+    &.success {
+      background: #fff;
+      color: #bbb;        
+    }
     
     &.inactive {
       background: #ffffff;

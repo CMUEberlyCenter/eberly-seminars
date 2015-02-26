@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h1 class="panel-title">Other Activities and Consultations</h1>
+  </div>
+
+  <div class="panel-body">
+    
+    <div class="list-group">
+      <%= render( partial: "participants/activities/activity", collection: participant.activities.additional ) ||
+          raw( "<div class=\"list-group-item\"><h2 class=\"list-group-item-heading\">None.</h2></div>" ) %>
+    </div>
+    
+    <%= render( "participants/activities/form",
+        activity: participant.activities.build( type: "Participants::Activities::Additional" ) ) %>
+    
+  </div><!-- panel-body -->
+
+</div><!-- panel -->

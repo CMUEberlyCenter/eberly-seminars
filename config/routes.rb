@@ -9,9 +9,29 @@ Rails.application.routes.draw do
 
   # ==|== participants and associated resources ==============================
   resources :participants, except: :new, controller: "participants/base" do
-    get 'enroll', on: :member
-    resource :transcript, only: :show, controller: "participants/transcripts"
-    resources :activities, only: [:update, :destroy], as: :participant_activities,  shallow: true, controller: "participants/activities"
+#    patch 'enroll', on: :member
+#    patch 'unenroll', on: :member
+
+    resource 'future-faculty-program',
+             as: :future_faculty_program,
+             controller: "participants/programs/future_faculty",
+             only: [:enroll, :unenroll] do
+      member do
+        patch 'enroll'
+        patch 'unenroll'
+      end
+    end
+    
+    resource 'transcript', only: :show, controller: "participants/transcripts"
+
+    # Get the participant_activity path name without requiring an explicit
+    # (and implicitly defined) participant_id for update and destroy
+    scope shallow_prefix: "participant" do
+      resources 'activities',
+                only: [:create, :update, :destroy],
+                controller: "participants/activities",
+                shallow: true
+     end
   end
 
 

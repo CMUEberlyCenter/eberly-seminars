@@ -1,0 +1,18 @@
+$(".list-group[data-participant-activity=\"add\"]").append("<%= j render( partial: "participants/activities/activity", object: @activity ) %>")
+
+$(".list-group[data-participant-activity=\"add\"]").children(".list-group-item.activity").last().hide().slideDown();
+
+$(".list-group[data-participant-activity=\"add\"]").find(".list-group-item.activity").last().find("[data-method=\"delete\"]").click( function(event) {
+  $(this).closest(".list-group-item.activity").attr("data-participant-activity","remove");
+});
+
+<%# TODO: using parent() is brittle %>
+$(".list-group[data-participant-activity=\"add\"]").parent().find(".btn-add-participant-activity").toggle();
+$(".list-group[data-participant-activity=\"add\"]").parent().find(".add-participant-activity-form").slideUp();
+
+<%# for multiact type forms %>
+$(".list-group[data-participant-activity=\"add\"]").parent().find(".add-participant-activity-form").find(".add-participant-activity-form-section").slideUp();
+$(".list-group[data-participant-activity=\"add\"]").next().find(".btn-group").toggle();
+
+
+$(".list-group[data-participant-activity=\"add\"]").removeAttr("data-participant-activity");

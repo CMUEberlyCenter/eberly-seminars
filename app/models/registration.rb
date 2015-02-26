@@ -1,23 +1,43 @@
 class Registration < ActiveRecord::Base
+
+  # Participant
   belongs_to :participant
-  belongs_to :seminar #, :through => :seminar_offering
+
+
+  # Event Information
+  belongs_to :seminar
+  [:description, :title, :start_at, :end_at, :location].each do |m|
+    delegate m, to: :seminar, prefix: :event
+  end
+
+  
+  # Registration Status
+  delegate :status, :to => :registration_status
   belongs_to :registration_status
-  belongs_to :attendance_status
-
-  delegate :status, :to => :registration_status, :prefix => false
-
-  RegistrationStatus.all.each do |s| 
+  
+  RegistrationStatus.find_each do |s| 
     scope s.status, -> { where( registration_status: s ) }
   end
 
-
-  AttendanceStatus.all.each do |s| 
-    #scope s.status, :conditions => { :attendance_status_id => s }
-    scope s.status, -> { where( attendance_status: s ) }
+  
+  # Attendance Status
+  belongs_to :attendance_status
+  
+  AttendanceStatus.find_each do |s| 
+    scope s.status, -> { where( attendance_status: s ).
+                         joins( :seminar ).
+                         merge( Seminar.completed ) }
   end
 
-  scope :credited, -> { self.confirmed.attended.joins(:seminar).where('end_at < ?', Time.now) }
 
+
+#  scope :has_tag, -> (tag) { joins(:seminar_tags).where("seminar_tags.value = ?", tag) }
+#  scope :credited, -> { merge(:confirmed).merge(:attended).where( 'end_at < ?', Time.now ) }
+  #
+  
+#  scope :credited, -> { self.confirmed.attended.joins(:seminar).where( 'end_at < ?', Time.now ) }
+
+#  scope :credited, -> { joins(:seminar) & (:registration_).where( 'end_at < ?', Time.now )
   scope :upcoming, -> { joins(:seminar).where('end_at >= ?', Time.now) }
 
   validates :participant, :presence => true

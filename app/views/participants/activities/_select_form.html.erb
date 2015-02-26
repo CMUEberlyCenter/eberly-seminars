@@ -1,0 +1,47 @@
+<div class="add-participant-activity-wrapper">
+  <div class="add-participant-activity-form">
+
+        <% type_options.each do |t| %>
+        <div id="<%= t.key %>-form" class="add-participant-activity-form-section">
+          <%= simple_form_for( activity.becomes( Participants::Activity ),
+              url: participant_activities_path( activity.participant,
+              activity),
+              remote: true
+              ) do |a| %>
+
+          <div class="form-inputs">
+            <h2><%= t.label %></h2>
+
+            
+            <h2>Title</h2><br/> <%= a.text_field( :title ) %>
+            <h2>Description</h2>
+            <%= a.hidden_field :type, value: t.activity_class %>
+            <%= a.text_area( :description ) %>
+            
+            <%= a.submit "Create", class: ["btn","btn-primary"] %>
+            
+            <%# TODO: Cancel %>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+  </div>
+  
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Activity <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <% type_options.each do |t| %>
+      <li><a href="#" class="add-participant-activity-section" id="<%= t.key %>"><%= t.label %></a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!--
+  <button type="button" class="btn btn-primary btn-add-participant-activity">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Activity
+  </button>
+  -->
+
+</div>

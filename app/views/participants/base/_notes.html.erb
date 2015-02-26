@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h1 class="panel-title">Notes &mdash; Internal Use Only</h1>
+  </div>
+
+  <div class="panel-body">
+    <div id="note-response"><p></p></div>
+
+    <%# TODO: Bootstrap %>
+    <%= simple_form_for participant, remote: true do |f| %>
+    <% default_text = "Add a note..." %>
+    <% seed = (participant.note.nil? || participant.note.empty?) ? default_text : participant.note %>
+    <%= hidden_field_tag(:note_seed_text, seed) %> <%# TODO: update field w/ new seed on update %>
+    <%= hidden_field_tag(:note_default_text, default_text) %>
+    <%= f.text_area(:note, id: "note", value: seed) %>
+    <%= f.submit "Update", id: "note-submit" %>
+    <% end %>
+
+  </div><!-- panel-body -->
+
+</div><!-- panel -->

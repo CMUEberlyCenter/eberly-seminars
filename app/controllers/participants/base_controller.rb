@@ -1,5 +1,5 @@
 class Participants::BaseController < ApplicationController
-  before_filter :require_administrator
+  before_filter :require_administrator, only: :enroll
 
 
   def index
@@ -21,21 +21,21 @@ class Participants::BaseController < ApplicationController
 
 
   def update
-    @participant = Participant.find(params[:id])
-    @participant.assign_attributes(params[:participant], :without_protection => true)
-    @participant.save!
+    @participant = Participant.find( params[:id] )
+    @participant.update_attributes!( participant_params )
 
     respond_to do |format|
       format.js
     end
   end
 
-  
-  def enroll
-    @participant = Participant.find_by_andrewid(params[:id])
-    @participant.in_future_faculty = true
-    @participant.save
+  private
+  def participant_params
+    if current_user.is_admin?
+      params.require(:participant).permit(:note, :activities_attributes => [:type, :id, :title, :description], :additional_activities_attributes => [:title,:description])
+    else
+      params.require(:participant).permit(nil)
+    end
   end
-
-
+  
 end

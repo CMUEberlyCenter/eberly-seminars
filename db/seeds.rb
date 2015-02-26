@@ -51,133 +51,133 @@ end
 # TODO: Make this less clunky after phasing out protected_attr gem.
 
 # Requirements Versions
-v1 = FutureFaculty::RequirementsVersion.find_or_create_by(
+v1 = Programs::FutureFaculty::RequirementsVersion.find_or_create_by(
   key: '2012') do |v|
   v.key = '2012'
   v.label = 'Requirements in place on app launch (2012)'
 end
 
-v2 = FutureFaculty::RequirementsVersion.find_or_create_by(
+v2 = Programs::FutureFaculty::RequirementsVersion.find_or_create_by(
   key: '2015') do |v|
   v.key = '2015'
   v.label = 'Requirements in effect 1/1/2015.'
 end
 
 # Requirement Categories and Requirements
-c = FutureFaculty::RequirementCategory.find_or_create_by(
+c = Programs::FutureFaculty::RequirementCategory.find_or_create_by(
   key: 'projects') do |p|
   p.key = 'projects'
   p.label = 'Projects'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'course-project',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'course_project',
   requirements_version: v1,
   requirement_category: c ) do |p|
-  p.key = 'course-project'
+  p.key = 'course_project'
   p.label = 'Course & Syllabus Design Project'
   p.requirements_version = v1
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::CourseAndSyllabusDesignProject'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'individual-project',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'individual_project',
   requirements_version: v1,
   requirement_category: c ) do |p|
   p.label = 'Individual Project'
-  p.key = 'individual-project'
+  p.key = 'individual_project'
   p.requirements_version = v1
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::IndividualProject'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'course-project',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'course_project',
   requirements_version: v2,
   requirement_category: c ) do |p|
   p.label = 'Course & Syllabus Design Project'
-  p.key = 'course-project'
+  p.key = 'course_project'
   p.requirements_version = v2
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::CourseAndSyllabusDesignProject'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'statement-project',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'statement_project',
   requirements_version: v2,
   requirement_category: c ) do |p|
   p.label = 'Teaching Statement Project'
-  p.key = 'statement-project'
+  p.key = 'statement_project'
   p.requirements_version = v2
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::TeachingStatementProject'
 end
 
-c = FutureFaculty::RequirementCategory.find_or_create_by(
+c = Programs::FutureFaculty::RequirementCategory.find_or_create_by(
   key: 'observations') do |p|
   p.label = 'Observations'
   p.key = 'observations'
 end
 
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'microteaching-observation',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'microteaching_observation',
   requirements_version: v1,
   requirement_category: c ) do |p|
   p.label = 'Microteaching Observation'
-  p.key = 'microteaching-observation'
+  p.key = 'microteaching_observation'
   p.requirements_version = v1
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::MicroteachingObservation'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'classroom-observation',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'classroom_observation',
   requirements_version: v1,
   requirement_category: c ) do |p|
   p.label = 'Classroom Observation'
-  p.key = 'classroom-observation'
+  p.key = 'classroom_observation'
   p.requirements_version = v1
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::ClassroomObservation'
 end
 
 
-c = FutureFaculty::RequirementCategory.find_or_create_by(
-  key: 'teaching-consultations') do |p|
+c = Programs::FutureFaculty::RequirementCategory.find_or_create_by(
+  key: 'teaching_consultations') do |p|
   p.label = 'Teaching Feedback Consultations'
-  p.key = 'teaching-consultations'
+  p.key = 'teaching_consultations'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'microteaching-workshop',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'microteaching_workshop',
   requirements_version: v2,
   requirement_category: c ) do |p|
   p.label = 'Microteaching Workshop and Follow-Up Conversation'
-  p.key = 'microteaching-workshop'
+  p.key = 'microteaching_workshop'
   p.requirements_version = v2
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::MicroteachingWorkshop'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'teaching-observation',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'teaching_observation',
   requirements_version: v2,
   requirement_category: c ) do |p|
   p.label = 'Teaching Observation'
-  p.key = 'teaching-observation'
+  p.key = 'teaching_observation'
   p.requirements_version = v2
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::TeachingObservation'
 end
 
-FutureFaculty::Requirement.find_or_create_by(
-  key: 'ecf-fg-observation',
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'ecf_fg_observation',
   requirements_version: v2,
   requirement_category: c ) do |p|
   p.label = 'Early Course Feedback/Focus Group'
-  p.key = 'ecf-fg-observation'
+  p.key = 'ecf_fg_observation'
   p.requirements_version = v2
   p.requirement_category = c
   p.activity_class = 'Participants::Activities::EarlyCourseFeedback'

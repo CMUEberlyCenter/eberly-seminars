@@ -1,0 +1,43 @@
+
+
+$("a.hide-if-enrolled-in-future-faculty").
+    addClass( "success" ).
+    attr( "href",
+          "<%= escape_javascript unenroll_participant_future_faculty_program_url @participant %>" ).
+    html("Enrolled! Undo?").
+    delay(10000).
+    fadeOut();
+
+$("#future-faculty").html("<%= j render( "participant_requirements_form", participant: @participant ) %>");
+
+<%# TODO: This is a gross copy from base.coffee %>
+$(".add-participant-activity-form").hide();
+
+$(".btn-add-participant-activity").click(function (event){
+      $(this).toggle();
+      $(this).closest(".add-participant-activity-wrapper").find(".add-participant-activity-form").slideDown();
+});
+
+$(".list-group-item.activity").find("[data-method=\"delete\"]").click( function(event) {
+     $(this).closest(".list-group-item.activity").attr("data-participant-activity","remove");
+     });
+
+<%# TODO: Match against activity type instead of a data attr (see: p_a/create.js.erb) %>
+$(".add-participant-activity-form").find("[type=\"submit\"]").click(function (event) {
+           $(this).closest(".panel-body").find(".list-group").attr("data-participant-activity","add");
+});
+
+
+
+$(".add-participant-activity-form-section").hide();
+$(".add-participant-activity-section").click( function (event){
+       id=$(this).attr("id") + "-form";
+        $(this).closest(".add-participant-activity-wrapper").find(".add-participant-activity-form").slideDown();
+        $(".add-participant-activity-form-section#"+id).slideDown();
+        $(this).parent().parent().parent().toggle();
+        event.preventDefault();
+});
+
+
+
+$("#future-faculty").slideDown();

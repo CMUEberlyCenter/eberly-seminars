@@ -1,7 +1,7 @@
 class Seminar < ActiveRecord::Base
   belongs_to :seminar_status
   has_many :registrations, :dependent => :delete_all
-  has_many :seminar_tags
+  has_many :seminar_tags, inverse_of: :seminar
   delegate :status, :to => :seminar_status, :prefix => false
   accepts_nested_attributes_for :registrations, :allow_destroy => true
   accepts_nested_attributes_for :seminar_tags
@@ -14,10 +14,14 @@ class Seminar < ActiveRecord::Base
   end
   scope :active, -> { where("end_at >= ?", Time.now).order('start_at asc') }
   scope :expired, -> { where("end_at <= ?", Time.now).order('start_at asc') }
+  scope :completed, -> { where("end_at <= ?", Time.now).merge( self.published ).order( start_at: :asc ) }
   scope :upcoming, -> { where("end_at >= ?", Time.now).order('start_at asc') }
 
-  scope :has_tag, -> (tag) { joins(:seminar_tags).where("seminar_tags.value = ?", tag) }
+  scope :with_tag, -> (tag) { joins(:seminar_tags).where("seminar_tags.value = :tag", tag: tag) }
+  scope :without_tag, -> (tag) { where.not( id: self.with_tag(tag).pluck(:id)) }
 
+
+   
   def self.days_away( num_days )
     where( "start_at >= ? and start_at < ?", 
            Date.today + num_days.days, 

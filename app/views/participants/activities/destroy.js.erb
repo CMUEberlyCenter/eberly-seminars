@@ -1,1 +1,2 @@
-$("div ul a[href=\"<%= participant_activity_url(params[:id]) %>\"]").parent().slideUp();
+<%# TODO: replace none if no activities remain %>
+$(".list-group-item.activity[data-participant-activity=\"remove\"]").slideUp();

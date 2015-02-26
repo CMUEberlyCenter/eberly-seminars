@@ -1,46 +1,286 @@
-
-/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */
-/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */
-section.participant div.styled-select {
-    margin: 20px 40px;
-
-    
-    overflow: hidden;
-    width: 240px;
-    
-    
-    border: 0;
-    color: #EEE;
-    background: #bbb;
-    padding: 2px 10px;
-    width: 250px;
-    *width: 350px;
-    *background: #58B14C;
-    -webkit-appearance: none;
-    
-    float: left;
+/* Main menu wrapper */
+.cbp-hsmenu-wrapper {
+    position: relative;
 }
 
-section.participant div.styled-select select {
-    background: transparent;
-    border: none;
-    padding: 5px; /* If you add too much padding here, the options won't show in IE */
-    width: 268px;
-    
-    font-weight: bold;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font-size: 14px;
-    line-height: 24px;
-    padding: 0px 10px;
-    width: 300px;
-    *width: 350px;
-    -webkit-appearance: none;
+/* Common style for all lists */
+section.participant .cbp-hsmenu-wrapper ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+
 }
 
-section.participant div.styled-select select option {
-    padding: 10px;
+/* 100% width bar for menu */
+section.participant div.cbp-hsinner {
+    position: relative;
+    z-index: 100;
+    padding: 0;
+
 }
 
-    
+/* Main menu style */
+.cbp-hsmenu-wrapper .cbp-hsmenu {
+	width: 50%;
+	max-width: 69em;
+	margin: 0 auto;
+	padding: 0 1.875em;
+}
+
+.cbp-hsmenu > li {
+	margin-left: 4em;
+	display: inline-block;
+}
+
+.cbp-hsmenu > li:first-child {
+	margin-left: 0;
+}
+
+/* Main menu link style */
+.cbp-hsmenu > li > a {
+    border: 1px solid #bbb;
+	color: #fff;
+        font-weight: bold;
+        min-width: 100px;
+        text-decoration: none;
+        padding: 5px 10px;
+	line-height: 16px;
+	display: inline-block;
+	position: relative;
+	z-index: 10000;
+	outline: none;
+        background: #bbb;
+        vertical-align: middle;
+}
+
+.no-touch .cbp-hsmenu > li > a:hover,
+.no-touch .cbp-hsmenu > li > a:focus,
+.cbp-hsmenu > li.cbp-hsitem-open > a {
+
+}
+
+/* Add an arrow to the main menu link if it has a submenu (not the only child) */
+.cbp-hsmenu > li > a:not(:only-child):before {
+	display: inline-block;
+	speak: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	content: "+";
+	margin-right: 0.3em;
+	vertical-align: baseline;
+        min-width: 25px;
+        text-align: right;
+}
+
+.cbp-hsmenu > li.cbp-hsitem-open > a:not(:only-child):before {
+	content: "-";
+}
+
+/* Add a triangle to currently open menu item link */
+.cbp-hsmenu > li.cbp-hsitem-open > a:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: transparent;
+	border-top-color: #bbb;
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+}
+
+/* Submenu style */
+.cbp-hssubmenu {
+    display: none;
+    position: relative;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	z-index: 0;
+	text-align: center; /* for aligning the sub items */
+	visibility: hidden;
+}
+
+.cbp-hssubmenu:before, 
+.cbp-hssubmenu:after { 
+	content: " "; 
+	display: table; 
+}
+.cbp-hssubmenu:after { 
+	clear: both; 
+}
+
+/* Let's allow 3 item in a row */
+.cbp-hssubmenu > li {
+	width: 100%;
+
+}
+
+.cbp-hssubmenu > li a {
+	display: block;
+	text-align: left;
+	color: #222;
+	outline: none;
+	padding: 1em;
+        
+}
+
+.no-touch .cbp-hssubmenu > li a:hover,
+.no-touch .cbp-hssubmenu > li a:focus {
+	color: #888;
+}
+
+.cbp-hssubmenu > li a img {
+	border: none;
+	outline: none;
+	display: inline-block;
+	margin: 0;
+	max-width: 100%;
+	-webkit-transition: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	transition: opacity 0.2s;
+}
+
+.no-touch .cbp-hssubmenu > li a:hover img {
+	opacity: 0.5;
+}
+
+.cbp-hssubmenu > li a span {
+	display: block;
+	min-height: 3em;
+	margin-top: 0.4em;
+}
+
+.cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu {
+	z-index: 1000;
+	visibility: visible;
+}
+
+.cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu > li {
+	opacity: 1;
+	-webkit-transition: opacity 0.5s 0.1s;
+	-moz-transition: opacity 0.5s 0.1s;
+	transition: opacity 0.5s 0.1s;
+}
+
+/* Helper div for animating the background */
+.cbp-hsmenubg {
+}
+
+.no-touch .cbp-hsmenubg {
+	-webkit-transition: height 0.3s;
+	-moz-transition: height 0.3s;
+	transition: height 0.3s;
+}
+
+@media screen and (max-width: 65em){
+	.cbp-hsmenu-wrapper {
+		font-size: 80%;
+	}
+}
+
+@media screen and (max-width: 51.4375em){
+	.cbp-hsmenu-wrapper {
+		font-size: 100%;
+	}
+
+	.cbp-hsmenu-wrapper .cbp-hsmenu {
+		padding: 0;
+		max-width: none;
+		width: 100%;
+	}
+
+	.cbp-hsmenu > li {
+		border-top: 1px solid rgba(255,255,255,0.5);
+		text-align: center;
+		margin: 0 auto;
+		display: block;
+	}
+
+	.cbp-hsmenu > li:first-child {
+		border-top: none;
+	}
+
+	.cbp-hsmenu > li > a {
+		display: block;
+	}
+
+	.cbp-hsmenu > li > a:not(:only-child):before {
+		line-height: 1.8;
+		right: 0;
+		position: absolute;
+		font-size: 200%;
+	}
+
+	.cbp-hsmenubg {
+		display: none;
+	}
+
+	.cbp-hssubmenu {
+		background: #f7f7f7;
+		position: relative;
+		overflow: hidden;
+		height: 0;
+	}
+
+	.cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu {
+		height: auto;
+	}
+
+	/* Let's only allow 3 item in a row now */
+	.cbp-hssubmenu > li {
+		width: 30%;
+	}
+
+	/* Reset box shadows for the 6 items in row case */
+	.cbp-hssubmenu > li:nth-child(-n+6),
+	.cbp-hssubmenu > li:nth-child(6n+1) {
+		box-shadow: -28px 0 0 -27px #ddd, 0 -28px 0 -27px #ddd;
+	}
+
+	/* First 4 items don't have upper box shadow */
+	.cbp-hssubmenu > li:nth-child(-n+3) {
+		box-shadow: -28px 0 0 -27px #ddd;
+	} 
+
+	/* Every 5th item does not have a left box shadow */
+	.cbp-hssubmenu > li:nth-child(3n+1) {
+		box-shadow:  0 -28px 0 -27px #ddd;
+	}
+
+}
+
+@media screen and (max-width: 25em){
+	/* Let's only allow 1 item in a row now */
+	.cbp-hssubmenu > li {
+		width: 100%;
+		display: block;
+	}
+
+	.cbp-hsmenu-wrapper .cbp-hssubmenu > li {
+		box-shadow: 0 1px #cecece;
+		text-align: left;
+	}
+
+	.cbp-hssubmenu > li a {
+		text-align: left;
+		line-height: 50px;
+		padding: 0.4em 1em;
+	}
+
+	.cbp-hssubmenu > li a img {
+		float: left;
+		max-height: 50px;
+	}
+
+	.cbp-hssubmenu > li a span {
+		min-height: 0;
+		margin: 0;
+	}
+}

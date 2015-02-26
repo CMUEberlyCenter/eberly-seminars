@@ -1,0 +1,25 @@
+<div class="add-participant-activity-wrapper">
+  <div class="add-participant-activity-form">
+
+    <%= simple_form_for( activity.becomes( Participants::Activity ),
+                         url: participant_activities_path( activity.participant,
+                                                           activity),
+        remote: true
+        ) do |a| %>
+
+    <div class="form-inputs">
+    <h2>Title</h2><br/> <%= a.text_field( :title ) %>
+    <h2>Description</h2>
+    <%= a.hidden_field :type %>
+    <%= a.text_area( :description ) %>
+    </div>
+    <%= a.submit "Create", class: ["btn","btn-primary"] %>
+    <%# TODO: Cancel %>
+    <% end %>
+  </div>
+
+  <button type="button" class="btn btn-primary btn-add-participant-activity">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Activity
+  </button>
+
+</div>

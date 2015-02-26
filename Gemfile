@@ -4,8 +4,6 @@ ruby '2.1.2'
 
 gem 'rails', '4.2.0'
 
-# Legagy attribute access
-gem 'protected_attributes'
 gem 'responders', '~> 2.0'
 
 # Bundle edge Rails instead:

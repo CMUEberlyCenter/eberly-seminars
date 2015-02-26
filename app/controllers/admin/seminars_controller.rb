@@ -5,8 +5,8 @@ class Admin::SeminarsController < ApplicationController
 
   def index
     display_tag = Setting.find_by_key('admin-list-tag').value
-    @expired_seminars = Seminar.expired.published.has_tag( display_tag )
-    @offered_seminars = Seminar.active.published.has_tag( display_tag )
+    @expired_seminars = Seminar.expired.published.with_tag( display_tag )
+    @offered_seminars = Seminar.active.published.with_tag( display_tag )
     @development_seminars = Seminar.development
   end
 

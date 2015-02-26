@@ -1,0 +1,8 @@
+$("a.hide-if-enrolled-in-future-faculty").
+    clearQueue().
+    removeClass( "success" ).
+    attr( "href",
+          "<%= escape_javascript enroll_participant_future_faculty_program_url @participant %>" ).
+    html("Enroll in Future Faculty");
+
+$("#future-faculty").slideUp();

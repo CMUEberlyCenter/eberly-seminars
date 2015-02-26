@@ -17,31 +17,13 @@ $participant-title-font: 22px/32px $participant-title-font-family;
 
 
 /* ==|== box styles ========================================================= */
-section.participant {
+section#participant {
   border: 1px solid $participant-border-color;
   clear: left;
   float: left;
   margin: 0;
   min-width: $site-min-width - $left-column-width - 2px;
-
-  h1 {
-    background: $participant-header-bg-color;
-    clear: left;
-    color: #ffffff;
-    font: $participant-header-font;
-    margin: 0;
-    padding: 5px $padding-small;
-    vertical-align: middle;
-
-    &.seminars {
-      background: #94b840;
-    }
-
-    &.requirement-category-label {
-      background: #e3b31c;
-    }
-  }
-
+/*
   h2 {
      color: #000000;
      float: left;
@@ -53,7 +35,7 @@ section.participant {
      span.name {
        font-family: 'OpenSansRegular', sans-serif;
      }
-  }
+  }*/
 
   img {
     border: 1px solid $participant-border-color;
@@ -62,16 +44,16 @@ section.participant {
     margin: $padding-small;
   }
 
-  div {
+  h1 + div {
     float: left;
-    clear: left;
+    clear: left; 
     padding: 0 $padding-large $padding-small*2 $padding-large;
     width: 100%;
     margin: 20px 0;
 
     img,h2 { float: left; }
 
-  }
+  } 
 
   div.button_container {
     clear: left;
@@ -83,7 +65,7 @@ section.participant {
     a {
       clear: none;
       margin-left: 10px;
-      width: 100px;
+      min-width: 100px;
       &.boxy { margin-left: 10px; }
       &:first-child { margin-left: 0; }
     }
@@ -91,7 +73,7 @@ section.participant {
       margin-left: 10px;
     }
   }
-
+/*
   p {
     margin: $padding-small;
 
@@ -100,6 +82,7 @@ section.participant {
      font: 16px/20px 'OpenSansRegular', sans-serif;
     }
   }
+*/
 
   #note {
     border: 1px solid $participant-border-color;
@@ -158,30 +141,7 @@ section.participant {
       }
   }
 
-  ul {
-    float: left;
-    clear: left;
-    padding: 0;
-    margin: 0 $padding-small;
-
-    li.activity,
-    li.observation,
-    li.project,
-    li.seminar {
-      float: left;
-      clear: left;
-      padding: 0;
-      margin: 5px 0;
-      vertical-align: middle;
-      font: 14px/20px 'OpenSansLight', sans-serif;
-      h2 {
-        margin: 0;
-	padding: 0;
-	font: 16px/20px 'OpenSansRegular', sans-serif;
-      }
-    }
-    li.observation,
-    li.project,
+/*
     li.activity  {
       margin-bottom: 10px;
 
@@ -192,7 +152,7 @@ section.participant {
       }
     }
 
-  }
+  } */
 
   input[type="submit"] {
     background: #bbbbbb;

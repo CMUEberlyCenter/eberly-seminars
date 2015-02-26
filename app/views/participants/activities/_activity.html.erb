@@ -1,0 +1,17 @@
+<div class="list-group-item activity">
+  <h2 class="list-group-item-heading">
+    <% if activity.type == "Participants::Activities::Additional" %>
+      <%= activity.title %>
+    <% else %>
+    HI
+    <% end %>
+    &nbsp;&nbsp;
+    <small>
+      <%= link_to( "[x]", participant_activity_path(activity),
+          :method => :delete, remote: true, data: { confirm: "Really delete this?" } ) %></small>
+  </h2>
+
+  <p class="list-group-item-text">
+    <%= activity.description %>
+  </p>
+</div>

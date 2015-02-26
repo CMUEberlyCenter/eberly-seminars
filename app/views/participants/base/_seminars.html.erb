@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading seminars">
+    <h1 class="panel-title"><%= title %></h1>
+  </div>
+
+  <div class="panel-body">
+
+    <div class="list-group">
+      <%= render( partial: "seminar", collection: seminars ) ||
+          raw( "<div class=\"list-group-item\"><h2 class=\"list-group-item-heading\">None.</h2></div>" ) %>
+    </div>
+    
+  </div><!-- panel-body -->
+
+</div><!-- panel -->

@@ -1,0 +1,24 @@
+<% category_requirements = @participant.future_faculty_enrollment.requirements.group_by(&:requirement_category) %>
+<% @participant.future_faculty_enrollment.categories.each do |c| %>
+<div class="panel panel-default">
+
+  <div class="panel-heading requirement-category-label">
+    <h1 class="panel-title"><%= c.label %></h1>
+  </div>
+
+  <div class="panel-body">
+
+    <div class="list-group">
+      <% category_requirements[c].each do |r| %>
+      <%= render( partial: "participants/activities/activity", collection: participant.activities.where(type: r.activity_class ) ) %>
+      <%# TODO: None on no activitities for requirements %>
+      <%#   raw( "<div class=\"list-group-item\"><h2 class=\"list-group-item-heading\">None.</h2></div>" ) %>
+      <% end %>
+    </div>
+    
+    <%= render( "participants/activities/select_form",
+        activity: participant.activities.build, type_options: category_requirements[c] ) %>
+    
+  </div>
+</div>
+<% end %>

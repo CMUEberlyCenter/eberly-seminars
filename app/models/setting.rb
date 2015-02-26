@@ -1,3 +1,3 @@
 class Setting < ActiveRecord::Base
-  attr_accessible :label, :key, :value
+#  attr_accessible :label, :key, :value
 end

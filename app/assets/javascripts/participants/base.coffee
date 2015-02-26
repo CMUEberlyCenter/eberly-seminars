@@ -1,6 +1,45 @@
 $ ->
-  #$("section.participant input[type='submit']").hide()
-  $("section.participant #note-submit").hide()
+  $("#note-submit").hide()
+
+  $(".add-participant-activity-form").hide()
+
+  $(".btn-add-participant-activity").click (event) ->
+    $(this).toggle()                                           
+    $(this).closest(".add-participant-activity-wrapper").find(".add-participant-activity-form").slideDown()
+
+  $(".list-group-item.activity").find("[data-method=\"delete\"]").click (event) ->
+       $(this).closest(".list-group-item.activity").attr("data-participant-activity","remove")
+
+  # TODO: Match against activity type instead of a data attr (see: p_a/create.js.erb)
+  $(".add-participant-activity-form").find("[type=\"submit\"]").click (event) ->
+       $(this).closest(".panel-body").find(".list-group").attr("data-participant-activity","add")
+
+
+
+  $(".add-participant-activity-form-section").hide()
+  $(".add-participant-activity-section").click (event) ->
+    id=$(this).attr("id") + "-form"
+    $(this).closest(".add-participant-activity-wrapper").find(".add-participant-activity-form").slideDown()    
+    $(".add-participant-activity-form-section#"+id).slideDown()
+    $(this).parent().parent().parent().toggle()
+    event.preventDefault()
+
+
+  $(".add-participant-activity").click (event) ->
+       $(".add-activity-form").slideUp()
+       id="#add-" + $(this).attr("id") + "-form"
+       $(".add-activity-form" + id).slideDown()
+
+       $("#add-activity-form input[type=\"text\"]").val("")
+       $("#add-activity-form textarea").val("")
+       #$("#add-activity-form").slideDown()
+       #$(this).toggle()
+       event.preventDefault()
+
+  $("ul.cbp-hsmenu > li > a").click (event) ->
+#       $(".cbp-hssubmenu").slideToggle()
+       $(this).next("ul").slideToggle()
+       event.preventDefault()
 
   $("#add-activity-link").click (event) ->
        $("#add-activity-form input[type=\"text\"]").val("")
@@ -62,3 +101,4 @@ $ ->
   $('.best_in_place').best_in_place()
 
   $.datepicker.setDefaults({ dateFormat: 'M dd, yy' });
+  

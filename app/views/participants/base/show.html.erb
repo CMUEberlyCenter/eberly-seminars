@@ -1,109 +1,14 @@
-<section class="participant">
-  <h1>Participant Information</h1>
-  <div>
-    <%= image_tag "face.png" %>
-    <h2><span class="name"><%= @participant.name %></span><br/><%= @participant.department %></h2>
-    
-    <div class="button_container">
-      <%= link_to( "Transcript »", 
-	           participant_transcript_url(:participant_id => @participant.andrewid, :format => :pdf),
-                   :class => 'boxy' ) %>
-      <% unless @participant.in_future_faculty_program? %>
-        <%= link_to "Enroll in FFP", enroll_participant_url( :id => @participant.andrewid ), remote: true, confirm: "Really?", :class => 'boxy', id: "ffp_enroll_link" %>
-      <% end %>
-    </div>
+<section id="participant">
 
-  </div>
+  <%= render "participant", participant: @participant %>
 
-  <h1 class="seminars">Seminars</h1>
-  <div>
-    <% @completed_seminars = @participant.completed_seminars.select{|x| !x.tags.include? "workshop" } %>
-    <% if @completed_seminars.size > 0 %>
-    <ul>
+  <%= render partial: "seminars", object: @participant.attended_seminars, locals: { title: "Seminars" } %>
+  <%= render partial: "seminars", object: @participant.attended_workshops, locals: { title: "Workshops" } %>
+  
+  <%= render "participants/programs/future_faculty/participant_progress", participant: @participant %>
 
-      <% @completed_seminars.each do |s| %>
-        <li class="seminar">
-	  <h2><%= s.title %><% if s.core? %>*<% end %></h2>
-	  &nbsp;&nbsp;[ <%= s.start_at.strftime("%b %d, %Y") %> ]
-	</li>
-      <% end %>
+  <%= render "participants/activities/additional", participant: @participant %>
 
-    </ul>
-    <% else %>
-      <p class="note">None.</p>
-    <% end %>
-  </div>
+  <%= render "notes", participant: @participant %>
 
-  <h1 class="seminars">Workshops</h1>
-  <div>
-    <% @completed_workshops = @participant.completed_seminars.select{|x| x.tags.include? "workshop" } %>
-    <% if @completed_workshops.size > 0 %>
-    <ul>
-
-      <% @completed_workshops.each do |s| %>
-      <li class="seminar">
-        <h2><%= s.title %><% if s.core? %>*<% end %></h2>
-        &nbsp;&nbsp;[ <%= s.start_at.strftime("%b %d, %Y") %> ]
-      </li>
-      <% end %>
-
-    </ul>
-    <% else %>
-      <p class="note">None.</p>
-    <% end %>
-  </div>
-
-  <%  if @participant.in_future_faculty_program? %>
-  <section id="ffp_things" <% unless @participant.in_future_faculty_program? %>style="display: none;"<% end %>>
-    <%= render partial: 'ffp_requirements' %>
-  </section>
-  <% end %>
-
-
-  <h1 class="activities" id="other_activities">Other Activities and Consultations</h1>
-  <div>
-      <ul>
-	<% @participant.additional_activities.each do |a| %>
-	<li class="activity">
-	  <h2><%= best_in_place a, :title, url: participant_activity_path(a) %></h2> <%= link_to "[x]", participant_activity_path(a), :method => :delete, remote: true, data: { confirm: "Really delete this?" } %><br/>
-	  <%= best_in_place a, :description, url: participant_activity_path(a) %>
-	</li>
-	<% end %>
-      </ul>
-
-    <% if @participant.additional_activities.size == 0 %>
-      <p class="note">None.</p>
-    <% end %>
-
-    <div id="add-activity-form">
-      <%# TODO: Make new activities editable without refresh %>
-      <%= form_for @participant, remote: true do |f| %>
-      <%= f.fields_for :additional_activities, @participant.additional_activities.build do |a| %>
-      <h2>Title</h2><br/> <%= a.text_field( :title ) %><br/>
-      <h2>Description</h2><br/>
-      <%= a.text_area( :description ) %>
-      <% end %>
-      <%= f.submit "Create" %>
-      <% end %>
-    </div>
-    
-    <div class="button_container add">
-      <%= link_to "+ Activity", '#', :id => "add-activity-link", :class => 'boxy' %>
-    </div>
-
-  </div>
-
-
-  <h1>Notes &mdash; Internal Use Only</h1>
-  <div>
-    <div id="note-response"><p></p></div>
-    <%= form_for @participant, remote: true do |f| %>
-      <% default_text = "Add a note..." %>
-      <% seed = (@participant.note.nil? || @participant.note.empty?) ? default_text : @participant.note %>
-      <%= hidden_field_tag(:note_seed_text, seed) %>
-      <%= hidden_field_tag(:note_default_text, default_text) %>
-      <%= f.text_area(:note, id: "note", value: seed) %>
-      <%= f.submit "Update", id: "note-submit" %>
-    <% end %>
-  </div>
 </section>

@@ -21,7 +21,7 @@
 
   <%#= render :partial => "layouts/impersonate_user" %>
 
-  <div id="cmu-bar-container">
+  <div id="cmu-bar-container" class="container-fluid">
     <div id="cmu-bar">
       <%= link_to( image_tag( 'carnegie-mellon-wordmark.gif', 
                    :alt => 'Carnegie Mellon Wordmark'),
@@ -32,6 +32,7 @@
 
   <%= render partial: 'layouts/page_header' %>
 
+  <div class="container-fluid">
   <%# TODO: raw is cludgy and requires no direct user input to go in the flash.
       Let's whitelist some reasonable tags instead %>
   <% if flash[:error] %><div class="flash error"><p><%= raw flash[:error] %></p></div><% end %>
@@ -48,6 +49,7 @@
 
     <%= yield %>
   </section>
+  </div>
 
   <%= render partial: 'layouts/page_footer' %>
 
