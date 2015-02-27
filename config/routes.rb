@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', via: [:get, :delete]
 
 
-  get 'search' => 'search#show', :as => 'search'
+  resource :search, only: :show
 
   get 'admin' => 'admin/seminars#index', :as => 'root_admin_url'
   namespace :admin do

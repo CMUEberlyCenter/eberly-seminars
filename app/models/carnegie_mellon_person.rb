@@ -4,7 +4,7 @@ class CarnegieMellonPerson < ActiveLdap::Base
                :classes => ["cmuPerson"]
 
   def self.find_by_andrewid( andrewid )
-    find("cmuandrewid=#{andrewid}", :attributes => ['cmuandrewid',
+    find("cmuandrewid=#{andrewid}", :attributes => ['cmuAndrewId',
                                                     'cn', 
                                                     'mail',
                                                     'sn',
@@ -13,9 +13,11 @@ class CarnegieMellonPerson < ActiveLdap::Base
                                                    ]) 
   end
 
-  def self.generic_search( term )
-    #ActiveLdap::Base.search(:base => 'ou=Person,dc=cmu,dc=edu', :filter => "(cmuandrewid=*#{term}*)",
-    #             :scope => :sub,:attributes => ['cmuandrewid', 'cn'])
-    find("cmuandrewid=#{andrewid}")
+  def self.autocomplete_results( options={} )
+    all( :filter => "(|(cmuandrewid=#{options[:keyword]}*)(cn=#{options[:keyword]}*)(sn=#{options[:keyword]}*))",
+         :attributes => ['cmuAndrewId','cn','cmuDepartment'] ).
+      map { |x| { primary: [(x.cn)].flatten.first + " (#{x.cmuandrewid})",
+                  secondary: x.cmudepartment,
+                  data: x.cmuandrewid } }
   end
 end

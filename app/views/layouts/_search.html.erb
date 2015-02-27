@@ -1,6 +1,7 @@
-<%= form_tag( "/search", :id => "searchForm", :method => "get", :style => "margin-top: 45px; margin-left: 150px") do %>
+<%# TODO: Clean this up %>
+<%= form_tag( search_url, :id => "search-form", :method => "get", :style => "margin-top: 45px; margin-left: 150px") do %>
 
-<%= text_field_tag(:tags) %>
+<%= text_field_tag(:search) %>
   <%= submit_tag("Search") %>
 
 <% end %>
