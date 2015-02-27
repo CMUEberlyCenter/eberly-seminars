@@ -14,7 +14,7 @@ set :deploy_to, "/srv/rails/#{fetch(:application)}"
 set :linked_files, %w{config/database.yml config/initializers/secret_token.rb}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :default_env, { path: "/usr/local/rvm/bin/rvm:/srv/rails/seminars/shared/bin:$PATH" }
+set :default_env, { path: "/usr/local/rvm/bin:/srv/rails/seminars/shared/bin:$PATH" }
 
 set :bundle_flags, '--deployment --local --quiet'
 SSHKit.config.command_map[:rake]  = "bundle exec rake"

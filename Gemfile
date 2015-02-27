@@ -62,7 +62,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'passenger', :group => [:production, :test]
+gem 'passenger', :group => [:production, :development]
 #gem "rvm-capistrano"
 
 # To use debugger
