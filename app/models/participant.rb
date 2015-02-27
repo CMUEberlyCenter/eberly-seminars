@@ -1,5 +1,6 @@
 class Participant < ActiveRecord::Base
-#  has_many :registrations
+  # for now -> calendar
+  has_many :registrations
 #  has_many :seminars, :through => :registrations
   #scope :program_requirements, -> (program) { where.not("#{program}_requirement_id".to_sym => nil) }
   #has_many :workshops, through: :registrations, foreign_key: "seminar_id"
@@ -93,27 +94,27 @@ class Participant < ActiveRecord::Base
     ldap_reference["cmuStudentClass"]
   end
 
-#  def request_registration( seminar )
-#    status = RegistrationStatus.find_by_key( 'pending' )
-#    registration = self.registrations.build( :seminar_id => seminar, :registration_status => status )
-#    registration.save
-#    ParticipantMailer.registration_pending_email( self, registration ).deliver
-#  end
+  def request_registration( seminar )
+    status = RegistrationStatus.find_by_key( 'pending' )
+    registration = self.registrations.build( :seminar_id => seminar, :registration_status => status )
+    registration.save
+    ParticipantMailer.registration_pending_email( self, registration ).deliver
+  end
 
-#  def cancel_registration( registration_id )
+  def cancel_registration( registration_id )
 
-#    registration = self.registrations.find( registration_id )
-#    registration_copy = registration.clone
-#    #registration.destroy
-#    registration_status = nil
-#    if registration.seminar.start_at < 1.day.from_now
-#      registration_status = RegistrationStatus.find_by_key "cancelled_late"
-#    else
-#      registration_status = RegistrationStatus.find_by_key "cancelled"
-#    end
-#    registration.registration_status = registration_status
-#    registration.save
-#    ParticipantMailer.canceled_registration_email( registration_copy ).deliver
-#  end
+    registration = self.registrations.find( registration_id )
+    registration_copy = registration.clone
+    #registration.destroy
+    registration_status = nil
+    if registration.seminar.start_at < 1.day.from_now
+      registration_status = RegistrationStatus.find_by_key "cancelled_late"
+    else
+      registration_status = RegistrationStatus.find_by_key "cancelled"
+    end
+    registration.registration_status = registration_status
+    registration.save
+    ParticipantMailer.canceled_registration_email( registration_copy ).deliver
+  end
 
 end
