@@ -109,7 +109,7 @@ class Admin::SeminarsController < ApplicationController
 
   def update_seminar
     @seminar = Seminar.find(params[:seminar][:id])
-    @seminar.assign_attributes( params[:seminar], :without_protection => true)
+    @seminar.assign_attributes( seminar_params )
 
     d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
     tz = Time.local(d.year, d.month, d.day).zone
@@ -131,4 +131,11 @@ class Admin::SeminarsController < ApplicationController
     redirect_to admin_seminars_url
   end
 
+
+  private
+  def seminar_params
+    if current_user.is_admin?
+      params.require(:seminar).permit(:id, :tags, :title, :description, :start_at, :end_at, :seminar_status, :maximum_capacity, :location )
+    end
+  end
 end

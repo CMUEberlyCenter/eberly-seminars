@@ -14,7 +14,8 @@ prawn_document(
 
 ) do |pdf|
   default_text_color ="010101"
-  default_stroke_color = "aaaaaa"
+  #default_stroke_color = "aaaaaa"
+  default_stroke_color = "cccccc"
   cmu_red = "990000"
   title_font_size = 18
   body_font_size = 12
@@ -45,12 +46,12 @@ prawn_document(
     pdf.fill_color cmu_red
     pdf.text "<b>" + @participant.name + "</b> " + Array.[](@participant.department).flatten.join(', '), :inline_format => true, :size => name_font_size
     
-    pdf.move_down 40
+    pdf.move_down 10
   end
 
 
   pdf.fill_color cmu_red
-  pdf.move_down 15
+  pdf.move_down 7
 
   y_position=pdf.cursor
   pdf.bounding_box([0, y_position], :width => 450, :height => 500) do
@@ -59,9 +60,9 @@ prawn_document(
     pdf.text "Seminars", :size => name_font_size
     pdf.fill_color default_text_color
     pdf.move_down 2
-    pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :style => :bold, :size => 8
+    pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :size => 9
 
-    pdf.move_down 20
+    pdf.move_down 10
 
   if @participant.attended_seminars.size > 0
     @participant.attended_seminars.each do |s|
@@ -77,15 +78,14 @@ prawn_document(
     pdf.text "N/A"
   end
 
-  pdf.move_down 20
+  pdf.move_down 10
 
   pdf.fill_color cmu_red
-  pdf.move_down 15
 
   pdf.text "Workshops", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
-  pdf.text "Each workshop is 2.5 hours long and provides immediate feedback to participants", :style => :bold, :size => 8
+  pdf.text "Each workshop is 2.5 hours long and provides immediate feedback to participants",  :size => 9
 
   pdf.move_down 15
 
@@ -106,8 +106,6 @@ prawn_document(
   pdf.move_down 15
 
   pdf.fill_color cmu_red
-  pdf.move_down 15
-
 
 
 unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
@@ -138,7 +136,7 @@ unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
   pdf.move_down 15
 
   pdf.fill_color cmu_red
-  pdf.move_down 18
+  pdf.move_down 10
 
  end #c
 end
@@ -169,9 +167,9 @@ end
 
   # Footer
   pdf.repeat :all do
-    pdf.move_to 0,55
+    pdf.move_to 0,60
     pdf.fill_color cmu_red
-    pdf.bounding_box [pdf.bounds.left,55],
+    pdf.bounding_box [pdf.bounds.left,60],
                  :width => pdf.bounds.right-pdf.bounds.left, :height => 10 do
     pdf.text "This transcript documents activities with the Eberly Center for Teaching Excellence & Educational Innovation", :size => 8, :align => :center 
     end
@@ -187,7 +185,7 @@ end
 
     footer_y = 36
     footer_text_width = 268
-    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.jpg", :at => [0,footer_y-2], :height => 18
+    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.png", :at => [0,footer_y-2], :height => 18
     pdf.fill_color cmu_red
     pdf.bounding_box [pdf.bounds.right - footer_text_width, footer_y - 7],
                  :width => footer_text_width, :height => footer_y do

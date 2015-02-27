@@ -44,7 +44,7 @@ prawn_document(
   pdf.repeat :all do
     footer_y = 36
     footer_text_width = 136
-    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.jpg", :at => [0,footer_y], :height => 20
+    pdf.image "app/assets/images/carnegie-mellon-wordmark-inverse.png", :at => [0,footer_y], :height => 20
     pdf.fill_color default_text_color
     pdf.font_size( footer_font_size ) do
       pdf.draw_text "Printed " + Time.now.strftime("%b %e, %G %l:%M %P"), :at => [0,footer_y-30]
