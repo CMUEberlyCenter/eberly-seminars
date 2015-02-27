@@ -1,4 +1,4 @@
-class CreateParticipantActivityBases < ActiveRecord::Migration
+class CreateParticipantActivities < ActiveRecord::Migration
   def change
     create_table :participants_activities do |t|
       t.references :participant, index: true
