@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   # ==|== shortcuts to one's own resources ===================================
   # One's own transcript (participant_id will be nil)
-  get 'transcript', to: 'transcripts#show'
+  get 'transcript', to: 'participants/transcripts#show', format: 'pdf'
 
 
 
