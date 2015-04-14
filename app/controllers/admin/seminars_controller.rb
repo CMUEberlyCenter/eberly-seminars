@@ -31,7 +31,7 @@ class Admin::SeminarsController < ApplicationController
 
 
   def create
-    @seminar = Seminar.new(params[:seminar])
+    @seminar = Seminar.new seminar_params
     d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
     tz = Time.local(d.year, d.month, d.day).zone
 
@@ -135,7 +135,7 @@ class Admin::SeminarsController < ApplicationController
   private
   def seminar_params
     if current_user.is_admin?
-      params.require(:seminar).permit(:id, :tags, :title, :description, :start_at, :end_at, :seminar_status, :maximum_capacity, :location )
+      params.require(:seminar).permit(:id, :tags, :title, :description, :start_at, :end_at, :seminar_status_id, :maximum_capacity, :location )
     end
   end
 end
