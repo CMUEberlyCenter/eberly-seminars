@@ -8,16 +8,20 @@ class Participants::BaseController < ApplicationController
 
 
   def show
-    @participant = Participant.find_or_create_by( andrewid:  params[:id] )
+    @participant = Participant.find params[:id]
+    if @participant.nil? && CarnegieMellonPerson.find_by_andrewid( params[:id] )
+      @participant = Participant.create andrewid: params[:id]
+    end
 
     respond_to do |format|
       format.html
     end
-#  rescue
+
+  rescue
     # TODO: participants_url/did you mean? results
-#    redirect_to( root_url,
-#                 :flash => { :error => "Participant does not exist." } )
-  end # show
+    redirect_to( root_url,
+                 :flash => { :error => "Participant does not exist." } )
+  end
 
 
   def update
