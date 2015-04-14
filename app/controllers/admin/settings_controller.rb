@@ -7,9 +7,16 @@ class Admin::SettingsController < ApplicationController
 
   def update
     setting = Setting.find params[:id]
-    setting.update_attributes params[:setting]
+    setting.update_attributes setting_params
     setting.save
     redirect_to action: 'index'
+  end
+
+  private
+  def setting_params
+    if current_user.is_admin?
+      params.require(:setting).permit(:value)
+    end
   end
 
 end
