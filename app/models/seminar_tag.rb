@@ -1,4 +1,7 @@
 class SeminarTag < ActiveRecord::Base
   belongs_to :seminar
-#  attr_accessible :value, :seminar_id
+
+  validates :value, uniqueness: { scope: :seminar,
+                                  case_sensitive: false,
+                                  message: "already has this tag" }
 end
