@@ -1,7 +1,7 @@
 class Seminar < ActiveRecord::Base
   belongs_to :seminar_status
   has_many :registrations, :dependent => :delete_all
-  has_many :seminar_tags, inverse_of: :seminar
+  has_many :seminar_tags, dependent: :destroy
   delegate :status, :to => :seminar_status, :prefix => false
   accepts_nested_attributes_for :registrations, :allow_destroy => true
   accepts_nested_attributes_for :seminar_tags
