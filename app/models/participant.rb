@@ -87,6 +87,10 @@ class Participant < ActiveRecord::Base
   end
 
   def department
+    [ldap_reference["cmuDepartment"]].flatten.join(", ")
+  end
+
+  def departments
     ldap_reference["cmuDepartment"]
   end
 
