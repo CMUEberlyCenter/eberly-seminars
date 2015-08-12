@@ -1,4 +1,4 @@
-class Participants::Activities::Additional < Participants::Activity
+class Participant::Activities::Additional < Participant::Activity
 #  attr_accessible :description, :title
 
   validates :title, presence: true

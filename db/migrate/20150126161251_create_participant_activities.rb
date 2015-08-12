@@ -1,6 +1,6 @@
 class CreateParticipantActivities < ActiveRecord::Migration
   def change
-    create_table :participants_activities do |t|
+    create_table :participant_activities do |t|
       t.references :participant, index: true
       t.string :type
       t.references :future_faculty_requirement, index: false
@@ -11,8 +11,8 @@ class CreateParticipantActivities < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :participants_activities, :future_faculty_requirement_id, name: 'index_participants_activities_on_ff_requirement_id'
-    add_foreign_key :participants_activities, :participants
-    add_foreign_key :participants_activities, :future_faculty_requirements
+    add_index :participant_activities, :future_faculty_requirement_id, name: 'index_participant_activities_on_ff_requirement_id'
+    add_foreign_key :participant_activities, :participants
+    add_foreign_key :participant_activities, :future_faculty_requirements
   end
 end

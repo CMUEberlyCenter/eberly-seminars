@@ -8,7 +8,7 @@ class Participant < ActiveRecord::Base
   
   belongs_to :future_faculty_enrollment, class_name: Programs::FutureFaculty::RequirementsVersion
 
-  has_many :activities, class_name: Participants::Activity, dependent: :destroy, inverse_of: :participant
+  has_many :activities, class_name: Participant::Activity, dependent: :destroy, inverse_of: :participant
   
 #  has_many :additional_activities, class_name: Participants::Activities::Additional, dependent: :destroy
   

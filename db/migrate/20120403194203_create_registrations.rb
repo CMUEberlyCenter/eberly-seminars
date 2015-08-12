@@ -1,7 +1,6 @@
 class CreateRegistrations < ActiveRecord::Migration
   def change
     create_table :registrations do |t|
-      t.primary_key :id
       t.references :participant
       t.references :seminar
       t.references :registration_status

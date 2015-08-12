@@ -1,6 +1,11 @@
-class Participants::Activity < ActiveRecord::Base
-
+class Participant::Activity < ActiveRecord::Base
+  #def self.table_name_prefix
+  #  ''
+    #'participant_activity_'
+  #end
+  
   belongs_to :participant
+  belongs_to :status, class_name: "Participant::Activity::Status"
   belongs_to :future_faculty_requirement, class_name: Programs::FutureFaculty::Requirement
 
   # All activities meeting a requirement for some provided program (e.g.: future_faculty)
@@ -8,9 +13,9 @@ class Participants::Activity < ActiveRecord::Base
 
 
   # Scopes for each activity type
-  Programs::FutureFaculty::Requirement.find_each do |a|
-    scope a.key.pluralize, -> { where( type: a.activity_class) }
-  end
+  #Programs::FutureFaculty::Requirement.find_each do |a|
+  #  scope a.key.pluralize, -> { where( type: a.activity_class) }
+  #end
   
   # Additional activities are not governed by one specific progam, thus they are explicitly scoped here
   scope :additional, -> { where( type: "Participants::Activities::Additional" ) }
