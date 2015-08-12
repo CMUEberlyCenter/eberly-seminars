@@ -1,9 +1,4 @@
 class Participant::Activity < ActiveRecord::Base
-  #def self.table_name_prefix
-  #  ''
-    #'participant_activity_'
-  #end
-  
   belongs_to :participant
   belongs_to :status, class_name: "Participant::Activity::Status"
   belongs_to :future_faculty_requirement, class_name: Programs::FutureFaculty::Requirement
