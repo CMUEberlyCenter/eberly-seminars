@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+        <h1 class="panel-title pull-left">Consultants</h1>
+
+        <%= form_for( Participant.new, url: participants_path, html: { class: "form-inline pull-left" } ) do |f| %>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <%= f.submit '+', class: "btn btn-default" %>
+                </span>
+                <%= f.text_field :andrewid, {class: "form-control"} %>
+            </div>
+            <%= f.hidden_field :consultant, value: true %>
+
+        <% end %>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+
+        <table class="table table-striped">
+            <% @consultants.each do |c| %>
+
+                <tr>
+                    <td><%= c.name %></td>
+                    <td><%= c.andrewid %></td>
+                </tr>
+
+            <% end %>
+            <tr>
+                <td colspan="2">
+
+                </td>
+            </tr>
+        </table>
+
+    </div><!-- panel-body -->
+</div><!-- panel -->

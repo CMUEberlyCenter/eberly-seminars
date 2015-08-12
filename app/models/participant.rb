@@ -47,6 +47,13 @@ class Participant < ActiveRecord::Base
   # TODO: default to fetching active students
   #  default_scope :active
 
+  def self.find_andrew_user search_string
+    u = self.find_by_andrewid search_string
+    u ||= self.find_or_create_by( andrewid: CarnegieMellonPerson.
+                                  find_by_andrewid( search_string )[:cmuandrewid] )
+  rescue ActiveLdap::EntryNotFound
+  end
+
 #  def self.find_or_create( andrewid )
 #    CarnegieMellonPerson.find_by_andrewid andrewid
 #    find_by_andrewid( andrewid ) || create( :andrewid => andrewid )
@@ -60,7 +67,11 @@ class Participant < ActiveRecord::Base
 
  def is_administrator?
     self.is_admin == 1
-  end
+ end
+
+ def is_consultant?
+   self.consultant == 1
+ end
 
 
 
@@ -121,4 +132,7 @@ class Participant < ActiveRecord::Base
     ParticipantMailer.canceled_registration_email( registration_copy ).deliver
   end
 
+
+  validates_presence_of :andrewid, message: "required"
+  validates_uniqueness_of :andrewid, message: "already exists"
 end

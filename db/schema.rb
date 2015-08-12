@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514155221) do
+ActiveRecord::Schema.define(version: 20150812101812) do
 
   create_table "attendance_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150514155221) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin",                     limit: 1,     default: false
+    t.boolean  "consultant",                   limit: 1,     default: false
     t.string   "name_cache",                   limit: 255
     t.text     "note",                         limit: 65535
     t.integer  "future_faculty_enrollment_id", limit: 4

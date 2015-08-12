@@ -33,10 +33,18 @@ class Participants::BaseController < ApplicationController
     end
   end
 
+  def create
+    @participant = Participant.find_andrew_user participant_params[:andrewid]
+    @participant.update_attributes!( participant_params ) unless @participant.nil?
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
   private
   def participant_params
     if current_user.is_admin?
-      params.require(:participant).permit(:note, :activities_attributes => [:type, :id, :title, :description], :additional_activities_attributes => [:title,:description])
+      params.require(:participant).permit(:andrewid, :note, :is_admin, :consultant, :activities_attributes => [:type, :id, :title, :description], :additional_activities_attributes => [:title,:description])
     else
       params.require(:participant).permit(nil)
     end

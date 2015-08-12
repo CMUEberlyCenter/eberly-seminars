@@ -1,3 +1,9 @@
-// Place all the styles related to the admin::settings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#settings {
+    .panel-heading {
+        form {
+            margin-left: 20px;
+            
+            input { color: #000; }
+        }
+    }
+}

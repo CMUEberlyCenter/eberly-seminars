@@ -3,6 +3,7 @@ class Admin::SettingsController < ApplicationController
 
   def index
     @settings = Setting.all
+    @consultants = Participant.where(consultant: true)
   end
 
   def update
