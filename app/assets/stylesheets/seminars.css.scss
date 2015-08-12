@@ -26,11 +26,8 @@ $seminar-title-font: 22px/32px $seminar-title-font-family;
 section.seminar-group {
   border-left: 1px solid $seminar-group-border-color;
   border-right: 1px solid $seminar-group-border-color;
-  clear: left;
-  float: left;
   margin: 0;
   position: relative;
-  width: $site-min-width - $left-column-width - 2px;
 
   &.offering > h1 { background: #a91e23; }
   &.confirmed > h1 { background: #94b840; }

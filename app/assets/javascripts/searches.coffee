@@ -11,5 +11,5 @@ $ ->
     minLength: 3,
     select: (event,ui) ->
       $("#search").val(ui.item.value)
-      $("#search-form").submit()
+      $("#site-search").submit()
       return

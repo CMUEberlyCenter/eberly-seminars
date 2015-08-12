@@ -1,7 +1,7 @@
 <div class="add-participant-activity-wrapper">
   <div class="add-participant-activity-form">
 
-    <%= simple_form_for( activity.becomes( Participants::Activity ),
+    <%= simple_form_for( activity.becomes( Participant::Activity ),
                          url: participant_activities_path( activity.participant,
                                                            activity),
         remote: true

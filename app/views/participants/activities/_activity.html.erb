@@ -1,9 +1,9 @@
 <div class="list-group-item activity">
   <h2 class="list-group-item-heading">
-    <% if activity.type == "Participants::Activities::Additional" %>
+    <% if activity.type == "Participant::Activities::Additional" %>
       <%= activity.title %>
     <% else %>
-    <%= activity.title %>
+        <%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %>
     <% end %>
     &nbsp;&nbsp;
     <small>

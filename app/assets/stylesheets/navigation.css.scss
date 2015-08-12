@@ -10,10 +10,27 @@ $site-nav-font: 16px/20px $site-nav-font-family;
 $admin-nav-font: 16px/18px $site-nav-font-family;
 
 
+/* ==|== global nav styles ================================================== */
+#utility-nav,
+#admin-nav {
+
+    .btn-group { width: 100%; }
+    
+    .btn {
+        font: $site-nav-font;
+        line-height: inherit;
+        padding: 12px 13px;
+    }
+
+    .row { margin-bottom: 20px; }
+    
+}
+
+
 /* ==|== utility nav styles ================================================= */
 #utility-nav {
   margin-top: 30px;
-
+  
   h1 {
     font: 14px/16px $header-font-family-bold;
     margin: 0 0 0 25px;
@@ -132,6 +149,7 @@ $admin-nav-font: 16px/18px $site-nav-font-family;
         }
       }
     } /* li */
+
 
     &.primary-add {
       border: none;

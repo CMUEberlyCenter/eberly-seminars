@@ -1,11 +1,15 @@
-<section class="seminar-group <%= css_class %>">
-  <h1><%= raw title %></h1>
-  
-  <ul>
-    <% if seminars && seminars.size > 0 %>
-      <%= render seminars %>
-    <% else %>
-      <li><%= no_seminars_message %></li>
-    <% end %>
-  </ul>
-</section>
+<div class="row">
+    <div class="col-md-12">
+        <section class="seminar-group <%= css_class %>">
+            <h1><%= raw title %></h1>
+            
+            <ul>
+                <% if seminars && seminars.size > 0 %>
+                    <%= render seminars %>
+                <% else %>
+                    <li><%= no_seminars_message %></li>
+                <% end %>
+            </ul>
+        </section>
+    </div>
+</div>

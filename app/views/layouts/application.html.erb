@@ -33,22 +33,31 @@
   <%= render partial: 'layouts/page_header' %>
 
   <div class="container-fluid">
-  <%# TODO: raw is cludgy and requires no direct user input to go in the flash.
-      Let's whitelist some reasonable tags instead %>
-  <% if flash[:error] %><div class="flash error"><p><%= raw flash[:error] %></p></div><% end %>
-  <% if flash[:notice] %><div class="flash notice"><p><%= raw flash[:notice] %></p></div><% end %>
-  <% if flash[:success] %><div class="flash success"><p><%= raw flash[:success] %></p></div><% end %>
+      <div class="row">
+          <div class="col-md-3 sidebar">
+              <%= render "layouts/utility_nav" %>
+              
+              <%= sidebar_note %>
+          </div>
 
-  <div class="left sidebar">
-    <%= render "layouts/utility_nav" %>
-    
-    <%= sidebar_note %>
-  </div>
-  
-  <section id="content" role="main">
+          <div class="col-md-9">
+              <div class="row">
+                  <div class="col-md-12">
+                      <%# TODO: raw is cludgy and requires no direct user input to go in the flash.
+                      Let's whitelist some reasonable tags instead %>
+                      <% if flash[:error] %><div class="flash error"><p><%= raw flash[:error] %></p></div><% end %>
+                      <% if flash[:notice] %><div class="flash notice"><p><%= raw flash[:notice] %></p></div><% end %>
+                      <% if flash[:success] %><div class="flash success"><p><%= raw flash[:success] %></p></div><% end %>
+                  </div>
+              </div>
 
-    <%= yield %>
-  </section>
+              <div class="row">
+                  <section id="content" role="main" class="col-md-12">
+                      <%= yield %>
+                  </section>
+              </div>
+          </div><!-- /.col-md-9 -->
+      </div><!-- /.row -->
   </div>
 
   <%= render partial: 'layouts/page_footer' %>

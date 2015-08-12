@@ -17,7 +17,7 @@ class Participants::BaseController < ApplicationController
       format.html
     end
 
-  rescue
+  rescue ActiveLdap::EntryNotFound
     # TODO: participants_url/did you mean? results
     redirect_to( root_url,
                  :flash => { :error => "Participant does not exist." } )

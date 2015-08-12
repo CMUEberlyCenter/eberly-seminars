@@ -70,28 +70,41 @@
 }
 .btn {
     border-radius: 2px;
-    font-size: 16px;
+    color: #fff;
+
+    &:hover { color: #fff; }
+
+    &.btn-default {
+        color: #bbb;
+        &:hover { color: #fff; background-color: #bbb; }
+    }
+    
     &.btn-primary {
-        color: #fff;
         background-color: #bbb;
         border-color: #bbb;
         &:hover { border-color: #999; }
     }
 
-    .glyphicon {
-        font-size: 50%;
-        vertical-align: 50%;
+    &.btn-create {
+        background-color: $seminars-color;
+        border: 1px solid #7D9E4A;
     }
+
+    .glyphicon {
+        font-size: 90%;
+    }
+
 }
 
 /* ==|== global styles ====================================================== */
 body {
   margin: 0;
-  min-width: $site-min-width;
   padding: 0;
-  width: 100%;
 
   @include body-gradient( $body-gradient-start, $body-gradient-end );
+}
+.row {
+    max-width: 1020px;
 }
 
 a.indicates-more:after { content: "..."; }
@@ -111,62 +124,59 @@ a.indicates-more:after { content: "..."; }
 #page-header {
   background: #ffffff;
   border-bottom: 1px solid $page-header-border-color;
-  clear: left;
-  float: left;
-  height: 88px;
-  width: 100%;
 
-  #banner {
-    float: left;
-    width: 540px;
-    
-    h1 {
-      color: $page-header-font-color;
-      float: left;
-      font: $page-header-font;
-      margin: 44px 0 0 0;
-      vertical-align: middle;
-    }
+  .row {
+      height: 80px;
+      padding: 10px 0 18px;
+  }
 
-    #wordmark {
-      clear: left;
-      float: left;
-      width: $left-column-width;
-      margin-top: 10px;
+  .banner {
+      display: table;
+      height: 100%;
+      margin-left: -15px;
+      margin-top: 3px;
       
-      img { margin: 10px; width: 200px; }
-    }
-  } /* banner */
+      h1 {
+          color: $page-header-font-color;
+          font: $page-header-font;
+          display: table-cell;
+          vertical-align: bottom;
+      }
+  }
+  
+  .wordmark {
+      display: table;
+      height: 100%;
+      padding: 0 20px 0 20px;
+
+      a {
+          display: table-cell;
+          vertical-align: bottom;
+      }
+
+      img { width: 200px; }
+
+  } /* wordmark */
 
   .header-content {
-    float: left;
-    position: relative;
-    margin-left: 10px;
-    width: $site-min-width - 550px;
+      display: table;
+      height: 100%;
+      margin-right: -35px;
+      
+      form {
+          display: table-cell;
+          vertical-align: bottom;
+      }
   }
 
   #site-search {
-    float: left;
-    height: 40px;
-    margin-top: 35px;
-    width: 100%;
+      .input-group { width: 100%; }
+      
+      input[type="text"] {
+          border: 1px solid $site-search-input-border-color;
+          font: $site-search-font;
 
-    input[type="text"] {
-      background: $site-search-bg-color;
-      border: 1px solid $site-search-input-border-color;
-      float: left;
-      font: $site-search-font;
-      height: 35px;
-      width: 100%;
-    }
-    
-    input[type="image"] {
-      border-left: none;
-      right: 5px;
-      margin: 3px;
-      position: absolute;
-      width: 33px;
-    }
+      }
   }
 
 } /* page-header */
@@ -174,14 +184,9 @@ a.indicates-more:after { content: "..."; }
 
 /* ==|== column styles ====================================================== */
 .sidebar {
-  float: left;
-  
-  &.left {
-    clear: left;
-    width: $left-column-width;
-  }
-
-  p.sidebar-note { padding: 25px 55px 25px 25px; }
+    padding: 0;
+    
+    p.sidebar-note { padding: 25px 55px 25px 25px; }
 }
 
 
@@ -278,9 +283,9 @@ div.flash {
 /* ==|== main content styles ================================================ */
 #content {
   background: #ffffff;
-  float: left;  
   margin-top: 42px;
-
+  padding: 0;
+  
   a.boxy {
     background: #bbbbbb;
     border: 1px solid #bbbbbb;

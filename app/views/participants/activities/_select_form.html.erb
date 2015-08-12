@@ -3,7 +3,7 @@
 
         <% type_options.each do |t| %>
         <div id="<%= t.key %>-form" class="add-participant-activity-form-section">
-          <%= simple_form_for( activity.becomes( Participants::Activity ),
+          <%= simple_form_for( activity.becomes( Participant::Activity ),
               url: participant_activities_path( activity.participant,
               activity),
               remote: true

@@ -19,10 +19,8 @@ $participant-title-font: 22px/32px $participant-title-font-family;
 /* ==|== box styles ========================================================= */
 section#participant {
   border: 1px solid $participant-border-color;
-  clear: left;
-  float: left;
   margin: 0;
-  min-width: $site-min-width - $left-column-width - 2px;
+
 /*
   h2 {
      color: #000000;
