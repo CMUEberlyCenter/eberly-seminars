@@ -239,7 +239,7 @@ DEPENDENCIES
   responders (~> 2.0)
   ri_cal
   ruby-ldap
-  rubyzip
+  rubyzip (= 1.0.0)
   rvm1-capistrano3
   sass-rails (~> 5.0)
   simple_form
