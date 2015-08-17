@@ -52,6 +52,17 @@
       padding: 5px $padding-small;
       vertical-align: middle;
 
+      &.notifications {
+          background: #ffff33;
+          color: #000;
+
+          span.glyphicon {
+              font-size: 1.5em;
+              vertical-align: middle;
+              margin-left: 20px;
+          }
+      }
+      
       &.seminars {
         background: #94b840;
       }
@@ -336,3 +347,8 @@ ul  { list-style-type: none; margin: 0; padding: 0; }
 #registrations li h1 { font: 300 18px "helvetica","sans-serif"; margin-top: 10px; min-height: 30px; width: 80%; margin-bottom: 5px; }
 #registrations p { clear: left; display: none; }
 #registrations input[type="checkbox"] { margin-top: 18px; margin-left: 18px; clear: left; float: left; line-height: 30px; vertical-align: middle; }
+
+.add-participant-activity-form { clear: both;
+                                 textarea,
+                                 input { width: 100%; margin-bottom: 5px;}
+                               }

@@ -7,7 +7,8 @@ class Participant < ActiveRecord::Base
 #  has_many :workshop_registrations, source: :registrations
   
   belongs_to :future_faculty_enrollment, class_name: Programs::FutureFaculty::RequirementsVersion
-
+  belongs_to :future_faculty_progress_status, class_name: Program::ProgressStatusType
+  
   has_many :activities, class_name: Participant::Activity, dependent: :destroy, inverse_of: :participant
   
 #  has_many :additional_activities, class_name: Participants::Activities::Additional, dependent: :destroy
@@ -73,7 +74,12 @@ class Participant < ActiveRecord::Base
    self.consultant == 1
  end
 
-
+ scope :ffp_participants, -> (status) { where(:future_faculty_progress_status => Program::ProgressStatusType.find_by_key(status)) }
+ 
+# def ffp_participants( status )
+#   Participant.all
+# end
+ 
 
 #  def registration_for( seminar )
 #    self.registrations.find_by_seminar_id( seminar.id )
@@ -103,6 +109,14 @@ class Participant < ActiveRecord::Base
 
   def departments
     ldap_reference["cmuDepartment"]
+  end
+
+  def college
+    [ldap_reference["eduPersonSchoolCollegeName"]].flatten.join(", ")
+  end
+
+  def colleges
+    ldap_reference["eduPersonSchoolCollegeName"]
   end
 
   def student_class

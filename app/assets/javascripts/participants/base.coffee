@@ -10,6 +10,9 @@ $ ->
   $(".list-group-item.activity").find("[data-method=\"delete\"]").click (event) ->
        $(this).closest(".list-group-item.activity").attr("data-participant-activity","remove")
 
+  $(".list-group-item.activity").find(".edit").click (event) ->
+       $(this).closest(".list-group-item.activity").attr("data-participant-activity","edit")
+
   # TODO: Match against activity type instead of a data attr (see: p_a/create.js.erb)
   $(".add-participant-activity-form").find("[type=\"submit\"]").click (event) ->
        $(this).closest(".panel-body").find(".list-group").attr("data-participant-activity","add")

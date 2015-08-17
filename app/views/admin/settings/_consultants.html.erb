@@ -27,6 +27,12 @@
                 <tr>
                     <td><%= c.name %></td>
                     <td><%= c.andrewid %></td>
+                    <td>
+                        <%= link_to "[x]", participant_path(c,
+                                                            :participant => { :consultant => false}),
+                                                            :method => :put
+                        %>
+                    </td>
                 </tr>
 
             <% end %>

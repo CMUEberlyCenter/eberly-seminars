@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  # ==|== participant exports and filters ====================================
+  get 'participants/future-faculty-program', to: 'participants/programs/future_faculty#index',
+      format: 'xlsx', as: 'future_faculty_program_participants'
+
+
   # ==|== participants and associated resources ==============================
   resources :participants, except: :new, controller: "participants/base" do
-#    patch 'enroll', on: :member
-#    patch 'unenroll', on: :member
-
     resource 'future-faculty-program',
              as: :future_faculty_program,
              controller: "participants/programs/future_faculty",
@@ -28,12 +30,12 @@ Rails.application.routes.draw do
     # (and implicitly defined) participant_id for update and destroy
     scope shallow_prefix: "participant" do
       resources 'activities',
-                only: [:create, :update, :destroy],
+                only: [:edit, :create, :update, :destroy],
                 controller: "participants/activities",
                 shallow: true
      end
   end
-
+  
 
   # ==|== shortcuts to one's own resources ===================================
   # One's own transcript (participant_id will be nil)

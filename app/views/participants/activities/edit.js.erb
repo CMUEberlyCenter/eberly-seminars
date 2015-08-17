@@ -1,0 +1,3 @@
+$(".list-group-item.activity[data-participant-activity=\"edit\"][data-activity=\"<%= @activity.id %>\"").after("<%= j render( partial: "participants/activities/select_form", locals: { activity: @activity, type_options: [@activity.future_faculty_requirement] }) %>");
+$(".list-group-item.activity[data-participant-activity=\"edit\"]").slideUp();
+

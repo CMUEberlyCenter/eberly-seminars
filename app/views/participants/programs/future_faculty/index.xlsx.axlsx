@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "All") do |sheet|
+    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status"]
+     @participants.each do |e|
+     sheet.add_row [ e.updated_at.to_formatted_s(:short),
+                     e.name,
+                     e.andrewid,
+                     e.department,
+                     e.college,
+                     e.future_faculty_progress_status ? e.future_faculty_progress_status.key : ''
+
+    ]
+  end
+end
+
+#Institution.where("name != 'Test'").each do |i|
+#  wb.add_worksheet(name: i.name.truncate(30)) do |sheet|
+#    sheet.add_row [ "Entrance Time","Institution Name","Entrance Status","Name","Andrew ID","Affiliation","School","Department","Student Class","Student Level"]
+#    @entrances.by_institution(i).each do |e|
+#      sheet.add_row [ e.created_at.to_formatted_s(:short),
+#                      e.institution.name,
+#                      e.entrance_status.key,
+#                      e.user ? e.user.name : e.manual_override_value,
+#                      e.user ? e.user.andrewid : '',
+#                      e.user ? e.user.affiliation : '',
+#                      e.user ? e.user.school_college_name : '',
+#                      e.user ? e.user.department : '',
+#                      e.user ? e.user.student_class : '',
+#                      e.user ? e.user.student_level : '' ]
+#    
+#      end
+#  end
+#end

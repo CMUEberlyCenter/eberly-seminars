@@ -1,0 +1,4 @@
+//$(".list-group[data-participant-activity=\"edit\"]").parent().find
+$(".add-participant-activity-form").slideUp();
+$(".list-group-item[data-participant-activity=\"edit\"]").after("<%= j render( partial: "participants/activities/activity", locals: {activity: @a } ) %>");
+$(".list-group-item[data-participant-activity=\"edit\"]").remove();

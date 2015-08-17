@@ -1,14 +1,38 @@
-<div class="list-group-item activity">
+<div class="list-group-item activity" data-activity="<%= activity.id %>">
   <h2 class="list-group-item-heading">
     <% if activity.type == "Participant::Activities::Additional" %>
-      <%= activity.title %>
+        <%= activity.title %><br/>
+        <%= activity.description %>
     <% else %>
-        <%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %>
+        <h2><%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %></h2>
+        
+        Completed: <%= activity.completed_on %><br/>
+        Internal Notes: <%= activity.internal_notes %><br/>
+        
+
+        <% if activity.type == "Participant::Activities::MicroteachingWorkshop" ||
+            activity.type == "Participant::Activities::EarlyCourseFeedback" ||
+            activity.type == "Participant::Activities::TeachingObservation"
+            
+        %>
+            Memo Completed On: <%= activity.memo_completed_on %><br/>
+            Observer: <%= activity.observer ? activity.observer.name : "Unassigned" %><br/>
+        <% end %>
+
+        <% if activity.type == "Participant::Activities::EarlyCourseFeedback" ||
+            activity.type == "Participant::Activities::TeachingObservation" ||
+            activity.type == "Participant::Activities::CourseAndSyllabusDesignProject" %>
+            
+            Course: <%= activity.course %><br/>
+        <% end %>
     <% end %>
     &nbsp;&nbsp;
     <small>
-      <%= link_to( "[x]", participant_activity_path(activity),
-          :method => :delete, remote: true, data: { confirm: "Really delete this?" } ) %></small>
+      <%= link_to( "[delete]", participant_activity_path(activity),
+                  :method => :delete, remote: true, data: { confirm: "Really delete this?" } ) %>
+
+      <%= link_to( "[edit]", edit_participant_activity_path(activity),
+                  remote: true, data: { activity: activity.id }, class: 'edit' ) %></small>
   </h2>
 
   <p class="list-group-item-text">

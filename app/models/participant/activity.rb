@@ -2,7 +2,8 @@ class Participant::Activity < ActiveRecord::Base
   belongs_to :participant
   belongs_to :status, class_name: "Participant::Activity::Status"
   belongs_to :future_faculty_requirement, class_name: Programs::FutureFaculty::Requirement
-
+  belongs_to :observer, class_name: Participant
+  
   # All activities meeting a requirement for some provided program (e.g.: future_faculty)
   scope :program_requirements, -> (program) { where.not("#{program}_requirement_id".to_sym => nil) }
 
@@ -13,7 +14,7 @@ class Participant::Activity < ActiveRecord::Base
   #end
   
   # Additional activities are not governed by one specific progam, thus they are explicitly scoped here
-  scope :additional, -> { where( type: "Participants::Activities::Additional" ) }
+  scope :additional, -> { where( type: "Participant::Activities::Additional" ) }
 
 
   

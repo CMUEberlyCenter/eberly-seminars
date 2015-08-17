@@ -32,7 +32,7 @@ class Registration < ActiveRecord::Base
 
 
 #  scope :has_tag, -> (tag) { joins(:seminar_tags).where("seminar_tags.value = ?", tag) }
-#  scope :credited, -> { merge(:confirmed).merge(:attended).where( 'end_at < ?', Time.now ) }
+  scope :credited, -> { merge(:confirmed).merge(:attended).where( 'end_at < ?', Time.now ) }
   #
   
 #  scope :credited, -> { self.confirmed.attended.joins(:seminar).where( 'end_at < ?', Time.now ) }

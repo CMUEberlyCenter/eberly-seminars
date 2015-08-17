@@ -4,6 +4,8 @@ class Admin::SettingsController < ApplicationController
   def index
     @settings = Setting.all
     @consultants = Participant.where(consultant: true)
+    @pending_graduates = Programs::FutureFaculty::RequirementsVersion.last.pending_graduates
+    @unassigned_activities =  Participant::Activity.all.where("future_faculty_requirement_id > 6").where("observer_id is null")
   end
 
   def update

@@ -1,6 +1,14 @@
 class ParticipantMailer < ActionMailer::Base
   default from: "Eberly Center <seminars@eberly.cmu.edu>"
 
+  def ffp_graduation_email( participant )
+    @participant = participant
+    mail(:to => participant.email,
+         :cc => "seminars-cc@eberly.cmu.edu",
+         :subject => "[Eberly Center] Congrats you're done with FFP")
+    
+  end
+  
   def registration_pending_email(participant, registration)
     @participant = participant
     @registration = registration

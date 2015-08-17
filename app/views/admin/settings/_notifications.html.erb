@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading notifications">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="panel-title pull-left">Notifications</h1>
+                <%= link_to raw('<span class="glyphicon glyphicon-lg glyphicon-download-alt"></span><span class="sr-only">Download FFP Spreadsheet</span>'),
+                    future_faculty_program_participants_url(:format => :xlsx) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Hey, Assign Me to a Consultant!</h2>
+                <table class="table table-striped">
+                    <% @unassigned_activities.each do |a| %>
+                        <tr>
+                            <td><%= link_to a.participant.name, a.participant %></td>
+                            <td><%#= c.andrewid %></td>
+                        </tr>
+                    <% end %>
+                </table>
+            </div>
+
+            <div class="col-md-6">
+                <h2>Graduate Me!</h2>
+                <table class="table table-striped">
+                    <% @pending_graduates.each do |g| %>
+                        <tr>
+                            <td><%= link_to g.name,g %></td>
+                            <td><%#= c.andrewid %></td>
+                        </tr>
+                    <% end %>
+                </table>
+            </div>
+
+    </div><!-- panel-body -->
+</div><!-- panel -->

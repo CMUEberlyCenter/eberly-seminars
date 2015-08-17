@@ -29,6 +29,9 @@ gem 'prawn_rails'
 gem 'htmlentities'
 gem 'best_in_place'
 
+# Use AXLSX for exporting xlsx
+gem 'axlsx_rails'
+
 gem 'bootstrap-sass', '~> 3.3.3'
 
 # automatically add the proper vendor prefixes to CSS code

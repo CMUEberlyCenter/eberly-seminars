@@ -9,6 +9,7 @@ class CarnegieMellonPerson < ActiveLdap::Base
                                                     'mail',
                                                     'sn',
                                                     'cmuDepartment',
+                                                    'eduPersonSchoolCollegeName',
                                                     'cmuStudentClass'
                                                    ]) 
   end

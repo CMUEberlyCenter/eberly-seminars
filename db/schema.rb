@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812101812) do
+ActiveRecord::Schema.define(version: 20150812171744) do
 
   create_table "attendance_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -55,12 +55,16 @@ ActiveRecord::Schema.define(version: 20150812101812) do
     t.string   "course",                        limit: 255
     t.string   "title",                         limit: 255
     t.string   "description",                   limit: 255
+    t.integer  "observer_id",                   limit: 4
     t.date     "completed_on"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.string   "internal_notes",                limit: 255
+    t.date     "memo_completed_on"
   end
 
   add_index "participant_activities", ["future_faculty_requirement_id"], name: "index_participant_activities_on_ff_requirement_id", using: :btree
+  add_index "participant_activities", ["observer_id"], name: "index_participant_activities_on_observer_id", using: :btree
   add_index "participant_activities", ["participant_id"], name: "index_participant_activities_on_participant_id", using: :btree
   add_index "participant_activities", ["status_id"], name: "index_participant_activities_on_status_id", using: :btree
 
@@ -75,17 +79,26 @@ ActiveRecord::Schema.define(version: 20150812101812) do
   add_index "participant_activity_status_types", ["future_faculty_requirement_id"], name: "fk_rails_bbf561d3fb", using: :btree
 
   create_table "participants", force: :cascade do |t|
-    t.string   "andrewid",                     limit: 255
+    t.string   "andrewid",                          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin",                     limit: 1,     default: false
-    t.boolean  "consultant",                   limit: 1,     default: false
-    t.string   "name_cache",                   limit: 255
-    t.text     "note",                         limit: 65535
-    t.integer  "future_faculty_enrollment_id", limit: 4
+    t.boolean  "is_admin",                          limit: 1,     default: false
+    t.boolean  "consultant",                        limit: 1,     default: false
+    t.string   "name_cache",                        limit: 255
+    t.text     "note",                              limit: 65535
+    t.integer  "future_faculty_enrollment_id",      limit: 4
+    t.integer  "future_faculty_progress_status_id", limit: 4
   end
 
   add_index "participants", ["future_faculty_enrollment_id"], name: "index_participants_on_future_faculty_enrollment_id", using: :btree
+  add_index "participants", ["future_faculty_progress_status_id"], name: "index_participants_on_future_faculty_progress_status_id", using: :btree
+
+  create_table "program_progress_status_types", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "registration_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -150,6 +163,8 @@ ActiveRecord::Schema.define(version: 20150812101812) do
   add_foreign_key "participant_activities", "future_faculty_requirements"
   add_foreign_key "participant_activities", "participant_activity_status_types", column: "status_id"
   add_foreign_key "participant_activities", "participants"
+  add_foreign_key "participant_activities", "participants"
   add_foreign_key "participant_activity_status_types", "future_faculty_requirements"
   add_foreign_key "participants", "future_faculty_requirements_versions", column: "future_faculty_enrollment_id"
+  add_foreign_key "participants", "program_progress_status_types", column: "future_faculty_progress_status_id"
 end

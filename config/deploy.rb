@@ -55,7 +55,9 @@ namespace :rails do
   end
   
   def run_remote_pty command
-    exec "ssh #{host} -t 'cd #{deploy_to}/current && PATH=#{fetch(:default_env)[:path]} #{command}'"
+    #exec "ssh #{host} -t 'cd #{deploy_to}/current && PATH=#{fetch(:default_env)[:path]} #{command}'"
+    #exec "ssh #{host} -t 'cd #{deploy_to}/current && #{command}'"
+    exec "ssh #{host} -t 'cd #{deploy_to}/current && echo hi && PATH=#{fetch(:default_env)[:path]} echo $PATH && which ruby'"
   end
 end
 

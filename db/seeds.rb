@@ -183,3 +183,22 @@ Programs::FutureFaculty::Requirement.find_or_create_by(
   p.activity_class = 'Participant::Activities::EarlyCourseFeedback'
 end
 
+
+# Program Progress Status Types
+Program::ProgressStatusType.find_or_create_by(
+  key: 'incomplete') do |v|
+  v.key = 'incomplete'
+  v.label = 'Program requirements are not met'
+end
+
+Program::ProgressStatusType.find_or_create_by(
+  key: 'complete') do |v|
+  v.key = 'complete'
+  v.label = 'Program requirements have been met'
+end
+
+Program::ProgressStatusType.find_or_create_by(
+  key: 'graduated') do |v|
+  v.key = 'graduated'
+  v.label = 'Officially completed program'
+end

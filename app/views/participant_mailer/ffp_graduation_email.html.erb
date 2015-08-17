@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+
+    <p>
+      Hello <%= @participant.name %>,
+    </p>
+    
+    <p>
+        Congratulations! You have completed the Future Faculty
+        Program. You can download your Eberly Center transcript by
+        signing in to <%= link_to "seminars.eberly.cmu.edu",
+        "https://seminars.eberly.cmu.edu" %>. Please contact us if
+        you would like additional teaching support, and best of luck
+        in the future!
+    </p>
+
+    <%= render :partial => 'signature' %>
+
+  </body>
+</html>

@@ -1,23 +1,60 @@
-<div class="add-participant-activity-wrapper">
-  <div class="add-participant-activity-form">
+<div class="add-participant-activity-wrapper row">
+  <div class="add-participant-activity-form col-md-12">
 
         <% type_options.each do |t| %>
-        <div id="<%= t.key %>-form" class="add-participant-activity-form-section">
-          <%= simple_form_for( activity.becomes( Participant::Activity ),
-              url: participant_activities_path( activity.participant,
-              activity),
+            <div id="<%= t.key %>-form" class="add-participant-activity-form-section">
+                <% 
+                url=participant_activities_path( activity.participant,activity)
+                act = activity.becomes( Participant::Activity )
+                if params[:controller]=='participants/activities'
+                    url=participant_activity_path(activity)
+                    #act = activity
+                end
+                %>
+                
+          <%= simple_form_for( act,
+              url: url,
               remote: true
               ) do |a| %>
 
           <div class="form-inputs">
             <h2><%= t.label %></h2>
 
+            <% if t.id==3 || t.id==8 || t.id==9 %>
+                <h2>Course</h2><br/> <%= a.text_field( :course ) %>
+            <% end %>
+
+
+            <h2>Internal Notes</h2>
+            <%= a.text_area( :internal_notes ) %>
+
+            <h2>Completed On</h2>
+            <br/> <%= a.text_field( :completed_on, id: "completed_on" ) %>
+            <script>
+                $(function() {
+                $( "#completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
+                });
+            </script>
             
-            <h2>Title</h2><br/> <%= a.text_field( :title ) %>
-            <h2>Description</h2>
+
+            
+            <% if t.id==7 || t.id==8 || t.id==9 %>
+                <h2>Observer</h2>
+                <% @consultants = Participant.where(consultant: true ) %>
+                <%= select_tag "participant_activity[observer_id]", options_from_collection_for_select(@consultants, "id", "name",act.observer_id), include_blank: true %>
+                
+                <h2>Memo Completed On</h2><br/> <%= a.text_field( :memo_completed_on, id: "memo_completed_on" ) %>
+                <script>
+                    $(function() {
+                    $( "#memo_completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
+                    });
+                </script>
+            <% end %>
+
+            
+
+            <%= a.hidden_field :future_faculty_requirement_id, value: t.id %>
             <%= a.hidden_field :type, value: t.activity_class %>
-            <%= a.text_area( :description ) %>
-            
 
           </div>
                       <%= a.submit "Create", class: ["btn","btn-primary"] %>
@@ -27,8 +64,9 @@
         </div>
         <% end %>
   </div>
-  
-  <div class="btn-group">
+
+<% unless params[:controller]=='participants/activities' %>
+  <div class="btn-group col-md-12">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Activity <span class="caret"></span>
     </button>
@@ -38,6 +76,7 @@
       <% end %>
     </ul>
   </div>
+<% end %>
 
   <!--
   <button type="button" class="btn btn-primary btn-add-participant-activity">
