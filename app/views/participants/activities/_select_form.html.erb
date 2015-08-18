@@ -21,7 +21,7 @@
             <h2><%= t.label %></h2>
 
             <% if t.id==3 || t.id==8 || t.id==9 %>
-                <h2>Course</h2><br/> <%= a.text_field( :course ) %>
+                <h2>Course</h2> <%= a.text_field( :course ) %>
             <% end %>
 
 
@@ -29,7 +29,7 @@
             <%= a.text_area( :internal_notes ) %>
 
             <h2>Completed On</h2>
-            <br/> <%= a.text_field( :completed_on, id: "completed_on" ) %>
+            <%= a.text_field( :completed_on, id: "completed_on" ) %>
             <script>
                 $(function() {
                 $( "#completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
@@ -43,7 +43,7 @@
                 <% @consultants = Participant.where(consultant: true ) %>
                 <%= select_tag "participant_activity[observer_id]", options_from_collection_for_select(@consultants, "id", "name",act.observer_id), include_blank: true %>
                 
-                <h2>Memo Completed On</h2><br/> <%= a.text_field( :memo_completed_on, id: "memo_completed_on" ) %>
+                <h2>Memo Completed On</h2> <%= a.text_field( :memo_completed_on, id: "memo_completed_on" ) %>
                 <script>
                     $(function() {
                     $( "#memo_completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
