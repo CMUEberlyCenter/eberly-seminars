@@ -8,6 +8,13 @@
         
         Completed: <%= activity.completed_on %><br/>
         Internal Notes: <%= activity.internal_notes %><br/>
+
+        <% if activity.type=="Participant::Activities::CourseAndSyllabusDesignProject"|| activity.type=="Participant::Activities::IndividualProject" ||
+            activity.type=="Participant::Activities::CourseAndSyllabusDesignProject" || activity.type=="Participant::Activities::TeachingStatementProject"
+        %>
+            
+            Lead Consultant: <%= activity.lead_consultant ? activity.lead_consultant.name : "Unassigned" %><br/>
+        <% end %>
         
 
         <% if activity.type == "Participant::Activities::MicroteachingWorkshop" ||

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812171744) do
+ActiveRecord::Schema.define(version: 20150818174522) do
 
   create_table "attendance_statuses", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150812171744) do
     t.string   "title",                         limit: 255
     t.string   "description",                   limit: 255
     t.integer  "observer_id",                   limit: 4
+    t.integer  "lead_consultant_id",            limit: 4
     t.date     "completed_on"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150812171744) do
   end
 
   add_index "participant_activities", ["future_faculty_requirement_id"], name: "index_participant_activities_on_ff_requirement_id", using: :btree
+  add_index "participant_activities", ["lead_consultant_id"], name: "index_participant_activities_on_lead_consultant_id", using: :btree
   add_index "participant_activities", ["observer_id"], name: "index_participant_activities_on_observer_id", using: :btree
   add_index "participant_activities", ["participant_id"], name: "index_participant_activities_on_participant_id", using: :btree
   add_index "participant_activities", ["status_id"], name: "index_participant_activities_on_status_id", using: :btree
@@ -164,6 +166,7 @@ ActiveRecord::Schema.define(version: 20150812171744) do
   add_foreign_key "participant_activities", "participant_activity_status_types", column: "status_id"
   add_foreign_key "participant_activities", "participants"
   add_foreign_key "participant_activities", "participants"
+  add_foreign_key "participant_activities", "participants", column: "lead_consultant_id"
   add_foreign_key "participant_activity_status_types", "future_faculty_requirements"
   add_foreign_key "participants", "future_faculty_requirements_versions", column: "future_faculty_enrollment_id"
   add_foreign_key "participants", "program_progress_status_types", column: "future_faculty_progress_status_id"

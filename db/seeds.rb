@@ -202,3 +202,9 @@ Program::ProgressStatusType.find_or_create_by(
   v.key = 'graduated'
   v.label = 'Officially completed program'
 end
+
+Program::ProgressStatusType.find_or_create_by(
+  key: 'dropout') do |v|
+  v.key = 'dropout'
+  v.label = 'Program requirements are not met and no longer at CMU'
+end

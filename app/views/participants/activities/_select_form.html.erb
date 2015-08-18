@@ -24,6 +24,11 @@
                 <h2>Course</h2> <%= a.text_field( :course ) %>
             <% end %>
 
+            <% if t.id==2|| t.id==1 || t.id==3||t.id==4 %>
+                <h2>Consultant</h2>
+                <% @consultants = Participant.where(consultant: true ) %>
+                <%= select_tag "participant_activity[lead_consultant_id]", options_from_collection_for_select(@consultants, "id", "name",act.lead_consultant_id), include_blank: true %>
+            <% end %>
 
             <h2>Internal Notes</h2>
             <%= a.text_area( :internal_notes ) %>
