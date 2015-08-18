@@ -39,7 +39,7 @@
 
             
             <% if t.id==7 || t.id==8 || t.id==9 %>
-                <h2>Observer</h2>
+                <h2>Consultant</h2>
                 <% @consultants = Participant.where(consultant: true ) %>
                 <%= select_tag "participant_activity[observer_id]", options_from_collection_for_select(@consultants, "id", "name",act.observer_id), include_blank: true %>
                 

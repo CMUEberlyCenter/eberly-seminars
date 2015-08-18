@@ -16,7 +16,7 @@
             
         %>
             Memo Completed On: <%= activity.memo_completed_on %><br/>
-            Observer: <%= activity.observer ? activity.observer.name : "Unassigned" %><br/>
+            Consultant: <%= activity.observer ? activity.observer.name : "Unassigned" %><br/>
         <% end %>
 
         <% if activity.type == "Participant::Activities::EarlyCourseFeedback" ||
