@@ -31,7 +31,6 @@ gem 'best_in_place'
 
 # Use AXLSX for exporting xlsx
 gem 'axlsx_rails'
-gem 'rubyzip', '1.0.0'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 
