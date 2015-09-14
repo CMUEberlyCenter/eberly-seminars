@@ -13,11 +13,13 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <h2>Hey, Assign Me to a Consultant!</h2>
+                <h2>Nudge the Consultant!</h2>
                 <table class="table table-striped">
-                    <% @unassigned_activities.each do |a| %>
+                    <% @nudges.each do |a| %>
                         <tr>
-                            <td><%= link_to a.participant.name, a.participant %></td>
+                            <td><%= a.observer.name if a.observer %></td>
+                            <td><%= link_to( a.participant.name, a.participant ) %></strong><br/> <%= a.future_faculty_requirement.label %></td>
+                                
                             <td><%#= c.andrewid %></td>
                         </tr>
                     <% end %>
