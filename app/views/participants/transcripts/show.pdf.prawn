@@ -60,7 +60,7 @@ prawn_document(
     pdf.text "Seminars", :size => name_font_size
     pdf.fill_color default_text_color
     pdf.move_down 2
-    pdf.text "Each seminar is 1.5-2 hours long and integrates educational research and pedagogical strategies", :size => 9
+    pdf.text "Each seminar is 2 hours long and integrates educational research and pedagogical strategies", :size => 9
 
     pdf.move_down 10
 
