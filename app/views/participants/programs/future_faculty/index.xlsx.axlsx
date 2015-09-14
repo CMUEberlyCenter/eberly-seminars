@@ -1,16 +1,27 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "All") do |sheet|
-    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status"]
+    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
      @participants.each do |e|
-     sheet.add_row [ e.updated_at.to_formatted_s(:short),
-                     e.name,
-                     e.andrewid,
-                     e.department,
-                     e.college,
-                     e.future_faculty_progress_status ? e.future_faculty_progress_status.key : ''
+       e.activities.each do |a|
+         sheet.add_row [ e.updated_at.to_formatted_s(:short),
+                         e.name,
+                         e.andrewid,
+                         e.department,
+                         e.college,
+                         e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
+                         a.title,
+                         a.description,
+                         a.course,
+                         a.observer ? a.observer.name : '',
+                         a.lead_consultant ? a.lead_consultant.name : '',
+                         a.completed_on,
+                         a.memo_completed_on,
+                         a.internal_notes
 
-    ]
+         ]
+       end
+     
   end
 end
 
