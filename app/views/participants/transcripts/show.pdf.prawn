@@ -45,7 +45,7 @@ prawn_document(
     pdf.move_down 10
     pdf.fill_color cmu_red
     pdf.text "<b>" + @participant.name + "</b> " + Array.[](@participant.department).flatten.join(', '), :inline_format => true, :size => name_font_size
-    
+
     pdf.move_down 10
   end
 
@@ -56,7 +56,7 @@ prawn_document(
   y_position=pdf.cursor
   pdf.bounding_box([0, y_position], :width => 450, :height => 500) do
 
-  
+
     pdf.text "Seminars", :size => name_font_size
     pdf.fill_color default_text_color
     pdf.move_down 2
@@ -67,7 +67,7 @@ prawn_document(
   if @participant.attended_seminars.size > 0
     @participant.attended_seminars.each do |s|
       title = "#{s.title}"
-      if s.core? 
+      if s.core?
         title = "#{title}\*"
       end
 
@@ -92,7 +92,7 @@ prawn_document(
   if @participant.attended_workshops.size > 0
     @participant.attended_workshops.each do |s|
       title = "#{s.title}"
-      if s.core? 
+      if s.core?
         title = "#{title}\*"
       end
 
@@ -122,16 +122,22 @@ unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
 
   if category_requirements[c].size > 0
     category_requirements[c].each do |r|
-      pdf.text "#{r.label} [ #{r.created_at.strftime('%b %d, %Y')} ]"
-      pdf.move_down 5
-  end
-  
-#      pdf.text "#{o.display_type} - #{o.course}"
-#      pdf.move_down 5
-#      pdf.text "Completed [ #{o.observed_on.strftime("%b %d, %Y")} ]", :size => 10
-#      pdf.move_down 10
-  else
-    pdf.text "N/A"
+      if @participant.activities.where("type=\"#{r.activity_class}\"").size > 0
+        @participant.activities.where("type=\"#{r.activity_class}\"").each do |a|
+          if a.completed_on
+            pdf.text "#{r.label} [ #{a.completed_on.strftime('%b %d, %Y')} ]"
+            pdf.move_down 5
+            if a.course
+              pdf.text "Course: #{a.course}"
+              pdf.move_down 5
+            end
+
+            pdf.move_down 5
+          end
+        end
+      end
+    end
+
   end
   pdf.move_down 15
 
@@ -171,12 +177,12 @@ end
     pdf.fill_color cmu_red
     pdf.bounding_box [pdf.bounds.left,60],
                  :width => pdf.bounds.right-pdf.bounds.left, :height => 10 do
-    pdf.text "This transcript documents activities with the Eberly Center for Teaching Excellence & Educational Innovation", :size => 8, :align => :center 
+    pdf.text "This transcript documents activities with the Eberly Center for Teaching Excellence & Educational Innovation", :size => 8, :align => :center
     end
     pdf.move_to 0,45
     pdf.stroke_color default_stroke_color
     pdf.line_to pdf.bounds.right-pdf.bounds.left,45
-    pdf.stroke  
+    pdf.stroke
 
     footer_y = 45
 #    pdf.stroke do
