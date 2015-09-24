@@ -15,10 +15,10 @@
       <%#   raw( "<div class=\"list-group-item\"><h2 class=\"list-group-item-heading\">None.</h2></div>" ) %>
       <% end %>
     </div>
-    
+
     <%= render( "participants/activities/select_form",
         activity: participant.activities.build, type_options: category_requirements[c] ) %>
-    
+    <script>$( ".completed_on" ).datepicker({dateFormat: "yy-mm-dd"});</script>    
   </div>
 </div>
 <% end %>

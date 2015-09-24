@@ -34,26 +34,14 @@
             <%= a.text_area( :internal_notes ) %>
 
             <h2>Completed On</h2>
-            <%= a.text_field( :completed_on, id: "completed_on" ) %>
-            <script>
-                $(function() {
-                $( "#completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
-                });
-            </script>
-            
-
+            <%= a.text_field( :completed_on, class: "completed_on", id: 'completed_on_' + t.id.to_s + url ) %>
             
             <% if t.id==7 || t.id==8 || t.id==9 %>
                 <h2>Consultant</h2>
                 <% @consultants = Participant.where(consultant: true ) %>
                 <%= select_tag "participant_activity[observer_id]", options_from_collection_for_select(@consultants, "id", "name",act.observer_id), include_blank: true %>
                 
-                <h2>Memo Completed On</h2> <%= a.text_field( :memo_completed_on, id: "memo_completed_on" ) %>
-                <script>
-                    $(function() {
-                    $( "#memo_completed_on" ).datepicker({dateFormat: "yy-mm-dd"});
-                    });
-                </script>
+                <h2>Memo Completed On</h2> <%= a.text_field( :memo_completed_on, class: "completed_on", id: 'memo_completed_on_' + t.id.to_s + url ) %>
             <% end %>
 
             
@@ -62,8 +50,7 @@
             <%= a.hidden_field :type, value: t.activity_class %>
 
           </div>
-                      <%= a.submit "Create", class: ["btn","btn-primary"] %>
-            
+          <%= a.submit "Save", class: ["btn","btn-primary"] %>
             <%# TODO: Cancel %>
           <% end %>
         </div>
