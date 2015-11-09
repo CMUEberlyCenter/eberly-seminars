@@ -3,7 +3,8 @@ class Participants::Programs::FutureFacultyController < ApplicationController
   def index
     respond_to do |format|
       format.xlsx do
-        @participants = Programs::FutureFaculty::RequirementsVersion.last.participants
+        @participants = Participant.where('future_faculty_enrollment_id is not null')
+        #@participants = Programs::FutureFaculty::RequirementsVersion.last.participants
         response.headers['Content-Disposition'] = 'attachment; filename="FutureFacultyParticipants.xlsx"'
       end
     end

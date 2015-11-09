@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "All") do |sheet|
-    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
+wb.add_worksheet(name: "Activities") do |sheet|
+    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
      @participants.each do |e|
        e.activities.each do |a|
          sheet.add_row [ e.updated_at.to_formatted_s(:short),
@@ -10,6 +10,8 @@ wb.add_worksheet(name: "All") do |sheet|
                          e.department,
                          e.college,
                          e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
+                         a.future_faculty_requirement ? a.future_faculty_requirement.requirement_category.label : '',
+                         a.future_faculty_requirement ? a.future_faculty_requirement.label : '',
                          a.title,
                          a.description,
                          a.course,
@@ -25,21 +27,24 @@ wb.add_worksheet(name: "All") do |sheet|
   end
 end
 
-#Institution.where("name != 'Test'").each do |i|
-#  wb.add_worksheet(name: i.name.truncate(30)) do |sheet|
-#    sheet.add_row [ "Entrance Time","Institution Name","Entrance Status","Name","Andrew ID","Affiliation","School","Department","Student Class","Student Level"]
-#    @entrances.by_institution(i).each do |e|
-#      sheet.add_row [ e.created_at.to_formatted_s(:short),
-#                      e.institution.name,
-#                      e.entrance_status.key,
-#                      e.user ? e.user.name : e.manual_override_value,
-#                      e.user ? e.user.andrewid : '',
-#                      e.user ? e.user.affiliation : '',
-#                      e.user ? e.user.school_college_name : '',
-#                      e.user ? e.user.department : '',
-#                      e.user ? e.user.student_class : '',
-#                      e.user ? e.user.student_level : '' ]
-#    
-#      end
-#  end
-#end
+wb.add_worksheet(name: "Event Registrations") do |sheet|
+  sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Category","Type","Title","Core?","Event Date" ]
+  @participants.each do |e|
+    e.registrations.each do |a|
+      sheet.add_row [ e.updated_at.to_formatted_s(:short),
+                      e.name,
+                      e.andrewid,
+                      e.department,
+                      e.college,
+                      e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
+                      "Event",
+                      a.seminar.tags.include?("workshop") ? "Workshop" : "Seminar",
+                      a.seminar.title,
+                      a.seminar.tags.include?("core") ? "core" : "",
+                      a.seminar.start_at.to_formatted_s
+      ]
+                                                                                                                                     
+    end
+
+  end # participants
+end # sheet
