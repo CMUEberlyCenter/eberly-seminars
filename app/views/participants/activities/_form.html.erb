@@ -12,6 +12,8 @@
     <h2>Description</h2>
     <%= a.hidden_field :type %>
     <%= a.text_area( :description ) %>
+    <h2>Completed On</h2>
+    <%= a.text_field( :completed_on, class: "completed_on", id: "completed_on") %>
     </div>
     <%= a.submit "Create", class: ["btn","btn-primary"] %>
     <%# TODO: Cancel %>
