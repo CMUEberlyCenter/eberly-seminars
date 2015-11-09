@@ -18,7 +18,7 @@
                     <% @nudges.each do |a| %>
                         <tr>
                             <td><%= a.observer.name if a.observer %></td>
-                            <td><%= link_to( a.participant.name, a.participant ) %></strong><br/> <%= a.future_faculty_requirement ? a.future_faculty_requirement.label : '' %></td>
+                            <td><%= link_to( a.participant.name, a.participant ) %></strong><br/> <%= a.future_faculty_requirement ? a.future_faculty_requirement.label : '' %><br/><span style="font-size: 11px"><%= a.completed_on %></span></td>
                                 
                             <td><%#= c.andrewid %></td>
                         </tr>

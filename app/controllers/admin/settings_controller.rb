@@ -5,7 +5,7 @@ class Admin::SettingsController < ApplicationController
     @settings = Setting.all
     @consultants = Participant.where(consultant: true)
     @pending_graduates = Programs::FutureFaculty::RequirementsVersion.last.pending_graduates
-    @nudges = Participant::Activity.all.where("type='Participant::Activities::MicroteachingWorkshop' or type='Participant::Activities::EarlyCourseFeedback' or type='Participant::Activities::TeachingObservation'").where("memo_completed_on is null").where("completed_on < ?",3.weeks.ago)
+    @nudges = Participant::Activity.all.where("type='Participant::Activities::MicroteachingWorkshop' or type='Participant::Activities::EarlyCourseFeedback' or type='Participant::Activities::TeachingObservation'").where("memo_completed_on is null").where("completed_on < ?",3.weeks.ago).order(:completed_on)
   end
 
   def update
