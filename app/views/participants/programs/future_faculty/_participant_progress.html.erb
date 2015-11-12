@@ -1,9 +1,5 @@
-<section id="future-faculty" style="<%= hide_if_unenrolled( participant, :future_faculty) %>">
-
-  <% unless Programs::FutureFaculty::Enrollment.find( participant ).nil? %>
+<section id="future-faculty">
 
     <%= render( 'participants/programs/future_faculty/participant_requirements_form', participant: participant ) %>
-
-  <% end %>
 
 </section>

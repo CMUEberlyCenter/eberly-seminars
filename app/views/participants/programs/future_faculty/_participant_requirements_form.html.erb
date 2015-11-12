@@ -1,5 +1,12 @@
-<% category_requirements = @participant.future_faculty_enrollment.requirements.group_by(&:requirement_category) %>
-<% @participant.future_faculty_enrollment.categories.each do |c| %>
+<% if Programs::FutureFaculty::Enrollment.find( @participant ).nil?  %>
+    <% category_requirements = Programs::FutureFaculty::RequirementsVersion.last.requirements.group_by(&:requirement_category) %>
+    <% ffp_categories = Programs::FutureFaculty::RequirementsVersion.last.categories %>
+<% else %>
+    <% category_requirements = @participant.future_faculty_enrollment.requirements.group_by(&:requirement_category) %>
+    <% ffp_categories = @participant.future_faculty_enrollment.categories %>
+<% end %>
+
+<% ffp_categories.each do |c| %>
 <div class="panel panel-default">
 
   <div class="panel-heading requirement-category-label">
