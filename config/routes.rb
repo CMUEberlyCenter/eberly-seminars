@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     resource 'future-faculty-program',
              as: :future_faculty_program,
              controller: "participants/programs/future_faculty",
-             only: [:enroll, :unenroll] do
+             only: [:enroll, :unenroll, :graduate, :ungraduate] do
       member do
         patch 'enroll'
         patch 'unenroll'
+        patch 'graduate'
+        patch 'ungraduate'
       end
     end
     

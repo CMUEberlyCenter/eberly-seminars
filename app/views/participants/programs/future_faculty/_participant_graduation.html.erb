@@ -1,9 +1,12 @@
-<% if not Programs::FutureFaculty::Enrollment.find( @participant ).nil? and @participant.future_faculty_progress_status_id = 2 %>
+<% if not Programs::FutureFaculty::Enrollment.find( @participant ).nil? and @participant.future_faculty_progress_status_id == 2 %>
 
   <%= link_to( "Graduate from Future Faculty",
-               enroll_participant_future_faculty_program_url( @participant ),
-               remote: true,
+               graduate_participant_future_faculty_program_url( @participant ),
+               data: { confirm: "Are you sure?" },
                class: ['boxy', 'hide-if-enrolled-in-future-faculty'],
-               method: :patch ) %>
+              method: :patch ) %>
+
+<% elsif not Programs::FutureFaculty::Enrollment.find( @participant ).nil? %>
+    <a>FFP Status: Graduated</a>
 
 <% end %>

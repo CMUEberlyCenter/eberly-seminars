@@ -9,7 +9,7 @@ class Participants::Programs::FutureFacultyController < ApplicationController
       end
     end
   end
-  
+
   def enroll
     @participant = Participant.find( params[:participant_id] )
     Programs::FutureFaculty::Enrollment.new( @participant )
@@ -27,5 +27,30 @@ class Participants::Programs::FutureFacultyController < ApplicationController
       format.js
     end
   end
+
+  def graduate
+    @participant = Participant.find( params[:participant_id] )
+
+    unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
+      @participant.future_faculty_progress_status_id = 3
+      @participant.save
+    end
+
+    redirect_to @participant
+  end
+
+  def ungraduate
+    @participant = Participant.find( params[:participant_id] )
+
+    unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
+      @participant.future_faculty_progress_status_id = 2
+      @participant.save
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
 end
