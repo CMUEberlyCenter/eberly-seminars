@@ -6,7 +6,7 @@
                class: ['boxy', 'hide-if-enrolled-in-future-faculty'],
               method: :patch ) %>
 
-<% elsif not Programs::FutureFaculty::Enrollment.find( @participant ).nil? %>
+<% elsif not Programs::FutureFaculty::Enrollment.find( @participant ).nil? and @participant.future_faculty_progress_status_id == 3 %>
     <a>FFP Status: Graduated</a>
 
 <% end %>
