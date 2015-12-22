@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Activities") do |sheet|
-    sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
+    sheet.add_row [ "Activity Creation Date","Name","Andrew ID","Department","School","Status","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
      @participants.each do |e|
        e.activities.each do |a|
          sheet.add_row [ a.created_at,
