@@ -10,7 +10,7 @@ wb.add_worksheet(name: "Activities") do |sheet|
                          e.department,
                          e.college,
                          e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
-                         a.future_faculty_requirement ? a.future_faculty_requirement.requirement_category.label : '',
+                         a.future_faculty_requirement ? a.future_faculty_requirement.requirement_category.label : 'Other Activities',
                          a.future_faculty_requirement ? a.future_faculty_requirement.label : '',
                          a.title,
                          a.description,
