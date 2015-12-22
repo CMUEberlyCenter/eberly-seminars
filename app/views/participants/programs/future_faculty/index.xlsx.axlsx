@@ -4,7 +4,7 @@ wb.add_worksheet(name: "Activities") do |sheet|
     sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
      @participants.each do |e|
        e.activities.each do |a|
-         sheet.add_row [ e.updated_at.to_formatted_s(:short),
+         sheet.add_row [ a.created_at,
                          e.name,
                          e.andrewid,
                          e.department,
