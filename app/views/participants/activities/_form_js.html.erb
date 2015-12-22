@@ -1,0 +1,22 @@
+<div class="add-participant-activity-wrapper">
+  <div class="add-participant-activity-form">
+
+      <%= simple_form_for( activity.becomes( Participant::Activity ),
+                         url: participant_activity_path( activity),
+        remote: true
+        ) do |a| %>
+
+    <div class="form-inputs">
+    <h2>Title</h2><br/> <%= a.text_field( :title ) %>
+    <h2>Description</h2>
+    <%= a.hidden_field :type %>
+    <%= a.text_area( :description ) %>
+    <h2>Completed On</h2>
+    <%= a.text_field( :completed_on, class: "completed_on", id: "completed_on") %>
+    </div>
+    <%= a.submit "Save", class: ["btn","btn-primary"] %>
+    <%# TODO: Cancel %>
+    <% end %>
+  </div>
+
+</div>

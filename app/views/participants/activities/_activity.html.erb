@@ -1,10 +1,12 @@
 <div class="list-group-item activity" data-activity="<%= activity.id %>">
-  <h2 class="list-group-item-heading">
+ 
     <% if activity.type == "Participant::Activities::Additional" %>
-        <%= activity.title %><br/>
-        <%= activity.description %>
+        <h2 class="list-group-item-heading">
+        <%= activity.title %></h2>
+        Completed: <%= activity.completed_on %><br/>
+        Description: <%= activity.description %><br/>
     <% else %>
-        <h2><%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %></h2>
+        <h2 class="list-group-item-heading"><%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %></h2>
         
         Completed: <%= activity.completed_on %><br/>
         Internal Notes: <%= activity.internal_notes %><br/>
@@ -43,6 +45,6 @@
   </h2>
 
   <p class="list-group-item-text">
-    <%= activity.description %>
+
   </p>
 </div>
