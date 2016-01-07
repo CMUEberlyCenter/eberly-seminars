@@ -5,7 +5,7 @@ class Programs::FutureFaculty::Enrollment
     version = Programs::FutureFaculty::RequirementsVersion.find_by_key '2015'
 
     # TODO: probably should be a save trigger
-    status = Program::ProgressStatusType.find_by_key 'incomplete'
+    status = Program::ProgressStatusType.find 'incomplete'
 
     participant.future_faculty_progress_status = status
     participant.future_faculty_enrollment = version

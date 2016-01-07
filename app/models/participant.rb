@@ -74,7 +74,7 @@ class Participant < ActiveRecord::Base
    self.consultant == 1
  end
 
- scope :ffp_participants, -> (status) { where(:future_faculty_progress_status => Program::ProgressStatusType.find_by_key(status)) }
+ scope :ffp_participants, -> (status) { where(:future_faculty_progress_status => Program::ProgressStatusType.find(status)) }
  
 # def ffp_participants( status )
 #   Participant.all
