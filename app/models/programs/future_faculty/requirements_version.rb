@@ -37,7 +37,7 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
                participant.activities.where(type: "Participant::Activities::MicroteachingWorkshop").size >= 1 )
            ) &&
            ( participant.activities.where(type: "Participant::Activities::CourseAndSyllabusDesignProject").size >= 1 ) &&
-           ( participant.activities.where(type: "Participant::Activities::MicroteachingWorkshop").size >= 1 )
+           ( participant.activities.where(type: "Participant::Activities::TeachingStatementProject").size >= 1 )
           Program::ProgressStatusType.find('complete')
         else
           Program::ProgressStatusType.find('incomplete')
