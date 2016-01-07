@@ -1,5 +1,5 @@
 class Participants::BaseController < ApplicationController
-  before_filter :require_administrator, only: :enroll
+  before_filter :require_administrator
 
 
   def index

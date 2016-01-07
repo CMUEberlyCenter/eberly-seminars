@@ -40,8 +40,10 @@
   <%= f.label :maximum_capacity, 'Maximum Capacity' %>
   <%= f.text_field :maximum_capacity %>
 </div>
+<div style="float: left; clear: left;" >
     <%= f.label :location, 'Location' %>
     <%= f.text_field :location %>
+</div>
 <div style="float: left; clear: left;" >
     <%= f.label :description, 'Description' %>
     <%= f.text_area :description, :size => "55x12" %>
@@ -81,7 +83,8 @@
   $( "#end-datepicker" ).datepicker({
   showOn: "button",
   buttonImage: "/assets/calendar-icon.png",
-  buttonImageOnly: true
+      buttonImageOnly: true,
+      dateFormat: "yy-mm-dd"
   });
   });
 
@@ -89,7 +92,8 @@
   $( "#start-datepicker" ).datepicker({
   showOn: "button",
   buttonImage: "/assets/calendar-icon.png",
-  buttonImageOnly: true
+      buttonImageOnly: true,
+      dateFormat: "yy-mm-dd"
   });
   });
 </script>
