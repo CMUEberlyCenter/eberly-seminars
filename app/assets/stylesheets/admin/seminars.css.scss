@@ -40,6 +40,7 @@ $postdoc-color: #ddddff;
 }
 
 .seminar-group.admin {
+    float: left; width: 100%;
   a.boxy { margin-bottom: 10px; margin-left: 10px; }
 
   h2 { 
@@ -168,7 +169,8 @@ div#errorExplanation {
 
 .seminar_form {
   padding: 15px;
-
+  float: left;
+  
   .timepicker { width: 100px; }
   .ui-datepicker-trigger { padding-left: 5px; width: 25px; }
 
