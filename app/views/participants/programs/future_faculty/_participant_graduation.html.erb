@@ -1,20 +1,3 @@
-<% if @participant.future_faculty_progress_status_id == 1 &&
-    (@participant.attended_workshops.size+@participant.attended_seminars.size >=0) &&
-    @participant.attended_seminars.with_tag("core").size >= 4 &&
-    (@participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 2 ||
-     (@participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 1 &&
-      @participant.activities.where(type: "Participant::Activities::EarlyCourseFeedback").size >= 1) ||
-     (@participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 1 &&
-      @participant.activities.where(type: "Participant::Activities::MicroteachingWorkshop").size >= 1)
-     ) &&
-     @participant.activities.where(type: "Participant::Activities::CourseAndSyllabusDesignProject").size >= 1 &&
-     @participant.activities.where(type: "Participant::Activities::MicroteachingWorkshop").size >= 1
-%>
-    <% @participant.future_faculty_progress_status_id = 2 %>
-    <% @participant.save! %>
-<% end %>
-     
-     
 <% if not Programs::FutureFaculty::Enrollment.find( @participant ).nil? and @participant.future_faculty_progress_status_id == 2 %>
 
   <%= link_to( "Graduate from Future Faculty",

@@ -5,17 +5,28 @@ class Participant < ActiveRecord::Base
   #scope :program_requirements, -> (program) { where.not("#{program}_requirement_id".to_sym => nil) }
   #has_many :workshops, through: :registrations, foreign_key: "seminar_id"
 #  has_many :workshop_registrations, source: :registrations
+
+  has_many :activities, class_name: Participant::Activity, dependent: :destroy,
+           inverse_of: :participant, autosave: true
   
+  # Program associations
   belongs_to :future_faculty_enrollment, class_name: Programs::FutureFaculty::RequirementsVersion
   belongs_to :future_faculty_progress_status, class_name: Program::ProgressStatusType
-  
-  has_many :activities, class_name: Participant::Activity, dependent: :destroy, inverse_of: :participant
-  
+
+  before_save :update_program_progress_statuses
+
+  # Recalculate progress in programs
+  def update_program_progress_statuses
+    ffp_requirements = self.future_faculty_enrollment
+    ffp_requirements.calculate_participant_status( self ) if ffp_requirements
+  end
+
+
+
 #  has_many :additional_activities, class_name: Participants::Activities::Additional, dependent: :destroy
-  
-#  accepts_nested_attributes_for :additional_activities
+  #
+  #accepts_nested_attributes_for :additional_activities
   accepts_nested_attributes_for :activities
-  
 
   # Use andrewid instead of participant's primary key
   def to_param

@@ -11,7 +11,8 @@ class Participants::ActivitiesController < ApplicationController
   
   def create
     p = Participant.find( params[:participant_id] )
-    @activity = p.activities.create!( activity_params )
+    @activity = p.activities.build( activity_params )
+    p.save
     
     respond_to do |format|
       format.html { redirect_to p }
@@ -22,8 +23,9 @@ class Participants::ActivitiesController < ApplicationController
   
   def destroy
     @a = Participant::Activity.find( params[:id] )
-    p = @a.participant
-    @a.destroy unless @a.nil?
+    @a.mark_for_destruction
+    @a.participant.save
+
     respond_to do |format|
       format.html { redirect_to participant_url( id: p.andrewid ) }
       format.js
@@ -35,7 +37,7 @@ class Participants::ActivitiesController < ApplicationController
     @a = Participant::Activity.find( params[:id] )
     @a.update_attributes!( activity_params )
     #@a.assign_attributes(params[:participant_activities_additional], :without_protection => true)
-    @a.save!
+    @a.participant.save!
     #respond_with @a
     respond_to do |format|
       format.js
