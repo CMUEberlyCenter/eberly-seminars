@@ -14,6 +14,10 @@
     <h2>Completed On</h2>
     <%= a.text_field( :completed_on, class: "completed_on", id: "completed_on") %>
     </div>
+    <h2>Consultant</h2>
+    <% @consultants = Participant.where(consultant: true ) %>
+    <%= select_tag "participant_activity[lead_consultant_id]", options_from_collection_for_select(@consultants, "id", "name",activity.lead_consultant_id), include_blank: true %><br/><br/>
+    
     <%= a.submit "Save", class: ["btn","btn-primary"] %>
     <%# TODO: Cancel %>
     <% end %>
