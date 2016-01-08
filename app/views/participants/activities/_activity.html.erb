@@ -5,6 +5,7 @@
         <%= activity.title %></h2>
         Completed: <%= activity.completed_on %><br/>
         Description: <%= activity.description %><br/>
+        Lead Consultant: <%= activity.lead_consultant ? activity.lead_consultant.name : "Unassigned" %><br/>
     <% else %>
         <h2 class="list-group-item-heading"><%= Programs::FutureFaculty::Requirement.find_by_activity_class(activity.type).label %></h2>
         
@@ -16,6 +17,7 @@
         %>
             
             Lead Consultant: <%= activity.lead_consultant ? activity.lead_consultant.name : "Unassigned" %><br/>
+            First Consultation On: <%= activity.first_consultation_on %><br/>
         <% end %>
         
 

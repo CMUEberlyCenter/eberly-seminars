@@ -47,7 +47,7 @@ class Participants::ActivitiesController < ApplicationController
   private
   def activity_params
     if current_user.is_admin?
-      params.require(:participant_activity).permit(:type, :description, :title, :completed_on, :internal_notes, :course, :memo_completed_on, :lead_consultant_id, :observer_id, :observer, :future_faculty_requirement_id)
+      params.require(:participant_activity).permit(:type, :description, :title, :completed_on, :internal_notes, :course, :first_consultation_on, :memo_completed_on, :lead_consultant_id, :observer_id, :observer, :future_faculty_requirement_id)
     else
       params.require(:participant_activity).permit(nil)
     end
