@@ -22,7 +22,9 @@
         
 
         <% if activity.type == "Participant::Activities::MicroteachingWorkshop" ||
+            activity.type == "Participant::Activities::MicroteachingObservation" ||
             activity.type == "Participant::Activities::EarlyCourseFeedback" ||
+            activity.type == "Participant::Activities::ClassroomObservation" ||
             activity.type == "Participant::Activities::TeachingObservation"
             
         %>
@@ -32,6 +34,7 @@
 
         <% if activity.type == "Participant::Activities::EarlyCourseFeedback" ||
             activity.type == "Participant::Activities::TeachingObservation" ||
+            activity.type == "Participant::Activities::ClassroomObservation" ||
             activity.type == "Participant::Activities::CourseAndSyllabusDesignProject" %>
             
             Course: <%= activity.course %><br/>

@@ -23,7 +23,7 @@
           <div class="form-inputs">
             <h2><%= t.label %></h2>
 
-            <% if t.id==3 || t.id==8 || t.id==9 %>
+            <% if t.id==3 || t.id==8 || t.id==6 || t.id==9 %>
                 <h2>Course</h2> <%= a.text_field( :course ) %>
             <% end %>
 
@@ -41,7 +41,7 @@
             <h2>Completed On</h2>
             <%= a.text_field( :completed_on, class: "completed_on", id: 'completed_on_' + t.id.to_s + url ) %>
             
-            <% if t.id==7 || t.id==8 || t.id==9 %>
+            <% if t.id==7 || t.id==5 || t.id==8 || t.id==6 || t.id==9 %>
                 <h2>Consultant</h2>
                 <% @consultants = Participant.where(consultant: true ) %>
                 <%= select_tag "participant_activity[observer_id]", options_from_collection_for_select(@consultants, "id", "name",act.observer_id), include_blank: true %>
