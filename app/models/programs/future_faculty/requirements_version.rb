@@ -30,14 +30,14 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
       when "2015"
         if ( participant.attended_workshops.size + participant.attended_seminars.size >= 8 ) &&
            ( participant.attended_seminars.with_tag("core").size >= 4 ) &&
-           ( ( participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 2 ) ||
-             ( participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 1 &&
-               participant.activities.where(type: "Participant::Activities::EarlyCourseFeedback").size >= 1 ) ||
-             ( participant.activities.where(type: "Participant::Activities::TeachingObservation").size >= 1 &&
-               participant.activities.where(type: "Participant::Activities::MicroteachingWorkshop").size >= 1 )
+           ( ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingObservation"').size >= 2 ) ||
+             ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingObservation"').size >= 1 &&
+               participant.activities.where('completed_on is not null and type="Participant::Activities::EarlyCourseFeedback"').size >= 1 ) ||
+             ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingObservation"').size >= 1 &&
+               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingWorkshop"').size >= 1 )
            ) &&
-           ( participant.activities.where(type: "Participant::Activities::CourseAndSyllabusDesignProject").size >= 1 ) &&
-           ( participant.activities.where(type: "Participant::Activities::TeachingStatementProject").size >= 1 )
+           ( participant.activities.where('completed_on is not null and type="Participant::Activities::CourseAndSyllabusDesignProject"').size >= 1 ) &&
+           ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingStatementProject"').size >= 1 )
           Program::ProgressStatusType.find('complete')
         else
           Program::ProgressStatusType.find('incomplete')
