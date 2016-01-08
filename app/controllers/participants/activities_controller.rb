@@ -23,9 +23,11 @@ class Participants::ActivitiesController < ApplicationController
   
   def destroy
     @a = Participant::Activity.find( params[:id] )
-    @a.mark_for_destruction
-    @a.participant.save
-
+    #@a.mark_for_destruction TODO: not working
+    p = @a.participant
+    @a.destroy
+    p.save
+    
     respond_to do |format|
       format.html { redirect_to participant_url( id: p.andrewid ) }
       format.js
