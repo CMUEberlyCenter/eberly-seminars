@@ -158,7 +158,9 @@ end
   if @participant.activities and @participant.activities.additional and @participant.activities.additional.size > 0
     @participant.activities.additional.find_each do |a|
       title = "#{a.title}"
-      pdf.text "#{title}  [ #{a.description} ]"
+      pdf.text "#{title}  #{a.completed_on ? '[ '+a.completed_on.strftime('%b %d, %Y')+' ]' : ''}"
+      pdf.move_down 5
+      pdf.text "#{a.description}"
       pdf.move_down 10
     end
 
