@@ -41,10 +41,20 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
           Program::ProgressStatusType.find('complete')
         else
           Program::ProgressStatusType.find('incomplete')
-        end
+        end # 2015
       when "2012"
-        # TODO: What are the old requirements?
-        participant.future_faculty_progress_status
+        if ( participant.attended_workshops.size + participant.attended_seminars.size >= 8 ) &&
+           ( participant.attended_seminars.with_tag("core").size >= 4 ) &&
+           ( ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 2 ) ||
+             ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 1 &&
+               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingObservation"').size >= 1 )
+           ) &&
+           ( participant.activities.where('completed_on is not null and type="Participant::Activities::CourseAndSyllabusDesignProject"').size >= 1 ) &&
+           ( participant.activities.where('completed_on is not null and type="Participant::Activities::IndividualProject"').size >= 1 )
+          Program::ProgressStatusType.find('complete')
+        else
+          Program::ProgressStatusType.find('incomplete')
+        end # 2012
       else
         nil
       end # case
