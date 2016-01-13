@@ -4,7 +4,7 @@ class Admin::SettingsController < ApplicationController
   def index
     @settings = Setting.all
     @consultants = Participant.where(consultant: true)
-    @pending_graduates = Programs::FutureFaculty::RequirementsVersion.last.pending_graduates
+    @pending_graduates = Programs::FutureFaculty::RequirementsVersion.find_each.map { |x| x.pending_graduates }.flatten
     @nudges = Participant::Activity.all.where("type='Participant::Activities::MicroteachingWorkshop' or type='Participant::Activities::EarlyCourseFeedback' or type='Participant::Activities::TeachingObservation'").where("memo_completed_on is null").where("completed_on < ?",3.weeks.ago).order(:completed_on)
   end
 
