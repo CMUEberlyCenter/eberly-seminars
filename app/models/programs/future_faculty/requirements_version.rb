@@ -47,7 +47,9 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
            ( participant.attended_seminars.with_tag("core").size >= 4 ) &&
            ( ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 2 ) ||
              ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 1 &&
-               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingObservation"').size >= 1 )
+               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingObservation"').size >= 1 ) ||
+             ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 1 &&
+               participant.activities.where('completed_on is not null and type="Participant::Activities::EarlyCourseFeedback"').size >= 1 )
            ) &&
            ( participant.activities.where('completed_on is not null and type="Participant::Activities::CourseAndSyllabusDesignProject"').size >= 1 ) &&
            ( participant.activities.where('completed_on is not null and type="Participant::Activities::IndividualProject"').size >= 1 )

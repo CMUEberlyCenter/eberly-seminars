@@ -143,6 +143,17 @@ Programs::FutureFaculty::Requirement.find_or_create_by(
   p.activity_class = 'Participant::Activities::ClassroomObservation'
 end
 
+Programs::FutureFaculty::Requirement.find_or_create_by(
+  key: 'ecf_fg_observation',
+  requirements_version: v1,
+  requirement_category: c ) do |p|
+  p.label = 'Early Course Feedback/Focus Group'
+  p.key = 'ecf_fg_observation'
+  p.requirements_version = v1
+  p.requirement_category = c
+  p.activity_class = 'Participant::Activities::EarlyCourseFeedback'
+end
+
 
 c = Programs::FutureFaculty::RequirementCategory.find_or_create_by(
   key: 'teaching_consultations') do |p|
