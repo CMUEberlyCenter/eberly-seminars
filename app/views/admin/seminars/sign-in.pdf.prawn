@@ -71,7 +71,7 @@ prawn_document(
     participants = @seminar.registrations.confirmed.all.collect {|r| r.participant }
     participants.sort_by(&:surname).each do |p|
 
-      pdf.text p.name
+      pdf.text p.name + " (" + p.andrewid + ")"
       pdf.stroke do
         pdf.horizontal_line 0, 450, :at => pdf.cursor+15
 	pdf.vertical_line pdf.cursor+48, pdf.cursor+15, :at => 200
