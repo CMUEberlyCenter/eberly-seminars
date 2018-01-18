@@ -1,15 +1,18 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Activities") do |sheet|
-    sheet.add_row [ "Activity Creation Date","Name","Andrew ID","Department","School","Status","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
+    sheet.add_row [ "Activity Creation Date","Name","Andrew ID","First Consultation On","Department","School","Status","FFP Graduation Date","Category","Type","Activity Title","Description","Course","Observer","Lead Consultant","Completed On","Memo Completed On","Internal Notes"]
+
      @participants.each do |e|
        e.activities.each do |a|
          sheet.add_row [ a.created_at,
                          e.name,
                          e.andrewid,
+			 e.first_consultation_on,
                          e.department,
                          e.college,
                          e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
+			 e.future_faculty_program_graduated_on,
                          a.future_faculty_requirement ? a.future_faculty_requirement.requirement_category.label : 'Other Activities',
                          a.future_faculty_requirement ? a.future_faculty_requirement.label : '',
                          a.title,
@@ -28,7 +31,7 @@ wb.add_worksheet(name: "Activities") do |sheet|
 end
 
 wb.add_worksheet(name: "Event Registrations") do |sheet|
-  sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Status","Category","Type","Title","Core?","Event Date" ]
+  sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Registration Status","Attendance Status","FFP Status","Category","Type","Title","Core?","Event Date" ]
   @participants.each do |e|
     e.registrations.each do |a|
       sheet.add_row [ e.updated_at.to_formatted_s(:short),
@@ -36,6 +39,8 @@ wb.add_worksheet(name: "Event Registrations") do |sheet|
                       e.andrewid,
                       e.department,
                       e.college,
+		      a.status,
+		      a.attendance_status ? a.attendance_status.key : "",
                       e.future_faculty_progress_status ? e.future_faculty_progress_status.key : '',
                       "Event",
                       a.seminar.tags.include?("workshop") ? "Workshop" : "Seminar",
