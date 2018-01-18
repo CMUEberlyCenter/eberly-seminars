@@ -29,12 +29,12 @@
 <div style="float: left; clear: left;" >
   <%= f.label :start_at, 'Start At' %>
   <input type="text" autocomplete="off" class="timepicker" name="seminar[start_time]" id="seminar_start_at" value="<%= @seminar.start_at.strftime('%l:%M %p') %>"/> 
-  <input type="text" autocomplete="off" id="start-datepicker" name="seminar[start_date]" value="<%= @seminar.start_at.strftime('%m/%d/%y') %>">
+  <input type="text" autocomplete="off" id="start-datepicker" name="seminar[start_date]" value="<%= @seminar.start_at.strftime('%m/%d/%Y') %>">
 </div>
 <div style="float: left; clear: left;" >
   <%= f.label :end_at, 'End At' %>
   <input type="text" class="timepicker" autocomplete="off" id="seminar_end_at" name="seminar[end_time]" value="<%= @seminar.end_at.strftime('%l:%M %p') %>"/>  
-  <input type="text" id="end-datepicker" autocomplete="off" name="seminar[end_date]" value="<%= @seminar.end_at.strftime('%m/%d/%y') %>">
+  <input type="text" id="end-datepicker" autocomplete="off" name="seminar[end_date]" value="<%= @seminar.end_at.strftime('%m/%d/%Y') %>">
 </div>
 <div style="float: left; clear: left;" >
   <%= f.label :maximum_capacity, 'Maximum Capacity' %>
