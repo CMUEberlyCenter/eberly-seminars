@@ -28,7 +28,7 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
     participant.future_faculty_progress_status =
       case participant.future_faculty_enrollment.key
       when "2015"
-        if ( participant.attended_workshops.size + participant.attended_seminars.size >= 8 ) &&
+        if ( participant.attended_seminars.size >= 8 ) &&
            ( participant.attended_seminars.with_tag("core").size >= 4 ) &&
            ( ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingObservation"').size >= 2 ) ||
              ( participant.activities.where('completed_on is not null and type="Participant::Activities::TeachingObservation"').size >= 1 &&
@@ -43,13 +43,11 @@ class Programs::FutureFaculty::RequirementsVersion < ActiveRecord::Base
           Program::ProgressStatusType.find('incomplete')
         end # 2015
       when "2012"
-        if ( participant.attended_workshops.size + participant.attended_seminars.size >= 8 ) &&
+        if ( participant.attended_seminars.size >= 8 ) &&
            ( participant.attended_seminars.with_tag("core").size >= 4 ) &&
            ( ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 2 ) ||
              ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 1 &&
-               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingObservation"').size >= 1 ) ||
-             ( participant.activities.where('completed_on is not null and type="Participant::Activities::ClassroomObservation"').size >= 1 &&
-               participant.activities.where('completed_on is not null and type="Participant::Activities::EarlyCourseFeedback"').size >= 1 )
+               participant.activities.where('completed_on is not null and type="Participant::Activities::MicroteachingObservation"').size >= 1 )
            ) &&
            ( participant.activities.where('completed_on is not null and type="Participant::Activities::CourseAndSyllabusDesignProject"').size >= 1 ) &&
            ( participant.activities.where('completed_on is not null and type="Participant::Activities::IndividualProject"').size >= 1 )
