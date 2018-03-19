@@ -1,5 +1,5 @@
 class Admin::SeminarsController < ApplicationController
-  before_filter :require_administrator
+  before_action :require_administrator
 
   layout 'admin'
 

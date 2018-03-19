@@ -1,5 +1,5 @@
 class SeminarsController < ApplicationController
-  skip_before_filter :require_authentication, only: :index
+  skip_before_action :require_authentication, only: :index
 
   def index
     if administrator?
