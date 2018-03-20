@@ -44,9 +44,10 @@ class Participant < ActiveRecord::Base
   # Attended event calculations
   has_many( :attended_workshops, -> { with_tag( "workshop" ) },
             through: :attended_registrations, source: :seminar )
-  has_many( :attended_seminars, -> { without_tag( "workshop" ) },
+  has_many( :attended_seminars, -> { without_tag( "workshop" ) && without_tag( "other" ) },
             through: :attended_registrations, source: :seminar )
-
+  has_many( :attended_other, -> { with_tag( "other" ) },
+            through: :attended_registrations, source: :seminar )
 
 
   

@@ -2,9 +2,10 @@
 
   <%= render "participant", participant: @participant %>
 
-  <%= render partial: "seminars", object: @participant.attended_seminars, locals: { title: "Seminars" } %>
-  <%= render partial: "seminars", object: @participant.attended_workshops, locals: { title: "Workshops" } %>
-  
+    <%= render partial: "seminars", object: @participant.attended_seminars, locals: { title: "Seminars" } %>
+    <%= render partial: "seminars", object: @participant.attended_workshops, locals: { title: "Workshops" } %>
+    <%= render partial: "seminars", object: @participant.attended_other, locals: { title: "Other Events" } %>
+
   <%= render "participants/programs/future_faculty/participant_progress", participant: @participant %>
 
   <%= render "participants/activities/additional", participant: @participant %>
