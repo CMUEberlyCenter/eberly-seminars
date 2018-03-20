@@ -1,5 +1,5 @@
 class Admin::SpreadsheetsController < ApplicationController
-  before_filter :require_administrator
+  before_action :require_administrator
 
   def show
     if params[:id] == 'participants'

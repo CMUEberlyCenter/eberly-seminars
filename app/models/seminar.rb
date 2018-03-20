@@ -55,7 +55,9 @@ class Seminar < ActiveRecord::Base
   end
   
   def tags=(tags)
-    SeminarTag.delete_all('seminar_id is NULL')
+    SeminarTag.where('seminar_id is NULL').each do |x|
+      x.destroy
+    end
     self.seminar_tags.delete_all
     tags.split(',').each do |tag|
       SeminarTag.create( :seminar_id => self.id, :value => tag )

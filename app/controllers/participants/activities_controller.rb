@@ -1,5 +1,5 @@
 class Participants::ActivitiesController < ApplicationController
-  respond_to :html, :json
+  #respond_to :html, :json
 
   def edit
     @activity = Participant::Activity.find( params[:id] )

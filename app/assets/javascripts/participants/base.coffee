@@ -103,5 +103,5 @@ $ ->
 
   $('.best_in_place').best_in_place()
 
-  $.datepicker.setDefaults({ dateFormat: 'M dd, yy' });
+  $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
 $( ".completed_on" ).datepicker({dateFormat: "yy-mm-dd"});  

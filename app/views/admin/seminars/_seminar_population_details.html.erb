@@ -1,12 +1,14 @@
-  <p style="margin-left: 10px;">
-      <strong>Registrations:</strong>
-      <%= @seminar.registrations.size %><br/>
-      <strong>Pending:</strong>
-      <%= @seminar.registrations.pending.size %><br/>
-      <strong>Confirmed:</strong>
-      <%= @seminar.registrations.confirmed.size %><br/>
-      <strong>Capacity:</strong>
-      <div style="width: 120px; float: left; margin-top: -8px; clear: both; margin-right: 5px; margin-left: 10px; ">
+  <div style="margin-left: 10px;border-bottom: 1px solid #aaa; border-top:1px solid #aaa;">
+      Registrations:
+      <strong><%= @seminar.registrations.size %></strong> | 
+      Pending:
+          <strong><%= @seminar.registrations.pending.size %></strong> |
+          Confirmed:
+          <strong><%= @seminar.registrations.confirmed.size %></strong> |
+          
+          Capacity:
+
+          <div style="width: 120px; float: right; margin-top: 0px; margin-right: 230px;">
         <div class="capacity">
           <%=
              content_tag( :div,
@@ -16,5 +18,5 @@
         </div>
       </div>
 
-      <%= @seminar.capacity_percentage.to_s %>%
-  </p>
+      <strong><%= @seminar.capacity_percentage.to_s %>%</strong>
+  </div>

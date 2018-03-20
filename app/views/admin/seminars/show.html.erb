@@ -1,14 +1,14 @@
 <section class="seminar-group <%= @seminar.status %> admin">
   <h1><%= @seminar.title %></h1>
 
-  <%= render "participant_legend" %>
+  <%#= render "participant_legend" %>
 
   <p class="date"><%= raw @seminar.formatted_timespan %></p>
 
   <p class="description"><%= raw @seminar.description %></p>
   <% if @seminar.status == 'published' %>
     <div id="population_details">
-      <%= render partial: 'seminar_population_details' %>
+        <%= render partial: 'seminar_population_details' %>
     </div>
   <% end %>
 
@@ -27,6 +27,7 @@
 	admin_seminar_url(@seminar, :format => 'pdf', :profile => 'sign-in'), :class => 'boxy' %>
   </p>
   <% end %>
+  <% if false %>
   <h2 style="float: left; margin-bottom: -40px; clear: both; "> Registered Participants</h2>  
   <ul class="connected-sortable participants-list" id="registered-participants" style="clear: left;">
     <li class="cant-drag" id="add-participant"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></li>
@@ -47,7 +48,6 @@
        end
     %>
     <%# end %>
-
 
     <li id="ids_<%=registration.id %>" class="<%= h css_classes %>" style="position: relative;">
       <% title = '' %>
@@ -132,7 +132,30 @@
   <%# f.submit "Update", :class => 'button' %>
   <% end %>
 
+  <% end %>
 
+  <button id="at_filter" class="at-btn">Attendance</button>
+  <button id="mark_all" class="at-btn">Mark All Present</button>
+  <button id="unmark_all" class="at-btn">Unmark All</button>
+  
+  <table style="width:100%">
+      <tr style="color: #fff; background: #000;">
+          <th class="p_select"><%= check_box_tag("all_participants") %></th>
+          <th>Name</th>
+          <th>Attendance</th>
+      </tr>
+      <% @seminar.registrations.confirmed.each do |registration| %>
+
+          <tr>
+              <td class="p_select"><%= check_box_tag("select_#{registration.participant.andrewid}", "", false, class: 'participant') %></td>
+              <td><%= registration.participant.name %> (<%= registration.participant.andrewid %>)</td>
+              <td class="attendance" data-icon="fa-ban">
+                  <i class="fas fa-2x fa-ban"></i>
+              </td>
+          </tr>
+  <% end%>
+  </table>
+  
 </section>
 
  <script>
