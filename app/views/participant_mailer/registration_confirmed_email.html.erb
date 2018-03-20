@@ -6,36 +6,38 @@
   <body>
 
     <p>
-      Dear <%= @participant.name %>,
-    </p>
-    
-    <p>
-      We have confirmed your space in the following sessions:<br/><br/>
-
-      <%= render :partial => "registration_details", :object => @registration %>
+        Dear <%= @participant.name %>,
     </p>
 
     <p>
-      If you are still interested in attending this session, you do
-      not need to take further action.
+        We have confirmed your space in the following sessions:<br/><br/>
+
+        <%= render :partial => "registration_details", :object => @registration %>
     </p>
 
     <p>
-      If you are no longer interested in or able to attend this
-      session, please log in to cancel your space as soon as possible
-      so we can accommodate other interested graduate students. If you
-      are a no-show for a session (i.e., are confirmed but don’t
-      cancel in advance or attend) more than once, you will be moved
-      to the waitlist for the semester’s remaining seminars and workshops.
-    </p>
-    
-    <p>
-      <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+        If you are still interested in attending this session, you do
+        not need to take further action. If you need accommodations,
+        please contact us at
+        <a href="mailto:eberly-ctr@andrew.cmu.edu">eberly-ctr@andrew.cmu.edu</a>.
     </p>
 
     <p>
-      Thank you for your interest, and we look forward to working with
-      you!
+        If you are no longer interested in or able to attend this
+        session, please log in to cancel your space as soon as possible
+        so we can accommodate other interested graduate students. If you
+        are a no-show for a session (i.e., are confirmed but don’t
+        cancel in advance or attend) more than once, you will be moved
+        to the waitlist for the semester’s remaining seminars and workshops.
+    </p>
+
+    <p>
+        <a href="http://seminars.eberly.cmu.edu">http://seminars.eberly.cmu.edu</a>
+    </p>
+
+    <p>
+        Thank you for your interest, and we look forward to working with
+        you!
     </p>
 
     <%= render :partial => 'signature' %>
