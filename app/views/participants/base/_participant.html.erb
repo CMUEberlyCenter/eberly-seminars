@@ -12,14 +12,22 @@
       <%= participant.department %>
     </h2>
 
+      <div class="button_container" style="margin-bottom: 20px;">
+          Andrew ID: <%= participant.andrewid %><br/>
+          Email: <%= participant.email %><br/>
+          Student Class: <%= participant.student_class %>
+      </div>
+      
+      
     <div class="button_container">
-      <%= link_to( "Transcript »",
-          participant_transcript_url(:participant_id => participant.andrewid, :format => :pdf),
-      :class => 'boxy' ) %>
-
         <%= render "participants/programs/future_faculty/participant_information_links" %>
 
         <%= render "participants/programs/future_faculty/participant_graduation" %>
+        
+        <%= link_to( "Transcript »",
+                    participant_transcript_url(:participant_id => participant.andrewid, :format => :pdf),
+                    :class => 'boxy' ) %>
+
     </div>
     
   </div><!-- panel-body -->

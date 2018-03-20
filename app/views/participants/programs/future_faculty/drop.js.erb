@@ -1,0 +1,7 @@
+$("a.hide-if-enrolled-in-future-faculty").
+     addClass( "success" ).
+     attr( "href",
+           "<%= escape_javascript undrop_participant_future_faculty_program_url @participant %>" ).
+     html("Dropped! Undo?").
+     delay(10000).
+     fadeOut();

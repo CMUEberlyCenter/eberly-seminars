@@ -1,3 +1,15 @@
+<div style="width: 100%; margin-bottom: 20px;">
+Future Faculty Program Status:
+<% if not Programs::FutureFaculty::Enrollment.find( @participant ).nil? %>
+    <%= @participant.future_faculty_progress_status.label %>
+    <% if @participant.future_faculty_progress_status_id == 3 %>
+        <br/>Completion Date (click to edit): <%= best_in_place @participant, :future_faculty_program_graduated_on, :as => :date, :place_holder => "N/A" %>
+    <% end %>
+<% else %>
+    Not enrolled
+<% end %>
+</div>
+
 <% if Programs::FutureFaculty::Enrollment.find( @participant ).nil? %>
 
   <%= link_to( "Enroll in Future Faculty",

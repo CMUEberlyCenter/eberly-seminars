@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery-ui
+//= require fontawesome-all.min
 //= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require jquery_ujs
 //= require best_in_place
+//= require best_in_place.jquery-ui
 //= require_tree .

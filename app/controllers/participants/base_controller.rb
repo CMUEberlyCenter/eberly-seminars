@@ -1,5 +1,5 @@
 class Participants::BaseController < ApplicationController
-  before_filter :require_administrator
+  before_action :require_administrator
 
 
   def index
@@ -31,6 +31,7 @@ class Participants::BaseController < ApplicationController
     respond_to do |format|
       format.js
       format.html { redirect_to :back }
+      format.json { render json: @participant.to_json }
     end
   end
 
@@ -45,7 +46,7 @@ class Participants::BaseController < ApplicationController
   private
   def participant_params
     if current_user.is_admin?
-      params.require(:participant).permit(:andrewid, :note, :is_admin, :consultant, :activities_attributes => [:type, :id, :title, :description], :additional_activities_attributes => [:title,:description])
+      params.require(:participant).permit(:andrewid, :note, :is_admin, :consultant, :future_faculty_program_graduated_on, :activities_attributes => [:type, :id, :title, :description], :additional_activities_attributes => [:title,:description])
     else
       params.require(:participant).permit(nil)
     end

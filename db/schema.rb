@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,170 +10,150 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108192507) do
+ActiveRecord::Schema.define(version: 20170314132629) do
 
-  create_table "attendance_statuses", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "label",      limit: 255
+  create_table "attendance_statuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "label"
   end
 
-  create_table "future_faculty_requirement_categories", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.string   "label",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "future_faculty_requirement_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "future_faculty_requirements", force: :cascade do |t|
-    t.string   "key",                                    limit: 255
-    t.string   "label",                                  limit: 255
-    t.integer  "future_faculty_requirements_version_id", limit: 4
-    t.integer  "future_faculty_requirement_category_id", limit: 4
-    t.string   "activity_class",                         limit: 255
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+  create_table "future_faculty_requirements", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.string "label"
+    t.integer "future_faculty_requirements_version_id"
+    t.integer "future_faculty_requirement_category_id"
+    t.string "activity_class"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["future_faculty_requirement_category_id"], name: "index_ff_requirements_on_ff_requirement_category_id"
+    t.index ["future_faculty_requirements_version_id"], name: "index_ff_requirements_on_ff_requirements_version_id"
   end
 
-  add_index "future_faculty_requirements", ["future_faculty_requirement_category_id"], name: "index_ff_requirements_on_ff_requirement_category_id", using: :btree
-  add_index "future_faculty_requirements", ["future_faculty_requirements_version_id"], name: "index_ff_requirements_on_ff_requirements_version_id", using: :btree
-
-  create_table "future_faculty_requirements_versions", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.string   "label",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "future_faculty_requirements_versions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "participant_activities", force: :cascade do |t|
-    t.integer  "participant_id",                limit: 4
-    t.string   "type",                          limit: 255
-    t.integer  "future_faculty_requirement_id", limit: 4
-    t.integer  "status_id",                     limit: 4
-    t.string   "course",                        limit: 255
-    t.string   "title",                         limit: 255
-    t.string   "description",                   limit: 255
-    t.integer  "observer_id",                   limit: 4
-    t.integer  "lead_consultant_id",            limit: 4
-    t.date     "completed_on"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "internal_notes",                limit: 255
-    t.date     "memo_completed_on"
-    t.date     "first_consultation_on"
+  create_table "participant_activities", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "participant_id"
+    t.string "type"
+    t.integer "future_faculty_requirement_id"
+    t.integer "status_id"
+    t.string "course"
+    t.string "title"
+    t.string "description"
+    t.integer "observer_id"
+    t.integer "lead_consultant_id"
+    t.date "completed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "internal_notes"
+    t.date "memo_completed_on"
+    t.date "first_consultation_on"
+    t.index ["first_consultation_on"], name: "index_participant_activities_on_first_consultation_on"
+    t.index ["future_faculty_requirement_id"], name: "index_participant_activities_on_ff_requirement_id"
+    t.index ["lead_consultant_id"], name: "index_participant_activities_on_lead_consultant_id"
+    t.index ["observer_id"], name: "index_participant_activities_on_observer_id"
+    t.index ["participant_id"], name: "index_participant_activities_on_participant_id"
+    t.index ["status_id"], name: "index_participant_activities_on_status_id"
   end
 
-  add_index "participant_activities", ["first_consultation_on"], name: "index_participant_activities_on_first_consultation_on", using: :btree
-  add_index "participant_activities", ["future_faculty_requirement_id"], name: "index_participant_activities_on_ff_requirement_id", using: :btree
-  add_index "participant_activities", ["lead_consultant_id"], name: "index_participant_activities_on_lead_consultant_id", using: :btree
-  add_index "participant_activities", ["observer_id"], name: "index_participant_activities_on_observer_id", using: :btree
-  add_index "participant_activities", ["participant_id"], name: "index_participant_activities_on_participant_id", using: :btree
-  add_index "participant_activities", ["status_id"], name: "index_participant_activities_on_status_id", using: :btree
-
-  create_table "participant_activity_status_types", force: :cascade do |t|
-    t.integer  "future_faculty_requirement_id", limit: 4
-    t.string   "key",                           limit: 255
-    t.string   "label",                         limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+  create_table "participant_activity_status_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "future_faculty_requirement_id"
+    t.string "key"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["future_faculty_requirement_id"], name: "fk_rails_136cc54ad1"
   end
 
-  add_index "participant_activity_status_types", ["future_faculty_requirement_id"], name: "fk_rails_5c33f3cebc", using: :btree
-
-  create_table "participants", force: :cascade do |t|
-    t.string   "andrewid",                          limit: 255
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
-    t.boolean  "is_admin",                          limit: 1,     default: false
-    t.boolean  "consultant",                        limit: 1,     default: false
-    t.string   "name_cache",                        limit: 255
-    t.text     "note",                              limit: 65535
-    t.integer  "future_faculty_enrollment_id",      limit: 4
-    t.integer  "future_faculty_progress_status_id", limit: 4
+  create_table "participants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "andrewid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_admin", default: false
+    t.boolean "consultant", default: false
+    t.string "name_cache"
+    t.text "note"
+    t.integer "future_faculty_enrollment_id"
+    t.integer "future_faculty_progress_status_id"
+    t.date "first_consultation_on"
+    t.date "future_faculty_program_graduated_on"
+    t.index ["future_faculty_enrollment_id"], name: "index_participants_on_future_faculty_enrollment_id"
+    t.index ["future_faculty_progress_status_id"], name: "index_participants_on_future_faculty_progress_status_id"
   end
 
-  add_index "participants", ["future_faculty_enrollment_id"], name: "index_participants_on_future_faculty_enrollment_id", using: :btree
-  add_index "participants", ["future_faculty_progress_status_id"], name: "index_participants_on_future_faculty_progress_status_id", using: :btree
-
-  create_table "participants_activities", force: :cascade do |t|
-    t.integer  "participant_id",                limit: 4
-    t.string   "type",                          limit: 255
-    t.integer  "future_faculty_requirement_id", limit: 4
-    t.string   "course",                        limit: 255
-    t.string   "title",                         limit: 255
-    t.string   "description",                   limit: 255
-    t.date     "completed_on"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+  create_table "program_progress_status_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "participants_activities", ["future_faculty_requirement_id"], name: "index_participants_activities_on_ff_requirement_id", using: :btree
-  add_index "participants_activities", ["participant_id"], name: "index_participants_activities_on_participant_id", using: :btree
-
-  create_table "program_progress_status_types", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.string   "label",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "registration_statuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "registration_statuses", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "registrations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "participant_id"
+    t.integer "seminar_id"
+    t.integer "registration_status_id"
+    t.integer "attendance_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendance_status_id"], name: "index_registrations_on_attendance_status_id"
+    t.index ["participant_id"], name: "index_registrations_on_participant_id"
+    t.index ["registration_status_id"], name: "index_registrations_on_registration_status_id"
+    t.index ["seminar_id"], name: "index_registrations_on_seminar_id"
   end
 
-  create_table "registrations", force: :cascade do |t|
-    t.integer  "participant_id",         limit: 4
-    t.integer  "seminar_id",             limit: 4
-    t.integer  "registration_status_id", limit: 4
-    t.integer  "attendance_status_id",   limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+  create_table "seminar_statuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "registrations", ["attendance_status_id"], name: "index_registrations_on_attendance_status_id", using: :btree
-  add_index "registrations", ["participant_id"], name: "index_registrations_on_participant_id", using: :btree
-  add_index "registrations", ["registration_status_id"], name: "index_registrations_on_registration_status_id", using: :btree
-  add_index "registrations", ["seminar_id"], name: "index_registrations_on_seminar_id", using: :btree
-
-  create_table "seminar_statuses", force: :cascade do |t|
-    t.string   "key",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "seminar_tags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "seminar_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seminar_id"], name: "index_seminar_tags_on_seminar_id"
   end
 
-  create_table "seminar_tags", force: :cascade do |t|
-    t.integer  "seminar_id", limit: 4
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "seminar_tags", ["seminar_id"], name: "index_seminar_tags_on_seminar_id", using: :btree
-
-  create_table "seminars", force: :cascade do |t|
-    t.string   "title",                        limit: 255
-    t.text     "description",                  limit: 65535
+  create_table "seminars", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "title"
+    t.text "description"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.integer  "seminar_status_id",            limit: 4
-    t.integer  "maximum_capacity",             limit: 4
-    t.integer  "participants_confirmed_cache", limit: 4
-    t.string   "location",                     limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer "seminar_status_id"
+    t.integer "maximum_capacity"
+    t.integer "participants_confirmed_cache"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seminar_status_id"], name: "index_seminars_on_seminar_status_id"
   end
 
-  add_index "seminars", ["seminar_status_id"], name: "index_seminars_on_seminar_status_id", using: :btree
-
-  create_table "settings", force: :cascade do |t|
-    t.string   "label",      limit: 255
-    t.string   "key",        limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "settings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "label"
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "future_faculty_requirements", "future_faculty_requirement_categories"
@@ -187,6 +166,4 @@ ActiveRecord::Schema.define(version: 20160108192507) do
   add_foreign_key "participant_activity_status_types", "future_faculty_requirements"
   add_foreign_key "participants", "future_faculty_requirements_versions", column: "future_faculty_enrollment_id"
   add_foreign_key "participants", "program_progress_status_types", column: "future_faculty_progress_status_id"
-  add_foreign_key "participants_activities", "future_faculty_requirements"
-  add_foreign_key "participants_activities", "participants"
 end
