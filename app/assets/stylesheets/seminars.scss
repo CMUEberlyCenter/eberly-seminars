@@ -17,15 +17,16 @@ $seminar-title-font: 22px/32px $seminar-title-font-family;
       div.capacity {
         float: left;
 	margin-top: 8px;
-
+        background-color: #fff;
+        
 	div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
         div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
       }
 
 /* ==|== box styles ========================================================= */
 section.seminar-group {
-  border-left: 1px solid $seminar-group-border-color;
-  border-right: 1px solid $seminar-group-border-color;
+/*  border-left: 1px solid $seminar-group-border-color;
+  border-right: 1px solid $seminar-group-border-color;*/
   margin: 0;
   position: relative;
 
@@ -34,15 +35,15 @@ section.seminar-group {
   &.pending  > h1 { background: #e3b31c; }
 
   &.expired > h1 { background: #a91e23; }
-  &.published > h1 { background: #94b840; }
+/*  &.published > h1 { background: #94b840; }*/
   &.development  > h1 { background: #e3b31c; }
 
   &:first-child { border-bottom: 1px solid $seminar-group-border-color; }
   &:last-child { border-bottom: 1px solid $seminar-group-border-color; }
 
   h1 {
-    background: $seminar-group-header-bg-color;
-    color: #ffffff;
+/*    background: $seminar-group-header-bg-color;
+    color: #ffffff;*/
     font: $seminar-group-header-font;
     margin: 0;
     padding: 5px $padding-small;
@@ -72,7 +73,7 @@ section.seminar-group {
       div.capacity {
         float: left;
 	margin-top: 8px;
-
+        
 	div.capacity-meter { border: 1px solid #bbbbbb; height: 14px; width: 120px;}
         div.capacity-meter > span { background-color: #bbbbbb; display: block; height: 100%; overflow: hidden; position: relative; }
       }
