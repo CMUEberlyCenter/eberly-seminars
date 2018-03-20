@@ -7,8 +7,6 @@ $cmu-red: #990000;
 $cmu-red-text: #a91e23;
 
 $site-min-width: 960px;
-$body-gradient-start: #c3c9c7;
-$body-gradient-end: #fafafa;
 
 $header-font-family: 'TitilliumText22LRegular', sansserif;
 $header-font-family-bold: 'TitilliumText22LBold', sans-serif;
@@ -37,13 +35,3 @@ $padding-medium: 20px;
 $padding-large: 40px;
 
 $footer-background-color: #464646;
-
-/* ==|== scss global mixins ================================================= */
-@mixin body-gradient( $to-color, $from-color ) {
-  background-image: -ms-linear-gradient(bottom, $to-color 0%, $from-color 100%);
-  background-image: -moz-linear-gradient(bottom, $to-color 0%, $from-color 100%);
-  background-image: -o-linear-gradient(bottom, $to-color 0%, $from-color 100%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, $to-color), color-stop(1, $from-color));
-  background-image: -webkit-linear-gradient(bottom, $to-color 0%, $from-color 100%);
-  background-image: linear-gradient(to top, $to-color 0%, $from-color 100%);
-}
