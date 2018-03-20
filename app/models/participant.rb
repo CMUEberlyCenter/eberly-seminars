@@ -1,17 +1,17 @@
 class Participant < ActiveRecord::Base
   # for now -> calendar
   has_many :registrations
-#  has_many :seminars, :through => :registrations
+  has_many :seminars, :through => :registrations
   #scope :program_requirements, -> (program) { where.not("#{program}_requirement_id".to_sym => nil) }
   #has_many :workshops, through: :registrations, foreign_key: "seminar_id"
-#  has_many :workshop_registrations, source: :registrations
+  has_many :workshop_registrations, source: :registrations
 
-  has_many :activities, class_name: Participant::Activity, dependent: :destroy,
+  has_many :activities, class_name: 'Participant::Activity', dependent: :destroy,
            inverse_of: :participant, autosave: true
   
   # Program associations
-  belongs_to :future_faculty_enrollment, class_name: Programs::FutureFaculty::RequirementsVersion
-  belongs_to :future_faculty_progress_status, class_name: Program::ProgressStatusType
+  belongs_to :future_faculty_enrollment, class_name: 'Programs::FutureFaculty::RequirementsVersion'
+  belongs_to :future_faculty_progress_status, class_name: 'Program::ProgressStatusType'
 
   before_save :update_program_progress_statuses
 
@@ -38,14 +38,15 @@ class Participant < ActiveRecord::Base
     param.to_i == 0 ? find_by_andrewid( param ) : super
   end
 
+  # helper for attended_workshops and attended_seminars relations
+  has_many :attended_registrations, -> { attended }, class_name: "Registration"  
   
   # Attended event calculations
   has_many( :attended_workshops, -> { with_tag( "workshop" ) },
             through: :attended_registrations, source: :seminar )
   has_many( :attended_seminars, -> { without_tag( "workshop" ) },
             through: :attended_registrations, source: :seminar )
-  # helper for attended_workshops and attended_seminars relations
-  has_many :attended_registrations, -> { attended }, class_name: "Registration"  
+
 
 
   
