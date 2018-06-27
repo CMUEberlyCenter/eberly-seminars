@@ -13,8 +13,12 @@ class Participants::TranscriptsController < ApplicationController
     # Check that participant exists and render transcript according to
     # requested format
     if @participant.nil?
-      redirect_to( participants_url,
-                   :flash => { :error => "Participant does not exist." } )
+
+      @participant = Participant.create andrewid: params["participant_id"]
+
+      # p_url doesn't actually respond to text/html format rn anyway
+      #redirect_to( participants_url,
+      #             :flash => { :error => "Participant does not exist." } )
     else
       respond_to do |format|
         format.html

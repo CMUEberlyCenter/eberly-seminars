@@ -82,15 +82,16 @@ prawn_document(
 
   pdf.fill_color cmu_red
 
-  pdf.text "Workshops", :size => name_font_size
+  pdf.text "Workshops and Other Programming", :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
   pdf.text "Each workshop provides immediate feedback to participants",  :size => 9
 
   pdf.move_down 15
 
-  if @participant.attended_workshops.size > 0
-    @participant.attended_workshops.each do |s|
+  workshops_and_other = @participant.attended_workshops + @participant.attended_other
+  if workshops_and_other.size > 0
+    workshops_and_other.each do |s|
       title = "#{s.title}"
       if s.core?
         title = "#{title}\*"
@@ -108,11 +109,21 @@ prawn_document(
   pdf.fill_color cmu_red
 
 
-unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
+if Programs::FutureFaculty::Enrollment.find( @participant ).nil?
+  category_requirements = Programs::FutureFaculty::RequirementsVersion.find(2).requirements.group_by(&:requirement_category)
+else
   category_requirements = @participant.future_faculty_enrollment.requirements.group_by(&:requirement_category)
+end
 
- @participant.future_faculty_enrollment.categories.each do |c|
+ categories = []
+ if @participant.future_faculty_enrollment.nil?
+  categories = Programs::FutureFaculty::RequirementsVersion.find(2).categories
+ else
+  categories = @participant.future_faculty_enrollment.categories
+end
 
+ #@participant.future_faculty_enrollment.categories.each do |c|
+ categories.each do |c|
   pdf.text c.label, :size => name_font_size
   pdf.fill_color default_text_color
   pdf.move_down 2
@@ -145,7 +156,7 @@ unless Programs::FutureFaculty::Enrollment.find( @participant ).nil?
   pdf.move_down 10
 
  end #c
-end
+#end
 
 
 
