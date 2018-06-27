@@ -32,7 +32,7 @@ wb.add_worksheet(name: "Activities") do |sheet|
 end
 
 wb.add_worksheet(name: "Event Registrations") do |sheet|
-  sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Student Class","Registration Status","Attendance Status","FFP Status","Category","Type","Title","Core?","Event Date" ]
+  sheet.add_row [ "Last Change","Name","Andrew ID","Department","School","Student Class","FFP Graduation Date","Registration Status","Attendance Status","FFP Status","Category","Type","Title","Core?","Event Date" ]
   @participants.each do |e|
     e.registrations.each do |a|
       sheet.add_row [ e.updated_at.to_formatted_s(:short),
@@ -41,6 +41,7 @@ wb.add_worksheet(name: "Event Registrations") do |sheet|
                       e.department,
                       e.college,
                       e.student_class,
+               	      e.future_faculty_program_graduated_on,
 		      a.status,
 		      a.attendance_status ? a.attendance_status.key : "",
                       e.future_faculty_progress_status ? e.future_faculty_progress_status.label : '',
