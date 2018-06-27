@@ -3,8 +3,8 @@
   <%= render "participant", participant: @participant %>
 
     <%= render partial: "seminars", object: @participant.attended_seminars, locals: { title: "Seminars" } %>
-    <%= render partial: "seminars", object: @participant.attended_workshops, locals: { title: "Workshops" } %>
-    <%= render partial: "seminars", object: @participant.attended_other, locals: { title: "Other Events" } %>
+    <% workshops_and_other = @participant.attended_workshops + @participant.attended_other %>
+    <%= render partial: "seminars", object: workshops_and_other, locals: { title: "Workshops and Other Programming" } %>
 
   <%= render "participants/programs/future_faculty/participant_progress", participant: @participant %>
 
