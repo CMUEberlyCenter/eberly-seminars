@@ -144,6 +144,7 @@
           <th>Name</th>
           <th>Attendance</th>
       </tr>
+      <tr><td colspan="3" id="add-participant2"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></td></tr>
       <% @seminar.registrations.confirmed.each do |registration| %>
 
           <tr>
