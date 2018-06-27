@@ -35,15 +35,15 @@ section.seminar-group {
   &.pending  > h1 { background: #e3b31c; }
 
   &.expired > h1 { background: #a91e23; }
-/*  &.published > h1 { background: #94b840; }*/
+  &.published > h1 { background: #94b840; }
   &.development  > h1 { background: #e3b31c; }
 
   &:first-child { border-bottom: 1px solid $seminar-group-border-color; }
   &:last-child { border-bottom: 1px solid $seminar-group-border-color; }
 
   h1 {
-/*    background: $seminar-group-header-bg-color;
-    color: #ffffff;*/
+/*    background: $seminar-group-header-bg-color; */
+    color: #ffffff;
     font: $seminar-group-header-font;
     margin: 0;
     padding: 5px $padding-small;
