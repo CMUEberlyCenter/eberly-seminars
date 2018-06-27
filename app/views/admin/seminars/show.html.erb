@@ -32,7 +32,7 @@
     <li class="cant-drag" id="add-participant"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></li>
     <%= form_for [@seminar, @seminar.registrations.build], :url=> admin_seminar_path(@seminar), :html => {:class => "dropable", :id => 'registration_form'} do |f| %>
     
-    <% @seminar.registrations.confirmed.each do |registration| %>
+    <% @seminar.registrations.confirmed.sort { |a,b| a.participant.name <=> b.participant.name }.each do |registration| %>
     <%#= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
 
@@ -69,7 +69,7 @@
   <h2 style="float: right; margin-bottom: -40px; "> Waitlisted Participants</h2>
   <ul class="connected-sortable participants-list" id="waitlisted_participants" style="float: right;">
 
-    <% @seminar.registrations.pending.each do |registration| %>
+    <% @seminar.registrations.pending.sort { |a,b| a.participant.name <=> b.participant.name }.each do |registration| %>
     <%= f.fields_for :registrations, registration do |registration_form| %>
     <% css_classes = "participant"
        if registration.participant.student_class == "Masters"
@@ -92,7 +92,7 @@
 
   <h2 style="float: left; margin-bottom: -40px;clear:left;"> Cancelled Participants</h2>
   <ul class="participants-list" id="cancelled_participants" style="width: 62%; float: left; clear: left;">
-    <% @seminar.registrations.cancelled_late.each do |registration| %>
+    <% @seminar.registrations.cancelled_late.sort { |a,b| a.participant.name <=> b.participant.name }.each do |registration| %>
         <% css_classes = "participant"
        if registration.participant.student_class == "Masters"
          css_classes = css_classes + " masters"
@@ -145,7 +145,7 @@
           <th>Attendance</th>
       </tr>
       <tr><td colspan="3" id="add-participant2"><%= link_to( image_tag( "face.png") + "+ Add Participant", new_admin_seminar_registration_path(@seminar), :remote => true ) %></td></tr>
-      <% @seminar.registrations.confirmed.each do |registration| %>
+      <% @seminar.registrations.confirmed.sort { |a,b| a.participant.name <=> b.participant.name }.each do |registration| %>
 
           <tr>
               <td class="p_select"><%= check_box_tag("select_#{registration.participant.andrewid}", "", false, class: 'participant') %></td>
