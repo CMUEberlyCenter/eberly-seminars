@@ -10,8 +10,8 @@ class Participant < ActiveRecord::Base
            inverse_of: :participant, autosave: true
   
   # Program associations
-  belongs_to :future_faculty_enrollment, class_name: 'Programs::FutureFaculty::RequirementsVersion'
-  belongs_to :future_faculty_progress_status, class_name: 'Program::ProgressStatusType'
+  belongs_to :future_faculty_enrollment, class_name: 'Programs::FutureFaculty::RequirementsVersion', optional: true
+  belongs_to :future_faculty_progress_status, class_name: 'Program::ProgressStatusType', optional: true
 
   before_save :update_program_progress_statuses
 
