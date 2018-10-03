@@ -1,9 +1,9 @@
 class Participant::Activity < ActiveRecord::Base
   belongs_to :participant
-  belongs_to :status, class_name: 'Participant::Activity::Status'
-  belongs_to :future_faculty_requirement, class_name: 'Programs::FutureFaculty::Requirement'
-  belongs_to :observer, class_name: 'Participant'
-  belongs_to :lead_consultant, class_name: 'Participant'
+  belongs_to :status, class_name: 'Participant::Activity::Status', optional: true
+  belongs_to :future_faculty_requirement, class_name: 'Programs::FutureFaculty::Requirement', optional: true
+  belongs_to :observer, class_name: 'Participant', optional: true
+  belongs_to :lead_consultant, class_name: 'Participant', optional: true
   
   # All activities meeting a requirement for some provided program (e.g.: future_faculty)
   scope :program_requirements, -> (program) { where.not("#{program}_requirement_id".to_sym => nil) }
