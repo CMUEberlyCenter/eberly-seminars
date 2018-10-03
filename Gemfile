@@ -79,6 +79,7 @@ gem 'best_in_place'
 gem 'simple_form'
 # Use AXLSX for exporting xlsx
 gem 'axlsx_rails'
+gem 'rubyzip', '< 1.0.0'
 
 # automatically add the proper vendor prefixes to CSS code
 gem 'autoprefixer-rails'
