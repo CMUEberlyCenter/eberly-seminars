@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resource 'transcript', only: :show, controller: "participants/transcripts"
+    resource 'transcript', only: :show, controller: "participants/transcripts", format: 'pdf'
 
     # Get the participant_activity path name without requiring an explicit
     # (and implicitly defined) participant_id for update and destroy
