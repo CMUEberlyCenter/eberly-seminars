@@ -88,4 +88,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Mail configuration
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "relay.andrew.cmu.edu",
+    :domain  => "cmu.edu",
+    :port    => 25
+  }
 end
