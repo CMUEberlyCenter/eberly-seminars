@@ -21,7 +21,7 @@ class Registration < ActiveRecord::Base
 
   
   # Attendance Status
-  belongs_to :attendance_status
+  belongs_to :attendance_status, optional: true
   
   AttendanceStatus.find_each do |s| 
     scope s.status, -> { where( attendance_status: s ).
