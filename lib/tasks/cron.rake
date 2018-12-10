@@ -2,12 +2,12 @@
 
 namespace :cron do
 
-  task :nightly_chores => [:environment, :send_reminders, :recalculate_ffp_progress]
+  task :nightly_chores => [:send_reminders, :recalculate_ffp_progress]
 
 
   task :send_reminders => [:send_one_week_reminder, :send_two_day_reminder]
 
-  task :send_one_week_reminder do
+  task :send_one_week_reminder => :environment do
     Seminar.days_away( 7 ).published.each do |seminar|
       seminar.registrations.each do |registration|
         ParticipantMailer.generic_reminder_email( registration ).deliver
@@ -16,7 +16,7 @@ namespace :cron do
   end
 
 
-  task :send_two_day_reminder do
+  task :send_two_day_reminder => :environment do
     Seminar.days_away( 2 ).published.each do |seminar|
       seminar.registrations.each do |registration|
         ParticipantMailer.generic_reminder_email( registration ).deliver
@@ -24,7 +24,7 @@ namespace :cron do
     end
   end
 
-  task :recalculate_ffp_progress do
+  task :recalculate_ffp_progress => :environment do
     # TODO: Add "active" boolean to RV and select all active RVs
     v = Programs::FutureFaculty::RequirementsVersion.find_by_key("2015")
     s = Program::ProgressStatusType.find("incomplete")
