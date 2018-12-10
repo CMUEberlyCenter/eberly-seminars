@@ -1,4 +1,4 @@
-# 0 12 * * * /bin/bash -l -c 'cd /opt/rails/graduate-students && RAILS_ENV=production rake cron:nightly_chores --silent'
+# 0 12 * * * /bin/bash -l -c 'cd /srv/rails/seminars/current && RAILS_ENV=production rake cron:nightly_chores --silent'
 
 namespace :cron do
 
