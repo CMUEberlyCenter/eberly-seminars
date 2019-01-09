@@ -32,6 +32,7 @@ class Admin::SeminarsController < ApplicationController
 
   def create
     @seminar = Seminar.new seminar_params
+    @seminar.tags = "#{params[:seminar][:tags]}"
     d = DateTime.strptime("#{params[:seminar][:start_date]}", '%m/%d/%Y')
     tz = Time.local(d.year, d.month, d.day).zone
 
@@ -42,11 +43,11 @@ class Admin::SeminarsController < ApplicationController
       "#{params[:seminar][:end_date]}" + ' ' + "#{params[:seminar][:end_time]} " + tz, '%m/%d/%Y %l:%M %P %Z'
     )
 
-    tags = SeminarTag.where('seminar_id is null')
-    tags.each do |t|
-      t.seminar= @seminar
-      t.save!
-    end
+    #tags = SeminarTag.where('seminar_id is null')
+    #tags.each do |t|
+    #  t.seminar= @seminar
+    #  t.save!
+    #end
 
     respond_to do |format|
       if @seminar.save
@@ -66,13 +67,70 @@ class Admin::SeminarsController < ApplicationController
 
   def show
     @seminar = Seminar.find(params[:id])
+    attended = AttendanceStatus.find_by_key("attended")
+    inc = AttendanceStatus.find_by_key("attended-incomplete")
+    un = AttendanceStatus.find_by_key("absent-unexcused")
+    ex = AttendanceStatus.find_by_key("absent-excused")
+
+    @status_icons = { attended => "fa-check-circle",
+                     ex => "fa-adjust",
+                     un => "fa-times-circle"#,
+                     #nil => "fa-ban"
+                    }
+                     #un => "fa-ban" }
+    
     respond_to do |format|
       format.html
       format.pdf { render params[:profile] }
     end
   end
 
-  def update
+  def mark_attended
+    logger.info params
+    @registration = Registration.find(params[:id])
+
+    status = params["data_status"]
+    if (status == "attended")
+      #status = "attended-incomplete" 
+    #elsif(status == "attended-incomplete")
+      status = "absent-excused"
+    elsif(status == "absent-excused")
+      status = "absent-unexcused"
+    elsif(status == "absent-unexcused")
+      status = nil
+    elsif(status == "")
+      status = "attended"
+    end
+    logger.info status
+    
+    @attendance_status = AttendanceStatus.find_by_key(status)
+    @registration.attendance_status = @attendance_status
+    @registration.save
+    redirect_to admin_seminar_path(@registration.seminar)
+  end
+
+  
+  def mark_all_attended
+    #logger.info params
+    @seminar = Seminar.find(params[:id])
+    status = AttendanceStatus.find_by_key("attended")
+    @seminar.registrations.confirmed.each do |r|
+      r.attendance_status = status
+      r.save
+    end
+    redirect_to admin_seminar_path(@seminar)
+  end
+  
+  def mark_all_cleared
+    @seminar = Seminar.find(params[:id])
+    @seminar.registrations.confirmed.each do |r|
+      r.attendance_status = nil
+      r.save
+    end
+    redirect_to admin_seminar_path(@seminar)
+  end
+  
+    def update
       logger.info params
       @seminar = Seminar.find(params[:id])
     

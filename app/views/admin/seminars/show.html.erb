@@ -135,8 +135,12 @@
 
 
   <button id="at_filter" class="at-btn">Attendance</button>
-  <button id="mark_all" class="at-btn">Mark All Present</button>
-  <button id="unmark_all" class="at-btn">Unmark All</button>
+  <%= button_to("Clear Attendance for ALL", { action: "mark_all_cleared", id: @seminar.id },
+                method: :patch,  class: "at-btn", form_style: "float: left") %>
+  
+  <%= button_to("Mark ALL Present", { action: "mark_all_attended", id: @seminar.id },
+                method: :patch,  class: "at-btn", form_style: "float: left") %>
+
   
   <table style="width:100%">
       <tr style="color: #fff; background: #000;">
@@ -151,11 +155,18 @@
               <td class="p_select"><%= check_box_tag("select_#{registration.participant.andrewid}", "", false, class: 'participant') %></td>
               <td><%= registration.participant.name %> (<%= registration.participant.andrewid %>)</td>
               <td class="attendance" data-icon="fa-ban">
-                  <i class="fas fa-2x fa-ban"></i>
+                  <%= button_to({ action: "mark_attended", id: registration.id, data_status: registration.attendance_status ? registration.attendance_status.key : ""}, method: :patch) do %>
+                      <% if registration.attendance_status.nil? %>
+                      <i class="fas fa-2x fa-ban"></i>
+                      <% else %>
+                      <i class="fas fa-2x <%= @status_icons[registration.attendance_status]%>"></i>
+                      <% end %>
+                  <% end %>
               </td>
           </tr>
-  <% end%>
+      <% end%>
   </table>
+
   
 </section>
 

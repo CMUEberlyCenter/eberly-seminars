@@ -56,7 +56,11 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create, :destroy]
   end
   get 'registrations', to: 'registrations#index', :as => 'registrations'
-
+  patch 'admin/seminars/mark_all_attended' => 'admin/seminars#mark_all_attended', :as => 'mark_all_attended_seminar'
+  patch 'admin/seminars/mark_all_cleared' => 'admin/seminars#mark_all_cleared', :as => 'mark_all_cleared_seminar'
+  
+  patch 'admin/seminars/mark_attended' => 'admin/seminars#mark_attended', :as => 'mark_attended_seminar'
+  
 
   resources :sessions, only: [:create, :destroy]
   get 'login',  to: 'sessions#create'

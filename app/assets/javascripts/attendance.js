@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $(".attendance").on("click",
+    $(".attendancea").on("click",
                         function() {
                             attr = $(this).attr("data-icon");
                             if(attr == "fa-check-circle") { attr = "fa-adjust"; }
