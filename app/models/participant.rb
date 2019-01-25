@@ -105,7 +105,7 @@ class Participant < ActiveRecord::Base
   end
 
   def name
-    Array.[](ldap_reference["cn"]).flatten.last
+    Array.[](ldap_reference["cn"]).flatten.first
   end
 
   def surname
