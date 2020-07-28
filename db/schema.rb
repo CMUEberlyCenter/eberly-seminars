@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314132629) do
+ActiveRecord::Schema.define(version: 20200728165035) do
 
   create_table "attendance_statuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "key"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20170314132629) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmed_email_insert"
     t.index ["seminar_status_id"], name: "index_seminars_on_seminar_status_id"
   end
 
